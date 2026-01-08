@@ -1,0 +1,17 @@
+# SPICE Translator IR-Based Architecture
+# Python 3.10+ required
+
+# Core dependencies
+pyyaml>=6.0        # YAML support for IR serialization and mapping configs
+pathlib2>=2.3.7    # Enhanced path handling (backport for older Python)
+
+# Development dependencies
+pytest>=7.0        # Testing framework
+pytest-cov>=4.0    # Code coverage
+pytest-xdist>=3.0  # Parallel test execution
+ruff>=0.1.0        # Linting and formatting
+mypy>=1.0          # Type checking
+
+# Optional utilities
+tqdm>=4.65.0       # Progress bars for batch processing
+python-dotenv>=1.0 # Environment variable management
