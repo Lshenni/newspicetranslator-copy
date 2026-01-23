@@ -1,0 +1,414 @@
+{
+  "summary": {
+    "total_files": 38,
+    "success": 28,
+    "failed": 0,
+    "errors": 0,
+    "skipped": 10,
+    "total_models": 154,
+    "total_time": 2.5181572437286377,
+    "avg_time_per_file": 0.06626729588759572
+  },
+  "files": [
+    {
+      "file": "gpdk090_capacitor.scs",
+      "size_kb": 1.205078125,
+      "status": "success",
+      "models": 1,
+      "errors": [],
+      "warnings": [],
+      "parse_time": 0.012309551239013672,
+      "translate_time": 0.0018601417541503906
+    },
+    {
+      "file": "gpdk090_mos.scs",
+      "size_kb": 107.013671875,
+      "status": "success",
+      "models": 8,
+      "errors": [],
+      "warnings": [],
+      "parse_time": 0.008826732635498047,
+      "translate_time": 0.005398273468017578
+    },
+    {
+      "file": "gpdk090_bipolar.scs",
+      "size_kb": 7.5859375,
+      "status": "success",
+      "models": 12,
+      "errors": [],
+      "warnings": [],
+      "parse_time": 0.003187417984008789,
+      "translate_time": 0.0013086795806884766
+    },
+    {
+      "file": "gpdk090_resistor.scs",
+      "size_kb": 10.8955078125,
+      "status": "success",
+      "models": 18,
+      "errors": [],
+      "warnings": [],
+      "parse_time": 0.004560947418212891,
+      "translate_time": 0.0026674270629882812
+    },
+    {
+      "file": "gpdk090_diode.scs",
+      "size_kb": 11.7099609375,
+      "status": "success",
+      "models": 9,
+      "errors": [],
+      "warnings": [],
+      "parse_time": 0.0032727718353271484,
+      "translate_time": 0.0010590553283691406
+    },
+    {
+      "file": "gpdk090.scs",
+      "size_kb": 5.1376953125,
+      "status": "skipped",
+      "models": 0,
+      "errors": [],
+      "warnings": [
+        "No models found"
+      ],
+      "parse_time": 0.0013728141784667969,
+      "translate_time": 0
+    },
+    {
+      "file": "gpdk090_mos_age.scs",
+      "size_kb": 137.7255859375,
+      "status": "success",
+      "models": 2,
+      "errors": [],
+      "warnings": [],
+      "parse_time": 0.011741399765014648,
+      "translate_time": 0.00031828880310058594
+    },
+    {
+      "file": "gpdk090_moscap.scs",
+      "size_kb": 136.0693359375,
+      "status": "success",
+      "models": 6,
+      "errors": [],
+      "warnings": [],
+      "parse_time": 0.010376214981079102,
+      "translate_time": 0.0003466606140136719
+    },
+    {
+      "file": "gpdk090_mos_iso.scs",
+      "size_kb": 0.349609375,
+      "status": "skipped",
+      "models": 0,
+      "errors": [],
+      "warnings": [
+        "No models found"
+      ],
+      "parse_time": 0.00020575523376464844,
+      "translate_time": 0
+    },
+    {
+      "file": "cds_ff_mpt_bipolar.scs",
+      "size_kb": 12.0380859375,
+      "status": "success",
+      "models": 3,
+      "errors": [],
+      "warnings": [],
+      "parse_time": 0.0018367767333984375,
+      "translate_time": 0.00025010108947753906
+    },
+    {
+      "file": "cds_ff_mpt_mosfet.scs",
+      "size_kb": 153.8974609375,
+      "status": "success",
+      "models": 8,
+      "errors": [],
+      "warnings": [],
+      "parse_time": 0.02032613754272461,
+      "translate_time": 0.010092020034790039
+    },
+    {
+      "file": "cds_ff_mpt_diode.scs",
+      "size_kb": 21.2021484375,
+      "status": "success",
+      "models": 8,
+      "errors": [],
+      "warnings": [],
+      "parse_time": 0.0045626163482666016,
+      "translate_time": 0.00044608116149902344
+    },
+    {
+      "file": "cds_ff_mpt_mimcap.scs",
+      "size_kb": 3.205078125,
+      "status": "success",
+      "models": 2,
+      "errors": [],
+      "warnings": [],
+      "parse_time": 0.0014333724975585938,
+      "translate_time": 0.00029349327087402344
+    },
+    {
+      "file": "cds_ff_mpt.scs",
+      "size_kb": 4.240234375,
+      "status": "skipped",
+      "models": 0,
+      "errors": [],
+      "warnings": [
+        "No models found"
+      ],
+      "parse_time": 0.0010218620300292969,
+      "translate_time": 0
+    },
+    {
+      "file": "cds_ff_mpt_resistor.scs",
+      "size_kb": 94.7451171875,
+      "status": "success",
+      "models": 3,
+      "errors": [],
+      "warnings": [],
+      "parse_time": 0.016178607940673828,
+      "translate_time": 0.0003495216369628906
+    },
+    {
+      "file": "gpdk045_mimcap.scs",
+      "size_kb": 2.98828125,
+      "status": "success",
+      "models": 2,
+      "errors": [],
+      "warnings": [],
+      "parse_time": 0.0013079643249511719,
+      "translate_time": 0.0003631114959716797
+    },
+    {
+      "file": "gpdk045.scs",
+      "size_kb": 6.37109375,
+      "status": "skipped",
+      "models": 0,
+      "errors": [],
+      "warnings": [
+        "No models found"
+      ],
+      "parse_time": 0.0013742446899414062,
+      "translate_time": 0
+    },
+    {
+      "file": "gpdk045_resistor.scs",
+      "size_kb": 80.0712890625,
+      "status": "success",
+      "models": 3,
+      "errors": [],
+      "warnings": [],
+      "parse_time": 0.01159811019897461,
+      "translate_time": 0.0003592967987060547
+    },
+    {
+      "file": "gpdk045_bipolar.scs",
+      "size_kb": 25.67578125,
+      "status": "success",
+      "models": 8,
+      "errors": [],
+      "warnings": [],
+      "parse_time": 0.0037505626678466797,
+      "translate_time": 0.00031685829162597656
+    },
+    {
+      "file": "gpdk045_moscap.scs",
+      "size_kb": 1092.8232421875,
+      "status": "success",
+      "models": 4,
+      "errors": [],
+      "warnings": [],
+      "parse_time": 0.2866671085357666,
+      "translate_time": 0.002862215042114258
+    },
+    {
+      "file": "gpdk045_mos.scs",
+      "size_kb": 3957.8173828125,
+      "status": "success",
+      "models": 20,
+      "errors": [],
+      "warnings": [],
+      "parse_time": 1.137493371963501,
+      "translate_time": 0.39115452766418457
+    },
+    {
+      "file": "gpdk045_diode.scs",
+      "size_kb": 28.564453125,
+      "status": "success",
+      "models": 10,
+      "errors": [],
+      "warnings": [],
+      "parse_time": 0.0063304901123046875,
+      "translate_time": 0.0003726482391357422
+    },
+    {
+      "file": "gpdk045_soa.scs",
+      "size_kb": 12.6689453125,
+      "status": "skipped",
+      "models": 0,
+      "errors": [],
+      "warnings": [
+        "No models found"
+      ],
+      "parse_time": 0.001428365707397461,
+      "translate_time": 0
+    },
+    {
+      "file": "gpdk045_inductor.scs",
+      "size_kb": 2.837890625,
+      "status": "skipped",
+      "models": 0,
+      "errors": [],
+      "warnings": [
+        "No models found"
+      ],
+      "parse_time": 0.0006692409515380859,
+      "translate_time": 0
+    },
+    {
+      "file": "nmos1.scs",
+      "size_kb": 15.5068359375,
+      "status": "success",
+      "models": 1,
+      "errors": [],
+      "warnings": [],
+      "parse_time": 0.013168573379516602,
+      "translate_time": 0.0007691383361816406
+    },
+    {
+      "file": "rfmos.scs",
+      "size_kb": 5.267578125,
+      "status": "skipped",
+      "models": 0,
+      "errors": [],
+      "warnings": [
+        "No models found"
+      ],
+      "parse_time": 0.0011279582977294922,
+      "translate_time": 0
+    },
+    {
+      "file": "pmos1.scs",
+      "size_kb": 14.9677734375,
+      "status": "success",
+      "models": 1,
+      "errors": [],
+      "warnings": [],
+      "parse_time": 0.013404607772827148,
+      "translate_time": 0.0009610652923583984
+    },
+    {
+      "file": "bipolar.scs",
+      "size_kb": 0.8642578125,
+      "status": "success",
+      "models": 3,
+      "errors": [],
+      "warnings": [],
+      "parse_time": 0.0007867813110351562,
+      "translate_time": 0.00028514862060546875
+    },
+    {
+      "file": "mcxjvar_w40.scs",
+      "size_kb": 3.8955078125,
+      "status": "success",
+      "models": 2,
+      "errors": [],
+      "warnings": [],
+      "parse_time": 0.0009949207305908203,
+      "translate_time": 0.0002791881561279297
+    },
+    {
+      "file": "xjvar_w40.scs",
+      "size_kb": 2.498046875,
+      "status": "success",
+      "models": 2,
+      "errors": [],
+      "warnings": [],
+      "parse_time": 0.0004830360412597656,
+      "translate_time": 0.0002613067626953125
+    },
+    {
+      "file": "diode.scs",
+      "size_kb": 0.91796875,
+      "status": "success",
+      "models": 2,
+      "errors": [],
+      "warnings": [],
+      "parse_time": 0.0006203651428222656,
+      "translate_time": 0.00029015541076660156
+    },
+    {
+      "file": "capacitor.scs",
+      "size_kb": 0.978515625,
+      "status": "success",
+      "models": 1,
+      "errors": [],
+      "warnings": [],
+      "parse_time": 0.0006608963012695312,
+      "translate_time": 0.00036263465881347656
+    },
+    {
+      "file": "snacapacitor.scs",
+      "size_kb": 0.369140625,
+      "status": "skipped",
+      "models": 0,
+      "errors": [],
+      "warnings": [
+        "No models found"
+      ],
+      "parse_time": 0.00017547607421875,
+      "translate_time": 0
+    },
+    {
+      "file": "cmodel.scs",
+      "size_kb": 0.3583984375,
+      "status": "skipped",
+      "models": 0,
+      "errors": [],
+      "warnings": [
+        "No models found"
+      ],
+      "parse_time": 0.0001926422119140625,
+      "translate_time": 0
+    },
+    {
+      "file": "mos25gen.scs",
+      "size_kb": 7.0263671875,
+      "status": "success",
+      "models": 2,
+      "errors": [],
+      "warnings": [],
+      "parse_time": 0.0027091503143310547,
+      "translate_time": 0.00022268295288085938
+    },
+    {
+      "file": "resistor.scs",
+      "size_kb": 8.4404296875,
+      "status": "success",
+      "models": 11,
+      "errors": [],
+      "warnings": [],
+      "parse_time": 0.003404378890991211,
+      "translate_time": 0.0012888908386230469
+    },
+    {
+      "file": "gpdk.scs",
+      "size_kb": 2.55078125,
+      "status": "skipped",
+      "models": 0,
+      "errors": [],
+      "warnings": [
+        "No models found"
+      ],
+      "parse_time": 0.0007729530334472656,
+      "translate_time": 0
+    },
+    {
+      "file": "xjvar_nf36.scs",
+      "size_kb": 2.2529296875,
+      "status": "success",
+      "models": 2,
+      "errors": [],
+      "warnings": [],
+      "parse_time": 0.0004150867462158203,
+      "translate_time": 0.00020813941955566406
+    }
+  ]
+}

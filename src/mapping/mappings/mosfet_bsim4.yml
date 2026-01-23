@@ -1,0 +1,1358 @@
+# BSIM4 MOSFET Parameter Mappings
+# Comprehensive mappings for BSIM4 model parameters across SPICE formats
+# Format: parameter_name -> {format: {target, confidence, notes}}
+
+# =============================================================================
+# CORE ELECTRICAL PARAMETERS
+# =============================================================================
+
+# Threshold Voltage
+vth0:
+  spectre:
+    target: vth0
+    confidence: high
+    notes: "Threshold voltage at zero substrate bias"
+  hspice:
+    target: vth0
+    confidence: high
+  ngspice:
+    target: vth0
+    confidence: high
+  aliases: [vth, vtho, vt0]
+
+# Mobility
+u0:
+  spectre:
+    target: u0
+    confidence: high
+    notes: "Low-field mobility at nominal temperature"
+  hspice:
+    target: u0
+    confidence: high
+  ngspice:
+    target: u0
+    confidence: high
+  aliases: [uo, mobility]
+
+# Oxide Thickness
+tox:
+  spectre:
+    target: tox
+    confidence: high
+    notes: "Gate oxide thickness"
+  hspice:
+    target: tox
+    confidence: high
+  ngspice:
+    target: tox
+    confidence: high
+  aliases: []
+
+toxe:
+  spectre:
+    target: toxe
+    confidence: high
+    notes: "Electrical gate oxide thickness"
+  hspice:
+    target: toxe
+    confidence: high
+  ngspice:
+    target: toxe
+    confidence: high
+  aliases: []
+
+toxp:
+  spectre:
+    target: toxp
+    confidence: high
+    notes: "Physical gate oxide thickness"
+  hspice:
+    target: toxp
+    confidence: high
+  ngspice:
+    target: toxp
+    confidence: high
+  aliases: []
+
+dtox:
+  spectre:
+    target: dtox
+    confidence: high
+    notes: "Oxide thickness correction"
+  hspice:
+    target: dtox
+    confidence: high
+  ngspice:
+    target: dtox
+    confidence: high
+  aliases: []
+
+# Body Effect Coefficients
+k1:
+  spectre:
+    target: k1
+    confidence: high
+    notes: "First-order body effect coefficient"
+  hspice:
+    target: k1
+    confidence: high
+  ngspice:
+    target: k1
+    confidence: high
+  aliases: []
+
+k2:
+  spectre:
+    target: k2
+    confidence: high
+    notes: "Second-order body effect coefficient"
+  hspice:
+    target: k2
+    confidence: high
+  ngspice:
+    target: k2
+    confidence: high
+  aliases: []
+
+k3:
+  spectre:
+    target: k3
+    confidence: high
+    notes: "Narrow width effect coefficient"
+  hspice:
+    target: k3
+    confidence: high
+  ngspice:
+    target: k3
+    confidence: high
+  aliases: []
+
+k3b:
+  spectre:
+    target: k3b
+    confidence: high
+    notes: "Body effect coefficient of k3"
+  hspice:
+    target: k3b
+    confidence: high
+  ngspice:
+    target: k3b
+    confidence: high
+  aliases: []
+
+# =============================================================================
+# DIMENSION PARAMETERS
+# =============================================================================
+
+xl:
+  spectre:
+    target: xl
+    confidence: high
+    notes: "Length reduction parameter"
+  hspice:
+    target: xl
+    confidence: high
+  ngspice:
+    target: xl
+    confidence: high
+  aliases: []
+
+xw:
+  spectre:
+    target: xw
+    confidence: high
+    notes: "Width reduction parameter"
+  hspice:
+    target: xw
+    confidence: high
+  ngspice:
+    target: xw
+    confidence: high
+  aliases: []
+
+lint:
+  spectre:
+    target: lint
+    confidence: high
+    notes: "Length offset fitting parameter from I-V"
+  hspice:
+    target: lint
+    confidence: high
+  ngspice:
+    target: lint
+    confidence: high
+  aliases: []
+
+wint:
+  spectre:
+    target: wint
+    confidence: high
+    notes: "Width offset fitting parameter from I-V"
+  hspice:
+    target: wint
+    confidence: high
+  ngspice:
+    target: wint
+    confidence: high
+  aliases: []
+
+dlc:
+  spectre:
+    target: dlc
+    confidence: high
+    notes: "Length offset for C-V"
+  hspice:
+    target: dlc
+    confidence: high
+  ngspice:
+    target: dlc
+    confidence: high
+  aliases: []
+
+dwc:
+  spectre:
+    target: dwc
+    confidence: high
+    notes: "Width offset for C-V"
+  hspice:
+    target: dwc
+    confidence: high
+  ngspice:
+    target: dwc
+    confidence: high
+  aliases: []
+
+# =============================================================================
+# SATURATION VELOCITY & MOBILITY DEGRADATION
+# =============================================================================
+
+vsat:
+  spectre:
+    target: vsat
+    confidence: high
+    notes: "Saturation velocity at nominal temperature"
+  hspice:
+    target: vsat
+    confidence: high
+  ngspice:
+    target: vsat
+    confidence: high
+  aliases: []
+
+ua:
+  spectre:
+    target: ua
+    confidence: high
+    notes: "First-order mobility degradation coefficient"
+  hspice:
+    target: ua
+    confidence: high
+  ngspice:
+    target: ua
+    confidence: high
+  aliases: []
+
+ub:
+  spectre:
+    target: ub
+    confidence: high
+    notes: "Second-order mobility degradation coefficient"
+  hspice:
+    target: ub
+    confidence: high
+  ngspice:
+    target: ub
+    confidence: high
+  aliases: []
+
+uc:
+  spectre:
+    target: uc
+    confidence: high
+    notes: "Body-bias coefficient of mobility degradation"
+  hspice:
+    target: uc
+    confidence: high
+  ngspice:
+    target: uc
+    confidence: high
+  aliases: []
+
+ud:
+  spectre:
+    target: ud
+    confidence: high
+    notes: "Fourth-order mobility degradation coefficient"
+  hspice:
+    target: ud
+    confidence: medium
+  ngspice:
+    target: ud
+    confidence: medium
+  aliases: []
+
+# =============================================================================
+# THRESHOLD VOLTAGE ROLL-OFF (DIBL)
+# =============================================================================
+
+dvt0:
+  spectre:
+    target: dvt0
+    confidence: high
+    notes: "First coefficient of short-channel effect on Vth"
+  hspice:
+    target: dvt0
+    confidence: high
+  ngspice:
+    target: dvt0
+    confidence: high
+  aliases: []
+
+dvt1:
+  spectre:
+    target: dvt1
+    confidence: high
+    notes: "Second coefficient of short-channel effect on Vth"
+  hspice:
+    target: dvt1
+    confidence: high
+  ngspice:
+    target: dvt1
+    confidence: high
+  aliases: []
+
+dvt2:
+  spectre:
+    target: dvt2
+    confidence: high
+    notes: "Body-bias coefficient of short-channel effect on Vth"
+  hspice:
+    target: dvt2
+    confidence: high
+  ngspice:
+    target: dvt2
+    confidence: high
+  aliases: []
+
+dvt0w:
+  spectre:
+    target: dvt0w
+    confidence: high
+    notes: "First coefficient of narrow width effect on Vth"
+  hspice:
+    target: dvt0w
+    confidence: high
+  ngspice:
+    target: dvt0w
+    confidence: high
+  aliases: []
+
+dvt1w:
+  spectre:
+    target: dvt1w
+    confidence: high
+    notes: "Second coefficient of narrow width effect on Vth"
+  hspice:
+    target: dvt1w
+    confidence: high
+  ngspice:
+    target: dvt1w
+    confidence: high
+  aliases: []
+
+dvt2w:
+  spectre:
+    target: dvt2w
+    confidence: high
+    notes: "Body-bias coefficient of narrow width effect on Vth"
+  hspice:
+    target: dvt2w
+    confidence: high
+  ngspice:
+    target: dvt2w
+    confidence: high
+  aliases: []
+
+dvtp0:
+  spectre:
+    target: dvtp0
+    confidence: high
+    notes: "First coefficient of Vth shift due to pocket implant"
+  hspice:
+    target: dvtp0
+    confidence: high
+  ngspice:
+    target: dvtp0
+    confidence: medium
+  aliases: []
+
+dvtp1:
+  spectre:
+    target: dvtp1
+    confidence: high
+    notes: "Second coefficient of Vth shift due to pocket implant"
+  hspice:
+    target: dvtp1
+    confidence: high
+  ngspice:
+    target: dvtp1
+    confidence: medium
+  aliases: []
+
+# =============================================================================
+# CHANNEL LENGTH MODULATION & OUTPUT RESISTANCE
+# =============================================================================
+
+pclm:
+  spectre:
+    target: pclm
+    confidence: high
+    notes: "Channel length modulation parameter"
+  hspice:
+    target: pclm
+    confidence: high
+  ngspice:
+    target: pclm
+    confidence: high
+  aliases: []
+
+pdiblc1:
+  spectre:
+    target: pdiblc1
+    confidence: high
+    notes: "First output resistance DIBL effect correction parameter"
+  hspice:
+    target: pdiblc1
+    confidence: high
+  ngspice:
+    target: pdiblc1
+    confidence: high
+  aliases: []
+
+pdiblc2:
+  spectre:
+    target: pdiblc2
+    confidence: high
+    notes: "Second output resistance DIBL effect correction parameter"
+  hspice:
+    target: pdiblc2
+    confidence: high
+  ngspice:
+    target: pdiblc2
+    confidence: high
+  aliases: []
+
+pdiblcb:
+  spectre:
+    target: pdiblcb
+    confidence: high
+    notes: "Body effect coefficient of DIBL correction"
+  hspice:
+    target: pdiblcb
+    confidence: high
+  ngspice:
+    target: pdiblcb
+    confidence: high
+  aliases: []
+
+drout:
+  spectre:
+    target: drout
+    confidence: high
+    notes: "DIBL coefficient of output resistance"
+  hspice:
+    target: drout
+    confidence: high
+  ngspice:
+    target: drout
+    confidence: high
+  aliases: []
+
+# =============================================================================
+# SUBTHRESHOLD PARAMETERS
+# =============================================================================
+
+nfactor:
+  spectre:
+    target: nfactor
+    confidence: high
+    notes: "Subthreshold swing factor"
+  hspice:
+    target: nfactor
+    confidence: high
+  ngspice:
+    target: nfactor
+    confidence: high
+  aliases: [nf]
+
+eta0:
+  spectre:
+    target: eta0
+    confidence: high
+    notes: "DIBL coefficient in subthreshold region"
+  hspice:
+    target: eta0
+    confidence: high
+  ngspice:
+    target: eta0
+    confidence: high
+  aliases: []
+
+etab:
+  spectre:
+    target: etab
+    confidence: high
+    notes: "Body-bias coefficient for DIBL effect in subthreshold"
+  hspice:
+    target: etab
+    confidence: high
+  ngspice:
+    target: etab
+    confidence: high
+  aliases: []
+
+dsub:
+  spectre:
+    target: dsub
+    confidence: high
+    notes: "DIBL coefficient exponent in subthreshold region"
+  hspice:
+    target: dsub
+    confidence: high
+  ngspice:
+    target: dsub
+    confidence: high
+  aliases: []
+
+# =============================================================================
+# CAPACITANCE PARAMETERS
+# =============================================================================
+
+cgso:
+  spectre:
+    target: cgso
+    confidence: high
+    notes: "Gate-source overlap capacitance per width"
+  hspice:
+    target: cgso
+    confidence: high
+  ngspice:
+    target: cgso
+    confidence: high
+  aliases: []
+
+cgdo:
+  spectre:
+    target: cgdo
+    confidence: high
+    notes: "Gate-drain overlap capacitance per width"
+  hspice:
+    target: cgdo
+    confidence: high
+  ngspice:
+    target: cgdo
+    confidence: high
+  aliases: []
+
+cgbo:
+  spectre:
+    target: cgbo
+    confidence: high
+    notes: "Gate-bulk overlap capacitance per length"
+  hspice:
+    target: cgbo
+    confidence: high
+  ngspice:
+    target: cgbo
+    confidence: high
+  aliases: []
+
+cgsl:
+  spectre:
+    target: cgsl
+    confidence: high
+    notes: "Light-doped source-side gate-source overlap capacitance"
+  hspice:
+    target: cgsl
+    confidence: high
+  ngspice:
+    target: cgsl
+    confidence: medium
+  aliases: []
+
+cgdl:
+  spectre:
+    target: cgdl
+    confidence: high
+    notes: "Light-doped drain-side gate-drain overlap capacitance"
+  hspice:
+    target: cgdl
+    confidence: high
+  ngspice:
+    target: cgdl
+    confidence: medium
+  aliases: []
+
+ckappas:
+  spectre:
+    target: ckappas
+    confidence: high
+    notes: "Source-side overlap capacitance fringing field parameter"
+  hspice:
+    target: ckappas
+    confidence: high
+  ngspice:
+    target: ckappas
+    confidence: medium
+  aliases: []
+
+ckappad:
+  spectre:
+    target: ckappad
+    confidence: high
+    notes: "Drain-side overlap capacitance fringing field parameter"
+  hspice:
+    target: ckappad
+    confidence: high
+  ngspice:
+    target: ckappad
+    confidence: medium
+  aliases: []
+
+cf:
+  spectre:
+    target: cf
+    confidence: high
+    notes: "Fringing field capacitance"
+  hspice:
+    target: cf
+    confidence: high
+  ngspice:
+    target: cf
+    confidence: high
+  aliases: []
+
+clc:
+  spectre:
+    target: clc
+    confidence: high
+    notes: "Constant term for Vdsat calculation"
+  hspice:
+    target: clc
+    confidence: high
+  ngspice:
+    target: clc
+    confidence: high
+  aliases: []
+
+cle:
+  spectre:
+    target: cle
+    confidence: high
+    notes: "Exponential term for Vdsat calculation"
+  hspice:
+    target: cle
+    confidence: high
+  ngspice:
+    target: cle
+    confidence: high
+  aliases: []
+
+# =============================================================================
+# JUNCTION DIODE PARAMETERS
+# =============================================================================
+
+cjs:
+  spectre:
+    target: cjs
+    confidence: high
+    notes: "Source bottom junction capacitance per area"
+  hspice:
+    target: cjs
+    confidence: high
+  ngspice:
+    target: cjs
+    confidence: high
+  aliases: [cj]
+
+mjs:
+  spectre:
+    target: mjs
+    confidence: high
+    notes: "Source bottom junction grading coefficient"
+  hspice:
+    target: mjs
+    confidence: high
+  ngspice:
+    target: mjs
+    confidence: high
+  aliases: [mj]
+
+pbs:
+  spectre:
+    target: pbs
+    confidence: high
+    notes: "Source bottom junction built-in potential"
+  hspice:
+    target: pbs
+    confidence: high
+  ngspice:
+    target: pbs
+    confidence: high
+  aliases: [pb]
+
+cjsws:
+  spectre:
+    target: cjsws
+    confidence: high
+    notes: "Source sidewall junction capacitance per perimeter"
+  hspice:
+    target: cjsws
+    confidence: high
+  ngspice:
+    target: cjsws
+    confidence: high
+  aliases: [cjsw]
+
+mjsws:
+  spectre:
+    target: mjsws
+    confidence: high
+    notes: "Source sidewall junction grading coefficient"
+  hspice:
+    target: mjsws
+    confidence: high
+  ngspice:
+    target: mjsws
+    confidence: high
+  aliases: [mjsw]
+
+pbsws:
+  spectre:
+    target: pbsws
+    confidence: high
+    notes: "Source sidewall junction built-in potential"
+  hspice:
+    target: pbsws
+    confidence: high
+  ngspice:
+    target: pbsws
+    confidence: high
+  aliases: [pbsw]
+
+cjswgs:
+  spectre:
+    target: cjswgs
+    confidence: high
+    notes: "Source gate-edge sidewall junction capacitance per perimeter"
+  hspice:
+    target: cjswgs
+    confidence: high
+  ngspice:
+    target: cjswgs
+    confidence: medium
+  aliases: [cjswg]
+
+mjswgs:
+  spectre:
+    target: mjswgs
+    confidence: high
+    notes: "Source gate-edge sidewall junction grading coefficient"
+  hspice:
+    target: mjswgs
+    confidence: high
+  ngspice:
+    target: mjswgs
+    confidence: medium
+  aliases: [mjswg]
+
+pbswgs:
+  spectre:
+    target: pbswgs
+    confidence: high
+    notes: "Source gate-edge sidewall junction built-in potential"
+  hspice:
+    target: pbswgs
+    confidence: high
+  ngspice:
+    target: pbswgs
+    confidence: medium
+  aliases: [pbswg]
+
+jss:
+  spectre:
+    target: jss
+    confidence: high
+    notes: "Source bottom junction saturation current density"
+  hspice:
+    target: jss
+    confidence: high
+  ngspice:
+    target: jss
+    confidence: high
+  aliases: []
+
+jsws:
+  spectre:
+    target: jsws
+    confidence: high
+    notes: "Source sidewall junction saturation current density"
+  hspice:
+    target: jsws
+    confidence: high
+  ngspice:
+    target: jsws
+    confidence: high
+  aliases: []
+
+jswgs:
+  spectre:
+    target: jswgs
+    confidence: high
+    notes: "Source gate-edge sidewall junction saturation current density"
+  hspice:
+    target: jswgs
+    confidence: high
+  ngspice:
+    target: jswgs
+    confidence: medium
+  aliases: []
+
+# =============================================================================
+# TEMPERATURE PARAMETERS
+# =============================================================================
+
+tnom:
+  spectre:
+    target: tnom
+    confidence: high
+    notes: "Parameter extraction temperature"
+  hspice:
+    target: tnom
+    confidence: high
+  ngspice:
+    target: tnom
+    confidence: high
+  aliases: []
+
+ute:
+  spectre:
+    target: ute
+    confidence: high
+    notes: "Temperature coefficient of mobility"
+  hspice:
+    target: ute
+    confidence: high
+  ngspice:
+    target: ute
+    confidence: high
+  aliases: []
+
+kt1:
+  spectre:
+    target: kt1
+    confidence: high
+    notes: "Temperature coefficient of Vth"
+  hspice:
+    target: kt1
+    confidence: high
+  ngspice:
+    target: kt1
+    confidence: high
+  aliases: []
+
+kt1l:
+  spectre:
+    target: kt1l
+    confidence: high
+    notes: "Channel length sensitivity of temperature coefficient for Vth"
+  hspice:
+    target: kt1l
+    confidence: high
+  ngspice:
+    target: kt1l
+    confidence: high
+  aliases: []
+
+kt2:
+  spectre:
+    target: kt2
+    confidence: high
+    notes: "Body-bias coefficient of Vth temperature effect"
+  hspice:
+    target: kt2
+    confidence: high
+  ngspice:
+    target: kt2
+    confidence: high
+  aliases: []
+
+ua1:
+  spectre:
+    target: ua1
+    confidence: high
+    notes: "Temperature coefficient of ua"
+  hspice:
+    target: ua1
+    confidence: high
+  ngspice:
+    target: ua1
+    confidence: high
+  aliases: []
+
+ub1:
+  spectre:
+    target: ub1
+    confidence: high
+    notes: "Temperature coefficient of ub"
+  hspice:
+    target: ub1
+    confidence: high
+  ngspice:
+    target: ub1
+    confidence: high
+  aliases: []
+
+uc1:
+  spectre:
+    target: uc1
+    confidence: high
+    notes: "Temperature coefficient of uc"
+  hspice:
+    target: uc1
+    confidence: high
+  ngspice:
+    target: uc1
+    confidence: high
+  aliases: []
+
+at:
+  spectre:
+    target: at
+    confidence: high
+    notes: "Temperature coefficient of saturation velocity"
+  hspice:
+    target: at
+    confidence: high
+  ngspice:
+    target: at
+    confidence: high
+  aliases: []
+
+prt:
+  spectre:
+    target: prt
+    confidence: high
+    notes: "Temperature coefficient of rdsw"
+  hspice:
+    target: prt
+    confidence: high
+  ngspice:
+    target: prt
+    confidence: high
+  aliases: []
+
+# =============================================================================
+# RESISTANCE PARAMETERS
+# =============================================================================
+
+rdsw:
+  spectre:
+    target: rdsw
+    confidence: high
+    notes: "Zero bias drain-source resistance per width"
+  hspice:
+    target: rdsw
+    confidence: high
+  ngspice:
+    target: rdsw
+    confidence: high
+  aliases: []
+
+prwb:
+  spectre:
+    target: prwb
+    confidence: high
+    notes: "Body effect coefficient of rdsw"
+  hspice:
+    target: prwb
+    confidence: high
+  ngspice:
+    target: prwb
+    confidence: high
+  aliases: []
+
+prwg:
+  spectre:
+    target: prwg
+    confidence: high
+    notes: "Gate bias effect coefficient of rdsw"
+  hspice:
+    target: prwg
+    confidence: high
+  ngspice:
+    target: prwg
+    confidence: high
+  aliases: []
+
+wr:
+  spectre:
+    target: wr
+    confidence: high
+    notes: "Width offset for rdsw calculation"
+  hspice:
+    target: wr
+    confidence: high
+  ngspice:
+    target: wr
+    confidence: high
+  aliases: []
+
+rsh:
+  spectre:
+    target: rsh
+    confidence: high
+    notes: "Source-drain diffusion sheet resistance"
+  hspice:
+    target: rsh
+    confidence: high
+  ngspice:
+    target: rsh
+    confidence: high
+  aliases: []
+
+# =============================================================================
+# NOISE PARAMETERS
+# =============================================================================
+
+noia:
+  spectre:
+    target: noia
+    confidence: high
+    notes: "Flicker noise parameter A"
+  hspice:
+    target: noia
+    confidence: high
+  ngspice:
+    target: noia
+    confidence: high
+  aliases: []
+
+noib:
+  spectre:
+    target: noib
+    confidence: high
+    notes: "Flicker noise parameter B"
+  hspice:
+    target: noib
+    confidence: high
+  ngspice:
+    target: noib
+    confidence: high
+  aliases: []
+
+noic:
+  spectre:
+    target: noic
+    confidence: high
+    notes: "Flicker noise parameter C"
+  hspice:
+    target: noic
+    confidence: high
+  ngspice:
+    target: noic
+    confidence: high
+  aliases: []
+
+# =============================================================================
+# MODEL SELECTOR PARAMETERS
+# =============================================================================
+
+level:
+  spectre:
+    target: level
+    confidence: high
+    notes: "Model level selector (14 for BSIM4)"
+  hspice:
+    target: level
+    confidence: high
+  ngspice:
+    target: level
+    confidence: high
+  aliases: []
+
+version:
+  spectre:
+    target: version
+    confidence: high
+    notes: "BSIM4 version number"
+  hspice:
+    target: version
+    confidence: high
+  ngspice:
+    target: version
+    confidence: high
+  aliases: []
+
+type:
+  spectre:
+    target: type
+    confidence: high
+    notes: "NMOS (1) or PMOS (-1)"
+  hspice:
+    target: type
+    confidence: high
+  ngspice:
+    target: type
+    confidence: high
+  aliases: []
+
+# =============================================================================
+# PROCESS VARIATION & GEOMETRY PARAMETERS
+# =============================================================================
+
+lmin:
+  spectre:
+    target: lmin
+    confidence: high
+    notes: "Minimum channel length"
+  hspice:
+    target: lmin
+    confidence: high
+  ngspice:
+    target: lmin
+    confidence: high
+  aliases: []
+
+lmax:
+  spectre:
+    target: lmax
+    confidence: high
+    notes: "Maximum channel length"
+  hspice:
+    target: lmax
+    confidence: high
+  ngspice:
+    target: lmax
+    confidence: high
+  aliases: []
+
+wmin:
+  spectre:
+    target: wmin
+    confidence: high
+    notes: "Minimum channel width"
+  hspice:
+    target: wmin
+    confidence: high
+  ngspice:
+    target: wmin
+    confidence: high
+  aliases: []
+
+wmax:
+  spectre:
+    target: wmax
+    confidence: high
+    notes: "Maximum channel width"
+  hspice:
+    target: wmax
+    confidence: high
+  ngspice:
+    target: wmax
+    confidence: high
+  aliases: []
+
+# =============================================================================
+# WELL PROXIMITY EFFECT (WPE) PARAMETERS
+# =============================================================================
+
+ku0:
+  spectre:
+    target: ku0
+    confidence: high
+    notes: "WPE mobility degradation coefficient"
+  hspice:
+    target: ku0
+    confidence: high
+  ngspice:
+    target: ku0
+    confidence: medium
+  aliases: []
+
+kvth0:
+  spectre:
+    target: kvth0
+    confidence: high
+    notes: "WPE threshold voltage shift coefficient"
+  hspice:
+    target: kvth0
+    confidence: high
+  ngspice:
+    target: kvth0
+    confidence: medium
+  aliases: []
+
+kvsat:
+  spectre:
+    target: kvsat
+    confidence: high
+    notes: "WPE saturation velocity shift coefficient"
+  hspice:
+    target: kvsat
+    confidence: high
+  ngspice:
+    target: kvsat
+    confidence: medium
+  aliases: []
+
+# =============================================================================
+# STRESS EFFECT PARAMETERS
+# =============================================================================
+
+saref:
+  spectre:
+    target: saref
+    confidence: high
+    notes: "Reference distance from OD edge to poly of one side"
+  hspice:
+    target: saref
+    confidence: high
+  ngspice:
+    target: saref
+    confidence: low
+  aliases: []
+
+sbref:
+  spectre:
+    target: sbref
+    confidence: high
+    notes: "Reference distance from OD edge to poly of other side"
+  hspice:
+    target: sbref
+    confidence: high
+  ngspice:
+    target: sbref
+    confidence: low
+  aliases: []
+
+# =============================================================================
+# BINNING PARAMETERS (Length/Width Scaling)
+# =============================================================================
+
+lvth0:
+  spectre:
+    target: lvth0
+    confidence: high
+    notes: "Length sensitivity of vth0"
+  hspice:
+    target: lvth0
+    confidence: high
+  ngspice:
+    target: lvth0
+    confidence: high
+  aliases: []
+
+wvth0:
+  spectre:
+    target: wvth0
+    confidence: high
+    notes: "Width sensitivity of vth0"
+  hspice:
+    target: wvth0
+    confidence: high
+  ngspice:
+    target: wvth0
+    confidence: high
+  aliases: []
+
+pvth0:
+  spectre:
+    target: pvth0
+    confidence: high
+    notes: "Cross-term sensitivity of vth0"
+  hspice:
+    target: pvth0
+    confidence: high
+  ngspice:
+    target: pvth0
+    confidence: high
+  aliases: []
+
+lu0:
+  spectre:
+    target: lu0
+    confidence: high
+    notes: "Length sensitivity of u0"
+  hspice:
+    target: lu0
+    confidence: high
+  ngspice:
+    target: lu0
+    confidence: high
+  aliases: []
+
+wu0:
+  spectre:
+    target: wu0
+    confidence: high
+    notes: "Width sensitivity of u0"
+  hspice:
+    target: wu0
+    confidence: high
+  ngspice:
+    target: wu0
+    confidence: high
+  aliases: []
+
+pu0:
+  spectre:
+    target: pu0
+    confidence: high
+    notes: "Cross-term sensitivity of u0"
+  hspice:
+    target: pu0
+    confidence: high
+  ngspice:
+    target: pu0
+    confidence: high
+  aliases: []
+
+lk2:
+  spectre:
+    target: lk2
+    confidence: high
+    notes: "Length sensitivity of k2"
+  hspice:
+    target: lk2
+    confidence: high
+  ngspice:
+    target: lk2
+    confidence: high
+  aliases: []
+
+wk2:
+  spectre:
+    target: wk2
+    confidence: high
+    notes: "Width sensitivity of k2"
+  hspice:
+    target: wk2
+    confidence: high
+  ngspice:
+    target: wk2
+    confidence: high
+  aliases: []
+
+pk2:
+  spectre:
+    target: pk2
+    confidence: high
+    notes: "Cross-term sensitivity of k2"
+  hspice:
+    target: pk2
+    confidence: high
+  ngspice:
+    target: pk2
+    confidence: high
+  aliases: []

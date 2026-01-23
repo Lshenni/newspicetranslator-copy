@@ -1,0 +1,375 @@
+# Passive Component Parameter Mappings
+# Mappings for resistor, capacitor, and inductor parameters
+# Format: parameter_name -> {format: {target, confidence, notes}}
+
+# =============================================================================
+# RESISTOR PARAMETERS
+# =============================================================================
+
+# Basic Value
+r:
+  spectre:
+    target: r
+    confidence: high
+    notes: "Resistance value"
+  hspice:
+    target: r
+    confidence: high
+  ngspice:
+    target: r
+    confidence: high
+  aliases: [resistance]
+
+# Temperature Coefficients
+tc1:
+  spectre:
+    target: tc1
+    confidence: high
+    notes: "First-order temperature coefficient"
+  hspice:
+    target: tc1
+    confidence: high
+  ngspice:
+    target: tc1
+    confidence: high
+  aliases: [tc, tcr]
+
+tc2:
+  spectre:
+    target: tc2
+    confidence: high
+    notes: "Second-order temperature coefficient"
+  hspice:
+    target: tc2
+    confidence: high
+  ngspice:
+    target: tc2
+    confidence: high
+  aliases: []
+
+# Sheet Resistance
+rsh:
+  spectre:
+    target: rsh
+    confidence: high
+    notes: "Sheet resistance (ohms/square)"
+  hspice:
+    target: rsh
+    confidence: high
+  ngspice:
+    target: rsh
+    confidence: high
+  aliases: []
+
+# Geometry
+w:
+  spectre:
+    target: w
+    confidence: high
+    notes: "Width"
+  hspice:
+    target: w
+    confidence: high
+  ngspice:
+    target: w
+    confidence: high
+  aliases: []
+
+l:
+  spectre:
+    target: l
+    confidence: high
+    notes: "Length"
+  hspice:
+    target: l
+    confidence: high
+  ngspice:
+    target: l
+    confidence: high
+  aliases: []
+
+# Temperature Measurement
+tnom:
+  spectre:
+    target: tnom
+    confidence: high
+    notes: "Nominal temperature"
+  hspice:
+    target: tnom
+    confidence: high
+  ngspice:
+    target: tnom
+    confidence: high
+  aliases: []
+
+# Multiplier
+m:
+  spectre:
+    target: m
+    confidence: high
+    notes: "Multiplier/scale factor"
+  hspice:
+    target: m
+    confidence: high
+  ngspice:
+    target: m
+    confidence: high
+  aliases: [mult]
+
+# =============================================================================
+# CAPACITOR PARAMETERS
+# =============================================================================
+
+# Basic Value
+c:
+  spectre:
+    target: c
+    confidence: high
+    notes: "Capacitance value"
+  hspice:
+    target: c
+    confidence: high
+  ngspice:
+    target: c
+    confidence: high
+  aliases: [capacitance]
+
+# Junction Capacitance
+cj:
+  spectre:
+    target: cj
+    confidence: medium
+    notes: "Junction capacitance per area"
+  hspice:
+    target: cj
+    confidence: medium
+  ngspice:
+    target: cj
+    confidence: medium
+  aliases: []
+
+# Junction Sidewall Capacitance
+cjsw:
+  spectre:
+    target: cjsw
+    confidence: medium
+    notes: "Junction sidewall capacitance per perimeter"
+  hspice:
+    target: cjsw
+    confidence: medium
+  ngspice:
+    target: cjsw
+    confidence: medium
+  aliases: []
+
+# MIM Capacitor Parameters
+cmim_para_b:
+  spectre:
+    target: cmim_para_b
+    confidence: high
+    notes: "MIM capacitor bottom plate capacitance per area"
+  hspice:
+    target: c
+    confidence: medium
+    notes: "May need custom scaling"
+  ngspice:
+    target: c
+    confidence: medium
+    notes: "May need custom scaling"
+  aliases: []
+
+# Rise Time (for MIM capacitors)
+trise:
+  spectre:
+    target: trise
+    confidence: medium
+    notes: "Rise time parameter for MIM capacitors"
+  hspice:
+    target: trise
+    confidence: medium
+  ngspice:
+    target: trise
+    confidence: low
+    notes: "May not be supported in all ngspice versions"
+  aliases: []
+
+# Polynomial Coefficients
+coeffs:
+  spectre:
+    target: coeffs
+    confidence: medium
+    notes: "Polynomial coefficients for voltage/temperature dependence"
+  hspice:
+    target: poly
+    confidence: medium
+    notes: "HSPICE uses poly syntax"
+  ngspice:
+    target: poly
+    confidence: low
+    notes: "Polynomial coefficients may have different syntax"
+  aliases: [poly]
+
+# Parasitic Resistance
+r:
+  spectre:
+    target: r
+    confidence: medium
+    notes: "Series resistance (lossy capacitor)"
+  hspice:
+    target: r
+    confidence: medium
+  ngspice:
+    target: r
+    confidence: medium
+  aliases: []
+
+# Scale Factors
+mimfactor:
+  spectre:
+    target: mimfactor
+    confidence: high
+    notes: "MIM capacitor scale factor"
+  hspice:
+    target: m
+    confidence: medium
+    notes: "Map to multiplier"
+  ngspice:
+    target: m
+    confidence: medium
+    notes: "Map to multiplier"
+  aliases: []
+
+mimfactor_b:
+  spectre:
+    target: mimfactor_b
+    confidence: high
+    notes: "MIM capacitor bottom plate scale factor"
+  hspice:
+    target: m
+    confidence: medium
+    notes: "Map to multiplier"
+  ngspice:
+    target: m
+    confidence: medium
+    notes: "Map to multiplier"
+  aliases: []
+
+# =============================================================================
+# INDUCTOR PARAMETERS
+# =============================================================================
+
+# Basic Value
+l:
+  spectre:
+    target: l
+    confidence: high
+    notes: "Inductance value"
+  hspice:
+    target: l
+    confidence: high
+  ngspice:
+    target: l
+    confidence: high
+  aliases: [inductance]
+
+# Series Resistance
+rs:
+  spectre:
+    target: rs
+    confidence: high
+    notes: "Series resistance"
+  hspice:
+    target: rs
+    confidence: high
+  ngspice:
+    target: rs
+    confidence: high
+  aliases: []
+
+# Parallel Capacitance
+cp:
+  spectre:
+    target: cp
+    confidence: medium
+    notes: "Parallel capacitance"
+  hspice:
+    target: cp
+    confidence: medium
+  ngspice:
+    target: cp
+    confidence: medium
+  aliases: []
+
+# Temperature Coefficient
+tc:
+  spectre:
+    target: tc
+    confidence: medium
+    notes: "Temperature coefficient"
+  hspice:
+    target: tc
+    confidence: medium
+  ngspice:
+    target: tc
+    confidence: medium
+  aliases: []
+
+# Quality Factor
+q:
+  spectre:
+    target: q
+    confidence: medium
+    notes: "Quality factor"
+  hspice:
+    target: q
+    confidence: medium
+  ngspice:
+    target: q
+    confidence: low
+    notes: "May not be directly supported"
+  aliases: []
+
+# =============================================================================
+# COMMON PASSIVE PARAMETERS
+# =============================================================================
+
+# Device Temperature
+dtemp:
+  spectre:
+    target: dtemp
+    confidence: high
+    notes: "Device temperature offset from ambient"
+  hspice:
+    target: dtemp
+    confidence: high
+  ngspice:
+    target: dtemp
+    confidence: high
+  aliases: []
+
+# Noise Parameters
+kf:
+  spectre:
+    target: kf
+    confidence: medium
+    notes: "Flicker noise coefficient"
+  hspice:
+    target: kf
+    confidence: medium
+  ngspice:
+    target: kf
+    confidence: medium
+  aliases: []
+
+af:
+  spectre:
+    target: af
+    confidence: medium
+    notes: "Flicker noise exponent"
+  hspice:
+    target: af
+    confidence: medium
+  ngspice:
+    target: af
+    confidence: medium
+  aliases: []

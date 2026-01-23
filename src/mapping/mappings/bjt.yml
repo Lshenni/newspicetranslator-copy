@@ -1,0 +1,1008 @@
+# BJT (Bipolar Junction Transistor) Parameter Mappings
+# Gummel-Poon BJT model parameters across SPICE formats
+# Format: parameter_name -> {format: {target, confidence, notes}}
+
+# =============================================================================
+# CORE DC PARAMETERS
+# =============================================================================
+
+# Saturation Current
+is:
+  spectre:
+    target: is
+    confidence: high
+    notes: "Transport saturation current"
+  hspice:
+    target: is
+    confidence: high
+  ngspice:
+    target: is
+    confidence: high
+  aliases: []
+
+# Forward Beta
+bf:
+  spectre:
+    target: bf
+    confidence: high
+    notes: "Ideal maximum forward beta"
+  hspice:
+    target: bf
+    confidence: high
+  ngspice:
+    target: bf
+    confidence: high
+  aliases: []
+
+# Forward Emission Coefficient
+nf:
+  spectre:
+    target: nf
+    confidence: high
+    notes: "Forward current emission coefficient"
+  hspice:
+    target: nf
+    confidence: high
+  ngspice:
+    target: nf
+    confidence: high
+  aliases: []
+
+# Forward Early Voltage
+vaf:
+  spectre:
+    target: vaf
+    confidence: high
+    notes: "Forward Early voltage"
+  hspice:
+    target: vaf
+    confidence: high
+  ngspice:
+    target: vaf
+    confidence: high
+  aliases: [va]
+
+# Forward Knee Current
+ikf:
+  spectre:
+    target: ikf
+    confidence: high
+    notes: "Corner for forward beta high current roll-off"
+  hspice:
+    target: ikf
+    confidence: high
+  ngspice:
+    target: ikf
+    confidence: high
+  aliases: [ik]
+
+# =============================================================================
+# BASE-EMITTER LEAKAGE
+# =============================================================================
+
+ise:
+  spectre:
+    target: ise
+    confidence: high
+    notes: "B-E leakage saturation current"
+  hspice:
+    target: ise
+    confidence: high
+  ngspice:
+    target: ise
+    confidence: high
+  aliases: [c2]
+
+ne:
+  spectre:
+    target: ne
+    confidence: high
+    notes: "B-E leakage emission coefficient"
+  hspice:
+    target: ne
+    confidence: high
+  ngspice:
+    target: ne
+    confidence: high
+  aliases: []
+
+# =============================================================================
+# REVERSE PARAMETERS
+# =============================================================================
+
+br:
+  spectre:
+    target: br
+    confidence: high
+    notes: "Ideal maximum reverse beta"
+  hspice:
+    target: br
+    confidence: high
+  ngspice:
+    target: br
+    confidence: high
+  aliases: []
+
+nr:
+  spectre:
+    target: nr
+    confidence: high
+    notes: "Reverse current emission coefficient"
+  hspice:
+    target: nr
+    confidence: high
+  ngspice:
+    target: nr
+    confidence: high
+  aliases: []
+
+var:
+  spectre:
+    target: var
+    confidence: high
+    notes: "Reverse Early voltage"
+  hspice:
+    target: var
+    confidence: high
+  ngspice:
+    target: var
+    confidence: high
+  aliases: [vb]
+
+ikr:
+  spectre:
+    target: ikr
+    confidence: high
+    notes: "Corner for reverse beta high current roll-off"
+  hspice:
+    target: ikr
+    confidence: high
+  ngspice:
+    target: ikr
+    confidence: high
+  aliases: []
+
+# =============================================================================
+# BASE-COLLECTOR LEAKAGE
+# =============================================================================
+
+isc:
+  spectre:
+    target: isc
+    confidence: high
+    notes: "B-C leakage saturation current"
+  hspice:
+    target: isc
+    confidence: high
+  ngspice:
+    target: isc
+    confidence: high
+  aliases: [c4]
+
+nc:
+  spectre:
+    target: nc
+    confidence: high
+    notes: "B-C leakage emission coefficient"
+  hspice:
+    target: nc
+    confidence: high
+  ngspice:
+    target: nc
+    confidence: high
+  aliases: []
+
+# =============================================================================
+# RESISTANCE PARAMETERS
+# =============================================================================
+
+rb:
+  spectre:
+    target: rb
+    confidence: high
+    notes: "Zero bias base resistance"
+  hspice:
+    target: rb
+    confidence: high
+  ngspice:
+    target: rb
+    confidence: high
+  aliases: []
+
+irb:
+  spectre:
+    target: irb
+    confidence: high
+    notes: "Current where base resistance falls halfway to rbm"
+  hspice:
+    target: irb
+    confidence: high
+  ngspice:
+    target: irb
+    confidence: high
+  aliases: []
+
+rbm:
+  spectre:
+    target: rbm
+    confidence: high
+    notes: "Minimum base resistance at high currents"
+  hspice:
+    target: rbm
+    confidence: high
+  ngspice:
+    target: rbm
+    confidence: high
+  aliases: []
+
+re:
+  spectre:
+    target: re
+    confidence: high
+    notes: "Emitter resistance"
+  hspice:
+    target: re
+    confidence: high
+  ngspice:
+    target: re
+    confidence: high
+  aliases: []
+
+rc:
+  spectre:
+    target: rc
+    confidence: high
+    notes: "Collector resistance"
+  hspice:
+    target: rc
+    confidence: high
+  ngspice:
+    target: rc
+    confidence: high
+  aliases: []
+
+# =============================================================================
+# BASE-EMITTER CAPACITANCE
+# =============================================================================
+
+cje:
+  spectre:
+    target: cje
+    confidence: high
+    notes: "B-E zero-bias depletion capacitance"
+  hspice:
+    target: cje
+    confidence: high
+  ngspice:
+    target: cje
+    confidence: high
+  aliases: []
+
+vje:
+  spectre:
+    target: vje
+    confidence: high
+    notes: "B-E built-in potential"
+  hspice:
+    target: vje
+    confidence: high
+  ngspice:
+    target: vje
+    confidence: high
+  aliases: [pe]
+
+mje:
+  spectre:
+    target: mje
+    confidence: high
+    notes: "B-E junction exponential factor"
+  hspice:
+    target: mje
+    confidence: high
+  ngspice:
+    target: mje
+    confidence: high
+  aliases: [me]
+
+tf:
+  spectre:
+    target: tf
+    confidence: high
+    notes: "Ideal forward transit time"
+  hspice:
+    target: tf
+    confidence: high
+  ngspice:
+    target: tf
+    confidence: high
+  aliases: []
+
+xtf:
+  spectre:
+    target: xtf
+    confidence: high
+    notes: "Coefficient for bias dependence of tf"
+  hspice:
+    target: xtf
+    confidence: high
+  ngspice:
+    target: xtf
+    confidence: high
+  aliases: []
+
+vtf:
+  spectre:
+    target: vtf
+    confidence: high
+    notes: "Voltage describing Vbc dependence of tf"
+  hspice:
+    target: vtf
+    confidence: high
+  ngspice:
+    target: vtf
+    confidence: high
+  aliases: []
+
+itf:
+  spectre:
+    target: itf
+    confidence: high
+    notes: "High-current parameter for effect on tf"
+  hspice:
+    target: itf
+    confidence: high
+  ngspice:
+    target: itf
+    confidence: high
+  aliases: []
+
+# =============================================================================
+# BASE-COLLECTOR CAPACITANCE
+# =============================================================================
+
+cjc:
+  spectre:
+    target: cjc
+    confidence: high
+    notes: "B-C zero-bias depletion capacitance"
+  hspice:
+    target: cjc
+    confidence: high
+  ngspice:
+    target: cjc
+    confidence: high
+  aliases: []
+
+vjc:
+  spectre:
+    target: vjc
+    confidence: high
+    notes: "B-C built-in potential"
+  hspice:
+    target: vjc
+    confidence: high
+  ngspice:
+    target: vjc
+    confidence: high
+  aliases: [pc]
+
+mjc:
+  spectre:
+    target: mjc
+    confidence: high
+    notes: "B-C junction exponential factor"
+  hspice:
+    target: mjc
+    confidence: high
+  ngspice:
+    target: mjc
+    confidence: high
+  aliases: [mc]
+
+xcjc:
+  spectre:
+    target: xcjc
+    confidence: high
+    notes: "Fraction of B-C capacitance connected to internal base node"
+  hspice:
+    target: xcjc
+    confidence: high
+  ngspice:
+    target: xcjc
+    confidence: high
+  aliases: []
+
+tr:
+  spectre:
+    target: tr
+    confidence: high
+    notes: "Ideal reverse transit time"
+  hspice:
+    target: tr
+    confidence: high
+  ngspice:
+    target: tr
+    confidence: high
+  aliases: []
+
+# =============================================================================
+# COLLECTOR-SUBSTRATE CAPACITANCE
+# =============================================================================
+
+cjs:
+  spectre:
+    target: cjs
+    confidence: high
+    notes: "Zero-bias collector-substrate capacitance"
+  hspice:
+    target: cjs
+    confidence: high
+  ngspice:
+    target: cjs
+    confidence: high
+  aliases: [ccs]
+
+vjs:
+  spectre:
+    target: vjs
+    confidence: high
+    notes: "Substrate junction built-in potential"
+  hspice:
+    target: vjs
+    confidence: high
+  ngspice:
+    target: vjs
+    confidence: high
+  aliases: [ps]
+
+mjs:
+  spectre:
+    target: mjs
+    confidence: high
+    notes: "Substrate junction exponential factor"
+  hspice:
+    target: mjs
+    confidence: high
+  ngspice:
+    target: mjs
+    confidence: high
+  aliases: [ms]
+
+# =============================================================================
+# DEPLETION CAPACITANCE COEFFICIENT
+# =============================================================================
+
+fc:
+  spectre:
+    target: fc
+    confidence: high
+    notes: "Forward bias depletion capacitance coefficient"
+  hspice:
+    target: fc
+    confidence: high
+  ngspice:
+    target: fc
+    confidence: high
+  aliases: []
+
+# =============================================================================
+# TEMPERATURE PARAMETERS
+# =============================================================================
+
+tnom:
+  spectre:
+    target: tnom
+    confidence: high
+    notes: "Parameter measurement temperature"
+  hspice:
+    target: tnom
+    confidence: high
+  ngspice:
+    target: tnom
+    confidence: high
+  aliases: []
+
+xti:
+  spectre:
+    target: xti
+    confidence: high
+    notes: "Temperature exponent for effect on IS"
+  hspice:
+    target: xti
+    confidence: high
+  ngspice:
+    target: xti
+    confidence: high
+  aliases: [pt]
+
+eg:
+  spectre:
+    target: eg
+    confidence: high
+    notes: "Energy gap for temperature effect on IS"
+  hspice:
+    target: eg
+    confidence: high
+  ngspice:
+    target: eg
+    confidence: high
+  aliases: []
+
+xtb:
+  spectre:
+    target: xtb
+    confidence: high
+    notes: "Forward and reverse beta temperature exponent"
+  hspice:
+    target: xtb
+    confidence: high
+  ngspice:
+    target: xtb
+    confidence: high
+  aliases: []
+
+# =============================================================================
+# FIRST ORDER TEMPERATURE COEFFICIENTS
+# =============================================================================
+
+tis1:
+  spectre:
+    target: tis1
+    confidence: medium
+    notes: "First order temperature coefficient for IS"
+  hspice:
+    target: tis1
+    confidence: medium
+  ngspice:
+    target: tis1
+    confidence: medium
+  aliases: []
+
+tbf1:
+  spectre:
+    target: tbf1
+    confidence: medium
+    notes: "First order temperature coefficient for BF"
+  hspice:
+    target: tbf1
+    confidence: medium
+  ngspice:
+    target: tbf1
+    confidence: medium
+  aliases: []
+
+tnf1:
+  spectre:
+    target: tnf1
+    confidence: medium
+    notes: "First order temperature coefficient for NF"
+  hspice:
+    target: tnf1
+    confidence: medium
+  ngspice:
+    target: tnf1
+    confidence: medium
+  aliases: []
+
+tvaf1:
+  spectre:
+    target: tvaf1
+    confidence: medium
+    notes: "First order temperature coefficient for VAF"
+  hspice:
+    target: tvaf1
+    confidence: medium
+  ngspice:
+    target: tvaf1
+    confidence: medium
+  aliases: []
+
+tikf1:
+  spectre:
+    target: tikf1
+    confidence: medium
+    notes: "First order temperature coefficient for IKF"
+  hspice:
+    target: tikf1
+    confidence: medium
+  ngspice:
+    target: tikf1
+    confidence: medium
+  aliases: []
+
+tbr1:
+  spectre:
+    target: tbr1
+    confidence: medium
+    notes: "First order temperature coefficient for BR"
+  hspice:
+    target: tbr1
+    confidence: medium
+  ngspice:
+    target: tbr1
+    confidence: medium
+  aliases: []
+
+tnr1:
+  spectre:
+    target: tnr1
+    confidence: medium
+    notes: "First order temperature coefficient for NR"
+  hspice:
+    target: tnr1
+    confidence: medium
+  ngspice:
+    target: tnr1
+    confidence: medium
+  aliases: []
+
+tvar1:
+  spectre:
+    target: tvar1
+    confidence: medium
+    notes: "First order temperature coefficient for VAR"
+  hspice:
+    target: tvar1
+    confidence: medium
+  ngspice:
+    target: tvar1
+    confidence: medium
+  aliases: []
+
+tikr1:
+  spectre:
+    target: tikr1
+    confidence: medium
+    notes: "First order temperature coefficient for IKR"
+  hspice:
+    target: tikr1
+    confidence: medium
+  ngspice:
+    target: tikr1
+    confidence: medium
+  aliases: []
+
+tre1:
+  spectre:
+    target: tre1
+    confidence: medium
+    notes: "First order temperature coefficient for RE"
+  hspice:
+    target: tre1
+    confidence: medium
+  ngspice:
+    target: tre1
+    confidence: medium
+  aliases: []
+
+trb1:
+  spectre:
+    target: trb1
+    confidence: medium
+    notes: "First order temperature coefficient for RB"
+  hspice:
+    target: trb1
+    confidence: medium
+  ngspice:
+    target: trb1
+    confidence: medium
+  aliases: []
+
+trc1:
+  spectre:
+    target: trc1
+    confidence: medium
+    notes: "First order temperature coefficient for RC"
+  hspice:
+    target: trc1
+    confidence: medium
+  ngspice:
+    target: trc1
+    confidence: medium
+  aliases: []
+
+# =============================================================================
+# SECOND ORDER TEMPERATURE COEFFICIENTS
+# =============================================================================
+
+tis2:
+  spectre:
+    target: tis2
+    confidence: low
+    notes: "Second order temperature coefficient for IS"
+  hspice:
+    target: tis2
+    confidence: low
+  ngspice:
+    target: tis2
+    confidence: low
+  aliases: []
+
+tbf2:
+  spectre:
+    target: tbf2
+    confidence: low
+    notes: "Second order temperature coefficient for BF"
+  hspice:
+    target: tbf2
+    confidence: low
+  ngspice:
+    target: tbf2
+    confidence: low
+  aliases: []
+
+tvaf2:
+  spectre:
+    target: tvaf2
+    confidence: low
+    notes: "Second order temperature coefficient for VAF"
+  hspice:
+    target: tvaf2
+    confidence: low
+  ngspice:
+    target: tvaf2
+    confidence: low
+  aliases: []
+
+tikf2:
+  spectre:
+    target: tikf2
+    confidence: low
+    notes: "Second order temperature coefficient for IKF"
+  hspice:
+    target: tikf2
+    confidence: low
+  ngspice:
+    target: tikf2
+    confidence: low
+  aliases: []
+
+tbr2:
+  spectre:
+    target: tbr2
+    confidence: low
+    notes: "Second order temperature coefficient for BR"
+  hspice:
+    target: tbr2
+    confidence: low
+  ngspice:
+    target: tbr2
+    confidence: low
+  aliases: []
+
+tvar2:
+  spectre:
+    target: tvar2
+    confidence: low
+    notes: "Second order temperature coefficient for VAR"
+  hspice:
+    target: tvar2
+    confidence: low
+  ngspice:
+    target: tvar2
+    confidence: low
+  aliases: []
+
+tikr2:
+  spectre:
+    target: tikr2
+    confidence: low
+    notes: "Second order temperature coefficient for IKR"
+  hspice:
+    target: tikr2
+    confidence: low
+  ngspice:
+    target: tikr2
+    confidence: low
+  aliases: []
+
+tre2:
+  spectre:
+    target: tre2
+    confidence: low
+    notes: "Second order temperature coefficient for RE"
+  hspice:
+    target: tre2
+    confidence: low
+  ngspice:
+    target: tre2
+    confidence: low
+  aliases: []
+
+trb2:
+  spectre:
+    target: trb2
+    confidence: low
+    notes: "Second order temperature coefficient for RB"
+  hspice:
+    target: trb2
+    confidence: low
+  ngspice:
+    target: trb2
+    confidence: low
+  aliases: []
+
+trc2:
+  spectre:
+    target: trc2
+    confidence: low
+    notes: "Second order temperature coefficient for RC"
+  hspice:
+    target: trc2
+    confidence: low
+  ngspice:
+    target: trc2
+    confidence: low
+  aliases: []
+
+# =============================================================================
+# CAPACITANCE TEMPERATURE COEFFICIENTS
+# =============================================================================
+
+cte:
+  spectre:
+    target: cte
+    confidence: medium
+    notes: "Temperature coefficient for CJE"
+  hspice:
+    target: cte
+    confidence: medium
+  ngspice:
+    target: cte
+    confidence: medium
+  aliases: []
+
+ctc:
+  spectre:
+    target: ctc
+    confidence: medium
+    notes: "Temperature coefficient for CJC"
+  hspice:
+    target: ctc
+    confidence: medium
+  ngspice:
+    target: ctc
+    confidence: medium
+  aliases: []
+
+tvje:
+  spectre:
+    target: tvje
+    confidence: medium
+    notes: "Temperature coefficient for VJE"
+  hspice:
+    target: tvje
+    confidence: medium
+  ngspice:
+    target: tvje
+    confidence: medium
+  aliases: []
+
+tvjc:
+  spectre:
+    target: tvjc
+    confidence: medium
+    notes: "Temperature coefficient for VJC"
+  hspice:
+    target: tvjc
+    confidence: medium
+  ngspice:
+    target: tvjc
+    confidence: medium
+  aliases: []
+
+# =============================================================================
+# TEMPERATURE LEVEL CONTROL
+# =============================================================================
+
+tlev:
+  spectre:
+    target: tlev
+    confidence: high
+    notes: "Temperature level control flag"
+  hspice:
+    target: tlev
+    confidence: high
+  ngspice:
+    target: tlev
+    confidence: high
+  aliases: []
+
+tlevc:
+  spectre:
+    target: tlevc
+    confidence: high
+    notes: "Temperature level control for capacitances"
+  hspice:
+    target: tlevc
+    confidence: high
+  ngspice:
+    target: tlevc
+    confidence: high
+  aliases: []
+
+# =============================================================================
+# MISCELLANEOUS PARAMETERS
+# =============================================================================
+
+minr:
+  spectre:
+    target: minr
+    confidence: low
+    notes: "Minimum resistance"
+  hspice:
+    target: minr
+    confidence: low
+  ngspice:
+    target: minr
+    confidence: low
+  aliases: []
+
+area:
+  spectre:
+    target: area
+    confidence: high
+    notes: "Area factor"
+  hspice:
+    target: area
+    confidence: high
+  ngspice:
+    target: area
+    confidence: high
+  aliases: []
+
+areab:
+  spectre:
+    target: areab
+    confidence: medium
+    notes: "Base area factor"
+  hspice:
+    target: areab
+    confidence: medium
+  ngspice:
+    target: areab
+    confidence: medium
+  aliases: []
+
+areac:
+  spectre:
+    target: areac
+    confidence: medium
+    notes: "Collector area factor"
+  hspice:
+    target: areac
+    confidence: medium
+  ngspice:
+    target: areac
+    confidence: medium
+  aliases: []
+
+dtemp:
+  spectre:
+    target: dtemp
+    confidence: high
+    notes: "Temperature difference from ambient"
+  hspice:
+    target: dtemp
+    confidence: high
+  ngspice:
+    target: dtemp
+    confidence: high
+  aliases: []
+
+# =============================================================================
+# DEVICE TYPE
+# =============================================================================
+
+type:
+  spectre:
+    target: type
+    confidence: high
+    notes: "NPN (1) or PNP (-1)"
+  hspice:
+    target: type
+    confidence: high
+  ngspice:
+    target: type
+    confidence: high
+  aliases: []

@@ -1,0 +1,467 @@
+# Diode Parameter Mappings
+# SPICE diode model parameters across different formats
+# Format: parameter_name -> {format: {target, confidence, notes}}
+
+# =============================================================================
+# CORE DC PARAMETERS
+# =============================================================================
+
+is:
+  spectre:
+    target: is
+    confidence: high
+    notes: "Saturation current"
+  hspice:
+    target: is
+    confidence: high
+  ngspice:
+    target: is
+    confidence: high
+  aliases: []
+
+n:
+  spectre:
+    target: n
+    confidence: high
+    notes: "Emission coefficient"
+  hspice:
+    target: n
+    confidence: high
+  ngspice:
+    target: n
+    confidence: high
+  aliases: []
+
+rs:
+  spectre:
+    target: rs
+    confidence: high
+    notes: "Ohmic resistance"
+  hspice:
+    target: rs
+    confidence: high
+  ngspice:
+    target: rs
+    confidence: high
+  aliases: []
+
+# =============================================================================
+# BREAKDOWN PARAMETERS
+# =============================================================================
+
+bv:
+  spectre:
+    target: bv
+    confidence: high
+    notes: "Reverse breakdown voltage"
+  hspice:
+    target: bv
+    confidence: high
+  ngspice:
+    target: bv
+    confidence: high
+  aliases: []
+
+ibv:
+  spectre:
+    target: ibv
+    confidence: high
+    notes: "Current at breakdown voltage"
+  hspice:
+    target: ibv
+    confidence: high
+  ngspice:
+    target: ibv
+    confidence: high
+  aliases: []
+
+# =============================================================================
+# HIGH INJECTION
+# =============================================================================
+
+ik:
+  spectre:
+    target: ik
+    confidence: medium
+    notes: "High-injection knee current"
+  hspice:
+    target: ik
+    confidence: medium
+  ngspice:
+    target: ik
+    confidence: medium
+  aliases: []
+
+# =============================================================================
+# JUNCTION CAPACITANCE PARAMETERS
+# =============================================================================
+
+cjo:
+  spectre:
+    target: cjo
+    confidence: high
+    notes: "Zero-bias junction capacitance"
+  hspice:
+    target: cjo
+    confidence: high
+  ngspice:
+    target: cjo
+    confidence: high
+  aliases: [cj0, cj]
+
+vj:
+  spectre:
+    target: vj
+    confidence: high
+    notes: "Junction potential"
+  hspice:
+    target: vj
+    confidence: high
+  ngspice:
+    target: vj
+    confidence: high
+  aliases: [pb]
+
+m:
+  spectre:
+    target: m
+    confidence: high
+    notes: "Grading coefficient"
+  hspice:
+    target: m
+    confidence: high
+  ngspice:
+    target: m
+    confidence: high
+  aliases: [mj]
+
+fc:
+  spectre:
+    target: fc
+    confidence: high
+    notes: "Forward bias depletion capacitance coefficient"
+  hspice:
+    target: fc
+    confidence: high
+  ngspice:
+    target: fc
+    confidence: high
+  aliases: []
+
+# =============================================================================
+# SIDEWALL CAPACITANCE PARAMETERS
+# =============================================================================
+
+cjsw:
+  spectre:
+    target: cjsw
+    confidence: medium
+    notes: "Zero-bias sidewall capacitance"
+  hspice:
+    target: cjsw
+    confidence: medium
+  ngspice:
+    target: cjsw
+    confidence: medium
+  aliases: []
+
+vjsw:
+  spectre:
+    target: vjsw
+    confidence: medium
+    notes: "Sidewall junction potential"
+  hspice:
+    target: vjsw
+    confidence: medium
+  ngspice:
+    target: vjsw
+    confidence: medium
+  aliases: [pbsw]
+
+mjsw:
+  spectre:
+    target: mjsw
+    confidence: medium
+    notes: "Sidewall grading coefficient"
+  hspice:
+    target: mjsw
+    confidence: medium
+  ngspice:
+    target: mjsw
+    confidence: medium
+  aliases: []
+
+# =============================================================================
+# PHYSICAL PARAMETERS
+# =============================================================================
+
+area:
+  spectre:
+    target: area
+    confidence: high
+    notes: "Junction area"
+  hspice:
+    target: area
+    confidence: high
+  ngspice:
+    target: area
+    confidence: high
+  aliases: []
+
+perim:
+  spectre:
+    target: pj
+    confidence: medium
+    notes: "Junction perimeter"
+  hspice:
+    target: pj
+    confidence: medium
+  ngspice:
+    target: pj
+    confidence: medium
+  aliases: [pj]
+
+# =============================================================================
+# TEMPERATURE PARAMETERS
+# =============================================================================
+
+tnom:
+  spectre:
+    target: tnom
+    confidence: high
+    notes: "Parameter measurement temperature"
+  hspice:
+    target: tnom
+    confidence: high
+  ngspice:
+    target: tnom
+    confidence: high
+  aliases: []
+
+eg:
+  spectre:
+    target: eg
+    confidence: high
+    notes: "Activation energy"
+  hspice:
+    target: eg
+    confidence: high
+  ngspice:
+    target: eg
+    confidence: high
+  aliases: []
+
+xti:
+  spectre:
+    target: xti
+    confidence: high
+    notes: "Saturation current temperature exponent"
+  hspice:
+    target: xti
+    confidence: high
+  ngspice:
+    target: xti
+    confidence: high
+  aliases: []
+
+# =============================================================================
+# TEMPERATURE COEFFICIENTS
+# =============================================================================
+
+cta:
+  spectre:
+    target: cta
+    confidence: medium
+    notes: "Temperature coefficient for CJO"
+  hspice:
+    target: cta
+    confidence: medium
+  ngspice:
+    target: cta
+    confidence: medium
+  aliases: []
+
+ctp:
+  spectre:
+    target: ctp
+    confidence: medium
+    notes: "Temperature coefficient for junction potential"
+  hspice:
+    target: ctp
+    confidence: medium
+  ngspice:
+    target: ctp
+    confidence: medium
+  aliases: []
+
+trs:
+  spectre:
+    target: trs
+    confidence: medium
+    notes: "Temperature coefficient for RS"
+  hspice:
+    target: trs
+    confidence: medium
+  ngspice:
+    target: trs
+    confidence: medium
+  aliases: []
+
+tbv1:
+  spectre:
+    target: tbv1
+    confidence: low
+    notes: "First order temperature coefficient for BV"
+  hspice:
+    target: tbv1
+    confidence: low
+  ngspice:
+    target: tbv1
+    confidence: low
+  aliases: []
+
+pta:
+  spectre:
+    target: pta
+    confidence: low
+    notes: "Area temperature coefficient"
+  hspice:
+    target: pta
+    confidence: low
+  ngspice:
+    target: pta
+    confidence: low
+  aliases: []
+
+ptp:
+  spectre:
+    target: ptp
+    confidence: low
+    notes: "Perimeter temperature coefficient"
+  hspice:
+    target: ptp
+    confidence: low
+  ngspice:
+    target: ptp
+    confidence: low
+  aliases: []
+
+# =============================================================================
+# SIDEWALL CURRENT PARAMETERS
+# =============================================================================
+
+isw:
+  spectre:
+    target: isw
+    confidence: low
+    notes: "Sidewall saturation current"
+  hspice:
+    target: isw
+    confidence: low
+  ngspice:
+    target: isw
+    confidence: low
+  aliases: []
+
+# =============================================================================
+# MODEL LEVEL & CONTROL
+# =============================================================================
+
+level:
+  spectre:
+    target: level
+    confidence: high
+    notes: "Model level"
+  hspice:
+    target: level
+    confidence: high
+  ngspice:
+    target: level
+    confidence: high
+  aliases: []
+
+tlev:
+  spectre:
+    target: tlev
+    confidence: high
+    notes: "Temperature level control"
+  hspice:
+    target: tlev
+    confidence: high
+  ngspice:
+    target: tlev
+    confidence: high
+  aliases: []
+
+tlevc:
+  spectre:
+    target: tlevc
+    confidence: high
+    notes: "Temperature level control for capacitances"
+  hspice:
+    target: tlevc
+    confidence: high
+  ngspice:
+    target: tlevc
+    confidence: high
+  aliases: []
+
+# =============================================================================
+# LIMITS & SCALING
+# =============================================================================
+
+imax:
+  spectre:
+    target: imax
+    confidence: low
+    notes: "Maximum current"
+  hspice:
+    target: imax
+    confidence: low
+  ngspice:
+    target: imax
+    confidence: low
+  aliases: []
+
+minr:
+  spectre:
+    target: minr
+    confidence: low
+    notes: "Minimum resistance"
+  hspice:
+    target: minr
+    confidence: low
+  ngspice:
+    target: minr
+    confidence: low
+  aliases: []
+
+allow_scaling:
+  spectre:
+    target: allow_scaling
+    confidence: low
+    notes: "Allow scaling flag"
+  hspice:
+    target: allow_scaling
+    confidence: low
+  ngspice:
+    target: allow_scaling
+    confidence: low
+  aliases: []
+
+# =============================================================================
+# TRANSIT TIME
+# =============================================================================
+
+tt:
+  spectre:
+    target: tt
+    confidence: high
+    notes: "Transit time"
+  hspice:
+    target: tt
+    confidence: high
+  ngspice:
+    target: tt
+    confidence: high
+  aliases: []

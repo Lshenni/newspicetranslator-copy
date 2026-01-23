@@ -1,0 +1,267 @@
+# Diode Parameter Mappings
+# Maps parameter names across different SPICE formats for diode devices
+# Format: param_name -> {format: {target: name, confidence: level}}
+
+# Core Diode Parameters
+is:           # Saturation current
+  ngspice:
+    target: "is"
+    confidence: high
+    notes: "Saturation current"
+    
+n:            # Emission coefficient
+  ngspice:
+    target: "n"
+    confidence: high
+    notes: "Emission coefficient"
+    
+rs:           # Ohmic resistance
+  ngspice:
+    target: "rs"
+    confidence: high
+    notes: "Ohmic resistance"
+    
+bv:           # Reverse breakdown voltage
+  ngspice:
+    target: "bv"
+    confidence: high
+    notes: "Reverse breakdown voltage"
+    
+ibv:          # Current at breakdown voltage
+  ngspice:
+    target: "ibv"
+    confidence: high
+    notes: "Current at breakdown voltage"
+    
+ik:           # High-injection knee current
+  ngspice:
+    target: "ik"
+    confidence: medium
+    notes: "High-injection knee current"
+
+# Junction Capacitance Parameters
+cjo:          # Zero-bias junction capacitance
+  ngspice:
+    target: "cjo"
+    confidence: high
+    notes: "Zero-bias junction capacitance"
+    
+vj:           # Junction potential
+  ngspice:
+    target: "vj"
+    confidence: high
+    notes: "Junction potential"
+    
+m:            # Grading coefficient
+  ngspice:
+    target: "m"
+    confidence: high
+    notes: "Grading coefficient"
+    
+fc:           # Forward bias depletion capacitance coefficient
+  ngspice:
+    target: "fc"
+    confidence: high
+    notes: "Forward bias depletion capacitance coefficient"
+
+# Sidewall Capacitance Parameters
+cjsw:         # Zero-bias sidewall capacitance
+  ngspice:
+    target: "cjsw"
+    confidence: medium
+    notes: "Zero-bias sidewall capacitance"
+    
+vjsw:         # Sidewall junction potential
+  ngspice:
+    target: "vjsw"
+    confidence: medium
+    notes: "Sidewall junction potential"
+    
+mjsw:         # Sidewall grading coefficient
+  ngspice:
+    target: "mjsw"
+    confidence: medium
+    notes: "Sidewall grading coefficient"
+
+# Physical Parameters
+area:         # Junction area
+  ngspice:
+    target: "area"
+    confidence: high
+    notes: "Junction area"
+    
+perim:        # Junction perimeter
+  ngspice:
+    target: "pj"
+    confidence: medium
+    notes: "Junction perimeter"
+
+# Temperature Parameters
+tnom:         # Parameter measurement temperature
+  ngspice:
+    target: "tnom"
+    confidence: high
+    notes: "Parameter measurement temperature"
+    
+eg:           # Activation energy
+  ngspice:
+    target: "eg"
+    confidence: high
+    notes: "Activation energy"
+    
+xti:          # Saturation current temperature exponent
+  ngspice:
+    target: "xti"
+    confidence: high
+    notes: "Saturation current temperature exponent"
+
+# Temperature Coefficients
+cta:          # Temperature coefficient for CJO
+  ngspice:
+    target: "cta"
+    confidence: medium
+    notes: "Temperature coefficient for CJO"
+    
+ctp:          # Temperature coefficient for junction potential
+  ngspice:
+    target: "ctp"
+    confidence: medium
+    notes: "Temperature coefficient for junction potential"
+    
+trs:          # Temperature coefficient for RS
+  ngspice:
+    target: "trs"
+    confidence: medium
+    notes: "Temperature coefficient for RS"
+    
+tbv1:         # First order temperature coefficient for BV
+  ngspice:
+    target: "tbv1"
+    confidence: low
+    notes: "First order temperature coefficient for BV"
+    
+pta:          # Area temperature coefficient
+  ngspice:
+    target: "pta"
+    confidence: low
+    notes: "Area temperature coefficient"
+    
+ptp:          # Perimeter temperature coefficient
+  ngspice:
+    target: "ptp"
+    confidence: low
+    notes: "Perimeter temperature coefficient"
+
+# Sidewall Current Parameters
+isw:          # Sidewall saturation current
+  ngspice:
+    target: "isw"
+    confidence: low
+    notes: "Sidewall saturation current"
+
+# Model Level and Control Parameters
+level:        # Model level
+  ngspice:
+    target: "level"
+    confidence: high
+    notes: "Model level"
+    
+tlev:         # Temperature level control
+  ngspice:
+    target: "tlev"
+    confidence: high
+    notes: "Temperature level control"
+    
+tlevc:        # Temperature level control for capacitances
+  ngspice:
+    target: "tlevc"
+    confidence: high
+    notes: "Temperature level control for capacitances"
+
+# Limits and Scaling
+imax:         # Maximum current
+  ngspice:
+    target: "imax"
+    confidence: low
+    notes: "Maximum current"
+    
+minr:         # Minimum resistance
+  ngspice:
+    target: "minr"
+    confidence: low
+    notes: "Minimum resistance"
+    
+allow_scaling: # Allow scaling flag
+  ngspice:
+    target: "allow_scaling"
+    confidence: low
+    notes: "Allow scaling flag"
+
+# Scaling Factor Parameters (Spectre specific, map to base parameters)
+is_dio:       # IS scaling factor
+  ngspice:
+    target: "is"
+    confidence: medium
+    notes: "IS scaling factor (Spectre)"
+    
+n_dio:        # N scaling factor
+  ngspice:
+    target: "n"
+    confidence: medium
+    notes: "N scaling factor (Spectre)"
+    
+rs_dio:       # RS scaling factor
+  ngspice:
+    target: "rs"
+    confidence: medium
+    notes: "RS scaling factor (Spectre)"
+    
+cjo_dio:      # CJO scaling factor
+  ngspice:
+    target: "cjo"
+    confidence: medium
+    notes: "CJO scaling factor (Spectre)"
+    
+cjsw_dio:     # CJSW scaling factor
+  ngspice:
+    target: "cjsw"
+    confidence: medium
+    notes: "CJSW scaling factor (Spectre)"
+    
+isw_dio:      # ISW scaling factor
+  ngspice:
+    target: "isw"
+    confidence: medium
+    notes: "ISW scaling factor (Spectre)"
+
+# Low Vt Specific Parameters
+is_dio_lvt:   # IS for low Vt diodes
+  ngspice:
+    target: "is"
+    confidence: medium
+    notes: "IS for low Vt diodes (Spectre)"
+    
+isw_dio_lvt:  # ISW for low Vt diodes
+  ngspice:
+    target: "isw"
+    confidence: medium
+    notes: "ISW for low Vt diodes (Spectre)"
+
+# Alternative Parameter Names
+cj0:          # Alternative name for CJO
+  ngspice:
+    target: "cjo"
+    confidence: medium
+    notes: "Zero-bias junction capacitance (alternative name)"
+    
+pb:           # Alternative name for VJ
+  ngspice:
+    target: "vj"
+    confidence: medium
+    notes: "Junction potential (alternative name)"
+    
+mj:           # Alternative name for M
+  ngspice:
+    target: "m"
+    confidence: medium
+    notes: "Grading coefficient (alternative name)"

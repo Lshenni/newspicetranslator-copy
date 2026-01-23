@@ -1,0 +1,5730 @@
+vth0:
+  spectre:
+    target: vth0
+    confidence: high
+  hspice:
+    target: vth0
+    confidence: high
+  ngspice:
+    target: vth0
+    confidence: high
+u0:
+  spectre:
+    target: u0
+    confidence: high
+  hspice:
+    target: u0
+    confidence: high
+  ngspice:
+    target: u0
+    confidence: high
+tox:
+  spectre:
+    target: tox
+    confidence: high
+  hspice:
+    target: tox
+    confidence: high
+  ngspice:
+    target: tox
+    confidence: high
+k1:
+  spectre:
+    target: k1
+    confidence: high
+  hspice:
+    target: k1
+    confidence: high
+  ngspice:
+    target: k1
+    confidence: high
+k2:
+  spectre:
+    target: k2
+    confidence: high
+  hspice:
+    target: k2
+    confidence: high
+  ngspice:
+    target: k2
+    confidence: high
+toxe:
+  spectre:
+    target: toxe
+    confidence: high
+  hspice:
+    target: toxe
+    confidence: high
+  ngspice:
+    target: toxe
+    confidence: high
+toxp:
+  spectre:
+    target: toxp
+    confidence: high
+  hspice:
+    target: toxp
+    confidence: high
+  ngspice:
+    target: toxp
+    confidence: high
+dtox:
+  spectre:
+    target: dtox
+    confidence: high
+  hspice:
+    target: dtox
+    confidence: high
+  ngspice:
+    target: dtox
+    confidence: high
+xl:
+  spectre:
+    target: xl
+    confidence: high
+  hspice:
+    target: xl
+    confidence: high
+  ngspice:
+    target: xl
+    confidence: high
+xw:
+  spectre:
+    target: xw
+    confidence: high
+  hspice:
+    target: xw
+    confidence: high
+  ngspice:
+    target: xw
+    confidence: high
+lint:
+  spectre:
+    target: lint
+    confidence: high
+  hspice:
+    target: lint
+    confidence: high
+  ngspice:
+    target: lint
+    confidence: high
+wint:
+  spectre:
+    target: wint
+    confidence: medium
+  hspice:
+    target: wint
+    confidence: medium
+  ngspice:
+    target: wint
+    confidence: medium
+vsat:
+  spectre:
+    target: vsat
+    confidence: high
+  hspice:
+    target: vsat
+    confidence: high
+  ngspice:
+    target: vsat
+    confidence: high
+nfactor:
+  spectre:
+    target: nfactor
+    confidence: medium
+  hspice:
+    target: nfactor
+    confidence: medium
+  ngspice:
+    target: nfactor
+    confidence: medium
+pclm:
+  spectre:
+    target: pclm
+    confidence: medium
+  hspice:
+    target: pclm
+    confidence: medium
+  ngspice:
+    target: pclm
+    confidence: medium
+pdiblc1:
+  spectre:
+    target: pdiblc1
+    confidence: medium
+  hspice:
+    target: pdiblc1
+    confidence: medium
+  ngspice:
+    target: pdiblc1
+    confidence: medium
+pdiblc2:
+  spectre:
+    target: pdiblc2
+    confidence: medium
+  hspice:
+    target: pdiblc2
+    confidence: medium
+  ngspice:
+    target: pdiblc2
+    confidence: medium
+drout:
+  spectre:
+    target: drout
+    confidence: medium
+  hspice:
+    target: drout
+    confidence: medium
+  ngspice:
+    target: drout
+    confidence: medium
+cgso:
+  spectre:
+    target: cgso
+    confidence: high
+  hspice:
+    target: cgso
+    confidence: high
+  ngspice:
+    target: cgso
+    confidence: high
+cgdo:
+  spectre:
+    target: cgdo
+    confidence: high
+  hspice:
+    target: cgdo
+    confidence: high
+  ngspice:
+    target: cgdo
+    confidence: high
+cgbo:
+  spectre:
+    target: cgbo
+    confidence: high
+  hspice:
+    target: cgbo
+    confidence: high
+  ngspice:
+    target: cgbo
+    confidence: high
+cjs:
+  spectre:
+    target: cjs
+    confidence: medium
+  hspice:
+    target: cjs
+    confidence: medium
+  ngspice:
+    target: cjs
+    confidence: medium
+mjs:
+  spectre:
+    target: mjs
+    confidence: medium
+  hspice:
+    target: mjs
+    confidence: medium
+  ngspice:
+    target: mjs
+    confidence: medium
+rsh:
+  spectre:
+    target: rsh
+    confidence: medium
+  hspice:
+    target: rsh
+    confidence: medium
+  ngspice:
+    target: rsh
+    confidence: medium
+tnom:
+  spectre:
+    target: tnom
+    confidence: high
+  hspice:
+    target: tnom
+    confidence: high
+  ngspice:
+    target: tnom
+    confidence: high
+noia:
+  spectre:
+    target: noia
+    confidence: medium
+  hspice:
+    target: noia
+    confidence: medium
+  ngspice:
+    target: noia
+    confidence: medium
+noib:
+  spectre:
+    target: noib
+    confidence: medium
+  hspice:
+    target: noib
+    confidence: medium
+  ngspice:
+    target: noib
+    confidence: medium
+noic:
+  spectre:
+    target: noic
+    confidence: medium
+  hspice:
+    target: noic
+    confidence: medium
+  ngspice:
+    target: noic
+    confidence: medium
+ua:
+  spectre:
+    target: ua
+    confidence: medium
+  hspice:
+    target: ua
+    confidence: medium
+  ngspice:
+    target: ua
+    confidence: medium
+ub:
+  spectre:
+    target: ub
+    confidence: medium
+  hspice:
+    target: ub
+    confidence: medium
+  ngspice:
+    target: ub
+    confidence: medium
+uc:
+  spectre:
+    target: uc
+    confidence: medium
+  hspice:
+    target: uc
+    confidence: medium
+  ngspice:
+    target: uc
+    confidence: medium
+k3:
+  spectre:
+    target: k3
+    confidence: medium
+  hspice:
+    target: k3
+    confidence: medium
+  ngspice:
+    target: k3
+    confidence: medium
+k3b:
+  spectre:
+    target: k3b
+    confidence: medium
+  hspice:
+    target: k3b
+    confidence: medium
+  ngspice:
+    target: k3b
+    confidence: medium
+w0:
+  spectre:
+    target: w0
+    confidence: medium
+  hspice:
+    target: w0
+    confidence: medium
+  ngspice:
+    target: w0
+    confidence: medium
+dvt0:
+  spectre:
+    target: dvt0
+    confidence: medium
+  hspice:
+    target: dvt0
+    confidence: medium
+  ngspice:
+    target: dvt0
+    confidence: medium
+dvt1:
+  spectre:
+    target: dvt1
+    confidence: medium
+  hspice:
+    target: dvt1
+    confidence: medium
+  ngspice:
+    target: dvt1
+    confidence: medium
+dvt2:
+  spectre:
+    target: dvt2
+    confidence: medium
+  hspice:
+    target: dvt2
+    confidence: medium
+  ngspice:
+    target: dvt2
+    confidence: medium
+lk2:
+  spectre:
+    target: lk2
+    confidence: medium
+  hspice:
+    target: lk2
+    confidence: medium
+  ngspice:
+    target: lk2
+    confidence: medium
+wk2:
+  spectre:
+    target: wk2
+    confidence: medium
+  hspice:
+    target: wk2
+    confidence: medium
+  ngspice:
+    target: wk2
+    confidence: medium
+pk2:
+  spectre:
+    target: pk2
+    confidence: medium
+  hspice:
+    target: pk2
+    confidence: medium
+  ngspice:
+    target: pk2
+    confidence: medium
+lu0:
+  spectre:
+    target: lu0
+    confidence: medium
+  hspice:
+    target: lu0
+    confidence: medium
+  ngspice:
+    target: lu0
+    confidence: medium
+wu0:
+  spectre:
+    target: wu0
+    confidence: medium
+  hspice:
+    target: wu0
+    confidence: medium
+  ngspice:
+    target: wu0
+    confidence: medium
+pu0:
+  spectre:
+    target: pu0
+    confidence: medium
+  hspice:
+    target: pu0
+    confidence: medium
+  ngspice:
+    target: pu0
+    confidence: medium
+lvth0:
+  spectre:
+    target: lvth0
+    confidence: medium
+  hspice:
+    target: lvth0
+    confidence: medium
+  ngspice:
+    target: lvth0
+    confidence: medium
+wvth0:
+  spectre:
+    target: wvth0
+    confidence: medium
+  hspice:
+    target: wvth0
+    confidence: medium
+  ngspice:
+    target: wvth0
+    confidence: medium
+pvth0:
+  spectre:
+    target: pvth0
+    confidence: medium
+  hspice:
+    target: pvth0
+    confidence: medium
+  ngspice:
+    target: pvth0
+    confidence: medium
+wlod:
+  spectre:
+    target: wlod
+    confidence: medium
+  hspice:
+    target: wlod
+    confidence: medium
+  ngspice:
+    target: wlod
+    confidence: medium
+lku0:
+  spectre:
+    target: lku0
+    confidence: medium
+  hspice:
+    target: lku0
+    confidence: medium
+  ngspice:
+    target: lku0
+    confidence: medium
+wku0:
+  spectre:
+    target: wku0
+    confidence: medium
+  hspice:
+    target: wku0
+    confidence: medium
+  ngspice:
+    target: wku0
+    confidence: medium
+pku0:
+  spectre:
+    target: pku0
+    confidence: medium
+  hspice:
+    target: pku0
+    confidence: medium
+  ngspice:
+    target: pku0
+    confidence: medium
+lkvth0:
+  spectre:
+    target: lkvth0
+    confidence: medium
+  hspice:
+    target: lkvth0
+    confidence: medium
+  ngspice:
+    target: lkvth0
+    confidence: medium
+wkvth0:
+  spectre:
+    target: wkvth0
+    confidence: medium
+  hspice:
+    target: wkvth0
+    confidence: medium
+  ngspice:
+    target: wkvth0
+    confidence: medium
+pkvth0:
+  spectre:
+    target: pkvth0
+    confidence: medium
+  hspice:
+    target: pkvth0
+    confidence: medium
+  ngspice:
+    target: pkvth0
+    confidence: medium
+stk2:
+  spectre:
+    target: stk2
+    confidence: medium
+  hspice:
+    target: stk2
+    confidence: medium
+  ngspice:
+    target: stk2
+    confidence: medium
+lodk2:
+  spectre:
+    target: lodk2
+    confidence: medium
+  hspice:
+    target: lodk2
+    confidence: medium
+  ngspice:
+    target: lodk2
+    confidence: medium
+steta0:
+  spectre:
+    target: steta0
+    confidence: medium
+  hspice:
+    target: steta0
+    confidence: medium
+  ngspice:
+    target: steta0
+    confidence: medium
+lodeta0:
+  spectre:
+    target: lodeta0
+    confidence: medium
+  hspice:
+    target: lodeta0
+    confidence: medium
+  ngspice:
+    target: lodeta0
+    confidence: medium
+web:
+  spectre:
+    target: web
+    confidence: medium
+  hspice:
+    target: web
+    confidence: medium
+  ngspice:
+    target: web
+    confidence: medium
+wec:
+  spectre:
+    target: wec
+    confidence: medium
+  hspice:
+    target: wec
+    confidence: medium
+  ngspice:
+    target: wec
+    confidence: medium
+kvth0we:
+  spectre:
+    target: kvth0we
+    confidence: medium
+  hspice:
+    target: kvth0we
+    confidence: medium
+  ngspice:
+    target: kvth0we
+    confidence: medium
+k2we:
+  spectre:
+    target: k2we
+    confidence: medium
+  hspice:
+    target: k2we
+    confidence: medium
+  ngspice:
+    target: k2we
+    confidence: medium
+ku0we:
+  spectre:
+    target: ku0we
+    confidence: medium
+  hspice:
+    target: ku0we
+    confidence: medium
+  ngspice:
+    target: ku0we
+    confidence: medium
+scref:
+  spectre:
+    target: scref
+    confidence: medium
+  hspice:
+    target: scref
+    confidence: medium
+  ngspice:
+    target: scref
+    confidence: medium
+paramchk:
+  spectre:
+    target: paramchk
+    confidence: high
+  hspice:
+    target: paramchk
+    confidence: high
+  ngspice:
+    target: paramchk
+    confidence: high
+level:
+  spectre:
+    target: level
+    confidence: high
+  hspice:
+    target: level
+    confidence: high
+  ngspice:
+    target: level
+    confidence: high
+type:
+  spectre:
+    target: type
+    confidence: high
+  hspice:
+    target: type
+    confidence: high
+  ngspice:
+    target: type
+    confidence: high
+version:
+  spectre:
+    target: version
+    confidence: medium
+  hspice:
+    target: version
+    confidence: medium
+  ngspice:
+    target: version
+    confidence: medium
+binunit:
+  spectre:
+    target: binunit
+    confidence: medium
+  hspice:
+    target: binunit
+    confidence: medium
+  ngspice:
+    target: binunit
+    confidence: medium
+mobmod:
+  spectre:
+    target: mobmod
+    confidence: medium
+  hspice:
+    target: mobmod
+    confidence: medium
+  ngspice:
+    target: mobmod
+    confidence: medium
+capmod:
+  spectre:
+    target: capmod
+    confidence: medium
+  hspice:
+    target: capmod
+    confidence: medium
+  ngspice:
+    target: capmod
+    confidence: medium
+rdsmod:
+  spectre:
+    target: rdsmod
+    confidence: medium
+  hspice:
+    target: rdsmod
+    confidence: medium
+  ngspice:
+    target: rdsmod
+    confidence: medium
+igcmod:
+  spectre:
+    target: igcmod
+    confidence: medium
+  hspice:
+    target: igcmod
+    confidence: medium
+  ngspice:
+    target: igcmod
+    confidence: medium
+igbmod:
+  spectre:
+    target: igbmod
+    confidence: medium
+  hspice:
+    target: igbmod
+    confidence: medium
+  ngspice:
+    target: igbmod
+    confidence: medium
+rbodymod:
+  spectre:
+    target: rbodymod
+    confidence: medium
+  hspice:
+    target: rbodymod
+    confidence: medium
+  ngspice:
+    target: rbodymod
+    confidence: medium
+trnqsmod:
+  spectre:
+    target: trnqsmod
+    confidence: medium
+  hspice:
+    target: trnqsmod
+    confidence: medium
+  ngspice:
+    target: trnqsmod
+    confidence: medium
+acnqsmod:
+  spectre:
+    target: acnqsmod
+    confidence: medium
+  hspice:
+    target: acnqsmod
+    confidence: medium
+  ngspice:
+    target: acnqsmod
+    confidence: medium
+fnoimod:
+  spectre:
+    target: fnoimod
+    confidence: medium
+  hspice:
+    target: fnoimod
+    confidence: medium
+  ngspice:
+    target: fnoimod
+    confidence: medium
+tnoimod:
+  spectre:
+    target: tnoimod
+    confidence: medium
+  hspice:
+    target: tnoimod
+    confidence: medium
+  ngspice:
+    target: tnoimod
+    confidence: medium
+diomod:
+  spectre:
+    target: diomod
+    confidence: medium
+  hspice:
+    target: diomod
+    confidence: medium
+  ngspice:
+    target: diomod
+    confidence: medium
+tempmod:
+  spectre:
+    target: tempmod
+    confidence: medium
+  hspice:
+    target: tempmod
+    confidence: medium
+  ngspice:
+    target: tempmod
+    confidence: medium
+permod:
+  spectre:
+    target: permod
+    confidence: medium
+  hspice:
+    target: permod
+    confidence: medium
+  ngspice:
+    target: permod
+    confidence: medium
+rgatemod:
+  spectre:
+    target: rgatemod
+    confidence: medium
+  hspice:
+    target: rgatemod
+    confidence: medium
+  ngspice:
+    target: rgatemod
+    confidence: medium
+wpemod:
+  spectre:
+    target: wpemod
+    confidence: medium
+  hspice:
+    target: wpemod
+    confidence: medium
+  ngspice:
+    target: wpemod
+    confidence: medium
+lmin:
+  spectre:
+    target: lmin
+    confidence: medium
+  hspice:
+    target: lmin
+    confidence: medium
+  ngspice:
+    target: lmin
+    confidence: medium
+lmax:
+  spectre:
+    target: lmax
+    confidence: medium
+  hspice:
+    target: lmax
+    confidence: medium
+  ngspice:
+    target: lmax
+    confidence: medium
+wmin:
+  spectre:
+    target: wmin
+    confidence: medium
+  hspice:
+    target: wmin
+    confidence: medium
+  ngspice:
+    target: wmin
+    confidence: medium
+wmax:
+  spectre:
+    target: wmax
+    confidence: medium
+  hspice:
+    target: wmax
+    confidence: medium
+  ngspice:
+    target: wmax
+    confidence: medium
+epsrox:
+  spectre:
+    target: epsrox
+    confidence: medium
+  hspice:
+    target: epsrox
+    confidence: medium
+  ngspice:
+    target: epsrox
+    confidence: medium
+xj:
+  spectre:
+    target: xj
+    confidence: medium
+  hspice:
+    target: xj
+    confidence: medium
+  ngspice:
+    target: xj
+    confidence: medium
+ndep:
+  spectre:
+    target: ndep
+    confidence: medium
+  hspice:
+    target: ndep
+    confidence: medium
+  ngspice:
+    target: ndep
+    confidence: medium
+ngate:
+  spectre:
+    target: ngate
+    confidence: medium
+  hspice:
+    target: ngate
+    confidence: medium
+  ngspice:
+    target: ngate
+    confidence: medium
+nsd:
+  spectre:
+    target: nsd
+    confidence: medium
+  hspice:
+    target: nsd
+    confidence: medium
+  ngspice:
+    target: nsd
+    confidence: medium
+rshg:
+  spectre:
+    target: rshg
+    confidence: medium
+  hspice:
+    target: rshg
+    confidence: medium
+  ngspice:
+    target: rshg
+    confidence: medium
+wl:
+  spectre:
+    target: wl
+    confidence: medium
+  hspice:
+    target: wl
+    confidence: medium
+  ngspice:
+    target: wl
+    confidence: medium
+wln:
+  spectre:
+    target: wln
+    confidence: medium
+  hspice:
+    target: wln
+    confidence: medium
+  ngspice:
+    target: wln
+    confidence: medium
+ww:
+  spectre:
+    target: ww
+    confidence: medium
+  hspice:
+    target: ww
+    confidence: medium
+  ngspice:
+    target: ww
+    confidence: medium
+wwn:
+  spectre:
+    target: wwn
+    confidence: medium
+  hspice:
+    target: wwn
+    confidence: medium
+  ngspice:
+    target: wwn
+    confidence: medium
+wwl:
+  spectre:
+    target: wwl
+    confidence: medium
+  hspice:
+    target: wwl
+    confidence: medium
+  ngspice:
+    target: wwl
+    confidence: medium
+ll:
+  spectre:
+    target: ll
+    confidence: medium
+  hspice:
+    target: ll
+    confidence: medium
+  ngspice:
+    target: ll
+    confidence: medium
+lln:
+  spectre:
+    target: lln
+    confidence: medium
+  hspice:
+    target: lln
+    confidence: medium
+  ngspice:
+    target: lln
+    confidence: medium
+lw:
+  spectre:
+    target: lw
+    confidence: medium
+  hspice:
+    target: lw
+    confidence: medium
+  ngspice:
+    target: lw
+    confidence: medium
+lwn:
+  spectre:
+    target: lwn
+    confidence: medium
+  hspice:
+    target: lwn
+    confidence: medium
+  ngspice:
+    target: lwn
+    confidence: medium
+lwl:
+  spectre:
+    target: lwl
+    confidence: medium
+  hspice:
+    target: lwl
+    confidence: medium
+  ngspice:
+    target: lwl
+    confidence: medium
+llc:
+  spectre:
+    target: llc
+    confidence: medium
+  hspice:
+    target: llc
+    confidence: medium
+  ngspice:
+    target: llc
+    confidence: medium
+lwc:
+  spectre:
+    target: lwc
+    confidence: medium
+  hspice:
+    target: lwc
+    confidence: medium
+  ngspice:
+    target: lwc
+    confidence: medium
+lwlc:
+  spectre:
+    target: lwlc
+    confidence: medium
+  hspice:
+    target: lwlc
+    confidence: medium
+  ngspice:
+    target: lwlc
+    confidence: medium
+wlc:
+  spectre:
+    target: wlc
+    confidence: medium
+  hspice:
+    target: wlc
+    confidence: medium
+  ngspice:
+    target: wlc
+    confidence: medium
+wwc:
+  spectre:
+    target: wwc
+    confidence: medium
+  hspice:
+    target: wwc
+    confidence: medium
+  ngspice:
+    target: wwc
+    confidence: medium
+wwlc:
+  spectre:
+    target: wwlc
+    confidence: medium
+  hspice:
+    target: wwlc
+    confidence: medium
+  ngspice:
+    target: wwlc
+    confidence: medium
+dwg:
+  spectre:
+    target: dwg
+    confidence: medium
+  hspice:
+    target: dwg
+    confidence: medium
+  ngspice:
+    target: dwg
+    confidence: medium
+dwb:
+  spectre:
+    target: dwb
+    confidence: medium
+  hspice:
+    target: dwb
+    confidence: medium
+  ngspice:
+    target: dwb
+    confidence: medium
+em:
+  spectre:
+    target: em
+    confidence: medium
+  hspice:
+    target: em
+    confidence: medium
+  ngspice:
+    target: em
+    confidence: medium
+ef:
+  spectre:
+    target: ef
+    confidence: medium
+  hspice:
+    target: ef
+    confidence: medium
+  ngspice:
+    target: ef
+    confidence: medium
+dmcg:
+  spectre:
+    target: dmcg
+    confidence: medium
+  hspice:
+    target: dmcg
+    confidence: medium
+  ngspice:
+    target: dmcg
+    confidence: medium
+dmci:
+  spectre:
+    target: dmci
+    confidence: medium
+  hspice:
+    target: dmci
+    confidence: medium
+  ngspice:
+    target: dmci
+    confidence: medium
+dmdg:
+  spectre:
+    target: dmdg
+    confidence: medium
+  hspice:
+    target: dmdg
+    confidence: medium
+  ngspice:
+    target: dmdg
+    confidence: medium
+dmcgt:
+  spectre:
+    target: dmcgt
+    confidence: medium
+  hspice:
+    target: dmcgt
+    confidence: medium
+  ngspice:
+    target: dmcgt
+    confidence: medium
+dwj:
+  spectre:
+    target: dwj
+    confidence: medium
+  hspice:
+    target: dwj
+    confidence: medium
+  ngspice:
+    target: dwj
+    confidence: medium
+xgw:
+  spectre:
+    target: xgw
+    confidence: medium
+  hspice:
+    target: xgw
+    confidence: medium
+  ngspice:
+    target: xgw
+    confidence: medium
+xgl:
+  spectre:
+    target: xgl
+    confidence: medium
+  hspice:
+    target: xgl
+    confidence: medium
+  ngspice:
+    target: xgl
+    confidence: medium
+ngcon:
+  spectre:
+    target: ngcon
+    confidence: medium
+  hspice:
+    target: ngcon
+    confidence: medium
+  ngspice:
+    target: ngcon
+    confidence: medium
+phin:
+  spectre:
+    target: phin
+    confidence: medium
+  hspice:
+    target: phin
+    confidence: medium
+  ngspice:
+    target: phin
+    confidence: medium
+lpe0:
+  spectre:
+    target: lpe0
+    confidence: medium
+  hspice:
+    target: lpe0
+    confidence: medium
+  ngspice:
+    target: lpe0
+    confidence: medium
+lpeb:
+  spectre:
+    target: lpeb
+    confidence: medium
+  hspice:
+    target: lpeb
+    confidence: medium
+  ngspice:
+    target: lpeb
+    confidence: medium
+dvtp0:
+  spectre:
+    target: dvtp0
+    confidence: medium
+  hspice:
+    target: dvtp0
+    confidence: medium
+  ngspice:
+    target: dvtp0
+    confidence: medium
+dvtp1:
+  spectre:
+    target: dvtp1
+    confidence: medium
+  hspice:
+    target: dvtp1
+    confidence: medium
+  ngspice:
+    target: dvtp1
+    confidence: medium
+dvt0w:
+  spectre:
+    target: dvt0w
+    confidence: medium
+  hspice:
+    target: dvt0w
+    confidence: medium
+  ngspice:
+    target: dvt0w
+    confidence: medium
+dvt1w:
+  spectre:
+    target: dvt1w
+    confidence: medium
+  hspice:
+    target: dvt1w
+    confidence: medium
+  ngspice:
+    target: dvt1w
+    confidence: medium
+dvt2w:
+  spectre:
+    target: dvt2w
+    confidence: medium
+  hspice:
+    target: dvt2w
+    confidence: medium
+  ngspice:
+    target: dvt2w
+    confidence: medium
+vfbsdoff:
+  spectre:
+    target: vfbsdoff
+    confidence: medium
+  hspice:
+    target: vfbsdoff
+    confidence: medium
+  ngspice:
+    target: vfbsdoff
+    confidence: medium
+lua:
+  spectre:
+    target: lua
+    confidence: medium
+  hspice:
+    target: lua
+    confidence: medium
+  ngspice:
+    target: lua
+    confidence: medium
+wua:
+  spectre:
+    target: wua
+    confidence: medium
+  hspice:
+    target: wua
+    confidence: medium
+  ngspice:
+    target: wua
+    confidence: medium
+pua:
+  spectre:
+    target: pua
+    confidence: medium
+  hspice:
+    target: pua
+    confidence: medium
+  ngspice:
+    target: pua
+    confidence: medium
+lub:
+  spectre:
+    target: lub
+    confidence: medium
+  hspice:
+    target: lub
+    confidence: medium
+  ngspice:
+    target: lub
+    confidence: medium
+wub:
+  spectre:
+    target: wub
+    confidence: medium
+  hspice:
+    target: wub
+    confidence: medium
+  ngspice:
+    target: wub
+    confidence: medium
+pub:
+  spectre:
+    target: pub
+    confidence: medium
+  hspice:
+    target: pub
+    confidence: medium
+  ngspice:
+    target: pub
+    confidence: medium
+luc:
+  spectre:
+    target: luc
+    confidence: medium
+  hspice:
+    target: luc
+    confidence: medium
+  ngspice:
+    target: luc
+    confidence: medium
+wuc:
+  spectre:
+    target: wuc
+    confidence: medium
+  hspice:
+    target: wuc
+    confidence: medium
+  ngspice:
+    target: wuc
+    confidence: medium
+puc:
+  spectre:
+    target: puc
+    confidence: medium
+  hspice:
+    target: puc
+    confidence: medium
+  ngspice:
+    target: puc
+    confidence: medium
+ud:
+  spectre:
+    target: ud
+    confidence: medium
+  hspice:
+    target: ud
+    confidence: medium
+  ngspice:
+    target: ud
+    confidence: medium
+lvsat:
+  spectre:
+    target: lvsat
+    confidence: medium
+  hspice:
+    target: lvsat
+    confidence: medium
+  ngspice:
+    target: lvsat
+    confidence: medium
+wvsat:
+  spectre:
+    target: wvsat
+    confidence: medium
+  hspice:
+    target: wvsat
+    confidence: medium
+  ngspice:
+    target: wvsat
+    confidence: medium
+pvsat:
+  spectre:
+    target: pvsat
+    confidence: medium
+  hspice:
+    target: pvsat
+    confidence: medium
+  ngspice:
+    target: pvsat
+    confidence: medium
+a0:
+  spectre:
+    target: a0
+    confidence: medium
+  hspice:
+    target: a0
+    confidence: medium
+  ngspice:
+    target: a0
+    confidence: medium
+la0:
+  spectre:
+    target: la0
+    confidence: medium
+  hspice:
+    target: la0
+    confidence: medium
+  ngspice:
+    target: la0
+    confidence: medium
+ags:
+  spectre:
+    target: ags
+    confidence: medium
+  hspice:
+    target: ags
+    confidence: medium
+  ngspice:
+    target: ags
+    confidence: medium
+lags:
+  spectre:
+    target: lags
+    confidence: medium
+  hspice:
+    target: lags
+    confidence: medium
+  ngspice:
+    target: lags
+    confidence: medium
+b0:
+  spectre:
+    target: b0
+    confidence: medium
+  hspice:
+    target: b0
+    confidence: medium
+  ngspice:
+    target: b0
+    confidence: medium
+b1:
+  spectre:
+    target: b1
+    confidence: medium
+  hspice:
+    target: b1
+    confidence: medium
+  ngspice:
+    target: b1
+    confidence: medium
+keta:
+  spectre:
+    target: keta
+    confidence: medium
+  hspice:
+    target: keta
+    confidence: medium
+  ngspice:
+    target: keta
+    confidence: medium
+lketa:
+  spectre:
+    target: lketa
+    confidence: medium
+  hspice:
+    target: lketa
+    confidence: medium
+  ngspice:
+    target: lketa
+    confidence: medium
+wketa:
+  spectre:
+    target: wketa
+    confidence: medium
+  hspice:
+    target: wketa
+    confidence: medium
+  ngspice:
+    target: wketa
+    confidence: medium
+pketa:
+  spectre:
+    target: pketa
+    confidence: medium
+  hspice:
+    target: pketa
+    confidence: medium
+  ngspice:
+    target: pketa
+    confidence: medium
+a1:
+  spectre:
+    target: a1
+    confidence: medium
+  hspice:
+    target: a1
+    confidence: medium
+  ngspice:
+    target: a1
+    confidence: medium
+a2:
+  spectre:
+    target: a2
+    confidence: medium
+  hspice:
+    target: a2
+    confidence: medium
+  ngspice:
+    target: a2
+    confidence: medium
+rdsw:
+  spectre:
+    target: rdsw
+    confidence: medium
+  hspice:
+    target: rdsw
+    confidence: medium
+  ngspice:
+    target: rdsw
+    confidence: medium
+prwb:
+  spectre:
+    target: prwb
+    confidence: medium
+  hspice:
+    target: prwb
+    confidence: medium
+  ngspice:
+    target: prwb
+    confidence: medium
+prwg:
+  spectre:
+    target: prwg
+    confidence: medium
+  hspice:
+    target: prwg
+    confidence: medium
+  ngspice:
+    target: prwg
+    confidence: medium
+wr:
+  spectre:
+    target: wr
+    confidence: medium
+  hspice:
+    target: wr
+    confidence: medium
+  ngspice:
+    target: wr
+    confidence: medium
+voff:
+  spectre:
+    target: voff
+    confidence: medium
+  hspice:
+    target: voff
+    confidence: medium
+  ngspice:
+    target: voff
+    confidence: medium
+lvoff:
+  spectre:
+    target: lvoff
+    confidence: medium
+  hspice:
+    target: lvoff
+    confidence: medium
+  ngspice:
+    target: lvoff
+    confidence: medium
+wvoff:
+  spectre:
+    target: wvoff
+    confidence: medium
+  hspice:
+    target: wvoff
+    confidence: medium
+  ngspice:
+    target: wvoff
+    confidence: medium
+pvoff:
+  spectre:
+    target: pvoff
+    confidence: medium
+  hspice:
+    target: pvoff
+    confidence: medium
+  ngspice:
+    target: pvoff
+    confidence: medium
+voffl:
+  spectre:
+    target: voffl
+    confidence: medium
+  hspice:
+    target: voffl
+    confidence: medium
+  ngspice:
+    target: voffl
+    confidence: medium
+minv:
+  spectre:
+    target: minv
+    confidence: medium
+  hspice:
+    target: minv
+    confidence: medium
+  ngspice:
+    target: minv
+    confidence: medium
+lnfactor:
+  spectre:
+    target: lnfactor
+    confidence: medium
+  hspice:
+    target: lnfactor
+    confidence: medium
+  ngspice:
+    target: lnfactor
+    confidence: medium
+wnfactor:
+  spectre:
+    target: wnfactor
+    confidence: medium
+  hspice:
+    target: wnfactor
+    confidence: medium
+  ngspice:
+    target: wnfactor
+    confidence: medium
+pnfactor:
+  spectre:
+    target: pnfactor
+    confidence: medium
+  hspice:
+    target: pnfactor
+    confidence: medium
+  ngspice:
+    target: pnfactor
+    confidence: medium
+eta0:
+  spectre:
+    target: eta0
+    confidence: medium
+  hspice:
+    target: eta0
+    confidence: medium
+  ngspice:
+    target: eta0
+    confidence: medium
+etab:
+  spectre:
+    target: etab
+    confidence: medium
+  hspice:
+    target: etab
+    confidence: medium
+  ngspice:
+    target: etab
+    confidence: medium
+dsub:
+  spectre:
+    target: dsub
+    confidence: medium
+  hspice:
+    target: dsub
+    confidence: medium
+  ngspice:
+    target: dsub
+    confidence: medium
+cit:
+  spectre:
+    target: cit
+    confidence: medium
+  hspice:
+    target: cit
+    confidence: medium
+  ngspice:
+    target: cit
+    confidence: medium
+cdsc:
+  spectre:
+    target: cdsc
+    confidence: medium
+  hspice:
+    target: cdsc
+    confidence: medium
+  ngspice:
+    target: cdsc
+    confidence: medium
+cdscb:
+  spectre:
+    target: cdscb
+    confidence: medium
+  hspice:
+    target: cdscb
+    confidence: medium
+  ngspice:
+    target: cdscb
+    confidence: medium
+cdscd:
+  spectre:
+    target: cdscd
+    confidence: medium
+  hspice:
+    target: cdscd
+    confidence: medium
+  ngspice:
+    target: cdscd
+    confidence: medium
+lpdiblc2:
+  spectre:
+    target: lpdiblc2
+    confidence: medium
+  hspice:
+    target: lpdiblc2
+    confidence: medium
+  ngspice:
+    target: lpdiblc2
+    confidence: medium
+wpdiblc2:
+  spectre:
+    target: wpdiblc2
+    confidence: medium
+  hspice:
+    target: wpdiblc2
+    confidence: medium
+  ngspice:
+    target: wpdiblc2
+    confidence: medium
+ppdiblc2:
+  spectre:
+    target: ppdiblc2
+    confidence: medium
+  hspice:
+    target: ppdiblc2
+    confidence: medium
+  ngspice:
+    target: ppdiblc2
+    confidence: medium
+pdiblcb:
+  spectre:
+    target: pdiblcb
+    confidence: medium
+  hspice:
+    target: pdiblcb
+    confidence: medium
+  ngspice:
+    target: pdiblcb
+    confidence: medium
+pscbe1:
+  spectre:
+    target: pscbe1
+    confidence: medium
+  hspice:
+    target: pscbe1
+    confidence: medium
+  ngspice:
+    target: pscbe1
+    confidence: medium
+pscbe2:
+  spectre:
+    target: pscbe2
+    confidence: medium
+  hspice:
+    target: pscbe2
+    confidence: medium
+  ngspice:
+    target: pscbe2
+    confidence: medium
+pvag:
+  spectre:
+    target: pvag
+    confidence: medium
+  hspice:
+    target: pvag
+    confidence: medium
+  ngspice:
+    target: pvag
+    confidence: medium
+delta:
+  spectre:
+    target: delta
+    confidence: medium
+  hspice:
+    target: delta
+    confidence: medium
+  ngspice:
+    target: delta
+    confidence: medium
+fprout:
+  spectre:
+    target: fprout
+    confidence: medium
+  hspice:
+    target: fprout
+    confidence: medium
+  ngspice:
+    target: fprout
+    confidence: medium
+pdits:
+  spectre:
+    target: pdits
+    confidence: medium
+  hspice:
+    target: pdits
+    confidence: medium
+  ngspice:
+    target: pdits
+    confidence: medium
+pditsl:
+  spectre:
+    target: pditsl
+    confidence: medium
+  hspice:
+    target: pditsl
+    confidence: medium
+  ngspice:
+    target: pditsl
+    confidence: medium
+pditsd:
+  spectre:
+    target: pditsd
+    confidence: medium
+  hspice:
+    target: pditsd
+    confidence: medium
+  ngspice:
+    target: pditsd
+    confidence: medium
+alpha0:
+  spectre:
+    target: alpha0
+    confidence: medium
+  hspice:
+    target: alpha0
+    confidence: medium
+  ngspice:
+    target: alpha0
+    confidence: medium
+alpha1:
+  spectre:
+    target: alpha1
+    confidence: medium
+  hspice:
+    target: alpha1
+    confidence: medium
+  ngspice:
+    target: alpha1
+    confidence: medium
+beta0:
+  spectre:
+    target: beta0
+    confidence: medium
+  hspice:
+    target: beta0
+    confidence: medium
+  ngspice:
+    target: beta0
+    confidence: medium
+agidl:
+  spectre:
+    target: agidl
+    confidence: medium
+  hspice:
+    target: agidl
+    confidence: medium
+  ngspice:
+    target: agidl
+    confidence: medium
+bgidl:
+  spectre:
+    target: bgidl
+    confidence: medium
+  hspice:
+    target: bgidl
+    confidence: medium
+  ngspice:
+    target: bgidl
+    confidence: medium
+cgidl:
+  spectre:
+    target: cgidl
+    confidence: medium
+  hspice:
+    target: cgidl
+    confidence: medium
+  ngspice:
+    target: cgidl
+    confidence: medium
+egidl:
+  spectre:
+    target: egidl
+    confidence: medium
+  hspice:
+    target: egidl
+    confidence: medium
+  ngspice:
+    target: egidl
+    confidence: medium
+aigbacc:
+  spectre:
+    target: aigbacc
+    confidence: medium
+  hspice:
+    target: aigbacc
+    confidence: medium
+  ngspice:
+    target: aigbacc
+    confidence: medium
+bigbacc:
+  spectre:
+    target: bigbacc
+    confidence: medium
+  hspice:
+    target: bigbacc
+    confidence: medium
+  ngspice:
+    target: bigbacc
+    confidence: medium
+cigbacc:
+  spectre:
+    target: cigbacc
+    confidence: medium
+  hspice:
+    target: cigbacc
+    confidence: medium
+  ngspice:
+    target: cigbacc
+    confidence: medium
+nigbacc:
+  spectre:
+    target: nigbacc
+    confidence: medium
+  hspice:
+    target: nigbacc
+    confidence: medium
+  ngspice:
+    target: nigbacc
+    confidence: medium
+aigbinv:
+  spectre:
+    target: aigbinv
+    confidence: medium
+  hspice:
+    target: aigbinv
+    confidence: medium
+  ngspice:
+    target: aigbinv
+    confidence: medium
+bigbinv:
+  spectre:
+    target: bigbinv
+    confidence: medium
+  hspice:
+    target: bigbinv
+    confidence: medium
+  ngspice:
+    target: bigbinv
+    confidence: medium
+cigbinv:
+  spectre:
+    target: cigbinv
+    confidence: medium
+  hspice:
+    target: cigbinv
+    confidence: medium
+  ngspice:
+    target: cigbinv
+    confidence: medium
+eigbinv:
+  spectre:
+    target: eigbinv
+    confidence: medium
+  hspice:
+    target: eigbinv
+    confidence: medium
+  ngspice:
+    target: eigbinv
+    confidence: medium
+nigbinv:
+  spectre:
+    target: nigbinv
+    confidence: medium
+  hspice:
+    target: nigbinv
+    confidence: medium
+  ngspice:
+    target: nigbinv
+    confidence: medium
+aigc:
+  spectre:
+    target: aigc
+    confidence: medium
+  hspice:
+    target: aigc
+    confidence: medium
+  ngspice:
+    target: aigc
+    confidence: medium
+bigc:
+  spectre:
+    target: bigc
+    confidence: medium
+  hspice:
+    target: bigc
+    confidence: medium
+  ngspice:
+    target: bigc
+    confidence: medium
+cigc:
+  spectre:
+    target: cigc
+    confidence: medium
+  hspice:
+    target: cigc
+    confidence: medium
+  ngspice:
+    target: cigc
+    confidence: medium
+aigsd:
+  spectre:
+    target: aigsd
+    confidence: medium
+  hspice:
+    target: aigsd
+    confidence: medium
+  ngspice:
+    target: aigsd
+    confidence: medium
+bigsd:
+  spectre:
+    target: bigsd
+    confidence: medium
+  hspice:
+    target: bigsd
+    confidence: medium
+  ngspice:
+    target: bigsd
+    confidence: medium
+cigsd:
+  spectre:
+    target: cigsd
+    confidence: medium
+  hspice:
+    target: cigsd
+    confidence: medium
+  ngspice:
+    target: cigsd
+    confidence: medium
+dlcig:
+  spectre:
+    target: dlcig
+    confidence: medium
+  hspice:
+    target: dlcig
+    confidence: medium
+  ngspice:
+    target: dlcig
+    confidence: medium
+nigc:
+  spectre:
+    target: nigc
+    confidence: medium
+  hspice:
+    target: nigc
+    confidence: medium
+  ngspice:
+    target: nigc
+    confidence: medium
+poxedge:
+  spectre:
+    target: poxedge
+    confidence: medium
+  hspice:
+    target: poxedge
+    confidence: medium
+  ngspice:
+    target: poxedge
+    confidence: medium
+pigcd:
+  spectre:
+    target: pigcd
+    confidence: medium
+  hspice:
+    target: pigcd
+    confidence: medium
+  ngspice:
+    target: pigcd
+    confidence: medium
+ntox:
+  spectre:
+    target: ntox
+    confidence: medium
+  hspice:
+    target: ntox
+    confidence: medium
+  ngspice:
+    target: ntox
+    confidence: medium
+xpart:
+  spectre:
+    target: xpart
+    confidence: medium
+  hspice:
+    target: xpart
+    confidence: medium
+  ngspice:
+    target: xpart
+    confidence: medium
+ckappas:
+  spectre:
+    target: ckappas
+    confidence: medium
+  hspice:
+    target: ckappas
+    confidence: medium
+  ngspice:
+    target: ckappas
+    confidence: medium
+ckappad:
+  spectre:
+    target: ckappad
+    confidence: medium
+  hspice:
+    target: ckappad
+    confidence: medium
+  ngspice:
+    target: ckappad
+    confidence: medium
+cf:
+  spectre:
+    target: cf
+    confidence: medium
+  hspice:
+    target: cf
+    confidence: medium
+  ngspice:
+    target: cf
+    confidence: medium
+clc:
+  spectre:
+    target: clc
+    confidence: medium
+  hspice:
+    target: clc
+    confidence: medium
+  ngspice:
+    target: clc
+    confidence: medium
+cle:
+  spectre:
+    target: cle
+    confidence: medium
+  hspice:
+    target: cle
+    confidence: medium
+  ngspice:
+    target: cle
+    confidence: medium
+dlc:
+  spectre:
+    target: dlc
+    confidence: medium
+  hspice:
+    target: dlc
+    confidence: medium
+  ngspice:
+    target: dlc
+    confidence: medium
+dwc:
+  spectre:
+    target: dwc
+    confidence: medium
+  hspice:
+    target: dwc
+    confidence: medium
+  ngspice:
+    target: dwc
+    confidence: medium
+noff:
+  spectre:
+    target: noff
+    confidence: medium
+  hspice:
+    target: noff
+    confidence: medium
+  ngspice:
+    target: noff
+    confidence: medium
+voffcv:
+  spectre:
+    target: voffcv
+    confidence: medium
+  hspice:
+    target: voffcv
+    confidence: medium
+  ngspice:
+    target: voffcv
+    confidence: medium
+acde:
+  spectre:
+    target: acde
+    confidence: medium
+  hspice:
+    target: acde
+    confidence: medium
+  ngspice:
+    target: acde
+    confidence: medium
+moin:
+  spectre:
+    target: moin
+    confidence: medium
+  hspice:
+    target: moin
+    confidence: medium
+  ngspice:
+    target: moin
+    confidence: medium
+cgsl:
+  spectre:
+    target: cgsl
+    confidence: medium
+  hspice:
+    target: cgsl
+    confidence: medium
+  ngspice:
+    target: cgsl
+    confidence: medium
+cgdl:
+  spectre:
+    target: cgdl
+    confidence: medium
+  hspice:
+    target: cgdl
+    confidence: medium
+  ngspice:
+    target: cgdl
+    confidence: medium
+ijthsrev:
+  spectre:
+    target: ijthsrev
+    confidence: medium
+  hspice:
+    target: ijthsrev
+    confidence: medium
+  ngspice:
+    target: ijthsrev
+    confidence: medium
+ijthsfwd:
+  spectre:
+    target: ijthsfwd
+    confidence: medium
+  hspice:
+    target: ijthsfwd
+    confidence: medium
+  ngspice:
+    target: ijthsfwd
+    confidence: medium
+xjbvs:
+  spectre:
+    target: xjbvs
+    confidence: medium
+  hspice:
+    target: xjbvs
+    confidence: medium
+  ngspice:
+    target: xjbvs
+    confidence: medium
+bvs:
+  spectre:
+    target: bvs
+    confidence: medium
+  hspice:
+    target: bvs
+    confidence: medium
+  ngspice:
+    target: bvs
+    confidence: medium
+jss:
+  spectre:
+    target: jss
+    confidence: medium
+  hspice:
+    target: jss
+    confidence: medium
+  ngspice:
+    target: jss
+    confidence: medium
+jsws:
+  spectre:
+    target: jsws
+    confidence: medium
+  hspice:
+    target: jsws
+    confidence: medium
+  ngspice:
+    target: jsws
+    confidence: medium
+jswgs:
+  spectre:
+    target: jswgs
+    confidence: medium
+  hspice:
+    target: jswgs
+    confidence: medium
+  ngspice:
+    target: jswgs
+    confidence: medium
+mjsws:
+  spectre:
+    target: mjsws
+    confidence: medium
+  hspice:
+    target: mjsws
+    confidence: medium
+  ngspice:
+    target: mjsws
+    confidence: medium
+mjsw:
+  spectre:
+    target: mjsw
+    confidence: medium
+  hspice:
+    target: mjsws
+    confidence: medium
+  ngspice:
+    target: mjsws
+    confidence: medium
+pbsw:
+  spectre:
+    target: pbsw
+    confidence: medium
+  hspice:
+    target: pbsws
+    confidence: medium
+  ngspice:
+    target: pbsws
+    confidence: medium
+cjswg:
+  spectre:
+    target: cjswg
+    confidence: medium
+  hspice:
+    target: cjswgs
+    confidence: medium
+  ngspice:
+    target: cjswgs
+    confidence: medium
+mjswg:
+  spectre:
+    target: mjswg
+    confidence: medium
+  hspice:
+    target: mjswgs
+    confidence: medium
+  ngspice:
+    target: mjswgs
+    confidence: medium
+pbswg:
+  spectre:
+    target: pbswg
+    confidence: medium
+  hspice:
+    target: pbswgs
+    confidence: medium
+  ngspice:
+    target: pbswgs
+    confidence: medium
+cjsws:
+  spectre:
+    target: cjsws
+    confidence: medium
+  hspice:
+    target: cjsws
+    confidence: medium
+  ngspice:
+    target: cjsws
+    confidence: medium
+cjswgs:
+  spectre:
+    target: cjswgs
+    confidence: medium
+  hspice:
+    target: cjswgs
+    confidence: medium
+  ngspice:
+    target: cjswgs
+    confidence: medium
+mjswgs:
+  spectre:
+    target: mjswgs
+    confidence: medium
+  hspice:
+    target: mjswgs
+    confidence: medium
+  ngspice:
+    target: mjswgs
+    confidence: medium
+pbs:
+  spectre:
+    target: pbs
+    confidence: medium
+  hspice:
+    target: pbs
+    confidence: medium
+  ngspice:
+    target: pbs
+    confidence: medium
+pbsws:
+  spectre:
+    target: pbsws
+    confidence: medium
+  hspice:
+    target: pbsws
+    confidence: medium
+  ngspice:
+    target: pbsws
+    confidence: medium
+pbswgs:
+  spectre:
+    target: pbswgs
+    confidence: medium
+  hspice:
+    target: pbswgs
+    confidence: medium
+  ngspice:
+    target: pbswgs
+    confidence: medium
+xrcrg1:
+  spectre:
+    target: xrcrg1
+    confidence: medium
+  hspice:
+    target: xrcrg1
+    confidence: medium
+  ngspice:
+    target: xrcrg1
+    confidence: medium
+xrcrg2:
+  spectre:
+    target: xrcrg2
+    confidence: medium
+  hspice:
+    target: xrcrg2
+    confidence: medium
+  ngspice:
+    target: xrcrg2
+    confidence: medium
+rbpb:
+  spectre:
+    target: rbpb
+    confidence: medium
+  hspice:
+    target: rbpb
+    confidence: medium
+  ngspice:
+    target: rbpb
+    confidence: medium
+rbpd:
+  spectre:
+    target: rbpd
+    confidence: medium
+  hspice:
+    target: rbpd
+    confidence: medium
+  ngspice:
+    target: rbpd
+    confidence: medium
+rbps:
+  spectre:
+    target: rbps
+    confidence: medium
+  hspice:
+    target: rbps
+    confidence: medium
+  ngspice:
+    target: rbps
+    confidence: medium
+rbdb:
+  spectre:
+    target: rbdb
+    confidence: medium
+  hspice:
+    target: rbdb
+    confidence: medium
+  ngspice:
+    target: rbdb
+    confidence: medium
+rbsb:
+  spectre:
+    target: rbsb
+    confidence: medium
+  hspice:
+    target: rbsb
+    confidence: medium
+  ngspice:
+    target: rbsb
+    confidence: medium
+gbmin:
+  spectre:
+    target: gbmin
+    confidence: medium
+  hspice:
+    target: gbmin
+    confidence: medium
+  ngspice:
+    target: gbmin
+    confidence: medium
+saref:
+  spectre:
+    target: saref
+    confidence: medium
+  hspice:
+    target: saref
+    confidence: medium
+  ngspice:
+    target: saref
+    confidence: medium
+sbref:
+  spectre:
+    target: sbref
+    confidence: medium
+  hspice:
+    target: sbref
+    confidence: medium
+  ngspice:
+    target: sbref
+    confidence: medium
+ku0:
+  spectre:
+    target: ku0
+    confidence: medium
+  hspice:
+    target: ku0
+    confidence: medium
+  ngspice:
+    target: ku0
+    confidence: medium
+kvsat:
+  spectre:
+    target: kvsat
+    confidence: medium
+  hspice:
+    target: kvsat
+    confidence: medium
+  ngspice:
+    target: kvsat
+    confidence: medium
+kvth0:
+  spectre:
+    target: kvth0
+    confidence: medium
+  hspice:
+    target: kvth0
+    confidence: medium
+  ngspice:
+    target: kvth0
+    confidence: medium
+tku0:
+  spectre:
+    target: tku0
+    confidence: medium
+  hspice:
+    target: tku0
+    confidence: medium
+  ngspice:
+    target: tku0
+    confidence: medium
+llodku0:
+  spectre:
+    target: llodku0
+    confidence: medium
+  hspice:
+    target: llodku0
+    confidence: medium
+  ngspice:
+    target: llodku0
+    confidence: medium
+wlodku0:
+  spectre:
+    target: wlodku0
+    confidence: medium
+  hspice:
+    target: wlodku0
+    confidence: medium
+  ngspice:
+    target: wlodku0
+    confidence: medium
+llodvth:
+  spectre:
+    target: llodvth
+    confidence: medium
+  hspice:
+    target: llodvth
+    confidence: medium
+  ngspice:
+    target: llodvth
+    confidence: medium
+wlodvth:
+  spectre:
+    target: wlodvth
+    confidence: medium
+  hspice:
+    target: wlodvth
+    confidence: medium
+  ngspice:
+    target: wlodvth
+    confidence: medium
+ute:
+  spectre:
+    target: ute
+    confidence: medium
+  hspice:
+    target: ute
+    confidence: medium
+  ngspice:
+    target: ute
+    confidence: medium
+kt1:
+  spectre:
+    target: kt1
+    confidence: medium
+  hspice:
+    target: kt1
+    confidence: medium
+  ngspice:
+    target: kt1
+    confidence: medium
+kt1l:
+  spectre:
+    target: kt1l
+    confidence: medium
+  hspice:
+    target: kt1l
+    confidence: medium
+  ngspice:
+    target: kt1l
+    confidence: medium
+kt2:
+  spectre:
+    target: kt2
+    confidence: medium
+  hspice:
+    target: kt2
+    confidence: medium
+  ngspice:
+    target: kt2
+    confidence: medium
+ua1:
+  spectre:
+    target: ua1
+    confidence: medium
+  hspice:
+    target: ua1
+    confidence: medium
+  ngspice:
+    target: ua1
+    confidence: medium
+ub1:
+  spectre:
+    target: ub1
+    confidence: medium
+  hspice:
+    target: ub1
+    confidence: medium
+  ngspice:
+    target: ub1
+    confidence: medium
+uc1:
+  spectre:
+    target: uc1
+    confidence: medium
+  hspice:
+    target: uc1
+    confidence: medium
+  ngspice:
+    target: uc1
+    confidence: medium
+at:
+  spectre:
+    target: at
+    confidence: medium
+  hspice:
+    target: at
+    confidence: medium
+  ngspice:
+    target: at
+    confidence: medium
+prt:
+  spectre:
+    target: prt
+    confidence: medium
+  hspice:
+    target: prt
+    confidence: medium
+  ngspice:
+    target: prt
+    confidence: medium
+njs:
+  spectre:
+    target: njs
+    confidence: medium
+  hspice:
+    target: njs
+    confidence: medium
+  ngspice:
+    target: njs
+    confidence: medium
+njd:
+  spectre:
+    target: njd
+    confidence: medium
+  hspice:
+    target: njd
+    confidence: medium
+  ngspice:
+    target: njd
+    confidence: medium
+xtis:
+  spectre:
+    target: xtis
+    confidence: medium
+  hspice:
+    target: xtis
+    confidence: medium
+  ngspice:
+    target: xtis
+    confidence: medium
+xtid:
+  spectre:
+    target: xtid
+    confidence: medium
+  hspice:
+    target: xtid
+    confidence: medium
+  ngspice:
+    target: xtid
+    confidence: medium
+tpb:
+  spectre:
+    target: tpb
+    confidence: medium
+  hspice:
+    target: tpb
+    confidence: medium
+  ngspice:
+    target: tpb
+    confidence: medium
+tpbsw:
+  spectre:
+    target: tpbsw
+    confidence: medium
+  hspice:
+    target: tpbsw
+    confidence: medium
+  ngspice:
+    target: tpbsw
+    confidence: medium
+tpbswg:
+  spectre:
+    target: tpbswg
+    confidence: medium
+  hspice:
+    target: tpbswg
+    confidence: medium
+  ngspice:
+    target: tpbswg
+    confidence: medium
+tcj:
+  spectre:
+    target: tcj
+    confidence: medium
+  hspice:
+    target: tcj
+    confidence: medium
+  ngspice:
+    target: tcj
+    confidence: medium
+tcjsw:
+  spectre:
+    target: tcjsw
+    confidence: medium
+  hspice:
+    target: tcjsw
+    confidence: medium
+  ngspice:
+    target: tcjsw
+    confidence: medium
+tcjswg:
+  spectre:
+    target: tcjswg
+    confidence: medium
+  hspice:
+    target: tcjswg
+    confidence: medium
+  ngspice:
+    target: tcjswg
+    confidence: medium
+tvoff:
+  spectre:
+    target: tvoff
+    confidence: medium
+  hspice:
+    target: tvoff
+    confidence: medium
+  ngspice:
+    target: tvoff
+    confidence: medium
+tvfbsdoff:
+  spectre:
+    target: tvfbsdoff
+    confidence: medium
+  hspice:
+    target: tvfbsdoff
+    confidence: medium
+  ngspice:
+    target: tvfbsdoff
+    confidence: medium
+wa0:
+  spectre:
+    target: wa0
+    confidence: medium
+  hspice:
+    target: wa0
+    confidence: medium
+  ngspice:
+    target: wa0
+    confidence: medium
+pa0:
+  spectre:
+    target: pa0
+    confidence: medium
+  hspice:
+    target: pa0
+    confidence: medium
+  ngspice:
+    target: pa0
+    confidence: medium
+wags:
+  spectre:
+    target: wags
+    confidence: medium
+  hspice:
+    target: wags
+    confidence: medium
+  ngspice:
+    target: wags
+    confidence: medium
+pags:
+  spectre:
+    target: pags
+    confidence: medium
+  hspice:
+    target: pags
+    confidence: medium
+  ngspice:
+    target: pags
+    confidence: medium
+leta0:
+  spectre:
+    target: leta0
+    confidence: medium
+  hspice:
+    target: leta0
+    confidence: medium
+  ngspice:
+    target: leta0
+    confidence: medium
+letab:
+  spectre:
+    target: letab
+    confidence: medium
+  hspice:
+    target: letab
+    confidence: medium
+  ngspice:
+    target: letab
+    confidence: medium
+wetab:
+  spectre:
+    target: wetab
+    confidence: medium
+  hspice:
+    target: wetab
+    confidence: medium
+  ngspice:
+    target: wetab
+    confidence: medium
+petab:
+  spectre:
+    target: petab
+    confidence: medium
+  hspice:
+    target: petab
+    confidence: medium
+  ngspice:
+    target: petab
+    confidence: medium
+lpdiblc1:
+  spectre:
+    target: lpdiblc1
+    confidence: medium
+  hspice:
+    target: lpdiblc1
+    confidence: medium
+  ngspice:
+    target: lpdiblc1
+    confidence: medium
+wpdiblc1:
+  spectre:
+    target: wpdiblc1
+    confidence: medium
+  hspice:
+    target: wpdiblc1
+    confidence: medium
+  ngspice:
+    target: wpdiblc1
+    confidence: medium
+ppdiblc1:
+  spectre:
+    target: ppdiblc1
+    confidence: medium
+  hspice:
+    target: ppdiblc1
+    confidence: medium
+  ngspice:
+    target: ppdiblc1
+    confidence: medium
+ldrout:
+  spectre:
+    target: ldrout
+    confidence: medium
+  hspice:
+    target: ldrout
+    confidence: medium
+  ngspice:
+    target: ldrout
+    confidence: medium
+wdrout:
+  spectre:
+    target: wdrout
+    confidence: medium
+  hspice:
+    target: wdrout
+    confidence: medium
+  ngspice:
+    target: wdrout
+    confidence: medium
+pdrout:
+  spectre:
+    target: pdrout
+    confidence: medium
+  hspice:
+    target: pdrout
+    confidence: medium
+  ngspice:
+    target: pdrout
+    confidence: medium
+weta0:
+  spectre:
+    target: weta0
+    confidence: medium
+  hspice:
+    target: weta0
+    confidence: medium
+  ngspice:
+    target: weta0
+    confidence: medium
+peta0:
+  spectre:
+    target: peta0
+    confidence: medium
+  hspice:
+    target: peta0
+    confidence: medium
+  ngspice:
+    target: peta0
+    confidence: medium
+minr:
+  spectre:
+    target: minr
+    confidence: medium
+  hspice:
+    target: minr
+    confidence: medium
+  ngspice:
+    target: minr
+    confidence: medium
+mbewl:
+  spectre:
+    target: mbewl
+    confidence: medium
+  hspice:
+    target: mbewl
+    confidence: medium
+  ngspice:
+    target: mbewl
+    confidence: medium
+mvtwl:
+  spectre:
+    target: mvtwl
+    confidence: medium
+  hspice:
+    target: mvtwl
+    confidence: medium
+  ngspice:
+    target: mvtwl
+    confidence: medium
+mismatchmod:
+  spectre:
+    target: mismatchmod
+    confidence: medium
+  hspice:
+    target: mismatchmod
+    confidence: medium
+  ngspice:
+    target: mismatchmod
+    confidence: medium
+toxm:
+  spectre:
+    confidence: high
+  hspice:
+    target: toxm
+    confidence: high
+  ngspice:
+    target: toxm
+    confidence: high
+nch:
+  spectre:
+    target: null
+    confidence: low
+  hspice:
+    target: null
+    confidence: low
+  ngspice:
+    target: null
+    confidence: low
+acm:
+  spectre:
+    target: null
+    confidence: low
+  hspice:
+    target: null
+    confidence: low
+  ngspice:
+    target: null
+    confidence: low
+ldif:
+  spectre:
+    target: null
+    confidence: low
+  hspice:
+    target: null
+    confidence: low
+  ngspice:
+    target: null
+    confidence: low
+hdif:
+  spectre:
+    target: null
+    confidence: low
+  hspice:
+    target: null
+    confidence: low
+  ngspice:
+    target: null
+    confidence: low
+rd:
+  spectre:
+    target: rd
+    confidence: medium
+  hspice:
+    target: rd
+    confidence: medium
+  ngspice:
+    target: rd
+    confidence: medium
+rs:
+  spectre:
+    target: rs
+    confidence: medium
+  hspice:
+    target: rs
+    confidence: medium
+  ngspice:
+    target: rs
+    confidence: medium
+rsc:
+  spectre:
+    target: null
+    confidence: low
+  hspice:
+    target: null
+    confidence: low
+  ngspice:
+    target: null
+    confidence: low
+rdc:
+  spectre:
+    target: null
+    confidence: low
+  hspice:
+    target: null
+    confidence: low
+  ngspice:
+    target: null
+    confidence: low
+nlx:
+  spectre:
+    target: nlx
+    confidence: medium
+  hspice:
+    target: nlx
+    confidence: medium
+  ngspice:
+    target: nlx
+    confidence: medium
+cj:
+  spectre:
+    target: cj
+    confidence: high
+  hspice:
+    target: cj
+    confidence: high
+  ngspice:
+    target: cj
+    confidence: high
+mj:
+  spectre:
+    target: mj
+    confidence: high
+  hspice:
+    target: mj
+    confidence: high
+  ngspice:
+    target: mj
+    confidence: high
+pb:
+  spectre:
+    target: pb
+    confidence: high
+  hspice:
+    target: pb
+    confidence: high
+  ngspice:
+    target: pb
+    confidence: high
+cjsw:
+  spectre:
+    target: cjsw
+    confidence: high
+  hspice:
+    target: cjsw
+    confidence: high
+  ngspice:
+    target: cjsw
+    confidence: high
+vbm:
+  spectre:
+    target: '~'
+    confidence: low
+  hspice:
+    target: '~'
+    confidence: low
+  ngspice:
+    target: '~'
+    confidence: low
+gmin:
+  spectre:
+    target: gmin
+    confidence: medium
+  hspice:
+    target: gmin
+    confidence: medium
+  ngspice:
+    target: gmin
+    confidence: medium
+pclmcv:
+  spectre:
+    target: '~'
+    confidence: low
+  hspice:
+    target: '~'
+    confidence: low
+  ngspice:
+    target: '~'
+    confidence: low
+ados:
+  spectre:
+    target: '~'
+    confidence: low
+  hspice:
+    target: '~'
+    confidence: low
+  ngspice:
+    target: '~'
+    confidence: low
+bdos:
+  spectre:
+    target: '~'
+    confidence: low
+  hspice:
+    target: '~'
+    confidence: low
+  ngspice:
+    target: '~'
+    confidence: low
+uo:
+  spectre:
+    target: u0
+    confidence: high
+  hspice:
+    target: u0
+    confidence: high
+  ngspice:
+    target: u0
+    confidence: high
+idsmod:
+  spectre:
+    target: '~'
+    confidence: low
+  hspice:
+    target: '~'
+    confidence: low
+  ngspice:
+    target: '~'
+    confidence: low
+cvgmod:
+  spectre:
+    target: '~'
+    confidence: low
+  hspice:
+    target: '~'
+    confidence: low
+  ngspice:
+    target: '~'
+    confidence: low
+cgeomod:
+  spectre:
+    target: '~'
+    confidence: low
+  hspice:
+    target: '~'
+    confidence: low
+  ngspice:
+    target: '~'
+    confidence: low
+rgatmod:
+  spectre:
+    target: '~'
+    confidence: low
+  hspice:
+    target: '~'
+    confidence: low
+  ngspice:
+    target: '~'
+    confidence: low
+toxref:
+  spectre:
+    target: toxref
+    confidence: medium
+  hspice:
+    target: toxref
+    confidence: medium
+  ngspice:
+    target: toxref
+    confidence: medium
+lintnoi:
+  spectre:
+    target: lintnoi
+    confidence: medium
+  hspice:
+    target: lintnoi
+    confidence: medium
+  ngspice:
+    target: lintnoi
+    confidence: medium
+vth0_spectre_to_ngspice:
+  source_param: vth
+  target_param: vth0
+  description: Threshold voltage
+  confidence: 0.95
+u0_spectre_to_ngspice:
+  source_param: u0
+  target_param: u0
+  description: Low-field mobility
+  confidence: 0.9
+tox_spectre_to_ngspice:
+  source_param: tox
+  target_param: tox
+  description: Gate oxide thickness
+  confidence: 0.95
+k1_spectre_to_ngspice:
+  source_param: k1
+  target_param: k1
+  description: First-order body effect coefficient
+  confidence: 0.9
+k2_spectre_to_ngspice:
+  source_param: k2
+  target_param: k2
+  description: Second-order body effect coefficient
+  confidence: 0.9
+k3_spectre_to_ngspice:
+  source_param: k3
+  target_param: k3
+  description: Narrow width effect coefficient
+  confidence: 0.85
+dvt0_spectre_to_ngspice:
+  source_param: dvt0
+  target_param: dvt0
+  description: First coefficient of short-channel effect
+  confidence: 0.85
+dvt1_spectre_to_ngspice:
+  source_param: dvt1
+  target_param: dvt1
+  description: Second coefficient of short-channel effect
+  confidence: 0.85
+dvt2_spectre_to_ngspice:
+  source_param: dvt2
+  target_param: dvt2
+  description: Body-bias coefficient of short-channel effect
+  confidence: 0.85
+dvt0w_spectre_to_ngspice:
+  source_param: dvt0w
+  target_param: dvt0w
+  description: First coefficient of narrow width effect
+  confidence: 0.8
+dvt1w_spectre_to_ngspice:
+  source_param: dvt1w
+  target_param: dvt1w
+  description: Second coefficient of narrow width effect
+  confidence: 0.8
+dvt2w_spectre_to_ngspice:
+  source_param: dvt2w
+  target_param: dvt2w
+  description: Body-bias coefficient of narrow width effect
+  confidence: 0.8
+ua_spectre_to_ngspice:
+  source_param: ua
+  target_param: ua
+  description: First-order mobility degradation coefficient
+  confidence: 0.9
+ub_spectre_to_ngspice:
+  source_param: ub
+  target_param: ub
+  description: Second-order mobility degradation coefficient
+  confidence: 0.9
+uc_spectre_to_ngspice:
+  source_param: uc
+  target_param: uc
+  description: Body-effect mobility degradation coefficient
+  confidence: 0.85
+ute_spectre_to_ngspice:
+  source_param: ute
+  target_param: ute
+  description: Mobility temperature exponent
+  confidence: 0.85
+vsat_spectre_to_ngspice:
+  source_param: vsat
+  target_param: vsat
+  description: Saturation velocity
+  confidence: 0.9
+rdsw_spectre_to_ngspice:
+  source_param: rdsw
+  target_param: rdsw
+  description: Source/drain resistance per width
+  confidence: 0.85
+prwg_spectre_to_ngspice:
+  source_param: prwg
+  target_param: prwg
+  description: Gate-bias dependence of RDSW
+  confidence: 0.8
+prwb_spectre_to_ngspice:
+  source_param: prwb
+  target_param: prwb
+  description: Body-bias dependence of RDSW
+  confidence: 0.8
+pclm_spectre_to_ngspice:
+  source_param: pclm
+  target_param: pclm
+  description: Channel length modulation parameter
+  confidence: 0.85
+pdibl1_spectre_to_ngspice:
+  source_param: pdibl1
+  target_param: pdibl1
+  description: First DIBL effect correction parameter
+  confidence: 0.8
+pdibl2_spectre_to_ngspice:
+  source_param: pdibl2
+  target_param: pdibl2
+  description: Second DIBL effect correction parameter
+  confidence: 0.8
+pdiblb_spectre_to_ngspice:
+  source_param: pdiblb
+  target_param: pdiblb
+  description: Body-bias dependence of DIBL effect
+  confidence: 0.8
+pscbe1_spectre_to_ngspice:
+  source_param: pscbe1
+  target_param: pscbe1
+  description: First substrate current body effect parameter
+  confidence: 0.75
+pscbe2_spectre_to_ngspice:
+  source_param: pscbe2
+  target_param: pscbe2
+  description: Second substrate current body effect parameter
+  confidence: 0.75
+pvag_spectre_to_ngspice:
+  source_param: pvag
+  target_param: pvag
+  description: Gate dependence of Early voltage
+  confidence: 0.75
+eta0_spectre_to_ngspice:
+  source_param: eta0
+  target_param: eta0
+  description: Drain-induced barrier lowering coefficient
+  confidence: 0.8
+etab_spectre_to_ngspice:
+  source_param: etab
+  target_param: etab
+  description: Body-bias dependence of eta0
+  confidence: 0.75
+nfactor_spectre_to_ngspice:
+  source_param: nfactor
+  target_param: nfactor
+  description: Subthreshold swing factor
+  confidence: 0.8
+dsub_spectre_to_ngspice:
+  source_param: dsub
+  target_param: dsub
+  description: DIBL coefficient exponent in subthreshold
+  confidence: 0.75
+cit_spectre_to_ngspice:
+  source_param: cit
+  target_param: cit
+  description: Interface trap capacitance
+  confidence: 0.7
+cdsc_spectre_to_ngspice:
+  source_param: cdsc
+  target_param: cdsc
+  description: Drain/source to channel coupling capacitance
+  confidence: 0.7
+cdscb_spectre_to_ngspice:
+  source_param: cdscb
+  target_param: cdscb
+  description: Body-bias dependence of CDSC
+  confidence: 0.7
+cdscd_spectre_to_ngspice:
+  source_param: cdscd
+  target_param: cdscd
+  description: Drain-bias dependence of CDSC
+  confidence: 0.7
+cgso_spectre_to_ngspice:
+  source_param: cgso
+  target_param: cgso
+  description: Gate-source overlap capacitance
+  confidence: 0.9
+cgdo_spectre_to_ngspice:
+  source_param: cgdo
+  target_param: cgdo
+  description: Gate-drain overlap capacitance
+  confidence: 0.9
+cgbo_spectre_to_ngspice:
+  source_param: cgbo
+  target_param: cgbo
+  description: Gate-bulk overlap capacitance
+  confidence: 0.85
+xj_spectre_to_ngspice:
+  source_param: xj
+  target_param: xj
+  description: Source/drain junction depth
+  confidence: 0.85
+delvto_spectre_to_ngspice:
+  source_param: delvto
+  target_param: delvto
+  description: Threshold voltage variation
+  confidence: 0.7
+rgatmod_spectre_to_ngspice:
+  source_param: rgatmod
+  target_param: rgatmod
+  description: Gate resistance model selector
+  confidence: 0.6
+permod_spectre_to_ngspice:
+  source_param: permod
+  target_param: permod
+  description: Perimeter model selector
+  confidence: 0.6
+is_spectre_to_ngspice:
+  source_param: is
+  target_param: is
+  description: Saturation current
+  confidence: 0.95
+bf_spectre_to_ngspice:
+  source_param: bf
+  target_param: bf
+  description: Ideal maximum forward beta
+  confidence: 0.95
+br_spectre_to_ngspice:
+  source_param: br
+  target_param: br
+  description: Ideal maximum reverse beta
+  confidence: 0.9
+vaf_spectre_to_ngspice:
+  source_param: vaf
+  target_param: vaf
+  description: Forward Early voltage
+  confidence: 0.9
+var_spectre_to_ngspice:
+  source_param: var
+  target_param: var
+  description: Reverse Early voltage
+  confidence: 0.85
+ikf_spectre_to_ngspice:
+  source_param: ikf
+  target_param: ikf
+  description: Corner for forward beta high current roll-off
+  confidence: 0.9
+ikr_spectre_to_ngspice:
+  source_param: ikr
+  target_param: ikr
+  description: Corner for reverse beta high current roll-off
+  confidence: 0.85
+rb_spectre_to_ngspice:
+  source_param: rb
+  target_param: rb
+  description: Zero bias base resistance
+  confidence: 0.85
+rbm_spectre_to_ngspice:
+  source_param: rbm
+  target_param: rbm
+  description: Minimum base resistance at high currents
+  confidence: 0.8
+irb_spectre_to_ngspice:
+  source_param: irb
+  target_param: irb
+  description: Current where base resistance falls halfway
+  confidence: 0.8
+re_spectre_to_ngspice:
+  source_param: re
+  target_param: re
+  description: Emitter resistance
+  confidence: 0.9
+rc_spectre_to_ngspice:
+  source_param: rc
+  target_param: rc
+  description: Collector resistance
+  confidence: 0.9
+cje_spectre_to_ngspice:
+  source_param: cje
+  target_param: cje
+  description: Base-emitter zero-bias depletion capacitance
+  confidence: 0.9
+vje_spectre_to_ngspice:
+  source_param: vje
+  target_param: vje
+  description: Base-emitter built-in potential
+  confidence: 0.85
+mje_spectre_to_ngspice:
+  source_param: mje
+  target_param: mje
+  description: Base-emitter junction exponential factor
+  confidence: 0.85
+cjc_spectre_to_ngspice:
+  source_param: cjc
+  target_param: cjc
+  description: Base-collector zero-bias depletion capacitance
+  confidence: 0.9
+vjc_spectre_to_ngspice:
+  source_param: vjc
+  target_param: vjc
+  description: Base-collector built-in potential
+  confidence: 0.85
+mjc_spectre_to_ngspice:
+  source_param: mjc
+  target_param: mjc
+  description: Base-collector junction exponential factor
+  confidence: 0.85
+cjs_spectre_to_ngspice:
+  source_param: cjs
+  target_param: cjs
+  description: Zero-bias collector-substrate capacitance
+  confidence: 0.8
+vjs_spectre_to_ngspice:
+  source_param: vjs
+  target_param: vjs
+  description: Substrate junction built-in potential
+  confidence: 0.8
+mjs_spectre_to_ngspice:
+  source_param: mjs
+  target_param: mjs
+  description: Substrate junction exponential factor
+  confidence: 0.8
+tf_spectre_to_ngspice:
+  source_param: tf
+  target_param: tf
+  description: Ideal forward transit time
+  confidence: 0.9
+tr_spectre_to_ngspice:
+  source_param: tr
+  target_param: tr
+  description: Ideal reverse transit time
+  confidence: 0.85
+itf_spectre_to_ngspice:
+  source_param: itf
+  target_param: itf
+  description: Transit time dependency on Ic
+  confidence: 0.8
+vtf_spectre_to_ngspice:
+  source_param: vtf
+  target_param: vtf
+  description: Transit time dependency on Vbc
+  confidence: 0.75
+xtf_spectre_to_ngspice:
+  source_param: xtf
+  target_param: xtf
+  description: Transit time bias dependence coefficient
+  confidence: 0.75
+n_spectre_to_ngspice:
+  source_param: n
+  target_param: n
+  description: Emission coefficient
+  confidence: 0.9
+rs_spectre_to_ngspice:
+  source_param: rs
+  target_param: rs
+  description: Ohmic resistance
+  confidence: 0.9
+cjo_spectre_to_ngspice:
+  source_param: cj0
+  target_param: cjo
+  description: Zero-bias junction capacitance
+  confidence: 0.9
+vj_spectre_to_ngspice:
+  source_param: vj
+  target_param: vj
+  description: Junction potential
+  confidence: 0.85
+m_spectre_to_ngspice:
+  source_param: m
+  target_param: m
+  description: Grading coefficient
+  confidence: 0.85
+eg_spectre_to_ngspice:
+  source_param: eg
+  target_param: eg
+  description: Activation energy
+  confidence: 0.8
+xti_spectre_to_ngspice:
+  source_param: xti
+  target_param: xti
+  description: Saturation current temperature exponent
+  confidence: 0.8
+tt_spectre_to_ngspice:
+  source_param: tt
+  target_param: tt
+  description: Transit time
+  confidence: 0.85
+bv_spectre_to_ngspice:
+  source_param: bv
+  target_param: bv
+  description: Reverse breakdown voltage
+  confidence: 0.9
+ibv_spectre_to_ngspice:
+  source_param: ibv
+  target_param: ibv
+  description: Current at breakdown voltage
+  confidence: 0.85
+fc_spectre_to_ngspice:
+  source_param: fc
+  target_param: fc
+  description: Forward bias depletion capacitance coefficient
+  confidence: 0.8
+isr_spectre_to_ngspice:
+  source_param: isr
+  target_param: isr
+  description: Recombination current parameter
+  confidence: 0.75
+nr_spectre_to_ngspice:
+  source_param: nr
+  target_param: nr
+  description: Emission coefficient for isr
+  confidence: 0.75
+c_spectre_to_ngspice:
+  source_param: c
+  target_param: c
+  description: Capacitance value
+  confidence: 0.95
+cap_spectre_to_ngspice:
+  source_param: cap
+  target_param: c
+  description: Capacitance value (alternative)
+  confidence: 0.95
+vc1_spectre_to_ngspice:
+  source_param: vc1
+  target_param: vc1
+  description: First-order voltage coefficient
+  confidence: 0.85
+vc2_spectre_to_ngspice:
+  source_param: vc2
+  target_param: vc2
+  description: Second-order voltage coefficient
+  confidence: 0.8
+tc1_spectre_to_ngspice:
+  source_param: tc1
+  target_param: tc1
+  description: First-order temperature coefficient
+  confidence: 0.85
+tc2_spectre_to_ngspice:
+  source_param: tc2
+  target_param: tc2
+  description: Second-order temperature coefficient
+  confidence: 0.8
+diel_spectre_to_ngspice:
+  source_param: diel
+  target_param: diel
+  description: Dielectric constant
+  confidence: 0.9
+thick_spectre_to_ngspice:
+  source_param: thick
+  target_param: thick
+  description: Dielectric thickness
+  confidence: 0.9
+cox_spectre_to_ngspice:
+  source_param: cox
+  target_param: cox
+  description: Oxide capacitance per unit area
+  confidence: 0.9
+capsw_spectre_to_ngspice:
+  source_param: capsw
+  target_param: capsw
+  description: Sidewall capacitance per unit perimeter
+  confidence: 0.85
+cj_spectre_to_ngspice:
+  source_param: cj
+  target_param: cj
+  description: Junction capacitance
+  confidence: 0.8
+cjsw_spectre_to_ngspice:
+  source_param: cjsw
+  target_param: cjsw
+  description: Sidewall junction capacitance
+  confidence: 0.8
+
+# Missing parameters from validation (Device geometry and instance parameters)
+pd:
+  spectre:
+    target: pd
+    confidence: high
+  hspice:
+    target: pd
+    confidence: high
+  ngspice:
+    target: pd
+    confidence: high
+ps:
+  spectre:
+    target: ps
+    confidence: high
+  hspice:
+    target: ps
+    confidence: high
+  ngspice:
+    target: ps
+    confidence: high
+ad:
+  spectre:
+    target: ad
+    confidence: high
+  hspice:
+    target: ad
+    confidence: high
+  ngspice:
+    target: ad
+    confidence: high
+as:
+  spectre:
+    target: as
+    confidence: high
+  hspice:
+    target: as
+    confidence: high
+  ngspice:
+    target: as
+    confidence: high
+region:
+  spectre:
+    target: region
+    confidence: medium
+  hspice:
+    target: region
+    confidence: medium
+  ngspice:
+    target: region
+    confidence: medium
+nch:
+  spectre:
+    target: nch
+    confidence: high
+  hspice:
+    target: nch
+    confidence: high
+  ngspice:
+    target: nch
+    confidence: high
+ldif:
+  spectre:
+    target: ldif
+    confidence: high
+  hspice:
+    target: ldif
+    confidence: high
+  ngspice:
+    target: ldif
+    confidence: high
+hdif:
+  spectre:
+    target: hdif
+    confidence: high
+  hspice:
+    target: hdif
+    confidence: high
+  ngspice:
+    target: hdif
+    confidence: high
+js:
+  spectre:
+    target: js
+    confidence: high
+  hspice:
+    target: js
+    confidence: high
+  ngspice:
+    target: js
+    confidence: high
+jsw:
+  spectre:
+    target: jsw
+    confidence: high
+  hspice:
+    target: jsw
+    confidence: high
+  ngspice:
+    target: jsw
+    confidence: high
+noimod:
+  spectre:
+    target: noimod
+    confidence: medium
+  hspice:
+    target: noimod
+    confidence: medium
+  ngspice:
+    target: noimod
+    confidence: medium
+nqsmod:
+  spectre:
+    target: nqsmod
+    confidence: medium
+  hspice:
+    target: nqsmod
+    confidence: medium
+  ngspice:
+    target: nqsmod
+    confidence: medium
+# Advanced BSIM4 model selector flags
+bulkmod:
+  spectre:
+    target: bulkmod
+    confidence: medium
+  hspice:
+    target: bulkmod
+    confidence: medium
+  ngspice:
+    target: bulkmod
+    confidence: medium
+coremod:
+  spectre:
+    target: coremod
+    confidence: medium
+  hspice:
+    target: coremod
+    confidence: medium
+  ngspice:
+    target: coremod
+    confidence: medium
+geomod:
+  spectre:
+    target: geomod
+    confidence: medium
+  hspice:
+    target: geomod
+    confidence: medium
+  ngspice:
+    target: geomod
+    confidence: medium
+asymmod:
+  spectre:
+    target: asymmod
+    confidence: medium
+  hspice:
+    target: asymmod
+    confidence: medium
+  ngspice:
+    target: asymmod
+    confidence: medium
+gidlmod:
+  spectre:
+    target: gidlmod
+    confidence: medium
+  hspice:
+    target: gidlmod
+    confidence: medium
+  ngspice:
+    target: gidlmod
+    confidence: medium
+iimod:
+  spectre:
+    target: iimod
+    confidence: medium
+  hspice:
+    target: iimod
+    confidence: medium
+  ngspice:
+    target: iimod
+    confidence: medium
+shmod:
+  spectre:
+    target: shmod
+    confidence: medium
+  hspice:
+    target: shmod
+    confidence: medium
+  ngspice:
+    target: shmod
+    confidence: medium
+rgeomod:
+  spectre:
+    target: rgeomod
+    confidence: medium
+  hspice:
+    target: rgeomod
+    confidence: medium
+  ngspice:
+    target: rgeomod
+    confidence: medium
+cgeomod:
+  spectre:
+    target: cgeomod
+    confidence: medium
+  hspice:
+    target: cgeomod
+    confidence: medium
+  ngspice:
+    target: cgeomod
+    confidence: medium
+# Advanced BSIM4 technology parameters
+devtype:
+  spectre:
+    target: devtype
+    confidence: medium
+  hspice:
+    target: devtype
+    confidence: medium
+  ngspice:
+    target: devtype
+    confidence: medium
+eot:
+  spectre:
+    target: eot
+    confidence: medium
+  hspice:
+    target: eot
+    confidence: medium
+  ngspice:
+    target: eot
+    confidence: medium
+eotbox:
+  spectre:
+    target: eotbox
+    confidence: medium
+  hspice:
+    target: eotbox
+    confidence: medium
+  ngspice:
+    target: eotbox
+    confidence: medium
+hfin:
+  spectre:
+    target: hfin
+    confidence: medium
+  hspice:
+    target: hfin
+    confidence: medium
+  ngspice:
+    target: hfin
+    confidence: medium
+# Parameter variation coefficients
+lk1:
+  spectre:
+    target: lk1
+    confidence: medium
+  hspice:
+    target: lk1
+    confidence: medium
+  ngspice:
+    target: lk1
+    confidence: medium
+wk1:
+  spectre:
+    target: wk1
+    confidence: medium
+  hspice:
+    target: wk1
+    confidence: medium
+  ngspice:
+    target: wk1
+    confidence: medium
+pk1:
+  spectre:
+    target: pk1
+    confidence: medium
+  hspice:
+    target: pk1
+    confidence: medium
+  ngspice:
+    target: pk1
+    confidence: medium
+lcit:
+  spectre:
+    target: lcit
+    confidence: medium
+  hspice:
+    target: lcit
+    confidence: medium
+  ngspice:
+    target: lcit
+    confidence: medium
+wcit:
+  spectre:
+    target: wcit
+    confidence: medium
+  hspice:
+    target: wcit
+    confidence: medium
+  ngspice:
+    target: wcit
+    confidence: medium
+pcit:
+  spectre:
+    target: pcit
+    confidence: medium
+  hspice:
+    target: pcit
+    confidence: medium
+  ngspice:
+    target: pcit
+    confidence: medium
+lpclm:
+  spectre:
+    target: lpclm
+    confidence: medium
+  hspice:
+    target: lpclm
+    confidence: medium
+  ngspice:
+    target: lpclm
+    confidence: medium
+wpclm:
+  spectre:
+    target: wpclm
+    confidence: medium
+  hspice:
+    target: wpclm
+    confidence: medium
+  ngspice:
+    target: wpclm
+    confidence: medium
+ppclm:
+  spectre:
+    target: ppclm
+    confidence: medium
+  hspice:
+    target: ppclm
+    confidence: medium
+  ngspice:
+    target: ppclm
+    confidence: medium
+# KT parameters
+lkt1:
+  spectre:
+    target: lkt1
+    confidence: medium
+  hspice:
+    target: lkt1
+    confidence: medium
+  ngspice:
+    target: lkt1
+    confidence: medium
+wkt1:
+  spectre:
+    target: wkt1
+    confidence: medium
+  hspice:
+    target: wkt1
+    confidence: medium
+  ngspice:
+    target: wkt1
+    confidence: medium
+pkt1:
+  spectre:
+    target: pkt1
+    confidence: medium
+  hspice:
+    target: pkt1
+    confidence: medium
+  ngspice:
+    target: pkt1
+    confidence: medium
+lkt2:
+  spectre:
+    target: lkt2
+    confidence: medium
+  hspice:
+    target: lkt2
+    confidence: medium
+  ngspice:
+    target: lkt2
+    confidence: medium
+wkt2:
+  spectre:
+    target: wkt2
+    confidence: medium
+  hspice:
+    target: wkt2
+    confidence: medium
+  ngspice:
+    target: wkt2
+    confidence: medium
+pkt2:
+  spectre:
+    target: pkt2
+    confidence: medium
+  hspice:
+    target: pkt2
+    confidence: medium
+  ngspice:
+    target: pkt2
+    confidence: medium
+# Mobility parameters  
+lute:
+  spectre:
+    target: lute
+    confidence: medium
+  hspice:
+    target: lute
+    confidence: medium
+  ngspice:
+    target: lute
+    confidence: medium
+wute:
+  spectre:
+    target: wute
+    confidence: medium
+  hspice:
+    target: wute
+    confidence: medium
+  ngspice:
+    target: wute
+    confidence: medium
+pute:
+  spectre:
+    target: pute
+    confidence: medium
+  hspice:
+    target: pute
+    confidence: medium
+  ngspice:
+    target: pute
+    confidence: medium
+# Additional mobility parameters
+lub1:
+  spectre:
+    target: lub1
+    confidence: medium
+  hspice:
+    target: lub1
+    confidence: medium
+  ngspice:
+    target: lub1
+    confidence: medium
+wub1:
+  spectre:
+    target: wub1
+    confidence: medium
+  hspice:
+    target: wub1
+    confidence: medium
+  ngspice:
+    target: wub1
+    confidence: medium
+pub1:
+  spectre:
+    target: pub1
+    confidence: medium
+  hspice:
+    target: pub1
+    confidence: medium
+  ngspice:
+    target: pub1
+    confidence: medium
+luc1:
+  spectre:
+    target: luc1
+    confidence: medium
+  hspice:
+    target: luc1
+    confidence: medium
+  ngspice:
+    target: luc1
+    confidence: medium
+wuc1:
+  spectre:
+    target: wuc1
+    confidence: medium
+  hspice:
+    target: wuc1
+    confidence: medium
+  ngspice:
+    target: wuc1
+    confidence: medium
+puc1:
+  spectre:
+    target: puc1
+    confidence: medium
+  hspice:
+    target: puc1
+    confidence: medium
+  ngspice:
+    target: puc1
+    confidence: medium
+# Temperature coefficient parameters
+lat:
+  spectre:
+    target: lat
+    confidence: medium
+  hspice:
+    target: lat
+    confidence: medium
+  ngspice:
+    target: lat
+    confidence: medium
+wat:
+  spectre:
+    target: wat
+    confidence: medium
+  hspice:
+    target: wat
+    confidence: medium
+  ngspice:
+    target: wat
+    confidence: medium
+pat:
+  spectre:
+    target: pat
+    confidence: medium
+  hspice:
+    target: pat
+    confidence: medium
+  ngspice:
+    target: pat
+    confidence: medium
+lua1:
+  spectre:
+    target: lua1
+    confidence: medium
+  hspice:
+    target: lua1
+    confidence: medium
+  ngspice:
+    target: lua1
+    confidence: medium
+wua1:
+  spectre:
+    target: wua1
+    confidence: medium
+  hspice:
+    target: wua1
+    confidence: medium
+  ngspice:
+    target: wua1
+    confidence: medium
+pua1:
+  spectre:
+    target: pua1
+    confidence: medium
+  hspice:
+    target: pua1
+    confidence: medium
+  ngspice:
+    target: pua1
+    confidence: medium
+# Special temperature parameters
+lpscbe1:
+  spectre:
+    target: lpscbe1
+    confidence: medium
+  hspice:
+    target: lpscbe1
+    confidence: medium
+  ngspice:
+    target: lpscbe1
+    confidence: medium
+# Additional model parameters
+cta:
+  spectre:
+    target: cta
+    confidence: medium
+  hspice:
+    target: cta
+    confidence: medium
+  ngspice:
+    target: cta
+    confidence: medium
+ctp:
+  spectre:
+    target: ctp
+    confidence: medium
+  hspice:
+    target: ctp
+    confidence: medium
+  ngspice:
+    target: ctp
+    confidence: medium
+pta:
+  spectre:
+    target: pta
+    confidence: medium
+  hspice:
+    target: pta
+    confidence: medium
+  ngspice:
+    target: pta
+    confidence: medium
+ptp:
+  spectre:
+    target: ptp
+    confidence: medium
+  hspice:
+    target: ptp
+    confidence: medium
+  ngspice:
+    target: ptp
+    confidence: medium
+# General model parameters
+n:
+  spectre:
+    target: n
+    confidence: medium
+  hspice:
+    target: n
+    confidence: medium
+  ngspice:
+    target: n
+    confidence: medium
+xti:
+  spectre:
+    target: xti
+    confidence: medium
+  hspice:
+    target: xti
+    confidence: medium
+  ngspice:
+    target: xti
+    confidence: medium
+tlev:
+  spectre:
+    target: tlev
+    confidence: medium
+  hspice:
+    target: tlev
+    confidence: medium
+  ngspice:
+    target: tlev
+    confidence: medium
+tlevc:
+  spectre:
+    target: tlevc
+    confidence: medium
+  hspice:
+    target: tlevc
+    confidence: medium
+  ngspice:
+    target: tlevc
+    confidence: medium
+# Temperature coefficients
+teta0:
+  spectre:
+    target: teta0
+    confidence: medium
+  hspice:
+    target: teta0
+    confidence: medium
+  ngspice:
+    target: teta0
+    confidence: medium
+tmexp:
+  spectre:
+    target: tmexp
+    confidence: medium
+  hspice:
+    target: tmexp
+    confidence: medium
+  ngspice:
+    target: tmexp
+    confidence: medium
+tmexpr:
+  spectre:
+    target: tmexpr
+    confidence: medium
+  hspice:
+    target: tmexpr
+    confidence: medium
+  ngspice:
+    target: tmexpr
+    confidence: medium
+# Noise model parameters
+ntnoi:
+  spectre:
+    target: ntnoi
+    confidence: medium
+  hspice:
+    target: ntnoi
+    confidence: medium
+  ngspice:
+    target: ntnoi
+    confidence: medium
+# Thermal parameters
+rth0:
+  spectre:
+    target: rth0
+    confidence: medium
+  hspice:
+    target: rth0
+    confidence: medium
+  ngspice:
+    target: rth0
+    confidence: medium
+cth0:
+  spectre:
+    target: cth0
+    confidence: medium
+  hspice:
+    target: cth0
+    confidence: medium
+  ngspice:
+    target: cth0
+    confidence: medium
+wth0:
+  spectre:
+    target: wth0
+    confidence: medium
+  hspice:
+    target: wth0
+    confidence: medium
+  ngspice:
+    target: wth0
+    confidence: medium
+# Advanced BSIM4 geometry and gate parameters
+cgeo1sw:
+  spectre:
+    target: cgeo1sw
+    confidence: medium
+  hspice:
+    target: cgeo1sw
+    confidence: medium
+  ngspice:
+    target: cgeo1sw
+    confidence: medium
+dlcacc:
+  spectre:
+    target: dlcacc
+    confidence: medium
+  hspice:
+    target: dlcacc
+    confidence: medium
+  ngspice:
+    target: dlcacc
+    confidence: medium
+dlbin:
+  spectre:
+    target: dlbin
+    confidence: medium
+  hspice:
+    target: dlbin
+    confidence: medium
+  ngspice:
+    target: dlbin
+    confidence: medium
+fech:
+  spectre:
+    target: fech
+    confidence: medium
+  hspice:
+    target: fech
+    confidence: medium
+  ngspice:
+    target: fech
+    confidence: medium
+deltaw:
+  spectre:
+    target: deltaw
+    confidence: medium
+  hspice:
+    target: deltaw
+    confidence: medium
+  ngspice:
+    target: deltaw
+    confidence: medium
+fechcv:
+  spectre:
+    target: fechcv
+    confidence: medium
+  hspice:
+    target: fechcv
+    confidence: medium
+  ngspice:
+    target: fechcv
+    confidence: medium
+deltawcv:
+  spectre:
+    target: deltawcv
+    confidence: medium
+  hspice:
+    target: deltawcv
+    confidence: medium
+  ngspice:
+    target: deltawcv
+    confidence: medium
+# Advanced substrate and physics parameters
+nbody:
+  spectre:
+    target: nbody
+    confidence: medium
+  hspice:
+    target: nbody
+    confidence: medium
+  ngspice:
+    target: nbody
+    confidence: medium
+nbodyn1:
+  spectre:
+    target: nbodyn1
+    confidence: medium
+  hspice:
+    target: nbodyn1
+    confidence: medium
+  ngspice:
+    target: nbodyn1
+    confidence: medium
+nbodyn2:
+  spectre:
+    target: nbodyn2
+    confidence: medium
+  hspice:
+    target: nbodyn2
+    confidence: medium
+  ngspice:
+    target: nbodyn2
+    confidence: medium
+phig:
+  spectre:
+    target: phig
+    confidence: medium
+  hspice:
+    target: phig
+    confidence: medium
+  ngspice:
+    target: phig
+    confidence: medium
+phigl:
+  spectre:
+    target: phigl
+    confidence: medium
+  hspice:
+    target: phigl
+    confidence: medium
+  ngspice:
+    target: phigl
+    confidence: medium
+phign1:
+  spectre:
+    target: phign1
+    confidence: medium
+  hspice:
+    target: phign1
+    confidence: medium
+  ngspice:
+    target: phign1
+    confidence: medium
+phign2:
+  spectre:
+    target: phign2
+    confidence: medium
+  hspice:
+    target: phign2
+    confidence: medium
+  ngspice:
+    target: phign2
+    confidence: medium
+epsrsub:
+  spectre:
+    target: epsrsub
+    confidence: medium
+  hspice:
+    target: epsrsub
+    confidence: medium
+  ngspice:
+    target: epsrsub
+    confidence: medium
+easub:
+  spectre:
+    target: easub
+    confidence: medium
+  hspice:
+    target: easub
+    confidence: medium
+  ngspice:
+    target: easub
+    confidence: medium
+ni0sub:
+  spectre:
+    target: ni0sub
+    confidence: medium
+  hspice:
+    target: ni0sub
+    confidence: medium
+  ngspice:
+    target: ni0sub
+    confidence: medium
+bg0sub:
+  spectre:
+    target: bg0sub
+    confidence: medium
+  hspice:
+    target: bg0sub
+    confidence: medium
+  ngspice:
+    target: bg0sub
+    confidence: medium
+nc0sub:
+  spectre:
+    target: nc0sub
+    confidence: medium
+  hspice:
+    target: nc0sub
+    confidence: medium
+  ngspice:
+    target: nc0sub
+    confidence: medium
+imin:
+  spectre:
+    target: imin
+    confidence: medium
+  hspice:
+    target: imin
+    confidence: medium
+  ngspice:
+    target: imin
+    confidence: medium
+# CDSC family parameters
+cdscn1:
+  spectre:
+    target: cdscn1
+    confidence: medium
+  hspice:
+    target: cdscn1
+    confidence: medium
+  ngspice:
+    target: cdscn1
+    confidence: medium
+cdscn2:
+  spectre:
+    target: cdscn2
+    confidence: medium
+  hspice:
+    target: cdscn2
+    confidence: medium
+  ngspice:
+    target: cdscn2
+    confidence: medium
+cdscdn1:
+  spectre:
+    target: cdscdn1
+    confidence: medium
+  hspice:
+    target: cdscdn1
+    confidence: medium
+  ngspice:
+    target: cdscdn1
+    confidence: medium
+cdscdn2:
+  spectre:
+    target: cdscdn2
+    confidence: medium
+  hspice:
+    target: cdscdn2
+    confidence: medium
+  ngspice:
+    target: cdscdn2
+    confidence: medium
+cdscdrn1:
+  spectre:
+    target: cdscdrn1
+    confidence: medium
+  hspice:
+    target: cdscdrn1
+    confidence: medium
+  ngspice:
+    target: cdscdrn1
+    confidence: medium
+cdscdrn2:
+  spectre:
+    target: cdscdrn2
+    confidence: medium
+  hspice:
+    target: cdscdrn2
+    confidence: medium
+  ngspice:
+    target: cdscdrn2
+    confidence: medium
+cdscdr:
+  spectre:
+    target: cdscdr
+    confidence: medium
+  hspice:
+    target: cdscdr
+    confidence: medium
+  ngspice:
+    target: cdscdr
+    confidence: medium
+# DVT and threshold parameters
+dvt1ss:
+  spectre:
+    target: dvt1ss
+    confidence: medium
+  hspice:
+    target: dvt1ss
+    confidence: medium
+  ngspice:
+    target: dvt1ss
+    confidence: medium
+eta0n1:
+  spectre:
+    target: eta0n1
+    confidence: medium
+  hspice:
+    target: eta0n1
+    confidence: medium
+  ngspice:
+    target: eta0n1
+    confidence: medium
+eta0n2:
+  spectre:
+    target: eta0n2
+    confidence: medium
+  hspice:
+    target: eta0n2
+    confidence: medium
+  ngspice:
+    target: eta0n2
+    confidence: medium
+teta0r:
+  spectre:
+    target: teta0r
+    confidence: medium
+  hspice:
+    target: teta0r
+    confidence: medium
+  ngspice:
+    target: teta0r
+    confidence: medium
+eta0r:
+  spectre:
+    target: eta0r
+    confidence: medium
+  hspice:
+    target: eta0r
+    confidence: medium
+  ngspice:
+    target: eta0r
+    confidence: medium
+k1rsce:
+  spectre:
+    target: k1rsce
+    confidence: medium
+  hspice:
+    target: k1rsce
+    confidence: medium
+  ngspice:
+    target: k1rsce
+    confidence: medium
+dvtshift:
+  spectre:
+    target: dvtshift
+    confidence: medium
+  hspice:
+    target: dvtshift
+    confidence: medium
+  ngspice:
+    target: dvtshift
+    confidence: medium
+# K family parameters
+k0:
+  spectre:
+    target: k0
+    confidence: medium
+  hspice:
+    target: k0
+    confidence: medium
+  ngspice:
+    target: k0
+    confidence: medium
+k01:
+  spectre:
+    target: k01
+    confidence: medium
+  hspice:
+    target: k01
+    confidence: medium
+  ngspice:
+    target: k01
+    confidence: medium
+k0si:
+  spectre:
+    target: k0si
+    confidence: medium
+  hspice:
+    target: k0si
+    confidence: medium
+  ngspice:
+    target: k0si
+    confidence: medium
+k0si1:
+  spectre:
+    target: k0si1
+    confidence: medium
+  hspice:
+    target: k0si1
+    confidence: medium
+  ngspice:
+    target: k0si1
+    confidence: medium
+k1si:
+  spectre:
+    target: k1si
+    confidence: medium
+  hspice:
+    target: k1si
+    confidence: medium
+  ngspice:
+    target: k1si
+    confidence: medium
+k1si1:
+  spectre:
+    target: k1si1
+    confidence: medium
+  hspice:
+    target: k1si1
+    confidence: medium
+  ngspice:
+    target: k1si1
+    confidence: medium
+phibe:
+  spectre:
+    target: phibe
+    confidence: medium
+  hspice:
+    target: phibe
+    confidence: medium
+  ngspice:
+    target: phibe
+    confidence: medium
+k11:
+  spectre:
+    target: k11
+    confidence: medium
+  hspice:
+    target: k11
+    confidence: medium
+  ngspice:
+    target: k11
+    confidence: medium
+k1sat:
+  spectre:
+    target: k1sat
+    confidence: medium
+  hspice:
+    target: k1sat
+    confidence: medium
+  ngspice:
+    target: k1sat
+    confidence: medium
+k1sat1:
+  spectre:
+    target: k1sat1
+    confidence: medium
+  hspice:
+    target: k1sat1
+    confidence: medium
+  ngspice:
+    target: k1sat1
+    confidence: medium
+# Quantum mechanical parameters
+qmfactor:
+  spectre:
+    target: qmfactor
+    confidence: medium
+  hspice:
+    target: qmfactor
+    confidence: medium
+  ngspice:
+    target: qmfactor
+    confidence: medium
+qmtceniv:
+  spectre:
+    target: qmtceniv
+    confidence: medium
+  hspice:
+    target: qmtceniv
+    confidence: medium
+  ngspice:
+    target: qmtceniv
+    confidence: medium
+qmtcencv:
+  spectre:
+    target: qmtcencv
+    confidence: medium
+  hspice:
+    target: qmtcencv
+    confidence: medium
+  ngspice:
+    target: qmtcencv
+    confidence: medium
+qmtcencva:
+  spectre:
+    target: qmtcencva
+    confidence: medium
+  hspice:
+    target: qmtcencva
+    confidence: medium
+  ngspice:
+    target: qmtcencva
+    confidence: medium
+aqmtcen:
+  spectre:
+    target: aqmtcen
+    confidence: medium
+  hspice:
+    target: aqmtcen
+    confidence: medium
+  ngspice:
+    target: aqmtcen
+    confidence: medium
+bqmtcen:
+  spectre:
+    target: bqmtcen
+    confidence: medium
+  hspice:
+    target: bqmtcen
+    confidence: medium
+  ngspice:
+    target: bqmtcen
+    confidence: medium
+etaqm:
+  spectre:
+    target: etaqm
+    confidence: medium
+  hspice:
+    target: etaqm
+    confidence: medium
+  ngspice:
+    target: etaqm
+    confidence: medium
+qm0:
+  spectre:
+    target: qm0
+    confidence: medium
+  hspice:
+    target: qm0
+    confidence: medium
+  ngspice:
+    target: qm0
+    confidence: medium
+pqm:
+  spectre:
+    target: pqm
+    confidence: medium
+  hspice:
+    target: pqm
+    confidence: medium
+  ngspice:
+    target: pqm
+    confidence: medium
+qm0acc:
+  spectre:
+    target: qm0acc
+    confidence: medium
+  hspice:
+    target: qm0acc
+    confidence: medium
+  ngspice:
+    target: qm0acc
+    confidence: medium
+pqmacc:
+  spectre:
+    target: pqmacc
+    confidence: medium
+  hspice:
+    target: pqmacc
+    confidence: medium
+  ngspice:
+    target: pqmacc
+    confidence: medium
+# Velocity saturation parameters
+vsatn1:
+  spectre:
+    target: vsatn1
+    confidence: medium
+  hspice:
+    target: vsatn1
+    confidence: medium
+  ngspice:
+    target: vsatn1
+    confidence: medium
+vsatn2:
+  spectre:
+    target: vsatn2
+    confidence: medium
+  hspice:
+    target: vsatn2
+    confidence: medium
+  ngspice:
+    target: vsatn2
+    confidence: medium
+vsat1n1:
+  spectre:
+    target: vsat1n1
+    confidence: medium
+  hspice:
+    target: vsat1n1
+    confidence: medium
+  ngspice:
+    target: vsat1n1
+    confidence: medium
+vsat1n2:
+  spectre:
+    target: vsat1n2
+    confidence: medium
+  hspice:
+    target: vsat1n2
+    confidence: medium
+  ngspice:
+    target: vsat1n2
+    confidence: medium
+vsat1rn1:
+  spectre:
+    target: vsat1rn1
+    confidence: medium
+  hspice:
+    target: vsat1rn1
+    confidence: medium
+  ngspice:
+    target: vsat1rn1
+    confidence: medium
+vsat1rn2:
+  spectre:
+    target: vsat1rn2
+    confidence: medium
+  hspice:
+    target: vsat1rn2
+    confidence: medium
+  ngspice:
+    target: vsat1rn2
+    confidence: medium
+avsat:
+  spectre:
+    target: avsat
+    confidence: medium
+  hspice:
+    target: avsat
+    confidence: medium
+  ngspice:
+    target: avsat
+    confidence: medium
+bvsat:
+  spectre:
+    target: bvsat
+    confidence: medium
+  hspice:
+    target: bvsat
+    confidence: medium
+  ngspice:
+    target: bvsat
+    confidence: medium
+vsat1:
+  spectre:
+    target: vsat1
+    confidence: medium
+  hspice:
+    target: vsat1
+    confidence: medium
+  ngspice:
+    target: vsat1
+    confidence: medium
+vsat1r:
+  spectre:
+    target: vsat1r
+    confidence: medium
+  hspice:
+    target: vsat1r
+    confidence: medium
+  ngspice:
+    target: vsat1r
+    confidence: medium
+avsat1:
+  spectre:
+    target: avsat1
+    confidence: medium
+  hspice:
+    target: avsat1
+    confidence: medium
+  ngspice:
+    target: avsat1
+    confidence: medium
+bvsat1:
+  spectre:
+    target: bvsat1
+    confidence: medium
+  hspice:
+    target: bvsat1
+    confidence: medium
+  ngspice:
+    target: bvsat1
+    confidence: medium
+deltavsat:
+  spectre:
+    target: deltavsat
+    confidence: medium
+  hspice:
+    target: deltavsat
+    confidence: medium
+  ngspice:
+    target: deltavsat
+    confidence: medium
+# Mobility parameters
+etamob:
+  spectre:
+    target: etamob
+    confidence: medium
+  hspice:
+    target: etamob
+    confidence: medium
+  ngspice:
+    target: etamob
+    confidence: medium
+ua1:
+  spectre:
+    target: ua1
+    confidence: medium
+  hspice:
+    target: ua1
+    confidence: medium
+  ngspice:
+    target: ua1
+    confidence: medium
+ub1:
+  spectre:
+    target: ub1
+    confidence: medium
+  hspice:
+    target: ub1
+    confidence: medium
+  ngspice:
+    target: ub1
+    confidence: medium
+uc1:
+  spectre:
+    target: uc1
+    confidence: medium
+  hspice:
+    target: uc1
+    confidence: medium
+  ngspice:
+    target: uc1
+    confidence: medium
+ud1:
+  spectre:
+    target: ud1
+    confidence: medium
+  hspice:
+    target: ud1
+    confidence: medium
+  ngspice:
+    target: ud1
+    confidence: medium
+up:
+  spectre:
+    target: up
+    confidence: medium
+  hspice:
+    target: up
+    confidence: medium
+  ngspice:
+    target: up
+    confidence: medium
+lp:
+  spectre:
+    target: lp
+    confidence: medium
+  hspice:
+    target: lp
+    confidence: medium
+  ngspice:
+    target: lp
+    confidence: medium
+lpa:
+  spectre:
+    target: lpa
+    confidence: medium
+  hspice:
+    target: lpa
+    confidence: medium
+  ngspice:
+    target: lpa
+    confidence: medium
+lpb:
+  spectre:
+    target: lpb
+    confidence: medium
+  hspice:
+    target: lpb
+    confidence: medium
+  ngspice:
+    target: lpb
+    confidence: medium
+eu:
+  spectre:
+    target: eu
+    confidence: medium
+  hspice:
+    target: eu
+    confidence: medium
+  ngspice:
+    target: eu
+    confidence: medium
+ucs:
+  spectre:
+    target: ucs
+    confidence: medium
+  hspice:
+    target: ucs
+    confidence: medium
+  ngspice:
+    target: ucs
+    confidence: medium
+ucste:
+  spectre:
+    target: ucste
+    confidence: medium
+  hspice:
+    target: ucste
+    confidence: medium
+  ngspice:
+    target: ucste
+    confidence: medium
+# Resistance parameters
+rdswmin:
+  spectre:
+    target: rdswmin
+    confidence: medium
+  hspice:
+    target: rdswmin
+    confidence: medium
+  ngspice:
+    target: rdswmin
+    confidence: medium
+rsw:
+  spectre:
+    target: rsw
+    confidence: medium
+  hspice:
+    target: rsw
+    confidence: medium
+  ngspice:
+    target: rsw
+    confidence: medium
+rdw:
+  spectre:
+    target: rdw
+    confidence: medium
+  hspice:
+    target: rdw
+    confidence: medium
+  ngspice:
+    target: rdw
+    confidence: medium
+rdwmin:
+  spectre:
+    target: rdwmin
+    confidence: medium
+  hspice:
+    target: rdwmin
+    confidence: medium
+  ngspice:
+    target: rdwmin
+    confidence: medium
+rswmin:
+  spectre:
+    target: rswmin
+    confidence: medium
+  hspice:
+    target: rswmin
+    confidence: medium
+  ngspice:
+    target: rswmin
+    confidence: medium
+pdibl1:
+  spectre:
+    target: pdibl1
+    confidence: medium
+  hspice:
+    target: pdibl1
+    confidence: medium
+  ngspice:
+    target: pdibl1
+    confidence: medium
+pdibl2:
+  spectre:
+    target: pdibl2
+    confidence: medium
+  hspice:
+    target: pdibl2
+    confidence: medium
+  ngspice:
+    target: pdibl2
+    confidence: medium
+pdits:
+  spectre:
+    target: pdits
+    confidence: medium
+  hspice:
+    target: pdits
+    confidence: medium
+  ngspice:
+    target: pdits
+    confidence: medium
+pditsd:
+  spectre:
+    target: pditsd
+    confidence: medium
+  hspice:
+    target: pditsd
+    confidence: medium
+  ngspice:
+    target: pditsd
+    confidence: medium
+pditsl:
+  spectre:
+    target: pditsl
+    confidence: medium
+  hspice:
+    target: pditsl
+    confidence: medium
+  ngspice:
+    target: pditsl
+    confidence: medium
+prwb:
+  spectre:
+    target: prwb
+    confidence: medium
+  hspice:
+    target: prwb
+    confidence: medium
+  ngspice:
+    target: prwb
+    confidence: medium
+prwg:
+  spectre:
+    target: prwg
+    confidence: medium
+  hspice:
+    target: prwg
+    confidence: medium
+  ngspice:
+    target: prwg
+    confidence: medium
+wr:
+  spectre:
+    target: wr
+    confidence: medium
+  hspice:
+    target: wr
+    confidence: medium
+  ngspice:
+    target: wr
+    confidence: medium# Noise parameters
+noimod:
+  spectre:
+    target: noimod
+    confidence: medium
+  hspice:
+    target: noimod
+    confidence: medium
+  ngspice:
+    target: noimod
+    confidence: medium
+noia:
+  spectre:
+    target: noia
+    confidence: medium
+  hspice:
+    target: noia
+    confidence: medium
+  ngspice:
+    target: noia
+    confidence: medium
+noib:
+  spectre:
+    target: noib
+    confidence: medium
+  hspice:
+    target: noib
+    confidence: medium
+  ngspice:
+    target: noib
+    confidence: medium
+noic:
+  spectre:
+    target: noic
+    confidence: medium
+  hspice:
+    target: noic
+    confidence: medium
+  ngspice:
+    target: noic
+    confidence: medium
+em:
+  spectre:
+    target: em
+    confidence: medium
+  hspice:
+    target: em
+    confidence: medium
+  ngspice:
+    target: em
+    confidence: medium
+af:
+  spectre:
+    target: af
+    confidence: medium
+  hspice:
+    target: af
+    confidence: medium
+  ngspice:
+    target: af
+    confidence: medium
+ntnoi:
+  spectre:
+    target: ntnoi
+    confidence: medium
+  hspice:
+    target: ntnoi
+    confidence: medium
+  ngspice:
+    target: ntnoi
+    confidence: medium
+# GIDL parameters  
+agidl:
+  spectre:
+    target: agidl
+    confidence: medium
+  hspice:
+    target: agidl
+    confidence: medium
+  ngspice:
+    target: agidl
+    confidence: medium
+bgidl:
+  spectre:
+    target: bgidl
+    confidence: medium
+  hspice:
+    target: bgidl
+    confidence: medium
+  ngspice:
+    target: bgidl
+    confidence: medium
+cgidl:
+  spectre:
+    target: cgidl
+    confidence: medium
+  hspice:
+    target: cgidl
+    confidence: medium
+  ngspice:
+    target: cgidl
+    confidence: medium
+egidl:
+  spectre:
+    target: egidl
+    confidence: medium
+  hspice:
+    target: egidl
+    confidence: medium
+  ngspice:
+    target: egidl
+    confidence: medium
+pgidl:
+  spectre:
+    target: pgidl
+    confidence: medium
+  hspice:
+    target: pgidl
+    confidence: medium
+  ngspice:
+    target: pgidl
+    confidence: medium
+agisl:
+  spectre:
+    target: agisl
+    confidence: medium
+  hspice:
+    target: agisl
+    confidence: medium
+  ngspice:
+    target: agisl
+    confidence: medium
+bgisl:
+  spectre:
+    target: bgisl
+    confidence: medium
+  hspice:
+    target: bgisl
+    confidence: medium
+  ngspice:
+    target: bgisl
+    confidence: medium
+cgisl:
+  spectre:
+    target: cgisl
+    confidence: medium
+  hspice:
+    target: cgisl
+    confidence: medium
+  ngspice:
+    target: cgisl
+    confidence: medium
+egisl:
+  spectre:
+    target: egisl
+    confidence: medium
+  hspice:
+    target: egisl
+    confidence: medium
+  ngspice:
+    target: egisl
+    confidence: medium
+pgisl:
+  spectre:
+    target: pgisl
+    confidence: medium
+  hspice:
+    target: pgisl
+    confidence: medium
+  ngspice:
+    target: pgisl
+    confidence: medium
+# Temperature coefficients
+at:
+  spectre:
+    target: at
+    confidence: medium
+  hspice:
+    target: at
+    confidence: medium
+  ngspice:
+    target: at
+    confidence: medium
+ute:
+  spectre:
+    target: ute
+    confidence: medium
+  hspice:
+    target: ute
+    confidence: medium
+  ngspice:
+    target: ute
+    confidence: medium
+kt1:
+  spectre:
+    target: kt1
+    confidence: medium
+  hspice:
+    target: kt1
+    confidence: medium
+  ngspice:
+    target: kt1
+    confidence: medium
+kt1l:
+  spectre:
+    target: kt1l
+    confidence: medium
+  hspice:
+    target: kt1l
+    confidence: medium
+  ngspice:
+    target: kt1l
+    confidence: medium
+kt2:
+  spectre:
+    target: kt2
+    confidence: medium
+  hspice:
+    target: kt2
+    confidence: medium
+  ngspice:
+    target: kt2
+    confidence: medium
+ua1t:
+  spectre:
+    target: ua1t
+    confidence: medium
+  hspice:
+    target: ua1t
+    confidence: medium
+  ngspice:
+    target: ua1t
+    confidence: medium
+ub1t:
+  spectre:
+    target: ub1t
+    confidence: medium
+  hspice:
+    target: ub1t
+    confidence: medium
+  ngspice:
+    target: ub1t
+    confidence: medium
+uc1t:
+  spectre:
+    target: uc1t
+    confidence: medium
+  hspice:
+    target: uc1t
+    confidence: medium
+  ngspice:
+    target: uc1t
+    confidence: medium
+prt:
+  spectre:
+    target: prt
+    confidence: medium
+  hspice:
+    target: prt
+    confidence: medium
+  ngspice:
+    target: prt
+    confidence: medium
+tvoff:
+  spectre:
+    target: tvoff
+    confidence: medium
+  hspice:
+    target: tvoff
+    confidence: medium
+  ngspice:
+    target: tvoff
+    confidence: medium
+tnfactor:
+  spectre:
+    target: tnfactor
+    confidence: medium
+  hspice:
+    target: tnfactor
+    confidence: medium
+  ngspice:
+    target: tnfactor
+    confidence: medium
