@@ -1,0 +1,70 @@
+
+Note: No compatibility mode selected!
+
+Warning: redefinition of .subckt gpdk090_nmos1v, ignored
+Warning: redefinition of .subckt gpdk090_pmos1v, ignored
+Warning: redefinition of .subckt gpdk090_nmos1v_nat, ignored
+Warning: redefinition of .subckt gpdk090_nmos1v_hvt, ignored
+Warning: redefinition of .subckt gpdk090_pmos1v_hvt, ignored
+Warning: redefinition of .subckt gpdk090_nmos2v, ignored
+Warning: redefinition of .subckt gpdk090_pmos2v, ignored
+Warning: redefinition of .subckt gpdk090_nmos2v_nat, ignored
+Warning: redefinition of .subckt gpdk090_nmos1v, ignored
+Warning: redefinition of .subckt gpdk090_pmos1v, ignored
+Warning: redefinition of .subckt gpdk090_nmos1v_nat, ignored
+Warning: redefinition of .subckt gpdk090_nmos1v_hvt, ignored
+Warning: redefinition of .subckt gpdk090_pmos1v_hvt, ignored
+Warning: redefinition of .subckt gpdk090_nmos2v, ignored
+Warning: redefinition of .subckt gpdk090_pmos2v, ignored
+Warning: redefinition of .subckt gpdk090_nmos2v_nat, ignored
+Warning: redefinition of .subckt gpdk090_nmos1v, ignored
+Warning: redefinition of .subckt gpdk090_pmos1v, ignored
+Warning: redefinition of .subckt gpdk090_nmos1v_nat, ignored
+Warning: redefinition of .subckt gpdk090_nmos1v_hvt, ignored
+Warning: redefinition of .subckt gpdk090_pmos1v_hvt, ignored
+Warning: redefinition of .subckt gpdk090_nmos2v, ignored
+Warning: redefinition of .subckt gpdk090_pmos2v, ignored
+Warning: redefinition of .subckt gpdk090_nmos2v_nat, ignored
+Warning: redefinition of .subckt gpdk090_nmos1v, ignored
+Warning: redefinition of .subckt gpdk090_pmos1v, ignored
+Warning: redefinition of .subckt gpdk090_nmos1v_nat, ignored
+Warning: redefinition of .subckt gpdk090_nmos1v_hvt, ignored
+Warning: redefinition of .subckt gpdk090_pmos1v_hvt, ignored
+Warning: redefinition of .subckt gpdk090_nmos2v, ignored
+Warning: redefinition of .subckt gpdk090_pmos2v, ignored
+Warning: redefinition of .subckt gpdk090_nmos2v_nat, ignored
+Warning: redefinition of .subckt gpdk090_nmos1v, ignored
+Warning: redefinition of .subckt gpdk090_pmos1v, ignored
+Warning: redefinition of .subckt gpdk090_nmos1v_nat, ignored
+Warning: redefinition of .subckt gpdk090_nmos1v_hvt, ignored
+Warning: redefinition of .subckt gpdk090_pmos1v_hvt, ignored
+Warning: redefinition of .subckt gpdk090_nmos2v, ignored
+Warning: redefinition of .subckt gpdk090_pmos2v, ignored
+Warning: redefinition of .subckt gpdk090_nmos2v_nat, ignored
+Warning: redefinition of .subckt gpdk090_nmos1v, ignored
+Warning: redefinition of .subckt gpdk090_pmos1v, ignored
+Warning: redefinition of .subckt gpdk090_nmos1v_nat, ignored
+Warning: redefinition of .subckt gpdk090_nmos1v_hvt, ignored
+Warning: redefinition of .subckt gpdk090_pmos1v_hvt, ignored
+Warning: redefinition of .subckt gpdk090_nmos2v, ignored
+Warning: redefinition of .subckt gpdk090_pmos2v, ignored
+Warning: redefinition of .subckt gpdk090_nmos2v_nat, ignored
+Warning: redefinition of .subckt gpdk090_nmos1v, ignored
+Warning: redefinition of .subckt gpdk090_pmos1v, ignored
+Warning: redefinition of .subckt gpdk090_nmos1v_nat, ignored
+Warning: redefinition of .subckt gpdk090_nmos1v_hvt, ignored
+Warning: redefinition of .subckt gpdk090_pmos1v_hvt, ignored
+Warning: redefinition of .subckt gpdk090_nmos2v, ignored
+Warning: redefinition of .subckt gpdk090_pmos2v, ignored
+Warning: redefinition of .subckt gpdk090_nmos2v_nat, ignored
+
+Circuit: * numeric validation of mos model
+
+Netlist line no. 143:
+Undefined parameter [n]
+Netlist line no. 143:
+ Expression err: n)}
+Netlist line no. 143:
+Cannot compute substitute
+
+ERROR: fatal error in ngspice, exit(1)

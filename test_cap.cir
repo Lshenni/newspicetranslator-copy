@@ -1,0 +1,9 @@
+* Numeric validation of lowered capacitor
+.include output/ngspice/gpdk090_capacitor.lib
+
+Vac n 0 ac 1
+Xcap n 0 gpdk090_mimcap area=25e-12 perim=20e-6 mc_en=0
+
+.ac lin 1 1e6 1e6
+.print ac i(Vac)
+.end

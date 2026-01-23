@@ -1,0 +1,34 @@
+
+Note: No compatibility mode selected!
+
+
+Circuit: * numeric validation of lowered capacitor
+
+Doing analysis at TEMP = 27.000000 and TNOM = 27.000000
+
+Using SPARSE 1.3 as Direct Linear Solver
+Note: vac: has no value, DC 0 assumed
+
+No. of Data Rows : 1
+                   * numeric validation of lowered capacitor
+                   AC Analysis  Fri Jan 23 17:48:58  2026
+--------------------------------------------------------------------------------
+Index   frequency       vac#branch                      
+--------------------------------------------------------------------------------
+0	1.000000e+06	-2.87798e-14,	-1.69646e-07	
+
+
+Total analysis time (seconds) = 0
+
+Total elapsed time (seconds) = 0.005 
+
+Total DRAM available = 7851.203 MB.
+DRAM currently available = 1394.500 MB.
+Maximum ngspice program size =   21.340 MB.
+Current ngspice program size =   12.625 MB.
+
+Shared ngspice pages =   10.625 MB.
+Text (code) pages =    6.156 MB.
+Stack = 0 bytes.
+Library pages =    2.105 MB.
+

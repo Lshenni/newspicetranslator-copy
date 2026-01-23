@@ -35,7 +35,12 @@ from .spectre_to_hspice_translator import SpectreToHSPICETranslator
 from .spectre_to_ngspice_translator import SpectreToNgspiceTranslator
 from .hspice_to_spectre_translator import HSPICEToSpectreTranslator
 from .ngspice_to_hspice_translator import NgspiceToHSPICETranslator
-from .validation_engine import ValidationEngine, ValidationResult
+try:
+    from .validation_engine import ValidationEngine, ValidationResult
+except ImportError:
+    # Validation engine is optional
+    ValidationEngine = None
+    ValidationResult = None
 
 __all__ = [
     # Base classes

@@ -1,0 +1,174 @@
+name: Verification CI
+
+on:
+  push:
+    branches: [ main, develop ]
+  pull_request:
+    branches: [ main ]
+  schedule:
+    # Run nightly regression
+    - cron: '0 2 * * *'
+
+jobs:
+  translation-tests:
+    name: Translation Tests
+    runs-on: ubuntu-latest
+    
+    steps:
+    - uses: actions/checkout@v3
+    
+    - name: Set up Python
+      uses: actions/setup-python@v4
+      with:
+        python-version: '3.12'
+    
+    - name: Install dependencies
+      run: |
+        python -m pip install --upgrade pip
+        pip install -r requirements.txt
+        pip install pytest pytest-cov
+    
+    - name: Run unit tests
+      run: |
+        pytest tests/ --cov=src --cov-report=xml --cov-report=term
+    
+    - name: Upload coverage
+      uses: codecov/codecov-action@v3
+      with:
+        file: ./coverage.xml
+
+  verification-ngspice:
+    name: Verification (→ ngspice)
+    runs-on: ubuntu-latest
+    needs: translation-tests
+    
+    steps:
+    - uses: actions/checkout@v3
+    
+    - name: Set up Python
+      uses: actions/setup-python@v4
+      with:
+        python-version: '3.12'
+    
+    - name: Install dependencies
+      run: |
+        python -m pip install --upgrade pip
+        pip install -r requirements.txt
+    
+    - name: Install ngspice
+      run: |
+        sudo apt-get update
+        sudo apt-get install -y ngspice
+    
+    - name: Run verification suite (→ ngspice)
+      run: |
+        python cli.py verify-all --target ngspice
+      continue-on-error: true  # Don't fail if simulators unavailable
+    
+    - name: Run 10x validation
+      run: |
+        python tools/validate_10x.py
+      timeout-minutes: 5
+
+  verification-hspice:
+    name: Verification (→ HSPICE)
+    runs-on: ubuntu-latest
+    needs: translation-tests
+    if: github.event_name == 'schedule'  # Only run on nightly
+    
+    steps:
+    - uses: actions/checkout@v3
+    
+    - name: Set up Python
+      uses: actions/setup-python@v4
+      with:
+        python-version: '3.12'
+    
+    - name: Install dependencies
+      run: |
+        python -m pip install --upgrade pip
+        pip install -r requirements.txt
+    
+    # Note: HSPICE requires commercial license
+    # This step would only run in self-hosted runners with HSPICE installed
+    - name: Run verification suite (→ HSPICE)
+      run: |
+        python cli.py verify-all --target hspice
+      continue-on-error: true
+
+  corner-validation:
+    name: Corner Validation
+    runs-on: ubuntu-latest
+    needs: translation-tests
+    
+    steps:
+    - uses: actions/checkout@v3
+    
+    - name: Set up Python
+      uses: actions/setup-python@v4
+      with:
+        python-version: '3.12'
+    
+    - name: Install dependencies
+      run: |
+        python -m pip install --upgrade pip
+        pip install -r requirements.txt
+    
+    - name: Run corner validation
+      run: |
+        python tools/validate_corner.py
+      timeout-minutes: 5
+    
+    - name: Run BJT validation
+      run: |
+        python tools/validate_bjt_numeric.py
+      timeout-minutes: 3
+    
+    - name: Run diode validation
+      run: |
+        python tools/validate_diode_iv.py
+      timeout-minutes: 3
+
+  regression-report:
+    name: Generate Regression Report
+    runs-on: ubuntu-latest
+    needs: [verification-ngspice, corner-validation]
+    if: always()
+    
+    steps:
+    - uses: actions/checkout@v3
+    
+    - name: Set up Python
+      uses: actions/setup-python@v4
+      with:
+        python-version: '3.12'
+    
+    - name: Install dependencies
+      run: |
+        python -m pip install --upgrade pip
+        pip install -r requirements.txt
+    
+    - name: Run all validations
+      run: |
+        python tools/run_all_validations.py > regression_report.txt
+      continue-on-error: true
+    
+    - name: Upload regression report
+      uses: actions/upload-artifact@v3
+      with:
+        name: regression-report
+        path: regression_report.txt
+    
+    - name: Comment PR with results
+      if: github.event_name == 'pull_request'
+      uses: actions/github-script@v6
+      with:
+        script: |
+          const fs = require('fs');
+          const report = fs.readFileSync('regression_report.txt', 'utf8');
+          github.rest.issues.createComment({
+            issue_number: context.issue.number,
+            owner: context.repo.owner,
+            repo: context.repo.repo,
+            body: `## Verification Results\n\`\`\`\n${report}\n\`\`\``
+          });
