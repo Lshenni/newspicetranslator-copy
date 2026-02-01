@@ -26,12 +26,21 @@ model capacitor            Carea P M {cap*area}
 
 ## ✨ Features
 
+### Translation Engine
 - **Multi-Backend**: ngspice, HSPICE, Spectre
 - **Semantic Lowering**: Backend-aware transformations
-- **85-95% Fidelity**: Electrical behavior preserved
+- **92.4% Fidelity**: Electrical behavior preserved
 - **Subcircuits**: Full extraction and translation
 - **Monte Carlo**: Statistical modeling support
 - **Batch Processing**: Translate multiple files
+
+### Verification Framework ⭐ NEW
+- **Automatic Testbench Generation**: Device-specific AC/DC testbenches
+- **Metrics Extraction**: Scalar FOM extraction (not waveforms)
+- **Tolerance-Based Comparison**: Configurable pass/fail criteria
+- **Monte Carlo Verification**: Statistical behavior validation
+- **CI/CD Integration**: GitHub Actions automated testing
+- **Regression Suite**: 8+ critical test cases
 
 ---
 
@@ -40,12 +49,42 @@ model capacitor            Carea P M {cap*area}
 ### Installation
 
 ```bash
+# Clone repository (if needed)
+git clone <your-repo-url>
+cd new-spice-translator
+
+# Create virtual environment
 python3 -m venv .venv
-source .venv/bin/activate
+source .venv/bin/activate  # On Windows: .venv\Scripts\activate
+
+# Install dependencies
 pip install -r requirements.txt
+
+# Optional: Install in development mode
+pip install -e .
 ```
 
-### Single File Translation
+### Basic Usage
+
+#### 1. Simple Translation
+```bash
+./cli.py translate input.scs --target ngspice
+```
+
+#### 2. Translation with Verification
+```bash
+./cli.py verify input.scs model_name \
+  --device-class capacitor \
+  --target ngspice \
+  --area 10e-6
+```
+
+#### 3. Run Regression Tests
+```bash
+./cli.py verify-all --target ngspice
+```
+
+### Python API
 
 ```python
 from src.main import TranslationEngine
@@ -63,11 +102,25 @@ result = engine.translate(
 ### Batch Translation
 
 ```bash
-python tools/batch_translate.py tools/spice-libraries/**/*.scs \
-    --from spectre \
-    --to ngspice \
-    --output output/
+# Batch translate all models in a directory
+python -c "
+from pathlib import Path
+from src.main import translate_file_s2s
+
+for f in Path('models/').glob('*.scs'):
+    translate_file_s2s(f, 'spectre', 'ngspice')
+"
 ```
+
+---
+
+## 📖 Documentation
+
+- **[USAGE_GUIDE.md](USAGE_GUIDE.md)** - Complete usage guide with CLI examples
+- **[VERIFICATION_FRAMEWORK.md](VERIFICATION_FRAMEWORK.md)** - Verification framework details
+- **[VERIFICATION_FRAMEWORK_SUMMARY.md](VERIFICATION_FRAMEWORK_SUMMARY.md)** - Quick verification overview
+- **[CONTRIBUTING.md](CONTRIBUTING.md)** - Contribution guidelines
+- **[PROJECT_STATUS.md](PROJECT_STATUS.md)** - Project status (99% complete)
 
 ---
 

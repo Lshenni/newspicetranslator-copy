@@ -6,8 +6,8 @@
     "errors": 0,
     "skipped": 10,
     "total_models": 154,
-    "total_time": 2.5181572437286377,
-    "avg_time_per_file": 0.06626729588759572
+    "total_time": 2.034532070159912,
+    "avg_time_per_file": 0.05354031763578716
   },
   "files": [
     {
@@ -17,8 +17,8 @@
       "models": 1,
       "errors": [],
       "warnings": [],
-      "parse_time": 0.012309551239013672,
-      "translate_time": 0.0018601417541503906
+      "parse_time": 0.0006082057952880859,
+      "translate_time": 0.0003237724304199219
     },
     {
       "file": "gpdk090_mos.scs",
@@ -27,8 +27,8 @@
       "models": 8,
       "errors": [],
       "warnings": [],
-      "parse_time": 0.008826732635498047,
-      "translate_time": 0.005398273468017578
+      "parse_time": 0.007050037384033203,
+      "translate_time": 0.004738807678222656
     },
     {
       "file": "gpdk090_bipolar.scs",
@@ -37,8 +37,8 @@
       "models": 12,
       "errors": [],
       "warnings": [],
-      "parse_time": 0.003187417984008789,
-      "translate_time": 0.0013086795806884766
+      "parse_time": 0.0024144649505615234,
+      "translate_time": 0.0012886524200439453
     },
     {
       "file": "gpdk090_resistor.scs",
@@ -47,8 +47,8 @@
       "models": 18,
       "errors": [],
       "warnings": [],
-      "parse_time": 0.004560947418212891,
-      "translate_time": 0.0026674270629882812
+      "parse_time": 0.003755807876586914,
+      "translate_time": 0.0025413036346435547
     },
     {
       "file": "gpdk090_diode.scs",
@@ -57,8 +57,8 @@
       "models": 9,
       "errors": [],
       "warnings": [],
-      "parse_time": 0.0032727718353271484,
-      "translate_time": 0.0010590553283691406
+      "parse_time": 0.002899646759033203,
+      "translate_time": 0.0011036396026611328
     },
     {
       "file": "gpdk090.scs",
@@ -69,7 +69,7 @@
       "warnings": [
         "No models found"
       ],
-      "parse_time": 0.0013728141784667969,
+      "parse_time": 0.0012171268463134766,
       "translate_time": 0
     },
     {
@@ -79,8 +79,8 @@
       "models": 2,
       "errors": [],
       "warnings": [],
-      "parse_time": 0.011741399765014648,
-      "translate_time": 0.00031828880310058594
+      "parse_time": 0.02379131317138672,
+      "translate_time": 0.00030684471130371094
     },
     {
       "file": "gpdk090_moscap.scs",
@@ -89,8 +89,8 @@
       "models": 6,
       "errors": [],
       "warnings": [],
-      "parse_time": 0.010376214981079102,
-      "translate_time": 0.0003466606140136719
+      "parse_time": 0.008350372314453125,
+      "translate_time": 0.00042748451232910156
     },
     {
       "file": "gpdk090_mos_iso.scs",
@@ -101,7 +101,7 @@
       "warnings": [
         "No models found"
       ],
-      "parse_time": 0.00020575523376464844,
+      "parse_time": 0.0001804828643798828,
       "translate_time": 0
     },
     {
@@ -111,8 +111,8 @@
       "models": 3,
       "errors": [],
       "warnings": [],
-      "parse_time": 0.0018367767333984375,
-      "translate_time": 0.00025010108947753906
+      "parse_time": 0.0015947818756103516,
+      "translate_time": 0.00036454200744628906
     },
     {
       "file": "cds_ff_mpt_mosfet.scs",
@@ -121,8 +121,8 @@
       "models": 8,
       "errors": [],
       "warnings": [],
-      "parse_time": 0.02032613754272461,
-      "translate_time": 0.010092020034790039
+      "parse_time": 0.017926931381225586,
+      "translate_time": 0.007177591323852539
     },
     {
       "file": "cds_ff_mpt_diode.scs",
@@ -131,8 +131,8 @@
       "models": 8,
       "errors": [],
       "warnings": [],
-      "parse_time": 0.0045626163482666016,
-      "translate_time": 0.00044608116149902344
+      "parse_time": 0.010872125625610352,
+      "translate_time": 0.0005724430084228516
     },
     {
       "file": "cds_ff_mpt_mimcap.scs",
@@ -141,8 +141,8 @@
       "models": 2,
       "errors": [],
       "warnings": [],
-      "parse_time": 0.0014333724975585938,
-      "translate_time": 0.00029349327087402344
+      "parse_time": 0.0011510848999023438,
+      "translate_time": 0.0003285408020019531
     },
     {
       "file": "cds_ff_mpt.scs",
@@ -153,7 +153,7 @@
       "warnings": [
         "No models found"
       ],
-      "parse_time": 0.0010218620300292969,
+      "parse_time": 0.0007841587066650391,
       "translate_time": 0
     },
     {
@@ -163,8 +163,8 @@
       "models": 3,
       "errors": [],
       "warnings": [],
-      "parse_time": 0.016178607940673828,
-      "translate_time": 0.0003495216369628906
+      "parse_time": 0.022899866104125977,
+      "translate_time": 0.00036907196044921875
     },
     {
       "file": "gpdk045_mimcap.scs",
@@ -173,8 +173,8 @@
       "models": 2,
       "errors": [],
       "warnings": [],
-      "parse_time": 0.0013079643249511719,
-      "translate_time": 0.0003631114959716797
+      "parse_time": 0.0011675357818603516,
+      "translate_time": 0.00038170814514160156
     },
     {
       "file": "gpdk045.scs",
@@ -185,7 +185,7 @@
       "warnings": [
         "No models found"
       ],
-      "parse_time": 0.0013742446899414062,
+      "parse_time": 0.0010602474212646484,
       "translate_time": 0
     },
     {
@@ -195,8 +195,8 @@
       "models": 3,
       "errors": [],
       "warnings": [],
-      "parse_time": 0.01159811019897461,
-      "translate_time": 0.0003592967987060547
+      "parse_time": 0.0293428897857666,
+      "translate_time": 0.0004513263702392578
     },
     {
       "file": "gpdk045_bipolar.scs",
@@ -205,8 +205,8 @@
       "models": 8,
       "errors": [],
       "warnings": [],
-      "parse_time": 0.0037505626678466797,
-      "translate_time": 0.00031685829162597656
+      "parse_time": 0.0033957958221435547,
+      "translate_time": 0.0005278587341308594
     },
     {
       "file": "gpdk045_moscap.scs",
@@ -215,8 +215,8 @@
       "models": 4,
       "errors": [],
       "warnings": [],
-      "parse_time": 0.2866671085357666,
-      "translate_time": 0.002862215042114258
+      "parse_time": 0.253434419631958,
+      "translate_time": 0.002498626708984375
     },
     {
       "file": "gpdk045_mos.scs",
@@ -225,8 +225,8 @@
       "models": 20,
       "errors": [],
       "warnings": [],
-      "parse_time": 1.137493371963501,
-      "translate_time": 0.39115452766418457
+      "parse_time": 0.7435469627380371,
+      "translate_time": 0.29156994819641113
     },
     {
       "file": "gpdk045_diode.scs",
@@ -235,8 +235,8 @@
       "models": 10,
       "errors": [],
       "warnings": [],
-      "parse_time": 0.0063304901123046875,
-      "translate_time": 0.0003726482391357422
+      "parse_time": 0.006018161773681641,
+      "translate_time": 0.0006315708160400391
     },
     {
       "file": "gpdk045_soa.scs",
@@ -247,7 +247,7 @@
       "warnings": [
         "No models found"
       ],
-      "parse_time": 0.001428365707397461,
+      "parse_time": 0.0012710094451904297,
       "translate_time": 0
     },
     {
@@ -259,7 +259,7 @@
       "warnings": [
         "No models found"
       ],
-      "parse_time": 0.0006692409515380859,
+      "parse_time": 0.0006041526794433594,
       "translate_time": 0
     },
     {
@@ -269,8 +269,8 @@
       "models": 1,
       "errors": [],
       "warnings": [],
-      "parse_time": 0.013168573379516602,
-      "translate_time": 0.0007691383361816406
+      "parse_time": 0.012105941772460938,
+      "translate_time": 0.0008308887481689453
     },
     {
       "file": "rfmos.scs",
@@ -281,7 +281,7 @@
       "warnings": [
         "No models found"
       ],
-      "parse_time": 0.0011279582977294922,
+      "parse_time": 0.0008959770202636719,
       "translate_time": 0
     },
     {
@@ -291,8 +291,8 @@
       "models": 1,
       "errors": [],
       "warnings": [],
-      "parse_time": 0.013404607772827148,
-      "translate_time": 0.0009610652923583984
+      "parse_time": 0.011005163192749023,
+      "translate_time": 0.0006659030914306641
     },
     {
       "file": "bipolar.scs",
@@ -301,8 +301,8 @@
       "models": 3,
       "errors": [],
       "warnings": [],
-      "parse_time": 0.0007867813110351562,
-      "translate_time": 0.00028514862060546875
+      "parse_time": 0.0005397796630859375,
+      "translate_time": 0.00022530555725097656
     },
     {
       "file": "mcxjvar_w40.scs",
@@ -311,8 +311,8 @@
       "models": 2,
       "errors": [],
       "warnings": [],
-      "parse_time": 0.0009949207305908203,
-      "translate_time": 0.0002791881561279297
+      "parse_time": 0.0007545948028564453,
+      "translate_time": 0.00017404556274414062
     },
     {
       "file": "xjvar_w40.scs",
@@ -321,8 +321,8 @@
       "models": 2,
       "errors": [],
       "warnings": [],
-      "parse_time": 0.0004830360412597656,
-      "translate_time": 0.0002613067626953125
+      "parse_time": 0.0004029273986816406,
+      "translate_time": 0.00025272369384765625
     },
     {
       "file": "diode.scs",
@@ -331,8 +331,8 @@
       "models": 2,
       "errors": [],
       "warnings": [],
-      "parse_time": 0.0006203651428222656,
-      "translate_time": 0.00029015541076660156
+      "parse_time": 0.000438690185546875,
+      "translate_time": 0.0002124309539794922
     },
     {
       "file": "capacitor.scs",
@@ -341,8 +341,8 @@
       "models": 1,
       "errors": [],
       "warnings": [],
-      "parse_time": 0.0006608963012695312,
-      "translate_time": 0.00036263465881347656
+      "parse_time": 0.0004277229309082031,
+      "translate_time": 0.00023937225341796875
     },
     {
       "file": "snacapacitor.scs",
@@ -353,7 +353,7 @@
       "warnings": [
         "No models found"
       ],
-      "parse_time": 0.00017547607421875,
+      "parse_time": 0.00012683868408203125,
       "translate_time": 0
     },
     {
@@ -365,7 +365,7 @@
       "warnings": [
         "No models found"
       ],
-      "parse_time": 0.0001926422119140625,
+      "parse_time": 0.00012135505676269531,
       "translate_time": 0
     },
     {
@@ -375,8 +375,8 @@
       "models": 2,
       "errors": [],
       "warnings": [],
-      "parse_time": 0.0027091503143310547,
-      "translate_time": 0.00022268295288085938
+      "parse_time": 0.0022764205932617188,
+      "translate_time": 0.00024080276489257812
     },
     {
       "file": "resistor.scs",
@@ -385,8 +385,8 @@
       "models": 11,
       "errors": [],
       "warnings": [],
-      "parse_time": 0.003404378890991211,
-      "translate_time": 0.0012888908386230469
+      "parse_time": 0.0031387805938720703,
+      "translate_time": 0.0010628700256347656
     },
     {
       "file": "gpdk.scs",
@@ -397,7 +397,7 @@
       "warnings": [
         "No models found"
       ],
-      "parse_time": 0.0007729530334472656,
+      "parse_time": 0.0006721019744873047,
       "translate_time": 0
     },
     {
@@ -407,8 +407,8 @@
       "models": 2,
       "errors": [],
       "warnings": [],
-      "parse_time": 0.0004150867462158203,
-      "translate_time": 0.00020813941955566406
+      "parse_time": 0.00035262107849121094,
+      "translate_time": 0.00028228759765625
     }
   ]
 }

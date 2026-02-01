@@ -1,0 +1,71 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+
+# Virtual environments
+.venv/
+venv/
+ENV/
+env/
+
+# Testing
+.pytest_cache/
+.coverage
+.coverage.*
+htmlcov/
+coverage.json
+.tox/
+.hypothesis/
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+.DS_Store
+
+# Logs and outputs
+*.log
+*.out
+*.err
+output/
+test_results/
+*.cir
+*.raw
+*.mt0
+*.pa0
+*.st0
+*.tr0
+
+# Temporary files
+*.tmp
+*.bak
+*.backup
+*.old
+~*
+
+# CI/CD
+.github/workflows/*.log
+
+# Project-specific
+validation_*_results.txt
+VERIFICATION_SUMMARY.txt

@@ -1,9 +1,0 @@
-* Numeric validation of resistor subcircuit
-.include output/ngspice/gpdk090_resistor.lib
-
-V1 PLUS 0 1
-X1 PLUS 0 0 gpdk090_ressndiff
-
-.op
-.print dc i(V1)
-.end

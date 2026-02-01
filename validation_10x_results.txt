@@ -1,6 +1,0 @@
-Traceback (most recent call last):
-  File "/home/shennilee/newproject2026/proj1/new-spice-translator/tools/validate_10x.py", line 18, in <module>
-    from main import TranslationEngine
-  File "/home/shennilee/newproject2026/proj1/new-spice-translator/src/main.py", line 22, in <module>
-    from src.parsers import SpectreParser, HSPICEParser, NgspiceParser
-ModuleNotFoundError: No module named 'src'

@@ -10,7 +10,7 @@ Key Principle: Extract only comparable scalars - means, standard deviations,
 
 import re
 import json
-import numpy as np
+import statistics
 from pathlib import Path
 from typing import Dict, List, Optional, Union, Any
 from dataclasses import dataclass, asdict
@@ -110,10 +110,10 @@ class MetricsExtractor:
         if not capacitances:
             raise ValueError(f"No capacitance data found in {output_dir}")
         
-        C_mean = np.mean(capacitances)
-        C_sigma = np.std(capacitances)
-        C_min = np.min(capacitances)
-        C_max = np.max(capacitances)
+        C_mean = statistics.mean(capacitances)
+        C_sigma = statistics.stdev(capacitances) if len(capacitances) > 1 else 0.0
+        C_min = min(capacitances)
+        C_max = max(capacitances)
         
         metrics = {
             'C_mean': float(C_mean),
@@ -208,10 +208,10 @@ class MetricsExtractor:
                 Id_values.append(float(id_match.group(1)))
         
         metrics = {
-            'Id_mean': float(np.mean(Id_values)) if Id_values else 0.0,
-            'Id_sigma': float(np.std(Id_values)) if Id_values else 0.0,
-            'Vth_mean': float(np.mean(Vth_values)) if Vth_values else 0.4,
-            'Vth_sigma': float(np.std(Vth_values)) if Vth_values else 0.0
+            'Id_mean': float(statistics.mean(Id_values)) if len(Id_values) > 0 else 0.0,
+            'Id_sigma': float(statistics.stdev(Id_values)) if len(Id_values) > 1 else 0.0,
+            'Vth_mean': float(statistics.mean(Vth_values)) if len(Vth_values) > 0 else 0.4,
+            'Vth_sigma': float(statistics.stdev(Vth_values)) if len(Vth_values) > 1 else 0.0
         }
         
         return MetricsResult(

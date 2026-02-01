@@ -257,8 +257,11 @@ class Verifier:
         
         testbench = self.testbench_gen.generate(config)
         
-        # Replace {lib_file} placeholder
-        testbench = testbench.replace('{lib_file}', lib_file)
+        # Replace {lib_file} placeholder - use quotes for ngspice/hspice format
+        if format in ['ngspice', 'hspice']:
+            testbench = testbench.replace('{lib_file}', f'"{lib_file}"')
+        else:
+            testbench = testbench.replace('{lib_file}', lib_file)
         
         return testbench
 

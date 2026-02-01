@@ -371,17 +371,26 @@ class HSPICEParser(BaseParser):
         name_lower = name.lower()
         type_lower = model_type.lower()
 
-        # Direct type matching
-        if type_lower in ["nmos", "nch", "nfet"]:
+        # Direct type matching - HSPICE uses single letter types
+        if type_lower in ["nmos", "nch", "nfet", "n"]:
             return DeviceType.NMOS
-        if type_lower in ["pmos", "pch", "pfet"]:
+        if type_lower in ["pmos", "pch", "pfet", "p"]:
             return DeviceType.PMOS
         if type_lower in ["npn"]:
             return DeviceType.NPN
         if type_lower in ["pnp"]:
             return DeviceType.PNP
+        # Diode - HSPICE uses 'd' for diode model type
+        if type_lower in ["d", "diode"]:
+            return DeviceType.DIODE
+        # Resistor - HSPICE uses 'r' for resistor model type
+        if type_lower in ["r", "resistor", "res"]:
+            return DeviceType.RESISTOR
+        # Capacitor - HSPICE uses 'c' for capacitor model type
+        if type_lower in ["c", "capacitor", "cap"]:
+            return DeviceType.CAPACITOR
 
-        # Name-based detection
+        # Name-based detection for MOSFET
         if any(
             x in name_lower
             for x in ["nmos", "nch", "nfet", "nwell"]
@@ -401,16 +410,16 @@ class HSPICEParser(BaseParser):
                 else DeviceType.PNP
             )
 
-        # Diode detection
-        if "diode" in type_lower or "d_" in name_lower:
+        # Name-based diode detection
+        if any(x in name_lower for x in ["dio", "diode", "ndio", "pdio", "d_"]):
             return DeviceType.DIODE
 
-        # Resistor detection
-        if "resistor" in type_lower or "res" in type_lower:
+        # Name-based resistor detection
+        if any(x in name_lower for x in ["res", "rpo", "rdif", "rm", "rnw"]):
             return DeviceType.RESISTOR
 
-        # Capacitor detection
-        if "capacitor" in type_lower or "cap" in type_lower:
+        # Name-based capacitor detection
+        if any(x in name_lower for x in ["cap", "mim", "mom", "var"]):
             return DeviceType.CAPACITOR
 
         logger.warning(

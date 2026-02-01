@@ -100,14 +100,14 @@ def cmd_verify_all(args):
     test_cases = [
         {
             'input': 'tools/spice-libraries/private-models/cadence90/spectre/gpdk090_capacitor.scs',
-            'device': 'mimcap',
+            'device': 'gpdk090_mimcap',
             'device_class': 'capacitor',
             'area': 10e-6,
             'perim': 20e-6
         },
         {
             'input': 'tools/spice-libraries/private-models/cadence90/spectre/gpdk090_diode.scs',
-            'device': 'gpdk090_ndio_D',
+            'device': 'gpdk090_ndio',
             'device_class': 'diode'
         }
     ]

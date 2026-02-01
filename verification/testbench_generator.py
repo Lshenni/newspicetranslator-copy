@@ -32,7 +32,7 @@ class TestbenchConfig:
     temp_sweep: Optional[List[float]] = None
     corner: Optional[str] = None
     area: Optional[float] = None
-    perim: Optional<float> = None
+    perim: Optional[float] = None
     width: Optional[float] = None
     length: Optional[float] = None
 
@@ -61,7 +61,30 @@ class TestbenchGenerator:
         if not generator:
             raise ValueError(f"Unsupported device class: {config.device_class}")
         
-        return generator(config)
+        # Generate template and substitute placeholders
+        template = generator(config)
+        
+        # Substitute config values - handle {{placeholder}} and {config.attr} patterns
+        result = template.replace('{{lib_file}}', '{lib_file}')  # Keep for later replacement
+        result = result.replace('{config.device_name}', config.device_name)
+        result = result.replace('{device_name}', config.device_name)
+        result = result.replace('{model_name}', config.device_name)
+        
+        # Substitute area/perim/width/length if present
+        if config.area:
+            result = result.replace('{area}', str(config.area))
+        if config.perim:
+            result = result.replace('{perim}', str(config.perim))
+        if config.width:
+            result = result.replace('{W}', str(config.width))
+            result = result.replace('{width}', str(config.width))
+        if config.length:
+            result = result.replace('{L}', str(config.length))
+            result = result.replace('{length}', str(config.length))
+        if config.monte_carlo_runs:
+            result = result.replace('{mc_runs}', str(config.monte_carlo_runs))
+        
+        return result
     
     # ============================================================================
     # CAPACITOR TESTBENCHES
@@ -87,7 +110,7 @@ class TestbenchGenerator:
         """Capacitor AC test for ngspice"""
         if mc_runs > 0:
             # Monte Carlo AC test
-            return f"""* Capacitor AC Verification Test (Monte Carlo)
+            return """* Capacitor AC Verification Test (Monte Carlo)
 .include {{lib_file}}
 
 * AC voltage source
@@ -120,7 +143,7 @@ quit
 """
         else:
             # Single run AC test
-            return f"""* Capacitor AC Verification Test
+            return """* Capacitor AC Verification Test
 .include {{lib_file}}
 
 * AC voltage source
@@ -151,7 +174,7 @@ quit
     def _cap_ac_hspice(self, device_name: str, area: float, perim: float, mc_runs: int = 0) -> str:
         """Capacitor AC test for HSPICE"""
         if mc_runs > 0:
-            return f"""* Capacitor AC Verification Test (Monte Carlo)
+            return """* Capacitor AC Verification Test (Monte Carlo)
 .include {{lib_file}}
 
 Vac P 0 AC 1
@@ -165,7 +188,7 @@ XU1 P 0 {device_name} area={area} perim={perim}
 .end
 """
         else:
-            return f"""* Capacitor AC Verification Test
+            return """* Capacitor AC Verification Test
 .include {{lib_file}}
 
 Vac P 0 AC 1
@@ -180,7 +203,7 @@ XU1 P 0 {device_name} area={area} perim={perim}
     def _cap_ac_spectre(self, device_name: str, area: float, perim: float, mc_runs: int = 0) -> str:
         """Capacitor AC test for Spectre"""
         if mc_runs > 0:
-            return f"""// Capacitor AC Verification Test (Monte Carlo)
+            return """// Capacitor AC Verification Test (Monte Carlo)
 include "{{lib_file}}"
 
 Vac (P 0) vsource type=sine ampl=1
@@ -192,7 +215,7 @@ mc montecarlo variations={{mismatch process} runs={mc_runs} {{
 }}
 """
         else:
-            return f"""// Capacitor AC Verification Test
+            return """// Capacitor AC Verification Test
 include "{{lib_file}}"
 
 Vac (P 0) vsource type=sine ampl=1
@@ -223,7 +246,7 @@ save XU1:*
     def _mos_dc_ngspice(self, model_name: str, W: float, L: float, mc_runs: int = 0) -> str:
         """MOS DC sweep for ngspice"""
         if mc_runs > 0:
-            return f"""* MOS DC Verification Test (Monte Carlo)
+            return """* MOS DC Verification Test (Monte Carlo)
 .include {{lib_file}}
 
 Vgs g 0 DC 0.6
@@ -245,7 +268,7 @@ quit
 .end
 """
         else:
-            return f"""* MOS DC Verification Test
+            return """* MOS DC Verification Test
 .include {{lib_file}}
 
 Vgs g 0 DC 0.6
@@ -266,7 +289,7 @@ quit
     def _mos_dc_hspice(self, model_name: str, W: float, L: float, mc_runs: int = 0) -> str:
         """MOS DC sweep for HSPICE"""
         if mc_runs > 0:
-            return f"""* MOS DC Verification Test (Monte Carlo)
+            return """* MOS DC Verification Test (Monte Carlo)
 .include {{lib_file}}
 
 Vgs g 0 DC 0.6
@@ -282,7 +305,7 @@ M1 d g 0 0 {model_name} W={W} L={L}
 .end
 """
         else:
-            return f"""* MOS DC Verification Test
+            return """* MOS DC Verification Test
 .include {{lib_file}}
 
 Vgs g 0 DC 0.6
@@ -299,7 +322,7 @@ M1 d g 0 0 {model_name} W={W} L={L}
     def _mos_dc_spectre(self, model_name: str, W: float, L: float, mc_runs: int = 0) -> str:
         """MOS DC sweep for Spectre"""
         if mc_runs > 0:
-            return f"""// MOS DC Verification Test (Monte Carlo)
+            return """// MOS DC Verification Test (Monte Carlo)
 include "{{lib_file}}"
 
 Vgs (g 0) vsource dc=0.6
@@ -312,7 +335,7 @@ mc montecarlo variations={{mismatch process}} runs={mc_runs} {{
 }}
 """
         else:
-            return f"""// MOS DC Verification Test
+            return """// MOS DC Verification Test
 include "{{lib_file}}"
 
 Vgs (g 0) vsource dc=0.6
@@ -330,7 +353,7 @@ save M1:id M1:gm
     def _generate_bjt_test(self, config: TestbenchConfig) -> str:
         """Generate Vbe sweep for BJT"""
         if config.format == 'ngspice':
-            return f"""* BJT DC Verification Test
+            return """* BJT DC Verification Test
 .include {{lib_file}}
 
 Vbe b 0 DC 0.7
@@ -348,7 +371,7 @@ quit
 .end
 """
         elif config.format == 'hspice':
-            return f"""* BJT DC Verification Test
+            return """* BJT DC Verification Test
 .include {{lib_file}}
 
 Vbe b 0 DC 0.7
@@ -362,7 +385,7 @@ Q1 c b 0 {config.device_name}
 .end
 """
         else:  # spectre
-            return f"""// BJT DC Verification Test
+            return """// BJT DC Verification Test
 include "{{lib_file}}"
 
 Vbe (b 0) vsource dc=0.7
@@ -380,11 +403,12 @@ save Q1:ic Q1:ib
     def _generate_diode_test(self, config: TestbenchConfig) -> str:
         """Generate I-V curve for diode"""
         if config.format == 'ngspice':
-            return f"""* Diode I-V Verification Test
+            # Use X prefix for subcircuit instantiation
+            return """* Diode I-V Verification Test
 .include {{lib_file}}
 
 Vd d 0 DC 0.7
-D1 d 0 {config.device_name}
+X1 d 0 {config.device_name}
 
 .control
 dc Vd 0 1.0 0.02
@@ -397,11 +421,11 @@ quit
 .end
 """
         elif config.format == 'hspice':
-            return f"""* Diode I-V Verification Test
+            return """* Diode I-V Verification Test
 .include {{lib_file}}
 
 Vd d 0 DC 0.7
-D1 d 0 {config.device_name}
+X1 d 0 {config.device_name}
 
 .dc Vd 0 1.0 0.02
 .measure dc Id_07 find i(Vd) at=0.7
@@ -410,7 +434,7 @@ D1 d 0 {config.device_name}
 .end
 """
         else:  # spectre
-            return f"""// Diode I-V Verification Test
+            return """// Diode I-V Verification Test
 include "{{lib_file}}"
 
 Vd (d 0) vsource dc=0.7
@@ -427,7 +451,7 @@ save D1:id
     def _generate_resistor_test(self, config: TestbenchConfig) -> str:
         """Generate DC resistance test"""
         if config.format == 'ngspice':
-            return f"""* Resistor Verification Test
+            return """* Resistor Verification Test
 .include {{lib_file}}
 
 Vtest v 0 DC 1.0
@@ -443,7 +467,7 @@ quit
 .end
 """
         elif config.format == 'hspice':
-            return f"""* Resistor Verification Test
+            return """* Resistor Verification Test
 .include {{lib_file}}
 
 Vtest v 0 DC 1.0
@@ -455,7 +479,7 @@ XR1 v 0 {config.device_name} w=1u l=10u
 .end
 """
         else:  # spectre
-            return f"""// Resistor Verification Test
+            return """// Resistor Verification Test
 include "{{lib_file}}"
 
 Vtest (v 0) vsource dc=1.0
