@@ -14,6 +14,7 @@ import logging
 
 from .base_parser import BaseParser
 from .expression_parser import EnhancedExpressionParser
+from .param_parsing import parse_param_string, strip_inline_comment
 from ..ir.model_ir import (
     ModelIR,
     Condition,
@@ -129,21 +130,21 @@ class HSPICEParser(BaseParser):
         current_line = ""
 
         for line in lines:
-            # Remove inline comments (* or $)
-            if "*" in line:
-                line = line.split("*")[0]
-            if "$" in line:
-                line = line.split("$")[0]
-
             stripped = line.strip()
 
-            # Skip comment lines
-            if stripped.startswith("*") or stripped.startswith("$"):
-                if current_line:
-                    joined_lines.append(current_line)
-                    current_line = ""
+            # Ignore empty lines without breaking continuation context
+            if not stripped:
                 joined_lines.append(line)
                 continue
+
+            # Skip comment lines (HSPICE comment lines start with '*' or '$')
+            if stripped.startswith("*") or stripped.startswith("$"):
+                joined_lines.append(line)
+                continue
+
+            # Remove inline comments (safe: respects quotes; '*' only if preceded by whitespace)
+            line = strip_inline_comment(line, markers=("$", "*"))
+            stripped = line.strip()
 
             # Continuation line
             if stripped.startswith(self.CONTINUATION_CHAR):
@@ -324,18 +325,23 @@ class HSPICEParser(BaseParser):
         """
         parameters: Dict[str, Any] = {}
 
-        # Pattern for param=value
-        pattern = r"(\w+)\s*=\s*([^\s]+)"
+        raw_params = parse_param_string(param_str)
 
-        for match in re.finditer(pattern, param_str):
-            param_name = match.group(1)
-            param_value_str = match.group(2)
+        for param_name, raw_value in raw_params.items():
+            # Trim common trailing punctuation
+            param_value_str = raw_value.strip().rstrip(",;")
+            # If value is quoted, try parsing inner expression but preserve raw on failure
+            parse_candidate = param_value_str
+            if (
+                len(parse_candidate) >= 2
+                and parse_candidate[0] == parse_candidate[-1]
+                and parse_candidate[0] in ("'", '"')
+            ):
+                parse_candidate = parse_candidate[1:-1].strip()
 
             # Evaluate expression
             try:
-                result = self.expr_parser.parse_expression(
-                    param_value_str
-                )
+                result = self.expr_parser.parse_expression(parse_candidate)
                 if result.success:
                     param_value = result.value
                 else:

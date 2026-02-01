@@ -10,6 +10,7 @@ Compliance: CONSTRAINTS.md
 from typing import List, Dict, Any, Optional
 from pathlib import Path
 import logging
+import re
 
 from .base_writer import BaseWriter
 from ..ir.model_ir import ModelIR, Corner, Temperature
@@ -26,6 +27,9 @@ class NgspiceWriter(BaseWriter):
     Converts universal IR to ngspice .lib sections with .model cards.
     Compatible with SPICE3 syntax.
     """
+
+    # Soft limit to keep .model lines readable and avoid simulator line-length issues.
+    MAX_LINE_LENGTH = 120
 
     def __init__(self, output_path: Path) -> None:
         """
@@ -71,6 +75,16 @@ class NgspiceWriter(BaseWriter):
 
         # Generate content
         content_lines = [header]
+
+        # Emit default parameters for expressions so ngspice can evaluate them.
+        # Many HSPICE model decks use symbolic deltas (e.g. dbf_*) inside expressions.
+        # Without defaults, ngspice will often error out on 'unknown parameter'.
+        expr_symbols = self._collect_expression_symbols(models)
+        if expr_symbols:
+            content_lines.append("* Auto-generated parameter defaults (override as needed)")
+            for sym in sorted(expr_symbols):
+                content_lines.append(f".param {sym}=0")
+            content_lines.append("")
 
         # Write models without section (base models)
         if None in section_groups:
@@ -185,6 +199,69 @@ class NgspiceWriter(BaseWriter):
 
         return section_groups
 
+    def _collect_expression_symbols(self, models: List[ModelIR]) -> set[str]:
+        """Collect symbols referenced in non-numeric parameter expressions.
+
+        This is a best-effort helper to make generated ngspice decks runnable.
+        We only emit defaults for symbols found in string-valued parameters that
+        are not pure numbers.
+        """
+
+        ident_re = re.compile(r"\b[A-Za-z_][A-Za-z0-9_]*\b")
+        builtins = {
+            # Common math functions
+            "sqrt",
+            "log",
+            "ln",
+            "exp",
+            "abs",
+            "min",
+            "max",
+            "pow",
+            "sin",
+            "cos",
+            "tan",
+            "asin",
+            "acos",
+            "atan",
+        }
+
+        symbols: set[str] = set()
+        for model in models:
+            params = model.base_parameters or {}
+            for _k, v in params.items():
+                if not isinstance(v, str):
+                    continue
+
+                s = v.strip()
+                if not s:
+                    continue
+
+                # Strip outer quotes
+                if len(s) >= 2 and s[0] == s[-1] and s[0] in ("'", '"'):
+                    s = s[1:-1].strip()
+
+                # Strip outer braces
+                if len(s) >= 2 and s[0] == "{" and s[-1] == "}":
+                    s = s[1:-1].strip()
+
+                # If it's numeric, no symbols needed
+                try:
+                    float(s)
+                    continue
+                except ValueError:
+                    pass
+
+                for ident in ident_re.findall(s):
+                    low = ident.lower()
+                    if low in builtins:
+                        continue
+                    if ident in {"e", "E"}:
+                        continue
+                    symbols.add(ident)
+
+        return symbols
+
     def _group_by_corner(
         self, models: List[ModelIR]
     ) -> Dict[Corner, List[ModelIR]]:
@@ -243,18 +320,33 @@ class NgspiceWriter(BaseWriter):
         # Format device type for ngspice
         device_type = self._get_ngspice_type(model)
 
-        # Build parameter string
-        param_strs = []
-        for key, value in sorted(params.items()):
-            param_strs.append(f"{key}={self._format_value(value)}")
+        # Build parameter tokens
+        param_tokens = [
+            f"{key}={self._format_value(value)}" for key, value in sorted(params.items())
+        ]
 
-        params_str = " ".join(param_strs)
-
-        # Format: .model <name> <type> (params)
-        if params_str:
-            return f".model {model.name} {device_type} ({params_str})"
-        else:
+        if not param_tokens:
             return f".model {model.name} {device_type}"
+
+        # Emit multi-line .model with continuation to avoid huge single lines.
+        # ngspice supports '+' continuation.
+        lines: List[str] = []
+        base = f".model {model.name} {device_type} ("
+        current = base
+
+        for tok in param_tokens:
+            sep = "" if current.endswith("(") else " "
+            candidate = f"{current}{sep}{tok}"
+            if len(candidate) > self.MAX_LINE_LENGTH and current != base:
+                lines.append(current)
+                current = f"+{tok}"
+            else:
+                current = candidate
+
+        # Close parens on the final line
+        current = f"{current})"
+        lines.append(current)
+        return "\n".join(lines)
 
     def _get_ngspice_type(self, model: ModelIR) -> str:
         """
@@ -309,8 +401,31 @@ class NgspiceWriter(BaseWriter):
                     return str(value)
             return str(value)
         elif isinstance(value, str):
-            # Return as-is (already formatted)
-            return value
+            v = value.strip()
+
+            # If already brace-wrapped expression, keep it.
+            if len(v) >= 2 and v[0] == "{" and v[-1] == "}":
+                return v
+
+            # Convert quoted expressions (common in HSPICE) into ngspice brace expressions.
+            # Example:  '105.0*(1+drb)'  -> {105.0*(1+drb)}
+            if (
+                len(v) >= 2
+                and v[0] == v[-1]
+                and v[0] in ("'", '"')
+            ):
+                inner = v[1:-1].strip()
+                return "{" + inner + "}"
+
+            # If it's numeric, keep as-is.
+            try:
+                float(v)
+                return v
+            except ValueError:
+                pass
+
+            # Otherwise, treat as an expression / parameter reference.
+            return "{" + v + "}"
         else:
             return str(value)
 

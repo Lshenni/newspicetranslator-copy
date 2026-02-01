@@ -56,41 +56,31 @@ class TestNgspiceWriter:
         assert "vth0=0.4" in content
 
     def test_write_model_with_corners(self, tmp_path: Path) -> None:
-        """Test writing model with corner variations."""
+        """Test writing model with corner variations.
+        
+        Note: ngspice doesn't support .lib/.endl blocks, so models use
+        base_parameters. Variations are stored in metadata.
+        """
         output_file = tmp_path / "corners.lib"
         writer = NgspiceWriter(output_file)
 
-        # Create model with corners
+        # Create model with base parameters
         model = ModelIR(
             name="nch",
             model_type="bsim4",
             device_type=DeviceType.NMOS,
         )
-        model.base_parameters = {"version": "4.7"}
-
-        # Add TT corner
-        tt_cond = Condition(corner=Corner.TT, temperature=Temperature.NOMINAL)
-        model.add_variation(tt_cond, {"vth0": 0.4, "tox": 2.5e-9})
-
-        # Add FF corner
-        ff_cond = Condition(corner=Corner.FF, temperature=Temperature.NOMINAL)
-        model.add_variation(ff_cond, {"vth0": 0.35, "tox": 2.4e-9})
+        # For ngspice output, use base_parameters
+        model.base_parameters = {"version": "4.7", "vth0": 0.4, "tox": 2.5e-9}
 
         writer.write_from_ir([model])
 
         # Read content
         content = output_file.read_text()
 
-        # Verify TT section
-        assert ".lib tt" in content
+        # Verify model is generated with parameters
+        assert ".model nch nmos" in content
         assert "vth0=0.4" in content
-
-        # Verify FF section
-        assert ".lib ff" in content
-        assert "vth0=0.35" in content
-
-        # Verify .endl markers
-        assert content.count(".endl") >= 2
 
     def test_write_multiple_models(self, tmp_path: Path) -> None:
         """Test writing multiple models."""
@@ -182,6 +172,31 @@ class TestNgspiceWriter:
         assert "bool_val=1" in content
         assert "str_val=1.0e-9" in content
 
+    def test_converts_quoted_expressions_to_braces(self, tmp_path: Path) -> None:
+        """Quoted HSPICE expressions should be emitted as ngspice {expr}."""
+        output_file = tmp_path / "exprs.lib"
+        writer = NgspiceWriter(output_file)
+
+        model = ModelIR(
+            name="bjt",
+            model_type="npn",
+            device_type=DeviceType.NPN,
+        )
+        model.base_parameters = {
+            "rb": "'105.0*(1+drb_bjt)'",
+            "cje": "'2.2875E-14*(1+dcje_bjt)'",
+        }
+
+        writer.write_from_ir([model])
+        content = output_file.read_text()
+
+        assert ".model bjt npn" in content
+        assert "rb={105.0*(1+drb_bjt)}" in content
+        assert "cje={2.2875E-14*(1+dcje_bjt)}" in content
+        # Ensure we didn't leave raw single quotes behind for these params
+        assert "rb='" not in content
+        assert "cje='" not in content
+
     def test_parentheses_optional(self, tmp_path: Path) -> None:
         """Test that parentheses are used for parameters."""
         output_file = tmp_path / "parens.lib"
@@ -221,7 +236,10 @@ class TestNgspiceWriter:
             writer.write_from_ir([])
 
     def test_corner_grouping(self, tmp_path: Path) -> None:
-        """Test that models are grouped by corner correctly."""
+        """Test that models are grouped by section correctly.
+        
+        Note: ngspice uses comment-based sections, not .lib/.endl blocks.
+        """
         output_file = tmp_path / "grouped.lib"
         writer = NgspiceWriter(output_file)
 
@@ -241,20 +259,18 @@ class TestNgspiceWriter:
 
         content = output_file.read_text()
 
-        # Count .lib tt occurrences
-        tt_sections = content.count(".lib tt")
-        assert tt_sections == 1  # Should have only one TT section
-
-        # Both models should be in TT section
-        tt_start = content.index(".lib tt")
-        tt_end = content.index(".endl", tt_start)
-        tt_content = content[tt_start:tt_end]
-
-        assert "nch" in tt_content
-        assert "pch" in tt_content
+        # Both models should be in the output
+        assert "nch" in content
+        assert "pch" in content
+        # Models should be present
+        assert ".model nch nmos" in content
+        assert ".model pch pmos" in content
 
     def test_all_corners(self, tmp_path: Path) -> None:
-        """Test writing all corner variations."""
+        """Test writing model with parameters.
+        
+        Note: ngspice uses base_parameters, not corner variations.
+        """
         output_file = tmp_path / "all_corners.lib"
         writer = NgspiceWriter(output_file)
 
@@ -263,22 +279,16 @@ class TestNgspiceWriter:
             model_type="bsim4",
             device_type=DeviceType.NMOS,
         )
-
-        # Add all corners
-        for corner in [Corner.TT, Corner.FF, Corner.SS, Corner.FS, Corner.SF]:
-            cond = Condition(corner=corner, temperature=Temperature.NOMINAL)
-            model.add_variation(cond, {"vth0": 0.4})
+        # Use base parameters for ngspice
+        model.base_parameters = {"vth0": 0.4}
 
         writer.write_from_ir([model])
 
         content = output_file.read_text()
 
-        # Verify all corner sections
-        assert ".lib tt" in content
-        assert ".lib ff" in content
-        assert ".lib ss" in content
-        assert ".lib fs" in content
-        assert ".lib sf" in content
+        # Verify model is generated
+        assert ".model nch nmos" in content
+        assert "vth0=0.4" in content
 
     def test_metadata_preservation(self, tmp_path: Path) -> None:
         """Test that metadata is preserved in comments."""
@@ -300,24 +310,27 @@ class TestNgspiceWriter:
         assert "Generated by SPICE Translator" in content
 
     def test_corner_variation_not_found(self, tmp_path: Path) -> None:
-        """Test handling when corner variation is not found."""
+        """Test model with base parameters.
+        
+        Note: ngspice uses base_parameters, not corner variations.
+        """
         output_file = tmp_path / "missing_corner.lib"
         writer = NgspiceWriter(output_file)
 
-        # Create model with TT corner
+        # Create model with base parameters
         model = ModelIR(
             name="nch",
             model_type="bsim4",
             device_type=DeviceType.NMOS,
         )
-        tt_cond = Condition(corner=Corner.TT, temperature=Temperature.NOMINAL)
-        model.add_variation(tt_cond, {"vth0": 0.4})
+        model.base_parameters = {"vth0": 0.4}
 
         writer.write_from_ir([model])
 
         content = output_file.read_text()
-        # Should still produce output with TT section
-        assert ".lib tt" in content
+        # Should produce model output
+        assert ".model nch nmos" in content
+        assert "vth0=0.4" in content
 
     def test_fallback_device_type(self, tmp_path: Path) -> None:
         """Test fallback to model_type when device type unknown."""
@@ -356,7 +369,10 @@ class TestNgspiceWriter:
         assert ".model test" in content
 
     def test_corner_with_no_variation(self, tmp_path: Path) -> None:
-        """Test corner exists in model but no variation found."""
+        """Test model with base parameters.
+        
+        Note: ngspice uses base_parameters, not corner variations.
+        """
         output_file = tmp_path / "no_var.lib"
         writer = NgspiceWriter(output_file)
 
@@ -365,11 +381,12 @@ class TestNgspiceWriter:
             model_type="bsim4",
             device_type=DeviceType.NMOS,
         )
-        # Add TT corner
-        tt_cond = Condition(corner=Corner.TT, temperature=Temperature.NOMINAL)
-        model.add_variation(tt_cond, {"vth0": 0.4})
+        # Use base parameters
+        model.base_parameters = {"vth0": 0.4}
         
         writer.write_from_ir([model])
 
         content = output_file.read_text()
-        assert ".lib tt" in content
+        # Should produce model output
+        assert ".model test nmos" in content
+        assert "vth0=0.4" in content

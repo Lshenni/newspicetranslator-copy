@@ -14,6 +14,7 @@ import logging
 
 from .base_parser import BaseParser
 from .expression_parser import EnhancedExpressionParser
+from .param_parsing import parse_param_string
 from ..ir.model_ir import (
     ModelIR,
     SubcircuitIR,
@@ -122,10 +123,59 @@ class SpectreParser(BaseParser):
                 )
                 continue
 
+        # If no models but we have standalone subcircuits, convert them to ModelIR
+        # This handles files that only contain subcircuit wrappers
+        if not ir_models and subcircuits:
+            logger.debug(f"No models found, converting {len(subcircuits)} subcircuits to IR")
+            for subckt in subcircuits:
+                ir_model = self._subcircuit_to_ir(subckt)
+                if ir_model:
+                    # Attach statistical data if available
+                    if statistics:
+                        ir_model.statistical = statistics
+                    ir_models.append(ir_model)
+
         logger.info(
             f"Parsed {len(ir_models)} models from {self.file_path.name}"
         )
         return ir_models
+    
+    def _subcircuit_to_ir(self, subckt: SubcircuitIR) -> Optional[ModelIR]:
+        """
+        Convert standalone subcircuit to ModelIR representation.
+        
+        Args:
+            subckt: SubcircuitIR object
+            
+        Returns:
+            ModelIR or None if conversion fails
+        """
+        try:
+            # Classify device type from subcircuit name
+            device_type = self._classify_device_type(subckt.name, "subcircuit")
+            
+            # Create IR model
+            ir_model = ModelIR(
+                name=subckt.name,
+                device_type=device_type,
+                model_type="subcircuit",
+            )
+            ir_model.metadata["source_format"] = "spectre"
+            ir_model.metadata["is_subcircuit"] = True
+            ir_model.metadata["ports"] = subckt.ports
+            
+            # Use subcircuit parameters as base parameters
+            ir_model.base_parameters = subckt.parameters
+            
+            # Attach the subcircuit itself
+            ir_model.subcircuits = [subckt]
+            
+            logger.debug(f"Converted subcircuit '{subckt.name}' to ModelIR")
+            return ir_model
+            
+        except Exception as e:
+            logger.warning(f"Error converting subcircuit '{subckt.name}' to IR: {e}")
+            return None
 
     def _extract_model_blocks(
         self, content: str
@@ -438,19 +488,20 @@ class SpectreParser(BaseParser):
         parameters: Dict[str, Any] = {}
 
         for line in param_lines:
-            # Parse param=value pairs
-            # Handle multiple params per line
-            for match in re.finditer(
-                r"(\w+)\s*=\s*([^\s]+)", line
-            ):
-                param_name = match.group(1)
-                param_value_str = match.group(2)
+            raw_params = parse_param_string(line)
+            for param_name, raw_value in raw_params.items():
+                param_value_str = raw_value.strip().rstrip(",;")
+                parse_candidate = param_value_str
+                if (
+                    len(parse_candidate) >= 2
+                    and parse_candidate[0] == parse_candidate[-1]
+                    and parse_candidate[0] in ("'", '"')
+                ):
+                    parse_candidate = parse_candidate[1:-1].strip()
 
                 # Evaluate expression
                 try:
-                    result = self.expr_parser.parse_expression(
-                        param_value_str
-                    )
+                    result = self.expr_parser.parse_expression(parse_candidate)
                     if result.success:
                         param_value = result.value
                     else:
@@ -600,14 +651,11 @@ class SpectreParser(BaseParser):
 
     def extract_subcircuits(self, content: str) -> List[SubcircuitIR]:
         """
-        Extract inline subcircuit definitions from Spectre content.
+        Extract subcircuit definitions from Spectre content.
         
-        Example:
-            inline subckt gpdk090_mimcap (P M)
-              parameters area=1 perim=1
-              C1 P M2 gpdk090_mimcap_x area=area
-              Rs M2 M resistor r=1
-            ends gpdk090_mimcap
+        Handles both formats:
+        1. inline subckt gpdk090_mimcap (P M) ...
+        2. subckt gpdk090_nmos1v_iso (n1 n2 n3 n4 n5) ...
         
         Args:
             content: Spectre file content
@@ -626,8 +674,8 @@ class SpectreParser(BaseParser):
             if "//" in line:
                 line = line.split("//")[0].strip()
             
-            # Match: inline subckt <name> (<ports>)
-            if re.match(r"inline\s+subckt\s+", line):
+            # Match: inline subckt <name> (<ports>) OR subckt <name> (<ports>)
+            if re.match(r"(inline\s+)?subckt\s+", line):
                 subckt = self._extract_subcircuit_block(lines, i)
                 if subckt:
                     subcircuits.append(subckt)
@@ -646,9 +694,9 @@ class SpectreParser(BaseParser):
         """Extract single subcircuit block."""
         header = lines[start].strip()
         
-        # Parse: inline subckt name (port1 port2 ...)
+        # Parse: [inline] subckt name (port1 port2 ...)
         match = re.match(
-            r"inline\s+subckt\s+(\w+)\s*\(([^)]+)\)", header
+            r"(?:inline\s+)?subckt\s+(\w+)\s*\(([^)]+)\)", header
         )
         if not match:
             return None
@@ -659,6 +707,7 @@ class SpectreParser(BaseParser):
         # Extract content until 'ends'
         parameters = {}
         elements = []
+        models_used = []
         i = start + 1
         
         while i < len(lines):
@@ -679,12 +728,18 @@ class SpectreParser(BaseParser):
             # Parameters line
             if line.startswith("parameters"):
                 params_str = line.replace("parameters", "").strip()
-                # Parse param=value pairs
-                for match in re.finditer(r"(\w+)\s*=\s*([^\s]+)", params_str):
-                    parameters[match.group(1)] = match.group(2)
+                for pname, pval in parse_param_string(params_str).items():
+                    parameters[pname] = pval.strip().rstrip(",;")
             else:
-                # Element line
+                # Element line - extract model references
                 elements.append(line)
+                # Extract model name from device instance lines
+                # Format: INSTANCE_NAME (nodes) MODEL_NAME params
+                elem_match = re.match(r"(\w+)\s+\([^)]+\)\s+(\w+)", line)
+                if elem_match:
+                    model_name = elem_match.group(2)
+                    if model_name not in models_used:
+                        models_used.append(model_name)
             
             i += 1
         
@@ -692,7 +747,8 @@ class SpectreParser(BaseParser):
             name=name,
             ports=ports,
             parameters=parameters,
-            elements=elements
+            elements=elements,
+            models_used=models_used
         )
         subckt.metadata['start_line'] = start
         subckt.metadata['end_line'] = i + 1
@@ -762,10 +818,9 @@ class SpectreParser(BaseParser):
                 while params_str.endswith("+") and i + 1 < len(lines):
                     i += 1
                     params_str = params_str[:-1] + " " + lines[i].strip()
-                
-                # Parse param=value pairs
-                for match in re.finditer(r"(\w+)\s*=\s*([^\s]+)", params_str):
-                    parameters[match.group(1)] = match.group(2)
+
+                for pname, pval in parse_param_string(params_str).items():
+                    parameters[pname] = pval.strip().rstrip(",;")
             
             i += 1
         

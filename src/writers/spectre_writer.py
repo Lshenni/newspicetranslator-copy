@@ -202,12 +202,27 @@ class SpectreWriter(BaseWriter):
                     return str(value)
             return str(value)
         elif isinstance(value, str):
-            # Check if it's already a number
+            v = value.strip()
+            # If value is quoted (often HSPICE-style), strip the outer quotes so Spectre can treat it as an expression.
+            if (
+                len(v) >= 2
+                and v[0] == v[-1]
+                and v[0] in ("'", '"')
+            ):
+                v = v[1:-1].strip()
+            # If it's numeric, keep as-is
             try:
-                float(value)
-                return value
+                float(v)
+                return v
             except ValueError:
-                return f'"{value}"'
+                pass
+
+            # If it looks like an expression, keep unquoted.
+            if any(op in v for op in ("+", "-", "*", "/", "(", ")", "{", "}", "?", ":")):
+                return v
+
+            # Otherwise treat as a string literal.
+            return f'"{v}"'
         else:
             return str(value)
 

@@ -148,6 +148,39 @@ class TestHSPICEParser:
         assert params["length"] == pytest.approx(1.5e-8)
         assert params["width"] == pytest.approx(3.2e-7)
 
+        def test_parse_quoted_expression_with_multiplication_not_truncated(
+                self, tmp_path: Path
+        ) -> None:
+                """Ensure '*' used for multiplication isn't treated as an inline comment.
+
+                This is critical for HSPICE model decks that use quoted expressions like:
+                    rb='105.0*(1+drb_foo)'
+                """
+                content = """
+.model npn50a25 npn rb='105.0*(1+drb_npn50a25)' cje='2.2875E-14*(1+dcje_npn50a25)'
+"""
+                test_file = tmp_path / "quoted_mul.sp"
+                test_file.write_text(content)
+
+                parser = HSPICEParser(test_file)
+                models = parser.parse_to_ir()
+                assert len(models) == 1
+
+                params = models[0].base_parameters
+                assert "rb" in params
+                assert "cje" in params
+
+                rb = str(params["rb"])
+                cje = str(params["cje"])
+
+                assert "drb_npn50a25" in rb
+                assert "*" in rb
+                assert rb.startswith("'") and rb.endswith("'")
+
+                assert "dcje_npn50a25" in cje
+                assert "*" in cje
+                assert cje.startswith("'") and cje.endswith("'")
+
     def test_device_type_classification(self, tmp_path: Path) -> None:
         """Test device type classification."""
         content = """
