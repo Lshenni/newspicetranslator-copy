@@ -13,7 +13,7 @@ import logging
 import re
 
 from .base_writer import BaseWriter
-from ..ir.model_ir import ModelIR, Corner, Temperature
+from ..ir.model_ir import ModelIR, Corner, Temperature, DeviceType
 from ..lowering.capacitor_lowering import CapacitorLowering
 from ..lowering.backend_capabilities import BackendCapabilities
 
@@ -80,10 +80,28 @@ class NgspiceWriter(BaseWriter):
         # Many HSPICE model decks use symbolic deltas (e.g. dbf_*) inside expressions.
         # Without defaults, ngspice will often error out on 'unknown parameter'.
         expr_symbols = self._collect_expression_symbols(models)
+        model_names_lower = {m.name.lower() for m in models if getattr(m, "name", None)}
+        expr_symbols = {
+            s
+            for s in expr_symbols
+            if s.lower() not in model_names_lower
+        }
         if expr_symbols:
             content_lines.append("* Auto-generated parameter defaults (override as needed)")
+            # Heuristic defaults: most symbolic *multipliers* should default to 1,
+            # while true deltas/offsets default to 0. This keeps models from
+            # degenerating into all-zeros (which can cause OP convergence issues)
+            # while still preventing undefined-parameter errors.
+            default_one = {
+                # Common Spectre/HSPICE scaling factors in this corpus
+                'cbeta', 'cis', 'cvaf', 'ctf', 'ccj', 'ccjd', 'crsd', 'pis_mc', 'pisd_mc', 'geo_fac',
+            }
+            suffix_one_re = re.compile(r"_(?:npn|pnp|nmos|pmos)$", flags=re.IGNORECASE)
             for sym in sorted(expr_symbols):
-                content_lines.append(f".param {sym}=0")
+                if suffix_one_re.search(sym) or sym.lower() in default_one:
+                    content_lines.append(f".param {sym}=1")
+                else:
+                    content_lines.append(f".param {sym}=0")
             content_lines.append("")
 
         # Write models without section (base models)
@@ -208,6 +226,9 @@ class NgspiceWriter(BaseWriter):
         """
 
         ident_re = re.compile(r"\b[A-Za-z_][A-Za-z0-9_]*\b")
+        # Consider a value an "expression" only if it was explicitly marked
+        # (brace/quoted) or contains operators/whitespace/parentheses.
+        expr_hint_re = re.compile(r"[+\-*/^(),]|\s")
         builtins = {
             # Common math functions
             "sqrt",
@@ -226,15 +247,108 @@ class NgspiceWriter(BaseWriter):
             "atan",
         }
 
+        # Common non-numeric enums/tokens that should NOT be treated as
+        # parameter references.
+        excluded_idents = {
+            "npn",
+            "pnp",
+            "nmos",
+            "pmos",
+            "n",
+            "p",
+            "yes",
+            "no",
+            "true",
+            "false",
+            "on",
+            "off",
+        }
+
+        assign_re = re.compile(r"\b([A-Za-z_][A-Za-z0-9_]*)\s*=\s*")
+
+        def split_assignments(text: str) -> List[tuple[str, str]]:
+            matches = list(assign_re.finditer(text))
+            if not matches:
+                return []
+            out: List[tuple[str, str]] = []
+            for i, m in enumerate(matches):
+                name = m.group(1)
+                start = m.end()
+                end = matches[i + 1].start() if i + 1 < len(matches) else len(text)
+                value = text[start:end].strip()
+                out.append((name, value))
+            return out
+
+        def iter_param_values(m: ModelIR) -> List[str]:
+            vals: List[str] = []
+
+            def add_from_dict(d: Optional[Dict[str, Any]]) -> None:
+                if not d:
+                    return
+                for v in d.values():
+                    if isinstance(v, str):
+                        vals.append(v)
+
+            add_from_dict(getattr(m, "base_parameters", None))
+
+            # Include corner/section variations, if present
+            if m.has_variations():
+                for cond in m.get_conditions():
+                    var = m.get_variation(cond)
+                    if var is not None:
+                        add_from_dict(getattr(var, "parameters", None))
+
+            # Include any extracted Spectre section parameters
+            if hasattr(m, "metadata"):
+                sp = m.metadata.get("section_params")
+                if isinstance(sp, dict):
+                    add_from_dict(sp)
+
+            # Include subcircuit parameter defaults
+            for subckt in getattr(m, "subcircuits", []) or []:
+                add_from_dict(getattr(subckt, "parameters", None))
+
+                # Also include values referenced inside subcircuit bodies.
+                # Many Spectre inline subckts carry expressions on continuation
+                # lines that otherwise become raw element strings in IR.
+                for el in getattr(subckt, "elements", []) or []:
+                    if not isinstance(el, str):
+                        continue
+                    txt = el.strip().rstrip('\\')
+                    if not txt or '=' not in txt:
+                        continue
+                    # Strip leading '+' continuation for parsing only.
+                    if txt.startswith('+'):
+                        txt = txt.lstrip('+').strip()
+                    for _, pval in split_assignments(txt):
+                        if pval:
+                            vals.append(pval)
+
+            return vals
+
         symbols: set[str] = set()
         for model in models:
-            params = model.base_parameters or {}
-            for _k, v in params.items():
+            for v in iter_param_values(model):
                 if not isinstance(v, str):
                     continue
 
                 s = v.strip()
                 if not s:
+                    continue
+
+                # Bare identifiers (e.g. dagetime_r) are parameter references in ngspice.
+                # Include them unless they look like enumerated tokens.
+                if re.fullmatch(r"[A-Za-z_][A-Za-z0-9_]*", s):
+                    low = s.lower()
+                    if low not in builtins and low not in excluded_idents and s not in {"e", "E"}:
+                        symbols.add(s)
+                    continue
+
+                looks_braced = len(s) >= 2 and s[0] == "{" and s[-1] == "}"
+                looks_quoted = len(s) >= 2 and s[0] == s[-1] and s[0] in ("'", '"')
+                looks_expression = looks_braced or looks_quoted or bool(expr_hint_re.search(s))
+                if not looks_expression:
+                    # Plain tokens like 'npn'/'pnp' or 'yes' are not expressions.
                     continue
 
                 # Strip outer quotes
@@ -255,6 +369,8 @@ class NgspiceWriter(BaseWriter):
                 for ident in ident_re.findall(s):
                     low = ident.lower()
                     if low in builtins:
+                        continue
+                    if low in excluded_idents:
                         continue
                     if ident in {"e", "E"}:
                         continue
@@ -317,6 +433,13 @@ class NgspiceWriter(BaseWriter):
             # Use base parameters
             params = model.base_parameters
 
+        # ngspice model cards generally do not support string-valued parameters.
+        # Some upstream sources use enumerated tokens like `type=npn/pnp` which
+        # ngspice interprets as an undefined parameter reference. The model type
+        # itself already encodes NPN vs PNP, so drop these.
+        if model.device_type in (DeviceType.NPN, DeviceType.PNP, DeviceType.NMOS, DeviceType.PMOS) and params:
+            params = {k: v for k, v in params.items() if k.lower() not in {"type"}}
+
         # Format device type for ngspice
         device_type = self._get_ngspice_type(model)
 
@@ -363,9 +486,9 @@ class NgspiceWriter(BaseWriter):
             "PMOS": "pmos",
             "NPN": "npn",
             "PNP": "pnp",
-            "DIODE": "diode",
+            "DIODE": "D",
             "RESISTOR": "R",
-            "CAPACITOR": "capacitor",
+            "CAPACITOR": "C",
         }
 
         device_str = str(model.device_type).split(".")[-1]
@@ -403,9 +526,45 @@ class NgspiceWriter(BaseWriter):
         elif isinstance(value, str):
             v = value.strip()
 
-            # If already brace-wrapped expression, keep it.
-            if len(v) >= 2 and v[0] == "{" and v[-1] == "}":
+            # Normalize common boolean/enumerated tokens used in some Spectre decks.
+            # ngspice does not treat 'yes'/'no' as literals inside expressions.
+            low_v = v.lower()
+            if low_v in {"yes", "true", "on"}:
+                return "1"
+            if low_v in {"no", "false", "off"}:
+                return "0"
+
+            def strip_unmatched_trailing_parens(expr: str) -> str:
+                s = expr.strip()
+                # Only strip trailing ')' if there are more ')' than '(' overall.
+                # This fixes common parse artifacts like '... )' without harming
+                # properly balanced expressions like 'foo*(bar)'.
+                while s.endswith(')') and s.count(')') > s.count('('):
+                    s = s[:-1].rstrip()
+                return s
+
+            # Guard against a common parsing artifact where the final ')'
+            # from a .model card is accidentally captured as part of a numeric
+            # parameter value (e.g., "version=106.1 )").
+            if re.fullmatch(r"[+-]?(?:\d+(?:\.\d*)?|\.\d+)(?:[eE][+-]?\d+)?\s*\)", v):
+                v = v.rsplit(")", 1)[0].strip()
+
+            # SPICE numeric literals can include scale suffixes (e.g., 1u, 10k).
+            # Keep them as-is.
+            if re.fullmatch(r"[+-]?(?:\d+(?:\.\d*)?|\.\d+)(?:[eE][+-]?\d+)?[A-Za-z]+", v):
                 return v
+
+            # If already brace-wrapped expression, keep it but sanitize common
+            # unmatched trailing parens inside the braces.
+            if len(v) >= 2 and v[0] == "{" and v[-1] == "}":
+                inner_raw = v[1:-1].strip()
+                inner_low = inner_raw.lower()
+                if inner_low in {"yes", "true", "on"}:
+                    return "1"
+                if inner_low in {"no", "false", "off"}:
+                    return "0"
+                inner = strip_unmatched_trailing_parens(inner_raw)
+                return "{" + inner + "}"
 
             # Convert quoted expressions (common in HSPICE) into ngspice brace expressions.
             # Example:  '105.0*(1+drb)'  -> {105.0*(1+drb)}
@@ -415,6 +574,7 @@ class NgspiceWriter(BaseWriter):
                 and v[0] in ("'", '"')
             ):
                 inner = v[1:-1].strip()
+                inner = strip_unmatched_trailing_parens(inner)
                 return "{" + inner + "}"
 
             # If it's numeric, keep as-is.
@@ -424,7 +584,13 @@ class NgspiceWriter(BaseWriter):
             except ValueError:
                 pass
 
-            # Otherwise, treat as an expression / parameter reference.
+            # Bare identifiers are treated as parameter references in ngspice.
+            # Use braces so substitution/expressions work consistently.
+            if re.fullmatch(r"[A-Za-z_][A-Za-z0-9_]*", v):
+                return "{" + v + "}"
+
+            # Treat anything else non-numeric as an expression.
+            v = strip_unmatched_trailing_parens(v)
             return "{" + v + "}"
         else:
             return str(value)
@@ -515,6 +681,17 @@ class NgspiceWriter(BaseWriter):
                         pval = parts[1].strip().rstrip('\\')
                         if pname and not pname[0].isdigit():
                             default_params[pname] = pval
+
+            # Join Spectre '+' continuations for parsing.
+            joined_elements: List[str] = []
+            for element in subckt.elements:
+                line = element.strip().rstrip('\\')
+                if not line:
+                    continue
+                if line.startswith('+') and joined_elements:
+                    joined_elements[-1] = joined_elements[-1].rstrip() + " " + line.lstrip('+').strip()
+                else:
+                    joined_elements.append(line)
             
             # Build subcircuit header with default parameters
             ports_str = " ".join(subckt.ports)
@@ -541,30 +718,113 @@ class NgspiceWriter(BaseWriter):
             
             # Convert elements to proper ngspice syntax
             
-            instance_counter = {'R': 0, 'C': 0, 'M': 0, 'X': 0}
+            instance_counter = {'R': 0, 'C': 0, 'M': 0, 'X': 0, 'D': 0, 'Q': 0}
+
+            # Pre-scan for local Spectre model definitions to choose proper
+            # instance primitive letters when converting Spectre inline subckts.
+            model_kind_by_name: dict[str, str] = {}
+            for element in joined_elements:
+                raw_el = element.strip().rstrip('\\')
+                if not raw_el or not raw_el.lower().startswith('model '):
+                    continue
+                parts = raw_el.split(None, 3)
+                if len(parts) >= 3:
+                    model_name = parts[1]
+                    spectre_type = parts[2].lower()
+                    if spectre_type == 'bjt':
+                        model_kind_by_name[model_name] = 'Q'
+                    elif spectre_type == 'diode':
+                        model_kind_by_name[model_name] = 'D'
+                    elif spectre_type == 'capacitor':
+                        model_kind_by_name[model_name] = 'C'
+                    elif spectre_type in ('resistor', 'rdiff', 'res'):
+                        model_kind_by_name[model_name] = 'R'
+                    elif spectre_type in ('mos', 'nmos', 'pmos'):
+                        model_kind_by_name[model_name] = 'M'
             
-            for element in subckt.elements:
+            assign_re = re.compile(r"\b([A-Za-z_][A-Za-z0-9_]*)\s*=\s*")
+
+            def split_assignments(text: str) -> List[tuple[str, str]]:
+                matches = list(assign_re.finditer(text))
+                if not matches:
+                    return []
+                out: List[tuple[str, str]] = []
+                for i, m in enumerate(matches):
+                    name = m.group(1)
+                    start = m.end()
+                    end = matches[i + 1].start() if i + 1 < len(matches) else len(text)
+                    value = text[start:end].strip()
+                    out.append((name, value))
+                return out
+
+            for element in joined_elements:
                 element = element.strip().rstrip('\\')
+
+                # Strip Spectre-style continuation markers for parsing.
+                raw = element
                 
                 # Skip empty lines
-                if not element:
+                if not raw:
                     continue
                 
                 # Check if this is a model definition
-                if element.startswith('model '):
-                    # Format: model <name> <type> <params>
-                    parts = element.split(None, 2)
-                    if len(parts) >= 2:
+                if raw.lower().startswith('model '):
+                    # Spectre: model <name> <type> <params>
+                    parts = raw.split(None, 3)
+                    if len(parts) >= 3:
                         model_name = parts[1]
-                        rest = parts[2] if len(parts) > 2 else ""
-                        lines.append(f".model {model_name} R ({rest})")
+                        spectre_type = parts[2]
+                        params = parts[3] if len(parts) > 3 else ""
+
+                        st = spectre_type.lower()
+                        params_clean = " ".join(params.split())
+
+                        def format_model_params(text: str) -> str:
+                            assigns = split_assignments(text)
+                            if not assigns:
+                                return ""
+                            toks: List[str] = []
+                            for k, v in assigns:
+                                toks.append(f"{k}={self._format_value(v)}")
+                            return " ".join(toks)
+
+                        if st == 'bjt':
+                            m = re.search(r"\btype\s*=\s*(npn|pnp)\b", params_clean, flags=re.IGNORECASE)
+                            bjt_type = (m.group(1).lower() if m else 'npn')
+                            params_clean = re.sub(
+                                r"\btype\s*=\s*(npn|pnp)\b", "", params_clean, flags=re.IGNORECASE
+                            )
+                            params_clean = " ".join(params_clean.split())
+                            formatted = format_model_params(params_clean)
+                            if formatted:
+                                lines.append(f".model {model_name} {bjt_type} ({formatted})")
+                            else:
+                                lines.append(f".model {model_name} {bjt_type}")
+                        elif st == 'diode':
+                            # ngspice diode model card type is typically 'D'
+                            formatted = format_model_params(params_clean)
+                            if formatted:
+                                lines.append(f".model {model_name} D ({formatted})")
+                            else:
+                                lines.append(f".model {model_name} D")
+                        elif st == 'capacitor':
+                            # ngspice capacitor model card type is 'C'
+                            formatted = format_model_params(params_clean)
+                            if formatted:
+                                lines.append(f".model {model_name} C ({formatted})")
+                            else:
+                                lines.append(f".model {model_name} C")
+                        else:
+                            # Best-effort fallback: keep original tokens inside parens.
+                            rest = (spectre_type + " " + params).strip()
+                            lines.append(f".model {model_name} R ({rest})")
                     continue
                 
                 # Check if this is a device instance line
                 # Pattern: <instance_name> <space> (nodes...) <model_name> <params>
                 # Must have space before opening paren and paren must be early in line
-                words = element.split()
-                paren_start = element.find('(')
+                words = raw.split()
+                paren_start = raw.find('(')
                 
                 # Device instance has form: "name (nodes) model params"
                 # Parameter has form: "name = expression (with parens)"
@@ -572,7 +832,7 @@ class NgspiceWriter(BaseWriter):
                 is_device_instance = False
                 if len(words) >= 2 and paren_start > 0:
                     # Check if '(' appears before any '=' sign
-                    equals_pos = element.find('=')
+                    equals_pos = raw.find('=')
                     if equals_pos == -1 or paren_start < equals_pos:
                         # This is likely a device instance
                         is_device_instance = True
@@ -580,28 +840,56 @@ class NgspiceWriter(BaseWriter):
                 if is_device_instance:
                     # This looks like: gpdk090_ressndiff (PLUS MINUS B) ressndiff l=l w=w_mc
                     # Extract: instance_name (nodes) model params
-                    paren_end = element.find(')')
+                    paren_end = raw.find(')')
                     
                     if paren_start > 0 and paren_end > paren_start:
                         # Get nodes between parentheses
-                        nodes_str = element[paren_start+1:paren_end].strip()
+                        nodes_str = raw[paren_start+1:paren_end].strip()
                         # Get model and params after closing paren
-                        after_paren = element[paren_end+1:].strip()
+                        after_paren = raw[paren_end+1:].strip()
                         model_and_params = after_paren.split(None, 1)
                         
                         if model_and_params:
                             model_name = model_and_params[0]
                             params = model_and_params[1] if len(model_and_params) > 1 else ""
+
+                            model_name_low = model_name.lower()
+
+                            # Spectre primitive instances use a type token (e.g. 'resistor')
+                            # rather than a separate model name. Convert those to ngspice
+                            # primitive syntax where the value is the 4th field.
+                            if model_name_low in ('resistor', 'res', 'r'):
+                                assigns = {k.lower(): v for k, v in split_assignments(params)}
+                                r_expr = assigns.get('r')
+                                if not r_expr:
+                                    # Fallback: if no explicit r=, pick a safe value.
+                                    r_expr = '1'
+                                instance_counter['R'] += 1
+                                inst_name = f"R{instance_counter['R']}"
+                                lines.append(f"{inst_name} {nodes_str} {self._format_value(r_expr)}")
+                                continue
+
+                            if model_name_low in ('capacitor', 'cap', 'c'):
+                                assigns = {k.lower(): v for k, v in split_assignments(params)}
+                                c_expr = assigns.get('c')
+                                if not c_expr:
+                                    c_expr = '1p'
+                                instance_counter['C'] += 1
+                                inst_name = f"C{instance_counter['C']}"
+                                lines.append(f"{inst_name} {nodes_str} {self._format_value(c_expr)}")
+                                continue
                             
                             # Determine device type from model name
-                            if 'res' in model_name.lower() or 'rdiff' in model_name.lower():
-                                dev_type = 'R'
-                            elif 'cap' in model_name.lower():
-                                dev_type = 'C'
-                            elif 'mos' in model_name.lower():
-                                dev_type = 'M'
-                            else:
-                                dev_type = 'X'
+                            dev_type = model_kind_by_name.get(model_name)
+                            if not dev_type:
+                                if 'res' in model_name.lower() or 'rdiff' in model_name.lower():
+                                    dev_type = 'R'
+                                elif 'cap' in model_name.lower():
+                                    dev_type = 'C'
+                                elif 'mos' in model_name.lower():
+                                    dev_type = 'M'
+                                else:
+                                    dev_type = 'X'
                             
                             # Create instance name
                             instance_counter[dev_type] += 1
@@ -626,32 +914,25 @@ class NgspiceWriter(BaseWriter):
                         continue
                 
                 # Check if this is a parameter definition
-                if '=' in element:
-                    parts = element.split('=', 1)
-                    if len(parts) == 2:
-                        pname = parts[0].strip()
-                        pval = parts[1].strip()
-                        
-                        # Skip if this is an input parameter (already in .subckt header)
-                        if pname in input_params:
-                            continue
-                        
-                        # Skip device instance lines (format: X1 nodes model params)
-                        if pname and (pname[0].isalpha() and len(pname) > 1 and pname[1].isdigit()):
-                            continue
-                        
-                        # This is a calculated parameter - use .param with {}
-                        if pname and not pname[0].isdigit():
-                            # Wrap expressions in {}
-                            if any(op in pval for op in ['*', '/', '+', '-', 'sqrt', '(', 'pres_mc', 'triseRes']):
-                                lines.append(f"+ .param {pname} = {{{pval}}}")
-                            else:
-                                lines.append(f"+ .param {pname} = {{{pval}}}")
+                if '=' in raw:
+                    assigns = split_assignments(raw)
+                    if assigns:
+                        for pname, pval in assigns:
+                            # Skip if this is an input parameter (already in .subckt header)
+                            if pname in input_params:
+                                continue
+
+                            # Skip device instance lines (format: X1 nodes model params)
+                            if pname and (pname[0].isalpha() and len(pname) > 1 and pname[1].isdigit()):
+                                continue
+
+                            if pname and not pname[0].isdigit():
+                                lines.append(f".param {pname}={self._format_value(pval)}")
                         continue
                 
                 # Handle any other elements
-                if element and not element.startswith('.'):
-                    lines.append(f"+ {element}")
+                if raw and not raw.startswith('.'):
+                    lines.append(raw)
         
         # End subcircuit
         lines.append(f".ends {subckt.name}")

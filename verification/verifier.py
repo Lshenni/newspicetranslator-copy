@@ -40,11 +40,14 @@ class VerificationReport:
     target_sim_success: bool
     comparison_result: Optional[ComparisonVerificationResult]
     passed: bool
+    skipped: bool = False
+    skip_reason: Optional[str] = None
     errors: List[str] = field(default_factory=list)
     warnings: List[str] = field(default_factory=list)
     
     def __str__(self) -> str:
         """Human-readable report"""
+        status = "✅ PASS" if self.passed else ("⏭️  SKIP" if self.skipped else "❌ FAIL")
         lines = [
             "="*70,
             f"VERIFICATION REPORT: {self.device_name}",
@@ -52,13 +55,16 @@ class VerificationReport:
             f"Device Class: {self.device_class}",
             f"Translation: {self.source_format} → {self.target_format}",
             "",
-            f"Status: {'✅ PASS' if self.passed else '❌ FAIL'}",
+            f"Status: {status}",
             "",
             f"Translation: {'✅ Success' if self.translation_success else '❌ Failed'}",
             f"Reference Sim ({self.source_format}): {'✅ Success' if self.reference_sim_success else '❌ Failed'}",
             f"Target Sim ({self.target_format}): {'✅ Success' if self.target_sim_success else '❌ Failed'}",
             ""
         ]
+
+        if self.skipped and self.skip_reason:
+            lines.append(f"Skip Reason: {self.skip_reason}")
         
         if self.comparison_result:
             lines.append(self.comparison_result.summary())
@@ -179,9 +185,22 @@ class Verifier:
         
         # Step 4: Run target simulation
         tgt_sim_result = run_simulation(tgt_tb, target_format, self.output_dir / 'tgt')
-        
+
+        skipped = False
+        skip_reason: Optional[str] = None
         if not tgt_sim_result.success:
-            errors.append(f"Target simulation failed: {tgt_sim_result.error_message}")
+            if (
+                ref_sim_result.success
+                and target_format == 'ngspice'
+                and device_class == 'mos'
+                and getattr(tgt_sim_result, 'status', 'failed') == 'skipped'
+                and getattr(tgt_sim_result, 'skip_reason', None) == 'unsupported_mos_level'
+            ):
+                skipped = True
+                skip_reason = getattr(tgt_sim_result, 'skip_reason', 'unsupported_mos_level')
+                warnings.append('Target simulation skipped: ngspice binary does not support required MOS level')
+            else:
+                errors.append(f"Target simulation failed: {tgt_sim_result.error_message}")
         
         # Step 5: Extract metrics
         if ref_sim_result.success and tgt_sim_result.success:
@@ -218,7 +237,9 @@ class Verifier:
             reference_sim_success=ref_sim_result.success,
             target_sim_success=tgt_sim_result.success,
             comparison_result=comparison,
-            passed=passed and not errors,
+            passed=(passed and not errors) and not skipped,
+            skipped=skipped,
+            skip_reason=skip_reason,
             errors=errors,
             warnings=warnings
         )

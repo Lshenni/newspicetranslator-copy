@@ -60,6 +60,19 @@ class TestbenchGenerator:
         generator = self.generators.get(config.device_class)
         if not generator:
             raise ValueError(f"Unsupported device class: {config.device_class}")
+
+        # Ensure defaults are available for placeholder substitution.
+        # Generators use defaults internally, but templates still contain placeholders.
+        if config.device_class == DeviceClass.CAPACITOR:
+            if config.area is None:
+                config.area = 10e-6
+            if config.perim is None:
+                config.perim = 20e-6
+        elif config.device_class == DeviceClass.MOS:
+            if config.width is None:
+                config.width = 1e-6
+            if config.length is None:
+                config.length = 90e-9
         
         # Generate template and substitute placeholders
         template = generator(config)
@@ -71,14 +84,14 @@ class TestbenchGenerator:
         result = result.replace('{model_name}', config.device_name)
         
         # Substitute area/perim/width/length if present
-        if config.area:
+        if config.area is not None:
             result = result.replace('{area}', str(config.area))
-        if config.perim:
+        if config.perim is not None:
             result = result.replace('{perim}', str(config.perim))
-        if config.width:
+        if config.width is not None:
             result = result.replace('{W}', str(config.width))
             result = result.replace('{width}', str(config.width))
-        if config.length:
+        if config.length is not None:
             result = result.replace('{L}', str(config.length))
             result = result.replace('{length}', str(config.length))
         if config.monte_carlo_runs:
@@ -403,12 +416,11 @@ save Q1:ic Q1:ib
     def _generate_diode_test(self, config: TestbenchConfig) -> str:
         """Generate I-V curve for diode"""
         if config.format == 'ngspice':
-            # Use X prefix for subcircuit instantiation
             return """* Diode I-V Verification Test
 .include {{lib_file}}
 
 Vd d 0 DC 0.7
-X1 d 0 {config.device_name}
+D1 d 0 {config.device_name}
 
 .control
 dc Vd 0 1.0 0.02
@@ -425,7 +437,7 @@ quit
 .include {{lib_file}}
 
 Vd d 0 DC 0.7
-X1 d 0 {config.device_name}
+D1 d 0 {config.device_name}
 
 .dc Vd 0 1.0 0.02
 .measure dc Id_07 find i(Vd) at=0.7
@@ -455,7 +467,7 @@ save D1:id
 .include {{lib_file}}
 
 Vtest v 0 DC 1.0
-XR1 v 0 {config.device_name} w=1u l=10u
+R1 v 0 1k {config.device_name} w=1u l=10u
 
 .control
 op
@@ -471,7 +483,7 @@ quit
 .include {{lib_file}}
 
 Vtest v 0 DC 1.0
-XR1 v 0 {config.device_name} w=1u l=10u
+R1 v 0 1k {config.device_name} w=1u l=10u
 
 .op
 .measure dc R_eff param='v(v)/i(Vtest)'

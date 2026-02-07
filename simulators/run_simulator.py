@@ -22,6 +22,8 @@ class SimulationResult:
     returncode: int
     simulator: str
     error_message: Optional[str] = None
+    status: str = "failed"  # 'passed' | 'failed' | 'skipped'
+    skip_reason: Optional[str] = None
 
 
 class SimulatorError(Exception):
@@ -51,7 +53,7 @@ def run_ngspice(netlist: str, output_dir: Optional[Path] = None) -> SimulationRe
     
     try:
         result = subprocess.run(
-            ['ngspice', '-b', str(netlist_file)],
+            ['ngspice', '-b', netlist_file.name],
             capture_output=True,
             text=True,
             timeout=60,
@@ -63,7 +65,19 @@ def run_ngspice(netlist: str, output_dir: Optional[Path] = None) -> SimulationRe
         output_file = output_files[0] if output_files else None
         
         success = result.returncode == 0
-        error_msg = None if success else f"ngspice failed: {result.stderr[:200]}"
+
+        combined = (result.stdout or "") + "\n" + (result.stderr or "")
+        combined_lower = combined.lower()
+
+        status = "passed" if success else "failed"
+        skip_reason = None
+
+        # Known ngspice limitation (build-dependent): unsupported MOS model levels.
+        if (not success) and ("only mos device levels" in combined_lower) and ("supported in this binary" in combined_lower):
+            status = "skipped"
+            skip_reason = "unsupported_mos_level"
+
+        error_msg = None if success else f"ngspice failed: {(result.stderr or '')[:200]}"
         
         return SimulationResult(
             success=success,
@@ -72,7 +86,9 @@ def run_ngspice(netlist: str, output_dir: Optional[Path] = None) -> SimulationRe
             stderr=result.stderr,
             returncode=result.returncode,
             simulator='ngspice',
-            error_message=error_msg
+            error_message=error_msg,
+            status=status,
+            skip_reason=skip_reason,
         )
     
     except subprocess.TimeoutExpired:
@@ -83,7 +99,8 @@ def run_ngspice(netlist: str, output_dir: Optional[Path] = None) -> SimulationRe
             stderr='Simulation timeout',
             returncode=-1,
             simulator='ngspice',
-            error_message='Simulation timeout after 60s'
+            error_message='Simulation timeout after 60s',
+            status='failed',
         )
     except FileNotFoundError:
         return SimulationResult(
@@ -93,7 +110,8 @@ def run_ngspice(netlist: str, output_dir: Optional[Path] = None) -> SimulationRe
             stderr='ngspice not found',
             returncode=-1,
             simulator='ngspice',
-            error_message='ngspice executable not found in PATH'
+            error_message='ngspice executable not found in PATH',
+            status='failed',
         )
 
 
@@ -140,7 +158,8 @@ def run_hspice(netlist: str, output_dir: Optional[Path] = None) -> SimulationRes
             stderr=result.stderr,
             returncode=result.returncode,
             simulator='hspice',
-            error_message=error_msg
+            error_message=error_msg,
+            status='passed' if success else 'failed',
         )
     
     except subprocess.TimeoutExpired:
@@ -151,7 +170,8 @@ def run_hspice(netlist: str, output_dir: Optional[Path] = None) -> SimulationRes
             stderr='Simulation timeout',
             returncode=-1,
             simulator='hspice',
-            error_message='Simulation timeout after 60s'
+            error_message='Simulation timeout after 60s',
+            status='failed',
         )
     except FileNotFoundError:
         return SimulationResult(
@@ -161,7 +181,8 @@ def run_hspice(netlist: str, output_dir: Optional[Path] = None) -> SimulationRes
             stderr='hspice not found',
             returncode=-1,
             simulator='hspice',
-            error_message='hspice executable not found in PATH'
+            error_message='hspice executable not found in PATH',
+            status='failed',
         )
 
 
@@ -208,7 +229,8 @@ def run_spectre(netlist: str, output_dir: Optional[Path] = None) -> SimulationRe
             stderr=result.stderr,
             returncode=result.returncode,
             simulator='spectre',
-            error_message=error_msg
+            error_message=error_msg,
+            status='passed' if success else 'failed',
         )
     
     except subprocess.TimeoutExpired:
@@ -219,7 +241,8 @@ def run_spectre(netlist: str, output_dir: Optional[Path] = None) -> SimulationRe
             stderr='Simulation timeout',
             returncode=-1,
             simulator='spectre',
-            error_message='Simulation timeout after 60s'
+            error_message='Simulation timeout after 60s',
+            status='failed',
         )
     except FileNotFoundError:
         return SimulationResult(
@@ -229,7 +252,8 @@ def run_spectre(netlist: str, output_dir: Optional[Path] = None) -> SimulationRe
             stderr='spectre not found',
             returncode=-1,
             simulator='spectre',
-            error_message='spectre executable not found in PATH'
+            error_message='spectre executable not found in PATH',
+            status='failed',
         )
 
 

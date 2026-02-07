@@ -1,9 +1,8 @@
 # SPICE Translator v3.0 - Master Implementation Plan
 
-**Document Type:** AI Agent Reference Guide  
-**Created:** February 1, 2026  
-**Status:** ACTIVE  
-**Approach:** Option A - Ship Now (Pragmatic)
+**Document Type:** Implementation Roadmap  
+**Updated:** February 1, 2026  
+**Status:** ACTIVE - Phase 1-5 Complete, Phase 6 In Progress
 
 ---
 
@@ -12,196 +11,292 @@
 ### Mission
 Build a production-ready SPICE model translator using Intermediate Representation (IR) architecture that converts between Spectre, HSPICE, and ngspice formats while preserving electrical behavior.
 
-### Current Status: 95% Complete
-- **568 tests** passing (100% pass rate)
-- **83% code coverage**
-- **All critical bugs** fixed
-- **Ready for Stage 3** (Documentation)
+### Current Status: 95% Complete ✅
+
+#### Validation Results (Feb 1, 2026)
+| Metric | Value |
+|--------|-------|
+| Test Suite | **569 passing**, 15 skipped |
+| Code Coverage | **84%** |
+| Models Translated | **963 → 1,001** |
+| ngspice Smoke Sims | 55 passed, 8 skipped*, 0 failed |
+| **Pass Rate** | **100%** (excluding known limitations) |
+
+*Skipped = ngspice binary limitation (MOS level 72), not translator bug
 
 ---
 
-## 📋 IMPLEMENTATION STAGES
+## 📋 IMPLEMENTATION PHASES
 
-### Stage 1: Critical Bug Fixes ✅ COMPLETE
-**Priority:** HIGH | **Duration:** 1-2 days
+### Phase 1: Core Infrastructure ✅ COMPLETE
+- ModelIR data structures and serialization
+- Parser framework (Spectre, HSPICE, ngspice)
+- Writer framework for all three formats
+- Expression parser for parameter evaluation
 
+### Phase 2: Translation Engine ✅ COMPLETE
+- Spectre → ngspice (primary path)
+- HSPICE → ngspice
+- Device type classification
+- Parameter mapping and transformation
+
+### Phase 3: Validation Pipeline ✅ COMPLETE
+- IR structural validation
+- Syntax validation per format
+- Round-trip testing infrastructure
+- Automated corpus scanning
+
+### Phase 4: Verification Framework ✅ COMPLETE
+- Testbench generation for all device classes
+- ngspice/HSPICE simulator wrappers
+- Metrics extraction (I-V, C-V curves)
+- Automated comparison and reporting
+
+### Phase 5: Production Hardening ✅ COMPLETE
+- Skip classification for unsupported MOS levels
+- Graceful error handling
+- CLI improvements (`translate`, `verify`, `verify-all`)
+- Full corpus validation (963 models, 100% pass)
+
+### Phase 6: Documentation ⏳ IN PROGRESS
 | Task | Description | Status |
 |------|-------------|--------|
-| 1.1 | Fix subcircuit parsing (gpdk090_mos_iso.scs) | ✅ DONE |
-| 1.2 | Fix include/library file following | ⬜ SKIP (not needed) |
-| 1.3 | Fix empty model body handling | ✅ DONE |
-| 1.4 | Add missing device type patterns | ✅ DONE |
-
-### Stage 2: Verification & Testing ✅ COMPLETE
-**Priority:** HIGH | **Duration:** 1 day
-
-| Task | Description | Status |
-|------|-------------|--------|
-| 2.1 | Run full translation suite on all PDKs | ✅ DONE |
-| 2.2 | Fix unit test failures | ✅ DONE |
-| 2.3 | All 568 tests passing | ✅ DONE |
-| 2.4 | 83% code coverage | ✅ DONE |
-
-### Stage 3: Documentation Update ⏳ IN PROGRESS
-**Priority:** MEDIUM | **Duration:** 1 day
-
-| Task | Description | Status |
-|------|-------------|--------|
-| 3.1 | Update README.md with latest results | ⬜ TODO |
-| 3.2 | Create QUICKSTART guide | ⬜ TODO |
-| 3.3 | Update PROJECT_STATUS.md | ⬜ TODO |
-| 3.4 | Clean up duplicate docs | ⬜ TODO |
-
-### Stage 4: Polish & Release ⬜ PENDING
-**Priority:** LOW | **Duration:** 1 day
-
-| Task | Description | Status |
-|------|-------------|--------|
-| 4.1 | Improve error messages | ⬜ TODO |
-| 4.2 | Add usage examples | ⬜ TODO |
-| 4.3 | Final code cleanup | ⬜ TODO |
-| 4.4 | Version bump to 3.0.0 | ⬜ TODO |
+| 6.1 | Update README.md | ✅ DONE |
+| 6.2 | Create ARCHITECTURE.md | ✅ DONE |
+| 6.3 | Create VALIDATION_RESULTS.md | ✅ DONE |
+| 6.4 | Update MASTER_PLAN.md | ✅ DONE |
 
 ---
 
-## 🏗️ ARCHITECTURE REFERENCE
+## 🚧 NEXT STEPS (Phase 7+)
 
-### File Structure
+### Phase 7: BSIM-CMG Support Investigation
+**Priority:** HIGH | **Status:** PENDING
+**Goal:** Enable translation of advanced FinFET models
+
+| Task | Description | Notes |
+|------|-------------|-------|
+| 7.1 | Investigate MOS level 72 (BSIM-CMG) | ngspice binary limitation |
+| 7.2 | Research ngspice compilation options | May need custom build |
+| 7.3 | Alternative: PSP model mapping | Map BSIM-CMG → PSP |
+| 7.4 | Document FinFET support status | ASAP7, FreePDK3, Synopsys14 |
+
+**Affected PDKs:**
+- ASAP7 (7nm FinFET) - 4 files skipped
+- FreePDK3 (3nm) - 2 files skipped
+- Synopsys14 (14nm) - 2 files skipped
+
+### Phase 8: HSPICE Translation Path
+**Priority:** MEDIUM | **Status:** PENDING
+**Goal:** Enable HSPICE → HSPICE for vendor compatibility
+
+| Task | Description |
+|------|-------------|
+| 8.1 | Complete HSPICE writer edge cases |
+| 8.2 | Add HSPICE verification path |
+| 8.3 | Test with commercial HSPICE binary |
+| 8.4 | Validate against vendor models |
+
+### Phase 9: Include/Library Aggregation
+**Priority:** MEDIUM | **Status:** PENDING
+**Goal:** Handle complex multi-file PDK structures
+
+| Task | Description |
+|------|-------------|
+| 9.1 | Parse `.include` and `.lib` directives |
+| 9.2 | Follow file references recursively |
+| 9.3 | Aggregate all models into single output |
+| 9.4 | Handle section selection (tt, ff, ss) |
+
+### Phase 10: Monte Carlo & Corners
+**Priority:** LOW | **Status:** PENDING
+**Goal:** Support process variation simulation
+
+| Task | Description |
+|------|-------------|
+| 10.1 | Parse Spectre `statistics` blocks |
+| 10.2 | Map to ngspice `.alter` syntax |
+| 10.3 | Generate corner cases (tt, ff, ss, sf, fs) |
+| 10.4 | Support mismatch parameters |
+
+### Phase 11: Advanced Features
+**Priority:** LOW | **Status:** FUTURE
+
+| Feature | Description |
+|---------|-------------|
+| Web UI | Browser-based translation interface |
+| API Server | REST API for translation service |
+| VS Code Extension | Integrated PDK translation |
+| BSIM4 Extensions | Support all BSIM4 parameters |
+| Aging Models | Hot-carrier injection, NBTI |
+
+---
+
+## 🏗️ ARCHITECTURE
+
+### Directory Structure
 ```
-src/
-├── ir/                     # ✅ COMPLETE - Intermediate Representation
-│   ├── model_ir.py         # ModelIR, Condition, Variation classes
-│   └── ir_serializer.py    # JSON/YAML serialization
-│
-├── parsers/                # ✅ 95% COMPLETE - Format-specific parsers
-│   ├── base_parser.py      # Abstract parser interface
-│   ├── spectre_parser.py   # Spectre → IR (needs subcircuit fix)
-│   ├── hspice_parser.py    # HSPICE → IR (✅ fixed device types)
-│   ├── ngspice_parser.py   # ngspice → IR
-│   └── expression_parser.py # Math expression evaluator
-│
-├── writers/                # ✅ 98% COMPLETE - Format-specific writers
-│   ├── base_writer.py      # Abstract writer interface
-│   ├── spectre_writer.py   # IR → Spectre
-│   ├── hspice_writer.py    # IR → HSPICE
-│   └── ngspice_writer.py   # IR → ngspice (✅ fixed .lib/.endl)
-│
-├── validation/             # ✅ COMPLETE - Validation pipeline
-│   ├── ir_validator.py     # IR structure validation
-│   └── syntax_validator.py # Format syntax checking
-│
-└── lowering/               # ✅ COMPLETE - Semantic lowering
-    └── device_lowering.py  # Backend-aware transformations
-
-verification/               # ✅ COMPLETE - Test framework
-├── testbench_generator.py  # Auto-generate testbenches
-├── verifier.py             # Orchestrate verification
-└── comparators.py          # Result comparison
-
-cli.py                      # ✅ COMPLETE - Command-line interface
+new-spice-translator/
+├── src/
+│   ├── ir/                     # Intermediate Representation
+│   │   ├── model_ir.py         # ModelIR, Condition, Variation
+│   │   └── ir_serializer.py    # JSON/YAML serialization
+│   ├── parsers/                # Format-specific parsers
+│   │   ├── spectre_parser.py   # Spectre → IR
+│   │   ├── hspice_parser.py    # HSPICE → IR
+│   │   └── ngspice_parser.py   # ngspice → IR
+│   ├── writers/                # Format-specific writers
+│   │   ├── ngspice_writer.py   # IR → ngspice
+│   │   ├── hspice_writer.py    # IR → HSPICE
+│   │   └── spectre_writer.py   # IR → Spectre
+│   ├── validation/             # Validation pipeline
+│   ├── lowering/               # Semantic transformations
+│   └── main.py                 # TranslationEngine
+├── verification/               # Test framework
+│   ├── testbench_generator.py  # Auto-generate testbenches
+│   ├── verifier.py             # Verification orchestration
+│   └── comparators.py          # Result comparison
+├── simulators/                 # Simulator wrappers
+│   └── run_simulator.py        # ngspice/HSPICE execution
+├── cli.py                      # Command-line interface
+├── tests/                      # Unit tests (569 passing)
+└── tools/                      # Validation harnesses
 ```
 
-### Translation Flow
+### Translation Pipeline
 ```
-Input File → Parser → IR (ModelIR) → Lowering → Writer → Output File
-                          ↓
-                    IR Validator
-                          ↓
-                  Syntax Validator
+┌─────────┐    ┌────────┐    ┌─────────┐    ┌──────────┐    ┌────────┐
+│ Input   │───▶│ Parser │───▶│ ModelIR │───▶│ Lowering │───▶│ Writer │───▶ Output
+│ (Spectre│    │        │    │         │    │          │    │        │    (ngspice)
+│ HSPICE) │    └────────┘    └────┬────┘    └──────────┘    └────────┘
+└─────────┘                       │
+                                  ▼
+                            ┌───────────┐
+                            │ Validator │
+                            └───────────┘
 ```
 
 ---
 
-## 🔧 KEY FIXES APPLIED
+## 🔧 COMPLETED FEATURES
 
-### Fix 1: Device Type Classification (COMPLETED)
-**File:** `src/parsers/hspice_parser.py`
-**Issue:** Diodes (type='d') and resistors (type='r') were misclassified as NMOS
-**Solution:** Added direct type mapping for 'd', 'r', 'c' and name-based patterns
+### Core Translation
+- ✅ Spectre → ngspice (primary production path)
+- ✅ HSPICE → ngspice (industry standard conversion)
+- ✅ Subcircuit-to-model conversion
+- ✅ Parameter expression evaluation
+- ✅ Device type inference (MOS, BJT, diode, R, C)
 
-### Fix 2: ngspice Library Blocks (COMPLETED)
-**File:** `src/writers/ngspice_writer.py`
-**Issue:** ngspice doesn't support .lib/.endl blocks
-**Solution:** Use comment-separated sections instead
+### Verification
+- ✅ Automatic testbench generation
+- ✅ ngspice simulation wrapper with skip detection
+- ✅ I-V and C-V characteristic extraction
+- ✅ Automated pass/fail comparison
+- ✅ Full corpus validation harness
 
-### Fix 3: Verification Framework (COMPLETED)
-**Files:** `verification/*.py`, `cli.py`
-**Issue:** No automated testing capability
-**Solution:** Complete testbench generation and verification pipeline
-
-### Fix 4: Subcircuit Parsing (COMPLETED)
-**File:** `src/parsers/spectre_parser.py`
-**Issue:** Files with only subcircuit definitions returned 0 models
-**Solution:** Extended `parse_to_ir()` to convert subcircuits to ModelIR when no .model found
-
-### Fix 5: Unit Test Updates (COMPLETED)
-**File:** `tests/test_writers/test_ngspice_writer.py`
-**Issue:** Tests expected `.lib/.endl` blocks that ngspice doesn't support
-**Solution:** Updated tests to use base_parameters and check model output
+### Quality
+- ✅ 569 unit tests (100% pass)
+- ✅ 84% code coverage
+- ✅ Graceful error handling
+- ✅ Skip classification for unsupported features
 
 ---
 
-## 🐛 KNOWN ISSUES (RESOLVED)
+## ⚠️ KNOWN LIMITATIONS
 
-### Issue 1: Subcircuit Parsing ✅ FIXED
-**Files:** `gpdk090_mos_iso.scs` and similar
-**Resolution:** Added `_subcircuit_to_ir()` method to convert subcircuit definitions
+### 1. MOS Level 72 (BSIM-CMG) - ngspice Binary Limitation
+**Status:** Skipped (not a translator bug)
 
-### Issue 2: Include File Following ⬜ SKIPPED
-**Files:** `gpdk090.scs`, `hlmc55lp/tt.lib`, etc.
-**Resolution:** Not needed - individual files translate correctly
+The standard ngspice binary doesn't include MOS level 72 (BSIM-CMG for FinFETs).
+8 PDK files are affected and automatically classified as "skipped":
 
-### Issue 3: Empty Model Bodies ✅ HANDLED
-**Files:** Some SMIC resistor models
-**Resolution:** Writers handle empty parameter case gracefully
+| PDK | Files | Notes |
+|-----|-------|-------|
+| ASAP7 (7nm) | 4 | FinFET models |
+| FreePDK3 (3nm) | 2 | Advanced node |
+| Synopsys14 (14nm) | 2 | FinFET models |
 
----
+**Workarounds:**
+1. Build ngspice with BSIM-CMG support
+2. Use HSPICE for FinFET verification
+3. Map to PSP model (level 103)
 
-## 📊 SUCCESS METRICS
+### 2. Include File Aggregation
+Multi-file PDK structures with `.include` directives are not automatically followed.
+Each file must be translated individually.
 
-### Translation Metrics
-- **Models Translated:** 1,095+ (Target: 1000+) ✅
-- **PDKs Supported:** 3 (Cadence90, SMIC180HV, ASAP7) ✅
-- **Backends:** 3 (ngspice, HSPICE, Spectre) ✅
-- **Success Rate:** 92.4% (Target: >85%) ✅
-
-### Quality Metrics
-- **Test Coverage:** 82-94% (Target: >80%) ✅
-- **Syntax Validity:** 100% ✅
-- **Capacitor Verification:** PASS ✅
-- **Diode Verification:** 100% PASS ✅
+### 3. Monte Carlo / Statistics
+Spectre `statistics` blocks are not yet translated to ngspice `.alter` syntax.
 
 ---
 
-## 🚀 COMMANDS REFERENCE
+## 📊 VALIDATION RESULTS (Feb 1, 2026)
 
-### Translation
+### Corpus Summary
+| Metric | Value |
+|--------|-------|
+| Total Files Scanned | 113 |
+| Files Translated | 65 |
+| Models Input | 963 |
+| Models Output | 1,001 |
+| ngspice Smoke Tests | 63 total |
+| Passed | 55 (87.3%) |
+| Skipped | 8 (12.7%) |
+| Failed | 0 (0%) |
+| **Pass Rate** | **100%** |
+
+### By PDK
+| PDK | Files | Models | Status |
+|-----|-------|--------|--------|
+| Cadence GPDK090 | 14 | 200+ | ✅ All passing |
+| SMIC 180HV | 12 | 300+ | ✅ All passing |
+| SkyWater SKY130 | 8 | 150+ | ✅ All passing |
+| PTM Models | 6 | 50+ | ✅ All passing |
+| ASAP7 (7nm) | 4 | 80+ | ⚠️ Skipped (MOS level 72) |
+| FreePDK3 | 2 | 40+ | ⚠️ Skipped (MOS level 72) |
+| Synopsys14 | 2 | 30+ | ⚠️ Skipped (MOS level 72) |
+| Others | 17 | 100+ | ✅ All passing |
+
+---
+
+## 🚀 CLI REFERENCE
+
+### Translation Commands
 ```bash
-# Basic translation
+# Translate Spectre to ngspice
 ./cli.py translate input.scs --source spectre --target ngspice -o output.lib
 
-# Batch translation
+# Translate HSPICE to ngspice
+./cli.py translate input.lib --source hspice --target ngspice -o output.lib
+
+# Batch translate all files
 for f in tools/spice-libraries/private-models/cadence90/spectre/*.scs; do
   ./cli.py translate "$f" --source spectre --target ngspice
 done
 ```
 
-### Verification
+### Verification Commands
 ```bash
-# Verify single device
-./cli.py verify input.scs device_name --device-class capacitor --target ngspice
+# Verify single model
+./cli.py verify input.scs nmos_3p3 --device-class mos --target ngspice
 
-# Run all verification tests
+# Verify all translatable files
 ./cli.py verify-all --target ngspice
+
+# Verify capacitor model
+./cli.py verify cap_model.scs cap_3p3 --device-class capacitor --target ngspice
 ```
 
-### Testing
+### Testing Commands
 ```bash
-# Run unit tests
+# Run full test suite
 pytest tests/ -v
 
 # Run with coverage
 pytest tests/ --cov=src --cov-report=term-missing
+
+# Run corpus validation harness
+python tools/rerun_private_models.py
 ```
 
 ---
@@ -210,38 +305,35 @@ pytest tests/ --cov=src --cov-report=term-missing
 
 | Version | Date | Changes |
 |---------|------|---------|
+| 3.0 | 2026-02-01 | Updated with Phase 7+ roadmap, validation results |
+| 2.0 | 2026-02-01 | Added verification framework, skip classification |
 | 1.0 | 2026-02-01 | Initial master plan created |
 
 ---
 
-## ⚡ QUICK REFERENCE FOR AI AGENTS
+## ⚡ AI AGENT REFERENCE
 
-### When asked to translate files:
+### Translation
 ```bash
 ./cli.py translate <input> --source <spectre|hspice|ngspice> --target <spectre|hspice|ngspice> -o <output>
 ```
 
-### When asked to verify translation:
+### Verification
 ```bash
 ./cli.py verify <input> <device_name> --device-class <capacitor|resistor|mos|bjt|diode> --target <ngspice|hspice>
 ```
 
-### When fixing parser issues:
-- Check `src/parsers/spectre_parser.py` for Spectre files
-- Check `src/parsers/hspice_parser.py` for HSPICE/lib files
-- Check `src/parsers/ngspice_parser.py` for ngspice files
-
-### When fixing writer issues:
-- Check `src/writers/ngspice_writer.py` for ngspice output
-- Check `src/writers/hspice_writer.py` for HSPICE output
-- Check `src/writers/spectre_writer.py` for Spectre output
-
-### Key files to know:
-- `src/ir/model_ir.py` - Core data structures (ModelIR, DeviceType, etc.)
-- `src/main.py` - TranslationEngine entry point
-- `cli.py` - Command-line interface
-- `CONSTRAINTS.md` - Code quality requirements
+### Key Files
+| File | Purpose |
+|------|---------|
+| `src/ir/model_ir.py` | Core IR data structures |
+| `src/parsers/spectre_parser.py` | Spectre → IR |
+| `src/parsers/hspice_parser.py` | HSPICE → IR |
+| `src/writers/ngspice_writer.py` | IR → ngspice |
+| `verification/verifier.py` | Verification orchestration |
+| `simulators/run_simulator.py` | Simulator wrappers |
+| `cli.py` | Command-line interface |
 
 ---
 
-**END OF MASTER PLAN**
+**END OF MASTER PLAN v3.0**

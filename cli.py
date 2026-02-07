@@ -79,7 +79,11 @@ def cmd_verify(args):
         )
         
         print(report)
-        
+
+        if getattr(report, 'skipped', False):
+            print("\n⚠️  VERIFICATION SKIPPED (known limitation)")
+            return
+
         if not report.passed:
             print("\n❌ VERIFICATION FAILED")
             sys.exit(1)
@@ -114,6 +118,7 @@ def cmd_verify_all(args):
     
     passed = 0
     failed = 0
+    skipped = 0
     
     verifier = Verifier(strict=args.strict)
     
@@ -134,6 +139,9 @@ def cmd_verify_all(args):
             if report.passed:
                 print(f"  ✅ PASS")
                 passed += 1
+            elif getattr(report, 'skipped', False):
+                print(f"  ⚠️  SKIP ({getattr(report, 'skip_reason', 'known limitation')})")
+                skipped += 1
             else:
                 print(f"  ❌ FAIL")
                 print(f"     {report.errors}")
@@ -144,7 +152,7 @@ def cmd_verify_all(args):
             failed += 1
     
     print("\n" + "="*70)
-    print(f"📊 Regression Results: {passed} passed, {failed} failed")
+    print(f"📊 Regression Results: {passed} passed, {skipped} skipped, {failed} failed")
     
     if failed > 0:
         print("❌ REGRESSION FAILED")

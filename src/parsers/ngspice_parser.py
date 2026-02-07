@@ -388,6 +388,14 @@ class NgspiceParser(BaseParser):
             return DeviceType.NPN
         if type_lower in ["pnp"]:
             return DeviceType.PNP
+        if type_lower in ["d", "diode"]:
+            return DeviceType.DIODE
+        if type_lower in ["r", "res", "resistor"]:
+            return DeviceType.RESISTOR
+        if type_lower in ["c", "cap", "capacitor"]:
+            return DeviceType.CAPACITOR
+        if type_lower in ["l", "ind", "inductor"]:
+            return DeviceType.INDUCTOR
 
         # Name-based detection
         if any(
@@ -410,15 +418,15 @@ class NgspiceParser(BaseParser):
             )
 
         # Diode detection
-        if "diode" in type_lower or "d_" in name_lower:
+        if "diode" in type_lower or type_lower.startswith("d") or "d_" in name_lower:
             return DeviceType.DIODE
 
         # Resistor detection
-        if "resistor" in type_lower or "res" in type_lower:
+        if "resistor" in type_lower or "res" in type_lower or type_lower.startswith("r"):
             return DeviceType.RESISTOR
 
         # Capacitor detection
-        if "capacitor" in type_lower or "cap" in type_lower:
+        if "capacitor" in type_lower or "cap" in type_lower or type_lower.startswith("c"):
             return DeviceType.CAPACITOR
 
         logger.warning(
