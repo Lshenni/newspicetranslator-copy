@@ -85,12 +85,18 @@ def detect_format(file_path: Path) -> Optional[str]:
     Returns: 'spectre', 'hspice', 'ngspice', or None
     """
     suffix = file_path.suffix.lower()
+    name_lower = file_path.name.lower()
     
     # Extension-based detection
     if suffix == '.scs':
         return 'spectre'
     elif suffix in ['.mdl', '.mod']:
         return 'hspice'
+    elif suffix == '.spice' or name_lower.endswith('.model.spice'):
+        # .spice files are typically ngspice format (e.g., sky130, gf180)
+        return 'ngspice'
+    elif suffix == '.sp':
+        return 'ngspice'
     elif suffix == '.lib':
         # .lib can be HSPICE or ngspice - check content
         try:
@@ -108,8 +114,6 @@ def detect_format(file_path: Path) -> Optional[str]:
             return 'hspice'
         except Exception:
             return 'hspice'
-    elif suffix == '.sp':
-        return 'ngspice'
     
     # Content-based fallback
     try:
@@ -371,7 +375,7 @@ def batch_translate(
     start_time = time.time()
     
     # Find all SPICE files
-    extensions = ['*.scs', '*.lib', '*.mdl', '*.mod', '*.sp']
+    extensions = ['*.scs', '*.lib', '*.mdl', '*.mod', '*.sp', '*.spice', '*.l']
     files: List[Path] = []
     for ext in extensions:
         files.extend(source_folder.rglob(ext))
