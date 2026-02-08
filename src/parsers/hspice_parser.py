@@ -438,7 +438,11 @@ class HSPICEParser(BaseParser):
         """
         Load file content with include directives resolved.
 
-        Recursively loads files referenced by .include statements.
+        Recursively loads files referenced by .include and .lib statements.
+        
+        Handles:
+        - .include "filename" or .inc 'filename' - includes entire file
+        - .lib "filename" section_name - includes specific section from library file
 
         Returns:
             Combined content with all includes resolved
@@ -450,17 +454,60 @@ class HSPICEParser(BaseParser):
         lines = self.content.split("\n")
 
         for line in lines:
-            # Check for include directive: .include "filename" or .inc 'filename'
-            match = re.match(
-                r'\s*\.(?:include|inc)\s+["\']([^"\']+)["\']',
-                line,
+            stripped = line.strip()
+            
+            # Check for .lib "file" section directive (HSPICE library include)
+            # Format: .lib "path/to/file.lib" section_name
+            lib_match = re.match(
+                r'\s*\.lib\s+["\']([^"\']+)["\']\s+(\w+)',
+                stripped,
                 re.IGNORECASE,
             )
-            if match:
-                include_path = match.group(1)
-                resolved_path = self._resolve_include_path(
-                    include_path
-                )
+            if lib_match:
+                lib_path = lib_match.group(1)
+                section_name = lib_match.group(2)
+                resolved_path = self._resolve_include_path(lib_path)
+                
+                if resolved_path and resolved_path not in self.included_files:
+                    self.included_files.add(resolved_path)
+                    logger.debug(f"Loading library section: {resolved_path}:{section_name}")
+                    
+                    try:
+                        # Extract specific section from library file
+                        section_content = self._extract_lib_section(
+                            resolved_path, section_name
+                        )
+                        if section_content:
+                            combined_content.append(
+                                f"* BEGIN LIB: {lib_path} ({section_name})"
+                            )
+                            combined_content.append(section_content)
+                            combined_content.append(
+                                f"* END LIB: {lib_path} ({section_name})"
+                            )
+                        else:
+                            logger.warning(
+                                f"Section '{section_name}' not found in '{lib_path}'"
+                            )
+                            combined_content.append(line)
+                    except Exception as e:
+                        logger.warning(
+                            f"Failed to load library '{lib_path}:{section_name}': {e}"
+                        )
+                        combined_content.append(line)
+                else:
+                    combined_content.append(f"* SKIP LIB: {lib_path} ({section_name})")
+                continue
+            
+            # Check for include directive: .include "filename" or .inc 'filename'
+            include_match = re.match(
+                r'\s*\.(?:include|inc)\s+["\']([^"\']+)["\']',
+                stripped,
+                re.IGNORECASE,
+            )
+            if include_match:
+                include_path = include_match.group(1)
+                resolved_path = self._resolve_include_path(include_path)
 
                 if (
                     resolved_path
@@ -488,11 +535,73 @@ class HSPICEParser(BaseParser):
                         )
                         combined_content.append(line)
                 else:
-                    # Already included or not found
                     combined_content.append(
                         f"* SKIP INCLUDE: {include_path}"
                     )
-            else:
-                combined_content.append(line)
+                continue
+            
+            # Regular line - keep as-is
+            combined_content.append(line)
 
         return "\n".join(combined_content)
+    
+    def _extract_lib_section(self, lib_path: Path, section_name: str) -> Optional[str]:
+        """
+        Extract a specific section from an HSPICE library file.
+        
+        Sections are delimited by:
+        - .lib section_name (start)
+        - .endl [section_name] (end)
+        
+        Args:
+            lib_path: Path to library file
+            section_name: Name of section to extract
+            
+        Returns:
+            Content of the section, or None if not found
+        """
+        try:
+            content = lib_path.read_text(encoding='utf-8')
+        except UnicodeDecodeError:
+            content = lib_path.read_text(encoding='latin-1')
+        
+        lines = content.split('\n')
+        section_content = []
+        in_section = False
+        section_pattern = re.compile(
+            rf'^\s*\.lib\s+{re.escape(section_name)}\s*$',
+            re.IGNORECASE
+        )
+        endl_pattern = re.compile(
+            rf'^\s*\.endl(\s+{re.escape(section_name)})?\s*$',
+            re.IGNORECASE
+        )
+        
+        for line in lines:
+            stripped = line.strip()
+            
+            if not in_section:
+                # Look for section start
+                if section_pattern.match(stripped):
+                    in_section = True
+                    logger.debug(f"Found section start: {section_name}")
+                    continue
+            else:
+                # Look for section end
+                if endl_pattern.match(stripped):
+                    logger.debug(f"Found section end: {section_name}")
+                    break
+                section_content.append(line)
+        
+        if section_content:
+            # Recursively resolve includes within the section
+            temp_content = '\n'.join(section_content)
+            # Create a temporary parser to resolve nested includes
+            temp_parser = HSPICEParser.__new__(HSPICEParser)
+            temp_parser.file_path = lib_path
+            temp_parser.content = temp_content
+            temp_parser.included_files = self.included_files  # Share the set
+            temp_parser.expr_parser = self.expr_parser
+            return temp_parser._load_with_includes()
+        
+        return None

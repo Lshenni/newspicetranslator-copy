@@ -93,7 +93,13 @@ pip install -e .
 ./cli.py translate input.scs --target ngspice --verify --plot
 ```
 
-#### 4. Generate Plots for Existing Translations
+#### 4. Translation with Include Resolution
+```bash
+# For corner files (ff.lib, ss.lib, tt.lib) that reference other files
+./cli.py translate tt.lib --source hspice --target ngspice --follow-includes
+```
+
+#### 5. Generate Plots for Existing Translations
 ```bash
 # Single file
 ./cli.py plot output/translated.lib
@@ -130,6 +136,9 @@ result = engine.translate(
 
 # Just translation and verification (no plots)
 ./batch_translate.py tools/spice-libraries/asap7 --target ngspice --verify
+
+# Translate with include resolution for corner files
+./batch_translate.py tools/spice-libraries/smic180 --target ngspice --follow-includes
 ```
 
 ---
@@ -293,8 +302,27 @@ Translate entire PDK folders with automatic format detection, verification, and 
 | `--verify`, `-v` | Run ngspice verification after translation |
 | `--plot`, `-p` | Generate verification plots (implies --verify) |
 | `--max-plots` | Max devices to plot per file (default: 3) |
+| `--follow-includes`, `-I` | Resolve .include/.lib directives (for corner files) |
 | `--quiet`, `-q` | Suppress progress output |
 | `--json`, `-j` | Custom JSON summary path |
+
+### Include Resolution ⭐ NEW
+
+Many PDKs use corner files (ff.lib, ss.lib, tt.lib) that only contain `.include` or `.lib` directives pointing to actual model files. Use `--follow-includes` to recursively resolve these references:
+
+```bash
+# Translate corner files with include resolution
+./batch_translate.py tools/spice-libraries/smic180 --target ngspice --follow-includes
+
+# Single file with include resolution
+./cli.py translate tt.lib --source hspice --target ngspice --follow-includes
+```
+
+**Supported directive patterns:**
+- `.include "path/to/file.lib"` - Includes entire file
+- `.lib "path/to/file.lib" section_name` - Includes specific `.lib`/`.endl` section
+
+**Note:** Include paths are resolved relative to the current file's directory. If the referenced file doesn't exist (common with incomplete PDK copies), a warning is logged and the directive is preserved as a comment.
 
 ### Output Structure
 

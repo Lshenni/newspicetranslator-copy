@@ -63,7 +63,8 @@ class TranslationEngine:
         output_file: Path = None,
         validate: bool = True,
         strict: bool = False,
-        use_organized_output: bool = True
+        use_organized_output: bool = True,
+        follow_includes: bool = False
     ) -> dict:
         """
         Translate SPICE file from source to target format.
@@ -76,6 +77,7 @@ class TranslationEngine:
             validate: Run validation after translation
             strict: Strict validation mode (warnings as errors)
             use_organized_output: Use organized output structure
+            follow_includes: Resolve .include/.lib directives and merge content
             
         Returns:
             Translation result dictionary
@@ -97,12 +99,17 @@ class TranslationEngine:
             output_file = input_file.parent / f"{input_file.stem}_translated.{ext}"
         
         # Step 1: Parse source file to IR
-        logger.info(f"Parsing {source_format} file: {input_file}")
+        if follow_includes:
+            logger.info(f"Parsing {source_format} file with include resolution: {input_file}")
+        else:
+            logger.info(f"Parsing {source_format} file: {input_file}")
         parser_class = self._get_parser(source_format)
         parser = parser_class(input_file)
         
         try:
-            models = parser.parse_to_ir()
+            models = parser.parse_to_ir(follow_includes=follow_includes)
+            if follow_includes and parser.included_files:
+                logger.info(f"  Resolved {len(parser.included_files)} include(s)")
         except Exception as e:
             logger.error(f"Failed to parse input file: {e}")
             return {

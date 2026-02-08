@@ -112,7 +112,8 @@ def translate_file(
     output_dir: Path,
     source_format: str,
     target_format: str,
-    verbose: bool = False
+    verbose: bool = False,
+    follow_includes: bool = False
 ) -> Dict:
     """Translate a single file"""
     import time
@@ -127,7 +128,8 @@ def translate_file(
             input_file=input_file,
             output_file=output_file,
             source_format=source_format,
-            target_format=target_format
+            target_format=target_format,
+            follow_includes=follow_includes
         )
         
         duration_ms = (time.time() - start_time) * 1000
@@ -211,7 +213,8 @@ def process_pdk(
     output_base: Path,
     max_plots: int = 2,
     generate_plots: bool = True,
-    verbose: bool = True
+    verbose: bool = True,
+    follow_includes: bool = False
 ) -> Dict:
     """
     Process a single PDK: detect format and translate to other two formats.
@@ -273,7 +276,7 @@ def process_pdk(
         }
         
         for file in files:
-            result = translate_file(engine, file, output_dir, source_format, target_format, verbose)
+            result = translate_file(engine, file, output_dir, source_format, target_format, verbose, follow_includes)
             target_results['files'].append(result)
             
             if result['success']:
@@ -324,6 +327,8 @@ def main():
                         help='Max devices to plot per library file (default: 2)')
     parser.add_argument('--no-plots', action='store_true',
                         help='Skip plot generation')
+    parser.add_argument('--follow-includes', '-I', action='store_true',
+                        help='Resolve .include/.lib directives (for corner files)')
     parser.add_argument('--quiet', '-q', action='store_true',
                         help='Suppress detailed output')
     parser.add_argument('--json', '-j', type=Path,
@@ -366,7 +371,8 @@ def main():
                 output_base=args.output,
                 max_plots=args.max_plots,
                 generate_plots=not args.no_plots,
-                verbose=not args.quiet
+                verbose=not args.quiet,
+                follow_includes=getattr(args, 'follow_includes', False)
             )
             all_results['results'].append(result)
             

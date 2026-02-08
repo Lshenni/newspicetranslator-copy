@@ -71,11 +71,15 @@ def cmd_translate(args):
         
         output_file = output_dir / input_file.with_suffix(ext).name
     
+    # Check for follow_includes flag
+    follow_includes = getattr(args, 'follow_includes', False)
+    
     result = engine.translate(
         input_file=input_file,
         output_file=output_file,
         source_format=args.source,
-        target_format=args.target
+        target_format=args.target,
+        follow_includes=follow_includes
     )
     
     if result.get('success'):
@@ -496,6 +500,8 @@ Examples:
                                   help='Generate verification plots (ngspice target only)')
     translate_parser.add_argument('--max-plots', type=int, default=3,
                                   help='Max devices to plot per file (default: 3)')
+    translate_parser.add_argument('--follow-includes', '-I', action='store_true',
+                                  help='Resolve .include and .lib directives (for corner files)')
     
     # Plot command
     plot_parser = subparsers.add_parser('plot', help='Generate verification plots for translated files')

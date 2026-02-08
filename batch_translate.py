@@ -287,7 +287,8 @@ def translate_file(
     input_file: Path,
     output_dir: Path,
     source_format: str,
-    target_format: str
+    target_format: str,
+    follow_includes: bool = False
 ) -> FileResult:
     """Translate a single file and return result"""
     import time
@@ -303,7 +304,8 @@ def translate_file(
             input_file=input_file,
             output_file=output_file,
             source_format=source_format,
-            target_format=target_format
+            target_format=target_format,
+            follow_includes=follow_includes
         )
         
         duration_ms = (time.time() - start_time) * 1000
@@ -354,7 +356,8 @@ def batch_translate(
     output_base: Optional[Path] = None,
     source_format: Optional[str] = None,
     verify: bool = False,
-    verbose: bool = False
+    verbose: bool = False,
+    follow_includes: bool = False
 ) -> BatchSummary:
     """
     Batch translate all SPICE files in a folder.
@@ -366,6 +369,7 @@ def batch_translate(
         source_format: Force source format (default: auto-detect)
         verify: Run verification after translation
         verbose: Print progress
+        follow_includes: Resolve .include/.lib directives
     
     Returns:
         BatchSummary with all results
@@ -447,7 +451,7 @@ def batch_translate(
         output_dir.mkdir(parents=True, exist_ok=True)
         
         # Translate
-        result = translate_file(engine, file, output_dir, detected, target_format)
+        result = translate_file(engine, file, output_dir, detected, target_format, follow_includes)
         
         # Run verification if requested and translation succeeded
         if verify and result.success and target_format == 'ngspice' and result.output_file:
@@ -594,6 +598,8 @@ Examples:
                         help='Generate verification plots (implies --verify)')
     parser.add_argument('--max-plots', type=int, default=3,
                         help='Max devices to plot per library file (default: 3)')
+    parser.add_argument('--follow-includes', '-I', action='store_true',
+                        help='Resolve .include/.lib directives (for corner files)')
     parser.add_argument('--quiet', '-q', action='store_true',
                         help='Suppress progress output')
     parser.add_argument('--json', '-j', type=Path,
@@ -608,6 +614,9 @@ Examples:
     # --plot implies --verify
     verify = args.verify or args.plot
     
+    # Check for follow_includes
+    follow_includes = getattr(args, 'follow_includes', False)
+    
     # Run batch translation
     summary = batch_translate(
         source_folder=args.source_folder,
@@ -615,7 +624,8 @@ Examples:
         output_base=args.output,
         source_format=args.source,
         verify=verify,
-        verbose=not args.quiet
+        verbose=not args.quiet,
+        follow_includes=follow_includes
     )
     
     # Generate verification plots if requested
