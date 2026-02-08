@@ -1,0 +1,252 @@
+{
+  "timestamp": "2026-02-09T01:26:59.265171",
+  "source_folder": "tools/spice-libraries/private-models/cadence90",
+  "target_format": "ngspice",
+  "total_files": 9,
+  "successful": 8,
+  "failed": 1,
+  "skipped": 0,
+  "total_models_in": 0,
+  "total_models_out": 57,
+  "success_rate": 88.88888888888889,
+  "total_duration_ms": 197.18575477600098,
+  "verification_summary": {
+    "enabled": true,
+    "verified_count": 8,
+    "passed_count": 8,
+    "failed_count": 0,
+    "pass_rate": 100.0,
+    "details": [
+      {
+        "file": "tools/spice-libraries/private-models/cadence90/spectre/gpdk090_bipolar.scs",
+        "device_name": "gpdk090_vpnp10",
+        "device_type": "bjt",
+        "passed": true,
+        "error": null
+      },
+      {
+        "file": "tools/spice-libraries/private-models/cadence90/spectre/gpdk090_capacitor.scs",
+        "device_name": "gpdk090_mimcap",
+        "device_type": "capacitor",
+        "passed": true,
+        "error": null
+      },
+      {
+        "file": "tools/spice-libraries/private-models/cadence90/spectre/gpdk090_diode.scs",
+        "device_name": "gpdk090_ndio",
+        "device_type": "diode",
+        "passed": true,
+        "error": null
+      },
+      {
+        "file": "tools/spice-libraries/private-models/cadence90/spectre/gpdk090_mos.scs",
+        "device_name": "gpdk090_nmos1v",
+        "device_type": "mos",
+        "passed": true,
+        "error": null
+      },
+      {
+        "file": "tools/spice-libraries/private-models/cadence90/spectre/gpdk090_mos_age.scs",
+        "device_name": "s1v_ckt_nch",
+        "device_type": null,
+        "passed": true,
+        "error": null
+      },
+      {
+        "file": "tools/spice-libraries/private-models/cadence90/spectre/gpdk090_mos_iso.scs",
+        "device_name": "gpdk090_nmos1v_iso",
+        "device_type": "mos",
+        "passed": true,
+        "error": null
+      },
+      {
+        "file": "tools/spice-libraries/private-models/cadence90/spectre/gpdk090_moscap.scs",
+        "device_name": "s1v_ckt_nch",
+        "device_type": null,
+        "passed": true,
+        "error": null
+      },
+      {
+        "file": "tools/spice-libraries/private-models/cadence90/spectre/gpdk090_resistor.scs",
+        "device_name": "gpdk090_ressndiff",
+        "device_type": "resistor",
+        "passed": true,
+        "error": null
+      }
+    ]
+  },
+  "results": [
+    {
+      "file": "tools/spice-libraries/private-models/cadence90/spectre/gpdk090.scs",
+      "source_format": "spectre",
+      "target_format": "ngspice",
+      "success": false,
+      "models_in": 0,
+      "models_out": 0,
+      "output_file": null,
+      "error": "Invalid models provided",
+      "duration_ms": 1.6417503356933594,
+      "verified": false,
+      "verification_passed": null,
+      "verification_details": null
+    },
+    {
+      "file": "tools/spice-libraries/private-models/cadence90/spectre/gpdk090_bipolar.scs",
+      "source_format": "spectre",
+      "target_format": "ngspice",
+      "success": true,
+      "models_in": 0,
+      "models_out": 12,
+      "output_file": "/home/shennilee/newproject2026/proj1/new-spice-translator/output/cadence90_spectre-ngspice/gpdk090_bipolar.lib",
+      "error": null,
+      "duration_ms": 18.697261810302734,
+      "verified": true,
+      "verification_passed": true,
+      "verification_details": {
+        "device_name": "gpdk090_vpnp10",
+        "device_type": "bjt",
+        "data_file": null,
+        "error": null
+      }
+    },
+    {
+      "file": "tools/spice-libraries/private-models/cadence90/spectre/gpdk090_capacitor.scs",
+      "source_format": "spectre",
+      "target_format": "ngspice",
+      "success": true,
+      "models_in": 0,
+      "models_out": 1,
+      "output_file": "/home/shennilee/newproject2026/proj1/new-spice-translator/output/cadence90_spectre-ngspice/gpdk090_capacitor.lib",
+      "error": null,
+      "duration_ms": 3.22723388671875,
+      "verified": true,
+      "verification_passed": true,
+      "verification_details": {
+        "device_name": "gpdk090_mimcap",
+        "device_type": "capacitor",
+        "data_file": null,
+        "error": null
+      }
+    },
+    {
+      "file": "tools/spice-libraries/private-models/cadence90/spectre/gpdk090_diode.scs",
+      "source_format": "spectre",
+      "target_format": "ngspice",
+      "success": true,
+      "models_in": 0,
+      "models_out": 9,
+      "output_file": "/home/shennilee/newproject2026/proj1/new-spice-translator/output/cadence90_spectre-ngspice/gpdk090_diode.lib",
+      "error": null,
+      "duration_ms": 12.841939926147461,
+      "verified": true,
+      "verification_passed": true,
+      "verification_details": {
+        "device_name": "gpdk090_ndio",
+        "device_type": "diode",
+        "data_file": null,
+        "error": null
+      }
+    },
+    {
+      "file": "tools/spice-libraries/private-models/cadence90/spectre/gpdk090_mos.scs",
+      "source_format": "spectre",
+      "target_format": "ngspice",
+      "success": true,
+      "models_in": 0,
+      "models_out": 8,
+      "output_file": "/home/shennilee/newproject2026/proj1/new-spice-translator/output/cadence90_spectre-ngspice/gpdk090_mos.lib",
+      "error": null,
+      "duration_ms": 40.80462455749512,
+      "verified": true,
+      "verification_passed": true,
+      "verification_details": {
+        "device_name": "gpdk090_nmos1v",
+        "device_type": "mos",
+        "data_file": null,
+        "error": null
+      }
+    },
+    {
+      "file": "tools/spice-libraries/private-models/cadence90/spectre/gpdk090_mos_age.scs",
+      "source_format": "spectre",
+      "target_format": "ngspice",
+      "success": true,
+      "models_in": 0,
+      "models_out": 2,
+      "output_file": "/home/shennilee/newproject2026/proj1/new-spice-translator/output/cadence90_spectre-ngspice/gpdk090_mos_age.lib",
+      "error": null,
+      "duration_ms": 7.488250732421875,
+      "verified": true,
+      "verification_passed": true,
+      "verification_details": {
+        "device_name": "s1v_ckt_nch",
+        "device_type": null,
+        "data_file": null,
+        "error": null
+      }
+    },
+    {
+      "file": "tools/spice-libraries/private-models/cadence90/spectre/gpdk090_mos_iso.scs",
+      "source_format": "spectre",
+      "target_format": "ngspice",
+      "success": true,
+      "models_in": 0,
+      "models_out": 1,
+      "output_file": "/home/shennilee/newproject2026/proj1/new-spice-translator/output/cadence90_spectre-ngspice/gpdk090_mos_iso.lib",
+      "error": null,
+      "duration_ms": 1.4088153839111328,
+      "verified": true,
+      "verification_passed": true,
+      "verification_details": {
+        "device_name": "gpdk090_nmos1v_iso",
+        "device_type": "mos",
+        "data_file": null,
+        "error": null
+      }
+    },
+    {
+      "file": "tools/spice-libraries/private-models/cadence90/spectre/gpdk090_moscap.scs",
+      "source_format": "spectre",
+      "target_format": "ngspice",
+      "success": true,
+      "models_in": 0,
+      "models_out": 6,
+      "output_file": "/home/shennilee/newproject2026/proj1/new-spice-translator/output/cadence90_spectre-ngspice/gpdk090_moscap.lib",
+      "error": null,
+      "duration_ms": 9.596109390258789,
+      "verified": true,
+      "verification_passed": true,
+      "verification_details": {
+        "device_name": "s1v_ckt_nch",
+        "device_type": null,
+        "data_file": null,
+        "error": null
+      }
+    },
+    {
+      "file": "tools/spice-libraries/private-models/cadence90/spectre/gpdk090_resistor.scs",
+      "source_format": "spectre",
+      "target_format": "ngspice",
+      "success": true,
+      "models_in": 0,
+      "models_out": 18,
+      "output_file": "/home/shennilee/newproject2026/proj1/new-spice-translator/output/cadence90_spectre-ngspice/gpdk090_resistor.lib",
+      "error": null,
+      "duration_ms": 14.373302459716797,
+      "verified": true,
+      "verification_passed": true,
+      "verification_details": {
+        "device_name": "gpdk090_ressndiff",
+        "device_type": "resistor",
+        "data_file": null,
+        "error": null
+      }
+    }
+  ],
+  "errors": [
+    {
+      "file": "tools/spice-libraries/private-models/cadence90/spectre/gpdk090.scs",
+      "error": "Invalid models provided"
+    }
+  ]
+}

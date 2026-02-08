@@ -1,0 +1,114 @@
+{
+  "timestamp": "2026-02-09T01:27:07.926990",
+  "source_folder": "tools/spice-libraries/private-models/hlmc40lp",
+  "target_format": "ngspice",
+  "total_files": 4,
+  "successful": 2,
+  "failed": 2,
+  "skipped": 0,
+  "total_models_in": 0,
+  "total_models_out": 227,
+  "success_rate": 50.0,
+  "total_duration_ms": 470.944881439209,
+  "verification_summary": {
+    "enabled": true,
+    "verified_count": 2,
+    "passed_count": 2,
+    "failed_count": 0,
+    "pass_rate": 100.0,
+    "details": [
+      {
+        "file": "tools/spice-libraries/private-models/hlmc40lp/hspice/hlmc40lp_v1d2_p2.lib",
+        "device_name": "n11rvt",
+        "device_type": "mos",
+        "passed": true,
+        "error": null
+      },
+      {
+        "file": "tools/spice-libraries/private-models/hlmc40lp/hspice/hlmc40rf_v1d2_p2.lib",
+        "device_name": "n11rvt",
+        "device_type": "mos",
+        "passed": true,
+        "error": null
+      }
+    ]
+  },
+  "results": [
+    {
+      "file": "tools/spice-libraries/private-models/hlmc40lp/hspice/hlmc40lp_v1d2_p2.lib",
+      "source_format": "hspice",
+      "target_format": "ngspice",
+      "success": true,
+      "models_in": 0,
+      "models_out": 69,
+      "output_file": "/home/shennilee/newproject2026/proj1/new-spice-translator/output/hlmc40lp_hspice-ngspice/hlmc40lp_v1d2_p2.lib",
+      "error": null,
+      "duration_ms": 174.63231086730957,
+      "verified": true,
+      "verification_passed": true,
+      "verification_details": {
+        "device_name": "n11rvt",
+        "device_type": "mos",
+        "data_file": null,
+        "error": null
+      }
+    },
+    {
+      "file": "tools/spice-libraries/private-models/hlmc40lp/hspice/hlmc40rf_v1d2_p2.lib",
+      "source_format": "hspice",
+      "target_format": "ngspice",
+      "success": true,
+      "models_in": 0,
+      "models_out": 158,
+      "output_file": "/home/shennilee/newproject2026/proj1/new-spice-translator/output/hlmc40lp_hspice-ngspice/hlmc40rf_v1d2_p2.lib",
+      "error": null,
+      "duration_ms": 243.99781227111816,
+      "verified": true,
+      "verification_passed": true,
+      "verification_details": {
+        "device_name": "n11rvt",
+        "device_type": "mos",
+        "data_file": null,
+        "error": null
+      }
+    },
+    {
+      "file": "tools/spice-libraries/private-models/hlmc40lp/hspice/topusage_hlmc40lp_v1d2_p2_shrink0d9.lib",
+      "source_format": "hspice",
+      "target_format": "ngspice",
+      "success": false,
+      "models_in": 0,
+      "models_out": 0,
+      "output_file": null,
+      "error": "Invalid models provided",
+      "duration_ms": 2.0186901092529297,
+      "verified": false,
+      "verification_passed": null,
+      "verification_details": null
+    },
+    {
+      "file": "tools/spice-libraries/private-models/hlmc40lp/hspice/topusage_hlmc40rf_v1d2_p2_shrink0d9.lib",
+      "source_format": "hspice",
+      "target_format": "ngspice",
+      "success": false,
+      "models_in": 0,
+      "models_out": 0,
+      "output_file": null,
+      "error": "Invalid models provided",
+      "duration_ms": 1.432180404663086,
+      "verified": false,
+      "verification_passed": null,
+      "verification_details": null
+    }
+  ],
+  "errors": [
+    {
+      "file": "tools/spice-libraries/private-models/hlmc40lp/hspice/topusage_hlmc40lp_v1d2_p2_shrink0d9.lib",
+      "error": "Invalid models provided"
+    },
+    {
+      "file": "tools/spice-libraries/private-models/hlmc40lp/hspice/topusage_hlmc40rf_v1d2_p2_shrink0d9.lib",
+      "error": "Invalid models provided"
+    }
+  ]
+}

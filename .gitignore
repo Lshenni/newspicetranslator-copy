@@ -47,7 +47,7 @@ coverage.json
 *.log
 *.out
 *.err
-output/
+# output/  # Commented out to track translation results
 test_results/
 *.cir
 *.raw

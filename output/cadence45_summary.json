@@ -1,0 +1,244 @@
+{
+  "timestamp": "2026-02-09T01:26:50.807218",
+  "source_folder": "tools/spice-libraries/private-models/cadence45",
+  "target_format": "ngspice",
+  "total_files": 9,
+  "successful": 7,
+  "failed": 2,
+  "skipped": 0,
+  "total_models_in": 0,
+  "total_models_out": 49,
+  "success_rate": 77.77777777777779,
+  "total_duration_ms": 3886.5668773651123,
+  "verification_summary": {
+    "enabled": true,
+    "verified_count": 7,
+    "passed_count": 7,
+    "failed_count": 0,
+    "pass_rate": 100.0,
+    "details": [
+      {
+        "file": "tools/spice-libraries/private-models/cadence45/spectre/gpdk045_bipolar.scs",
+        "device_name": "pnp_scalable",
+        "device_type": "bjt",
+        "passed": true,
+        "error": null
+      },
+      {
+        "file": "tools/spice-libraries/private-models/cadence45/spectre/gpdk045_diode.scs",
+        "device_name": "g45nd1svt",
+        "device_type": "diode",
+        "passed": true,
+        "error": null
+      },
+      {
+        "file": "tools/spice-libraries/private-models/cadence45/spectre/gpdk045_inductor.scs",
+        "device_name": "g45inda",
+        "device_type": null,
+        "passed": true,
+        "error": null
+      },
+      {
+        "file": "tools/spice-libraries/private-models/cadence45/spectre/gpdk045_mimcap.scs",
+        "device_name": "mimcap",
+        "device_type": "capacitor",
+        "passed": true,
+        "error": null
+      },
+      {
+        "file": "tools/spice-libraries/private-models/cadence45/spectre/gpdk045_mos.scs",
+        "device_name": "g45n1svt",
+        "device_type": null,
+        "passed": true,
+        "error": null
+      },
+      {
+        "file": "tools/spice-libraries/private-models/cadence45/spectre/gpdk045_moscap.scs",
+        "device_name": "g45ncap1",
+        "device_type": "capacitor",
+        "passed": true,
+        "error": null
+      },
+      {
+        "file": "tools/spice-libraries/private-models/cadence45/spectre/gpdk045_resistor.scs",
+        "device_name": "resnwsti",
+        "device_type": "resistor",
+        "passed": true,
+        "error": null
+      }
+    ]
+  },
+  "results": [
+    {
+      "file": "tools/spice-libraries/private-models/cadence45/spectre/gpdk045.scs",
+      "source_format": "spectre",
+      "target_format": "ngspice",
+      "success": false,
+      "models_in": 0,
+      "models_out": 0,
+      "output_file": null,
+      "error": "Invalid models provided",
+      "duration_ms": 1.360177993774414,
+      "verified": false,
+      "verification_passed": null,
+      "verification_details": null
+    },
+    {
+      "file": "tools/spice-libraries/private-models/cadence45/spectre/gpdk045_bipolar.scs",
+      "source_format": "spectre",
+      "target_format": "ngspice",
+      "success": true,
+      "models_in": 0,
+      "models_out": 8,
+      "output_file": "/home/shennilee/newproject2026/proj1/new-spice-translator/output/cadence45_spectre-ngspice/gpdk045_bipolar.lib",
+      "error": null,
+      "duration_ms": 9.603738784790039,
+      "verified": true,
+      "verification_passed": true,
+      "verification_details": {
+        "device_name": "pnp_scalable",
+        "device_type": "bjt",
+        "data_file": null,
+        "error": null
+      }
+    },
+    {
+      "file": "tools/spice-libraries/private-models/cadence45/spectre/gpdk045_diode.scs",
+      "source_format": "spectre",
+      "target_format": "ngspice",
+      "success": true,
+      "models_in": 0,
+      "models_out": 10,
+      "output_file": "/home/shennilee/newproject2026/proj1/new-spice-translator/output/cadence45_spectre-ngspice/gpdk045_diode.lib",
+      "error": null,
+      "duration_ms": 3.881216049194336,
+      "verified": true,
+      "verification_passed": true,
+      "verification_details": {
+        "device_name": "g45nd1svt",
+        "device_type": "diode",
+        "data_file": null,
+        "error": null
+      }
+    },
+    {
+      "file": "tools/spice-libraries/private-models/cadence45/spectre/gpdk045_inductor.scs",
+      "source_format": "spectre",
+      "target_format": "ngspice",
+      "success": true,
+      "models_in": 0,
+      "models_out": 2,
+      "output_file": "/home/shennilee/newproject2026/proj1/new-spice-translator/output/cadence45_spectre-ngspice/gpdk045_inductor.lib",
+      "error": null,
+      "duration_ms": 2.313852310180664,
+      "verified": true,
+      "verification_passed": true,
+      "verification_details": {
+        "device_name": "g45inda",
+        "device_type": null,
+        "data_file": null,
+        "error": null
+      }
+    },
+    {
+      "file": "tools/spice-libraries/private-models/cadence45/spectre/gpdk045_mimcap.scs",
+      "source_format": "spectre",
+      "target_format": "ngspice",
+      "success": true,
+      "models_in": 0,
+      "models_out": 2,
+      "output_file": "/home/shennilee/newproject2026/proj1/new-spice-translator/output/cadence45_spectre-ngspice/gpdk045_mimcap.lib",
+      "error": null,
+      "duration_ms": 2.759218215942383,
+      "verified": true,
+      "verification_passed": true,
+      "verification_details": {
+        "device_name": "mimcap",
+        "device_type": "capacitor",
+        "data_file": null,
+        "error": null
+      }
+    },
+    {
+      "file": "tools/spice-libraries/private-models/cadence45/spectre/gpdk045_mos.scs",
+      "source_format": "spectre",
+      "target_format": "ngspice",
+      "success": true,
+      "models_in": 0,
+      "models_out": 20,
+      "output_file": "/home/shennilee/newproject2026/proj1/new-spice-translator/output/cadence45_spectre-ngspice/gpdk045_mos.lib",
+      "error": null,
+      "duration_ms": 3505.2802562713623,
+      "verified": true,
+      "verification_passed": true,
+      "verification_details": {
+        "device_name": "g45n1svt",
+        "device_type": null,
+        "data_file": null,
+        "error": null
+      }
+    },
+    {
+      "file": "tools/spice-libraries/private-models/cadence45/spectre/gpdk045_moscap.scs",
+      "source_format": "spectre",
+      "target_format": "ngspice",
+      "success": true,
+      "models_in": 0,
+      "models_out": 4,
+      "output_file": "/home/shennilee/newproject2026/proj1/new-spice-translator/output/cadence45_spectre-ngspice/gpdk045_moscap.lib",
+      "error": null,
+      "duration_ms": 174.9563217163086,
+      "verified": true,
+      "verification_passed": true,
+      "verification_details": {
+        "device_name": "g45ncap1",
+        "device_type": "capacitor",
+        "data_file": null,
+        "error": null
+      }
+    },
+    {
+      "file": "tools/spice-libraries/private-models/cadence45/spectre/gpdk045_resistor.scs",
+      "source_format": "spectre",
+      "target_format": "ngspice",
+      "success": true,
+      "models_in": 0,
+      "models_out": 3,
+      "output_file": "/home/shennilee/newproject2026/proj1/new-spice-translator/output/cadence45_spectre-ngspice/gpdk045_resistor.lib",
+      "error": null,
+      "duration_ms": 24.511098861694336,
+      "verified": true,
+      "verification_passed": true,
+      "verification_details": {
+        "device_name": "resnwsti",
+        "device_type": "resistor",
+        "data_file": null,
+        "error": null
+      }
+    },
+    {
+      "file": "tools/spice-libraries/private-models/cadence45/spectre/gpdk045_soa.scs",
+      "source_format": "spectre",
+      "target_format": "ngspice",
+      "success": false,
+      "models_in": 0,
+      "models_out": 0,
+      "output_file": null,
+      "error": "Invalid models provided",
+      "duration_ms": 1.0211467742919922,
+      "verified": false,
+      "verification_passed": null,
+      "verification_details": null
+    }
+  ],
+  "errors": [
+    {
+      "file": "tools/spice-libraries/private-models/cadence45/spectre/gpdk045.scs",
+      "error": "Invalid models provided"
+    },
+    {
+      "file": "tools/spice-libraries/private-models/cadence45/spectre/gpdk045_soa.scs",
+      "error": "Invalid models provided"
+    }
+  ]
+}

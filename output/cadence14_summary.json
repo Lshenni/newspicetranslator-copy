@@ -1,0 +1,174 @@
+{
+  "timestamp": "2026-02-09T01:26:34.176876",
+  "source_folder": "tools/spice-libraries/private-models/cadence14",
+  "target_format": "ngspice",
+  "total_files": 6,
+  "successful": 5,
+  "failed": 1,
+  "skipped": 0,
+  "total_models_in": 0,
+  "total_models_out": 24,
+  "success_rate": 83.33333333333334,
+  "total_duration_ms": 152.44793891906738,
+  "verification_summary": {
+    "enabled": true,
+    "verified_count": 5,
+    "passed_count": 5,
+    "failed_count": 0,
+    "pass_rate": 100.0,
+    "details": [
+      {
+        "file": "tools/spice-libraries/private-models/cadence14/spectre/cds_ff_mpt_bipolar.scs",
+        "device_name": "cds_ff_mpt_npns",
+        "device_type": "bjt",
+        "passed": true,
+        "error": null
+      },
+      {
+        "file": "tools/spice-libraries/private-models/cadence14/spectre/cds_ff_mpt_diode.scs",
+        "device_name": "cds_ff_mpt_nd1svt",
+        "device_type": "diode",
+        "passed": true,
+        "error": null
+      },
+      {
+        "file": "tools/spice-libraries/private-models/cadence14/spectre/cds_ff_mpt_mimcap.scs",
+        "device_name": "cds_ff_mpt_cmim",
+        "device_type": "capacitor",
+        "passed": true,
+        "error": null
+      },
+      {
+        "file": "tools/spice-libraries/private-models/cadence14/spectre/cds_ff_mpt_mosfet.scs",
+        "device_name": "cds_ff_mpt_n1svt",
+        "device_type": null,
+        "passed": true,
+        "error": null
+      },
+      {
+        "file": "tools/spice-libraries/private-models/cadence14/spectre/cds_ff_mpt_resistor.scs",
+        "device_name": "cds_ff_mpt_rnws",
+        "device_type": null,
+        "passed": true,
+        "error": null
+      }
+    ]
+  },
+  "results": [
+    {
+      "file": "tools/spice-libraries/private-models/cadence14/spectre/cds_ff_mpt.scs",
+      "source_format": "spectre",
+      "target_format": "ngspice",
+      "success": false,
+      "models_in": 0,
+      "models_out": 0,
+      "output_file": null,
+      "error": "Invalid models provided",
+      "duration_ms": 1.1599063873291016,
+      "verified": false,
+      "verification_passed": null,
+      "verification_details": null
+    },
+    {
+      "file": "tools/spice-libraries/private-models/cadence14/spectre/cds_ff_mpt_bipolar.scs",
+      "source_format": "spectre",
+      "target_format": "ngspice",
+      "success": true,
+      "models_in": 0,
+      "models_out": 3,
+      "output_file": "/home/shennilee/newproject2026/proj1/new-spice-translator/output/cadence14_spectre-ngspice/cds_ff_mpt_bipolar.lib",
+      "error": null,
+      "duration_ms": 5.185365676879883,
+      "verified": true,
+      "verification_passed": true,
+      "verification_details": {
+        "device_name": "cds_ff_mpt_npns",
+        "device_type": "bjt",
+        "data_file": null,
+        "error": null
+      }
+    },
+    {
+      "file": "tools/spice-libraries/private-models/cadence14/spectre/cds_ff_mpt_diode.scs",
+      "source_format": "spectre",
+      "target_format": "ngspice",
+      "success": true,
+      "models_in": 0,
+      "models_out": 8,
+      "output_file": "/home/shennilee/newproject2026/proj1/new-spice-translator/output/cadence14_spectre-ngspice/cds_ff_mpt_diode.lib",
+      "error": null,
+      "duration_ms": 3.121614456176758,
+      "verified": true,
+      "verification_passed": true,
+      "verification_details": {
+        "device_name": "cds_ff_mpt_nd1svt",
+        "device_type": "diode",
+        "data_file": null,
+        "error": null
+      }
+    },
+    {
+      "file": "tools/spice-libraries/private-models/cadence14/spectre/cds_ff_mpt_mimcap.scs",
+      "source_format": "spectre",
+      "target_format": "ngspice",
+      "success": true,
+      "models_in": 0,
+      "models_out": 2,
+      "output_file": "/home/shennilee/newproject2026/proj1/new-spice-translator/output/cadence14_spectre-ngspice/cds_ff_mpt_mimcap.lib",
+      "error": null,
+      "duration_ms": 2.3822784423828125,
+      "verified": true,
+      "verification_passed": true,
+      "verification_details": {
+        "device_name": "cds_ff_mpt_cmim",
+        "device_type": "capacitor",
+        "data_file": null,
+        "error": null
+      }
+    },
+    {
+      "file": "tools/spice-libraries/private-models/cadence14/spectre/cds_ff_mpt_mosfet.scs",
+      "source_format": "spectre",
+      "target_format": "ngspice",
+      "success": true,
+      "models_in": 0,
+      "models_out": 8,
+      "output_file": "/home/shennilee/newproject2026/proj1/new-spice-translator/output/cadence14_spectre-ngspice/cds_ff_mpt_mosfet.lib",
+      "error": null,
+      "duration_ms": 73.01926612854004,
+      "verified": true,
+      "verification_passed": true,
+      "verification_details": {
+        "device_name": "cds_ff_mpt_n1svt",
+        "device_type": null,
+        "data_file": null,
+        "error": null
+      }
+    },
+    {
+      "file": "tools/spice-libraries/private-models/cadence14/spectre/cds_ff_mpt_resistor.scs",
+      "source_format": "spectre",
+      "target_format": "ngspice",
+      "success": true,
+      "models_in": 0,
+      "models_out": 3,
+      "output_file": "/home/shennilee/newproject2026/proj1/new-spice-translator/output/cadence14_spectre-ngspice/cds_ff_mpt_resistor.lib",
+      "error": null,
+      "duration_ms": 23.533344268798828,
+      "verified": true,
+      "verification_passed": true,
+      "verification_details": {
+        "device_name": "cds_ff_mpt_rnws",
+        "device_type": null,
+        "data_file": null,
+        "error": null
+      }
+    }
+  ],
+  "errors": [
+    {
+      "file": "tools/spice-libraries/private-models/cadence14/spectre/cds_ff_mpt.scs",
+      "error": "Invalid models provided"
+    }
+  ]
+}

@@ -1,0 +1,542 @@
+{
+  "timestamp": "2026-02-09T01:27:11.951192",
+  "source_folder": "tools/spice-libraries/private-models/smic180",
+  "target_format": "ngspice",
+  "total_files": 22,
+  "successful": 15,
+  "failed": 7,
+  "skipped": 0,
+  "total_models_in": 0,
+  "total_models_out": 66,
+  "success_rate": 68.18181818181817,
+  "total_duration_ms": 341.2954807281494,
+  "verification_summary": {
+    "enabled": true,
+    "verified_count": 15,
+    "passed_count": 15,
+    "failed_count": 0,
+    "pass_rate": 100.0,
+    "details": [
+      {
+        "file": "tools/spice-libraries/private-models/smic180/hspice/bjt/npn50a100.mdl",
+        "device_name": "npn50a100",
+        "device_type": "bjt",
+        "passed": true,
+        "error": null
+      },
+      {
+        "file": "tools/spice-libraries/private-models/smic180/hspice/bjt/npn50a25.mdl",
+        "device_name": "npn50a25",
+        "device_type": "bjt",
+        "passed": true,
+        "error": null
+      },
+      {
+        "file": "tools/spice-libraries/private-models/smic180/hspice/bjt/npnhva100.mdl",
+        "device_name": "npnhva100",
+        "device_type": "bjt",
+        "passed": true,
+        "error": null
+      },
+      {
+        "file": "tools/spice-libraries/private-models/smic180/hspice/bjt/npnhva25.mdl",
+        "device_name": "npnhva25",
+        "device_type": "bjt",
+        "passed": true,
+        "error": null
+      },
+      {
+        "file": "tools/spice-libraries/private-models/smic180/hspice/bjt/pnp18a100.mdl",
+        "device_name": "pnp18a100",
+        "device_type": "bjt",
+        "passed": true,
+        "error": null
+      },
+      {
+        "file": "tools/spice-libraries/private-models/smic180/hspice/bjt/pnp18a25.mdl",
+        "device_name": "pnp18a25",
+        "device_type": "bjt",
+        "passed": true,
+        "error": null
+      },
+      {
+        "file": "tools/spice-libraries/private-models/smic180/hspice/bjt/pnp18a4.mdl",
+        "device_name": "pnp18a4",
+        "device_type": "bjt",
+        "passed": true,
+        "error": null
+      },
+      {
+        "file": "tools/spice-libraries/private-models/smic180/hspice/bjt/pnp50a100.mdl",
+        "device_name": "pnp50a100",
+        "device_type": "bjt",
+        "passed": true,
+        "error": null
+      },
+      {
+        "file": "tools/spice-libraries/private-models/smic180/hspice/bjt/pnp50a25.mdl",
+        "device_name": "pnp50a25",
+        "device_type": "bjt",
+        "passed": true,
+        "error": null
+      },
+      {
+        "file": "tools/spice-libraries/private-models/smic180/hspice/bjt/pnphva100.mdl",
+        "device_name": "pnphva100",
+        "device_type": "bjt",
+        "passed": true,
+        "error": null
+      },
+      {
+        "file": "tools/spice-libraries/private-models/smic180/hspice/bjt/pnphva25.mdl",
+        "device_name": "pnphva25",
+        "device_type": "bjt",
+        "passed": true,
+        "error": null
+      },
+      {
+        "file": "tools/spice-libraries/private-models/smic180/hspice/d18_v3e_bcd_v1p0_rev1_dio.mdl",
+        "device_name": "ndio18",
+        "device_type": "diode",
+        "passed": true,
+        "error": null
+      },
+      {
+        "file": "tools/spice-libraries/private-models/smic180/hspice/d18_v3e_bcd_v1p0_rev1_esd_mos.mdl",
+        "device_name": "n1d8_esd",
+        "device_type": "mos",
+        "passed": true,
+        "error": null
+      },
+      {
+        "file": "tools/spice-libraries/private-models/smic180/hspice/d18_v3e_bcd_v1p0_rev1_ldmos.mdl",
+        "device_name": "nld5g5_sa",
+        "device_type": "mos",
+        "passed": true,
+        "error": null
+      },
+      {
+        "file": "tools/spice-libraries/private-models/smic180/hspice/d18_v3e_bcd_v1p0_rev1_mis.mdl",
+        "device_name": "n18",
+        "device_type": "mos",
+        "passed": true,
+        "error": null
+      }
+    ]
+  },
+  "results": [
+    {
+      "file": "tools/spice-libraries/private-models/smic180/hspice/bjt/npn50a100.mdl",
+      "source_format": "hspice",
+      "target_format": "ngspice",
+      "success": true,
+      "models_in": 0,
+      "models_out": 1,
+      "output_file": "/home/shennilee/newproject2026/proj1/new-spice-translator/output/smic180_hspice-ngspice/npn50a100.lib",
+      "error": null,
+      "duration_ms": 3.5262107849121094,
+      "verified": true,
+      "verification_passed": true,
+      "verification_details": {
+        "device_name": "npn50a100",
+        "device_type": "bjt",
+        "data_file": null,
+        "error": null
+      }
+    },
+    {
+      "file": "tools/spice-libraries/private-models/smic180/hspice/bjt/npn50a25.mdl",
+      "source_format": "hspice",
+      "target_format": "ngspice",
+      "success": true,
+      "models_in": 0,
+      "models_out": 1,
+      "output_file": "/home/shennilee/newproject2026/proj1/new-spice-translator/output/smic180_hspice-ngspice/npn50a25.lib",
+      "error": null,
+      "duration_ms": 2.446413040161133,
+      "verified": true,
+      "verification_passed": true,
+      "verification_details": {
+        "device_name": "npn50a25",
+        "device_type": "bjt",
+        "data_file": null,
+        "error": null
+      }
+    },
+    {
+      "file": "tools/spice-libraries/private-models/smic180/hspice/bjt/npnhva100.mdl",
+      "source_format": "hspice",
+      "target_format": "ngspice",
+      "success": true,
+      "models_in": 0,
+      "models_out": 1,
+      "output_file": "/home/shennilee/newproject2026/proj1/new-spice-translator/output/smic180_hspice-ngspice/npnhva100.lib",
+      "error": null,
+      "duration_ms": 2.3069381713867188,
+      "verified": true,
+      "verification_passed": true,
+      "verification_details": {
+        "device_name": "npnhva100",
+        "device_type": "bjt",
+        "data_file": null,
+        "error": null
+      }
+    },
+    {
+      "file": "tools/spice-libraries/private-models/smic180/hspice/bjt/npnhva25.mdl",
+      "source_format": "hspice",
+      "target_format": "ngspice",
+      "success": true,
+      "models_in": 0,
+      "models_out": 1,
+      "output_file": "/home/shennilee/newproject2026/proj1/new-spice-translator/output/smic180_hspice-ngspice/npnhva25.lib",
+      "error": null,
+      "duration_ms": 3.015756607055664,
+      "verified": true,
+      "verification_passed": true,
+      "verification_details": {
+        "device_name": "npnhva25",
+        "device_type": "bjt",
+        "data_file": null,
+        "error": null
+      }
+    },
+    {
+      "file": "tools/spice-libraries/private-models/smic180/hspice/bjt/pnp18a100.mdl",
+      "source_format": "hspice",
+      "target_format": "ngspice",
+      "success": true,
+      "models_in": 0,
+      "models_out": 1,
+      "output_file": "/home/shennilee/newproject2026/proj1/new-spice-translator/output/smic180_hspice-ngspice/pnp18a100.lib",
+      "error": null,
+      "duration_ms": 2.307891845703125,
+      "verified": true,
+      "verification_passed": true,
+      "verification_details": {
+        "device_name": "pnp18a100",
+        "device_type": "bjt",
+        "data_file": null,
+        "error": null
+      }
+    },
+    {
+      "file": "tools/spice-libraries/private-models/smic180/hspice/bjt/pnp18a25.mdl",
+      "source_format": "hspice",
+      "target_format": "ngspice",
+      "success": true,
+      "models_in": 0,
+      "models_out": 1,
+      "output_file": "/home/shennilee/newproject2026/proj1/new-spice-translator/output/smic180_hspice-ngspice/pnp18a25.lib",
+      "error": null,
+      "duration_ms": 2.2890567779541016,
+      "verified": true,
+      "verification_passed": true,
+      "verification_details": {
+        "device_name": "pnp18a25",
+        "device_type": "bjt",
+        "data_file": null,
+        "error": null
+      }
+    },
+    {
+      "file": "tools/spice-libraries/private-models/smic180/hspice/bjt/pnp18a4.mdl",
+      "source_format": "hspice",
+      "target_format": "ngspice",
+      "success": true,
+      "models_in": 0,
+      "models_out": 1,
+      "output_file": "/home/shennilee/newproject2026/proj1/new-spice-translator/output/smic180_hspice-ngspice/pnp18a4.lib",
+      "error": null,
+      "duration_ms": 2.2225379943847656,
+      "verified": true,
+      "verification_passed": true,
+      "verification_details": {
+        "device_name": "pnp18a4",
+        "device_type": "bjt",
+        "data_file": null,
+        "error": null
+      }
+    },
+    {
+      "file": "tools/spice-libraries/private-models/smic180/hspice/bjt/pnp50a100.mdl",
+      "source_format": "hspice",
+      "target_format": "ngspice",
+      "success": true,
+      "models_in": 0,
+      "models_out": 1,
+      "output_file": "/home/shennilee/newproject2026/proj1/new-spice-translator/output/smic180_hspice-ngspice/pnp50a100.lib",
+      "error": null,
+      "duration_ms": 2.5556087493896484,
+      "verified": true,
+      "verification_passed": true,
+      "verification_details": {
+        "device_name": "pnp50a100",
+        "device_type": "bjt",
+        "data_file": null,
+        "error": null
+      }
+    },
+    {
+      "file": "tools/spice-libraries/private-models/smic180/hspice/bjt/pnp50a25.mdl",
+      "source_format": "hspice",
+      "target_format": "ngspice",
+      "success": true,
+      "models_in": 0,
+      "models_out": 1,
+      "output_file": "/home/shennilee/newproject2026/proj1/new-spice-translator/output/smic180_hspice-ngspice/pnp50a25.lib",
+      "error": null,
+      "duration_ms": 2.463102340698242,
+      "verified": true,
+      "verification_passed": true,
+      "verification_details": {
+        "device_name": "pnp50a25",
+        "device_type": "bjt",
+        "data_file": null,
+        "error": null
+      }
+    },
+    {
+      "file": "tools/spice-libraries/private-models/smic180/hspice/bjt/pnphva100.mdl",
+      "source_format": "hspice",
+      "target_format": "ngspice",
+      "success": true,
+      "models_in": 0,
+      "models_out": 1,
+      "output_file": "/home/shennilee/newproject2026/proj1/new-spice-translator/output/smic180_hspice-ngspice/pnphva100.lib",
+      "error": null,
+      "duration_ms": 2.125978469848633,
+      "verified": true,
+      "verification_passed": true,
+      "verification_details": {
+        "device_name": "pnphva100",
+        "device_type": "bjt",
+        "data_file": null,
+        "error": null
+      }
+    },
+    {
+      "file": "tools/spice-libraries/private-models/smic180/hspice/bjt/pnphva25.mdl",
+      "source_format": "hspice",
+      "target_format": "ngspice",
+      "success": true,
+      "models_in": 0,
+      "models_out": 1,
+      "output_file": "/home/shennilee/newproject2026/proj1/new-spice-translator/output/smic180_hspice-ngspice/pnphva25.lib",
+      "error": null,
+      "duration_ms": 2.329587936401367,
+      "verified": true,
+      "verification_passed": true,
+      "verification_details": {
+        "device_name": "pnphva25",
+        "device_type": "bjt",
+        "data_file": null,
+        "error": null
+      }
+    },
+    {
+      "file": "tools/spice-libraries/private-models/smic180/hspice/d18_v3e_bcd_v1p0_rev1.lib",
+      "source_format": "hspice",
+      "target_format": "ngspice",
+      "success": false,
+      "models_in": 0,
+      "models_out": 0,
+      "output_file": null,
+      "error": "Invalid models provided",
+      "duration_ms": 25.471210479736328,
+      "verified": false,
+      "verification_passed": null,
+      "verification_details": null
+    },
+    {
+      "file": "tools/spice-libraries/private-models/smic180/hspice/d18_v3e_bcd_v1p0_rev1_dio.mdl",
+      "source_format": "hspice",
+      "target_format": "ngspice",
+      "success": true,
+      "models_in": 0,
+      "models_out": 16,
+      "output_file": "/home/shennilee/newproject2026/proj1/new-spice-translator/output/smic180_hspice-ngspice/d18_v3e_bcd_v1p0_rev1_dio.lib",
+      "error": null,
+      "duration_ms": 7.36689567565918,
+      "verified": true,
+      "verification_passed": true,
+      "verification_details": {
+        "device_name": "ndio18",
+        "device_type": "diode",
+        "data_file": null,
+        "error": null
+      }
+    },
+    {
+      "file": "tools/spice-libraries/private-models/smic180/hspice/d18_v3e_bcd_v1p0_rev1_esd_mos.mdl",
+      "source_format": "hspice",
+      "target_format": "ngspice",
+      "success": true,
+      "models_in": 0,
+      "models_out": 5,
+      "output_file": "/home/shennilee/newproject2026/proj1/new-spice-translator/output/smic180_hspice-ngspice/d18_v3e_bcd_v1p0_rev1_esd_mos.lib",
+      "error": null,
+      "duration_ms": 23.110151290893555,
+      "verified": true,
+      "verification_passed": true,
+      "verification_details": {
+        "device_name": "n1d8_esd",
+        "device_type": "mos",
+        "data_file": null,
+        "error": null
+      }
+    },
+    {
+      "file": "tools/spice-libraries/private-models/smic180/hspice/d18_v3e_bcd_v1p0_rev1_ldmos.mdl",
+      "source_format": "hspice",
+      "target_format": "ngspice",
+      "success": true,
+      "models_in": 0,
+      "models_out": 22,
+      "output_file": "/home/shennilee/newproject2026/proj1/new-spice-translator/output/smic180_hspice-ngspice/d18_v3e_bcd_v1p0_rev1_ldmos.lib",
+      "error": null,
+      "duration_ms": 76.07340812683105,
+      "verified": true,
+      "verification_passed": true,
+      "verification_details": {
+        "device_name": "nld5g5_sa",
+        "device_type": "mos",
+        "data_file": null,
+        "error": null
+      }
+    },
+    {
+      "file": "tools/spice-libraries/private-models/smic180/hspice/d18_v3e_bcd_v1p0_rev1_mis.mdl",
+      "source_format": "hspice",
+      "target_format": "ngspice",
+      "success": true,
+      "models_in": 0,
+      "models_out": 12,
+      "output_file": "/home/shennilee/newproject2026/proj1/new-spice-translator/output/smic180_hspice-ngspice/d18_v3e_bcd_v1p0_rev1_mis.lib",
+      "error": null,
+      "duration_ms": 51.28908157348633,
+      "verified": true,
+      "verification_passed": true,
+      "verification_details": {
+        "device_name": "n18",
+        "device_type": "mos",
+        "data_file": null,
+        "error": null
+      }
+    },
+    {
+      "file": "tools/spice-libraries/private-models/smic180/hspice/ff.lib",
+      "source_format": "hspice",
+      "target_format": "ngspice",
+      "success": false,
+      "models_in": 0,
+      "models_out": 0,
+      "output_file": null,
+      "error": "Invalid models provided",
+      "duration_ms": 0.6215572357177734,
+      "verified": false,
+      "verification_passed": null,
+      "verification_details": null
+    },
+    {
+      "file": "tools/spice-libraries/private-models/smic180/hspice/fs.lib",
+      "source_format": "hspice",
+      "target_format": "ngspice",
+      "success": false,
+      "models_in": 0,
+      "models_out": 0,
+      "output_file": null,
+      "error": "Invalid models provided",
+      "duration_ms": 0.5745887756347656,
+      "verified": false,
+      "verification_passed": null,
+      "verification_details": null
+    },
+    {
+      "file": "tools/spice-libraries/private-models/smic180/hspice/mc.lib",
+      "source_format": "hspice",
+      "target_format": "ngspice",
+      "success": false,
+      "models_in": 0,
+      "models_out": 0,
+      "output_file": null,
+      "error": "Invalid models provided",
+      "duration_ms": 0.6206035614013672,
+      "verified": false,
+      "verification_passed": null,
+      "verification_details": null
+    },
+    {
+      "file": "tools/spice-libraries/private-models/smic180/hspice/sf.lib",
+      "source_format": "hspice",
+      "target_format": "ngspice",
+      "success": false,
+      "models_in": 0,
+      "models_out": 0,
+      "output_file": null,
+      "error": "Invalid models provided",
+      "duration_ms": 0.8695125579833984,
+      "verified": false,
+      "verification_passed": null,
+      "verification_details": null
+    },
+    {
+      "file": "tools/spice-libraries/private-models/smic180/hspice/ss.lib",
+      "source_format": "hspice",
+      "target_format": "ngspice",
+      "success": false,
+      "models_in": 0,
+      "models_out": 0,
+      "output_file": null,
+      "error": "Invalid models provided",
+      "duration_ms": 1.0762214660644531,
+      "verified": false,
+      "verification_passed": null,
+      "verification_details": null
+    },
+    {
+      "file": "tools/spice-libraries/private-models/smic180/hspice/tt.lib",
+      "source_format": "hspice",
+      "target_format": "ngspice",
+      "success": false,
+      "models_in": 0,
+      "models_out": 0,
+      "output_file": null,
+      "error": "Invalid models provided",
+      "duration_ms": 0.7939338684082031,
+      "verified": false,
+      "verification_passed": null,
+      "verification_details": null
+    }
+  ],
+  "errors": [
+    {
+      "file": "tools/spice-libraries/private-models/smic180/hspice/d18_v3e_bcd_v1p0_rev1.lib",
+      "error": "Invalid models provided"
+    },
+    {
+      "file": "tools/spice-libraries/private-models/smic180/hspice/ff.lib",
+      "error": "Invalid models provided"
+    },
+    {
+      "file": "tools/spice-libraries/private-models/smic180/hspice/fs.lib",
+      "error": "Invalid models provided"
+    },
+    {
+      "file": "tools/spice-libraries/private-models/smic180/hspice/mc.lib",
+      "error": "Invalid models provided"
+    },
+    {
+      "file": "tools/spice-libraries/private-models/smic180/hspice/sf.lib",
+      "error": "Invalid models provided"
+    },
+    {
+      "file": "tools/spice-libraries/private-models/smic180/hspice/ss.lib",
+      "error": "Invalid models provided"
+    },
+    {
+      "file": "tools/spice-libraries/private-models/smic180/hspice/tt.lib",
+      "error": "Invalid models provided"
+    }
+  ]
+}

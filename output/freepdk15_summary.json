@@ -1,0 +1,133 @@
+{
+  "timestamp": "2026-02-09T01:27:05.908071",
+  "source_folder": "tools/spice-libraries/private-models/freepdk15",
+  "target_format": "ngspice",
+  "total_files": 6,
+  "successful": 0,
+  "failed": 6,
+  "skipped": 0,
+  "total_models_in": 0,
+  "total_models_out": 0,
+  "success_rate": 0.0,
+  "total_duration_ms": 4.433870315551758,
+  "verification_summary": {
+    "enabled": true,
+    "verified_count": 0,
+    "passed_count": 0,
+    "failed_count": 0,
+    "pass_rate": 0.0,
+    "details": []
+  },
+  "results": [
+    {
+      "file": "tools/spice-libraries/private-models/freepdk15/hspice/ff.lib",
+      "source_format": "hspice",
+      "target_format": "ngspice",
+      "success": false,
+      "models_in": 0,
+      "models_out": 0,
+      "output_file": null,
+      "error": "Invalid models provided",
+      "duration_ms": 0.7245540618896484,
+      "verified": false,
+      "verification_passed": null,
+      "verification_details": null
+    },
+    {
+      "file": "tools/spice-libraries/private-models/freepdk15/hspice/fs.lib",
+      "source_format": "hspice",
+      "target_format": "ngspice",
+      "success": false,
+      "models_in": 0,
+      "models_out": 0,
+      "output_file": null,
+      "error": "Invalid models provided",
+      "duration_ms": 0.4830360412597656,
+      "verified": false,
+      "verification_passed": null,
+      "verification_details": null
+    },
+    {
+      "file": "tools/spice-libraries/private-models/freepdk15/hspice/mc.lib",
+      "source_format": "hspice",
+      "target_format": "ngspice",
+      "success": false,
+      "models_in": 0,
+      "models_out": 0,
+      "output_file": null,
+      "error": "Invalid models provided",
+      "duration_ms": 0.46181678771972656,
+      "verified": false,
+      "verification_passed": null,
+      "verification_details": null
+    },
+    {
+      "file": "tools/spice-libraries/private-models/freepdk15/hspice/sf.lib",
+      "source_format": "hspice",
+      "target_format": "ngspice",
+      "success": false,
+      "models_in": 0,
+      "models_out": 0,
+      "output_file": null,
+      "error": "Invalid models provided",
+      "duration_ms": 0.5130767822265625,
+      "verified": false,
+      "verification_passed": null,
+      "verification_details": null
+    },
+    {
+      "file": "tools/spice-libraries/private-models/freepdk15/hspice/ss.lib",
+      "source_format": "hspice",
+      "target_format": "ngspice",
+      "success": false,
+      "models_in": 0,
+      "models_out": 0,
+      "output_file": null,
+      "error": "Invalid models provided",
+      "duration_ms": 0.5171298980712891,
+      "verified": false,
+      "verification_passed": null,
+      "verification_details": null
+    },
+    {
+      "file": "tools/spice-libraries/private-models/freepdk15/hspice/tt.lib",
+      "source_format": "hspice",
+      "target_format": "ngspice",
+      "success": false,
+      "models_in": 0,
+      "models_out": 0,
+      "output_file": null,
+      "error": "Invalid models provided",
+      "duration_ms": 0.5016326904296875,
+      "verified": false,
+      "verification_passed": null,
+      "verification_details": null
+    }
+  ],
+  "errors": [
+    {
+      "file": "tools/spice-libraries/private-models/freepdk15/hspice/ff.lib",
+      "error": "Invalid models provided"
+    },
+    {
+      "file": "tools/spice-libraries/private-models/freepdk15/hspice/fs.lib",
+      "error": "Invalid models provided"
+    },
+    {
+      "file": "tools/spice-libraries/private-models/freepdk15/hspice/mc.lib",
+      "error": "Invalid models provided"
+    },
+    {
+      "file": "tools/spice-libraries/private-models/freepdk15/hspice/sf.lib",
+      "error": "Invalid models provided"
+    },
+    {
+      "file": "tools/spice-libraries/private-models/freepdk15/hspice/ss.lib",
+      "error": "Invalid models provided"
+    },
+    {
+      "file": "tools/spice-libraries/private-models/freepdk15/hspice/tt.lib",
+      "error": "Invalid models provided"
+    }
+  ]
+}

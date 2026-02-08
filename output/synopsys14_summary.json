@@ -1,0 +1,51 @@
+{
+  "timestamp": "2026-02-09T01:27:34.479614",
+  "source_folder": "tools/spice-libraries/private-models/synopsys14",
+  "target_format": "ngspice",
+  "total_files": 1,
+  "successful": 1,
+  "failed": 0,
+  "skipped": 0,
+  "total_models_in": 0,
+  "total_models_out": 18,
+  "success_rate": 100.0,
+  "total_duration_ms": 112.1983528137207,
+  "verification_summary": {
+    "enabled": true,
+    "verified_count": 1,
+    "passed_count": 1,
+    "failed_count": 0,
+    "pass_rate": 100.0,
+    "details": [
+      {
+        "file": "tools/spice-libraries/private-models/synopsys14/hspice/saed14nm.lib",
+        "device_name": "p08",
+        "device_type": "mos",
+        "passed": true,
+        "error": null
+      }
+    ]
+  },
+  "results": [
+    {
+      "file": "tools/spice-libraries/private-models/synopsys14/hspice/saed14nm.lib",
+      "source_format": "hspice",
+      "target_format": "ngspice",
+      "success": true,
+      "models_in": 0,
+      "models_out": 18,
+      "output_file": "/home/shennilee/newproject2026/proj1/new-spice-translator/output/synopsys14_hspice-ngspice/saed14nm.lib",
+      "error": null,
+      "duration_ms": 98.1290340423584,
+      "verified": true,
+      "verification_passed": true,
+      "verification_details": {
+        "device_name": "p08",
+        "device_type": "mos",
+        "data_file": null,
+        "error": null
+      }
+    }
+  ],
+  "errors": []
+}
