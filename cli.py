@@ -8,6 +8,9 @@ Examples:
     # Translate only
     ./cli.py translate gpdk090_mos.scs --target ngspice
     
+    # Translate with verification
+    ./cli.py translate gpdk090_mos.scs --target ngspice --verify
+    
     # Verify translation
     ./cli.py verify gpdk090_capacitor.scs mimcap --source spectre --target ngspice
     
@@ -17,6 +20,9 @@ Examples:
 
 import sys
 import argparse
+import subprocess
+import tempfile
+import re
 from pathlib import Path
 
 # Add project root to path
@@ -31,8 +37,33 @@ def cmd_translate(args):
     """Handle translate command"""
     engine = TranslationEngine()
     
-    input_file = Path(args.input)
-    output_file = Path(args.output) if args.output else input_file.with_suffix('.lib')
+    input_file = Path(args.input).resolve()
+    
+    if args.output:
+        output_file = Path(args.output)
+    else:
+        # Auto-generate output path: output/{pdk_folder}_{source}-{target}/filename.ext
+        # Try to find a meaningful parent folder (go up from format-specific folders like 'spectre', 'hspice')
+        parent = input_file.parent
+        format_folders = {'spectre', 'hspice', 'ngspice', 'lib', 'models'}
+        
+        # If parent is a format folder, use grandparent for PDK name
+        if parent.name.lower() in format_folders:
+            pdk_folder = parent.parent.name
+        else:
+            pdk_folder = parent.name
+        
+        folder_name = f"{pdk_folder}_{args.source}-{args.target}"
+        output_dir = BASE_DIR / "output" / folder_name
+        output_dir.mkdir(parents=True, exist_ok=True)
+        
+        # Determine output extension based on target format
+        if args.target == 'spectre':
+            ext = '.scs'
+        else:
+            ext = '.lib'
+        
+        output_file = output_dir / input_file.with_suffix(ext).name
     
     result = engine.translate(
         input_file=input_file,
@@ -45,9 +76,137 @@ def cmd_translate(args):
         print(f"✅ Translation successful: {output_file}")
         print(f"   Models translated: {result.get('models_translated', 0)}")
         print(f"   Output size: {output_file.stat().st_size} bytes")
+        
+        # Run verification if requested
+        if args.verify and args.target == 'ngspice':
+            print("\n🔬 Running ngspice verification...")
+            verify_result = verify_ngspice_syntax(output_file)
+            if verify_result['passed']:
+                print(f"   ✅ Verification PASSED")
+                if verify_result.get('device_name'):
+                    print(f"   Device: {verify_result['device_name']} ({verify_result.get('device_type', 'unknown')})")
+            else:
+                print(f"   ❌ Verification FAILED: {verify_result.get('error', 'Unknown error')}")
+                sys.exit(1)
+        elif args.verify and args.target != 'ngspice':
+            print(f"   ⚠️  Verification only supported for ngspice target (got {args.target})")
     else:
         print(f"❌ Translation failed: {result.get('error', 'Unknown error')}")
         sys.exit(1)
+
+
+def verify_ngspice_syntax(output_file: Path) -> dict:
+    """
+    Run ngspice syntax verification on a translated file.
+    
+    Performs basic syntax check by loading the file into ngspice 
+    without instantiating devices. This validates syntax without
+    requiring specific device parameters.
+    
+    Returns dict with 'passed', 'device_name', 'device_type', 'error'
+    """
+    try:
+        content = output_file.read_text()
+        
+        # Extract first model or subcircuit info for reporting
+        model_match = re.search(r'\.model\s+(\S+)\s+(\S+)', content, re.IGNORECASE)
+        subckt_match = re.search(r'\.subckt\s+(\S+)', content, re.IGNORECASE)
+        
+        device_name = None
+        device_type = None
+        
+        if model_match:
+            device_name = model_match.group(1)
+            model_type = model_match.group(2).lower()
+            if 'nmos' in model_type or 'pmos' in model_type:
+                device_type = 'mos'
+            elif 'npn' in model_type or 'pnp' in model_type:
+                device_type = 'bjt'
+            elif model_type in ['d', 'diode']:
+                device_type = 'diode'
+            elif model_type in ['r', 'resistor']:
+                device_type = 'resistor'
+            elif model_type in ['c', 'capacitor']:
+                device_type = 'capacitor'
+        elif subckt_match:
+            device_name = subckt_match.group(1)
+            # Guess type from name
+            name_lower = device_name.lower()
+            if any(x in name_lower for x in ['nmos', 'pmos', 'mos', 'fet']):
+                device_type = 'mos'
+            elif any(x in name_lower for x in ['npn', 'pnp', 'bjt']):
+                device_type = 'bjt'
+            elif any(x in name_lower for x in ['diode', 'dio']):
+                device_type = 'diode'
+            elif any(x in name_lower for x in ['cap', 'mim']):
+                device_type = 'capacitor'
+            elif any(x in name_lower for x in ['res']):
+                device_type = 'resistor'
+        
+        if not device_name:
+            # File doesn't have recognizable models - do basic syntax check
+            device_name = "unknown"
+            device_type = "unknown"
+        
+        # Create a simple syntax verification netlist
+        # This includes the file and runs a dummy .op without instantiating devices
+        netlist = f"""* ngspice syntax verification
+.include '{output_file}'
+
+* Dummy circuit for syntax check (no device instantiation)
+V1 test_node 0 DC 1
+
+.op
+
+.control
+run
+echo VERIFICATION_PASSED
+quit
+.endc
+
+.end
+"""
+        
+        # Run ngspice
+        with tempfile.NamedTemporaryFile(mode='w', suffix='.sp', delete=False) as f:
+            f.write(netlist)
+            temp_netlist = f.name
+        
+        try:
+            result = subprocess.run(
+                ['ngspice', '-b', temp_netlist],
+                capture_output=True,
+                text=True,
+                timeout=30
+            )
+            
+            output = result.stdout + result.stderr
+            
+            if 'VERIFICATION_PASSED' in output:
+                return {
+                    'passed': True,
+                    'device_name': device_name,
+                    'device_type': device_type,
+                    'error': None
+                }
+            else:
+                # Check for errors
+                error_lines = [l for l in output.split('\n') if 'error' in l.lower()]
+                error_msg = error_lines[0] if error_lines else 'ngspice check failed'
+                return {
+                    'passed': False,
+                    'device_name': device_name,
+                    'device_type': device_type,
+                    'error': error_msg[:200]
+                }
+        finally:
+            Path(temp_netlist).unlink(missing_ok=True)
+            
+    except Exception as e:
+        return {
+            'passed': False,
+            'error': str(e)[:200]
+        }
 
 
 def cmd_verify(args):
@@ -193,6 +352,8 @@ Examples:
     translate_parser.add_argument('--target', '-t', required=True,
                                   choices=['spectre', 'hspice', 'ngspice'],
                                   help='Target format')
+    translate_parser.add_argument('--verify', '-v', action='store_true',
+                                  help='Run ngspice syntax verification after translation')
     
     # Verify command
     verify_parser = subparsers.add_parser('verify', help='Verify translation with simulation')

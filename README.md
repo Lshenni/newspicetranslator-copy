@@ -126,7 +126,177 @@ for f in Path('models/').glob('*.scs'):
 
 ---
 
-## 📖 Documentation
+## � Verification Guide
+
+The translator includes a complete verification framework to validate electrical accuracy of translated models.
+
+### Verification Levels
+
+| Level | Method | What It Proves |
+|-------|--------|----------------|
+| **1. Syntax** | ngspice parses without error | Output is valid SPICE |
+| **2. Parameter** | Compare param counts/values | No data loss in translation |
+| **3. Electrical** | Simulate and check I-V curves | Device behaves correctly |
+| **4. Cross-simulator** | Compare HSPICE vs ngspice | Functional equivalence |
+
+### Quick Verification via CLI
+
+```bash
+# Verify a single translation
+./cli.py verify input.scs model_name \
+    --device-class mos \
+    --target ngspice \
+    --width 1e-6 \
+    --length 180e-9
+
+# Run full regression suite
+./cli.py verify-all --target ngspice
+```
+
+### Generate Simulation Plots
+
+After translation, generate I-V curves to visually verify device behavior:
+
+```bash
+# BJT Gummel plot (Ic vs Vbe)
+python -m verification.plotter \
+    output/cadence90_spectre-ngspice/gpdk090_bipolar.lib \
+    gpdk090_npn \
+    --device-class bjt
+
+# MOS transfer curve (Id vs Vgs)
+python -m verification.plotter \
+    output/smic180HV_hspice-ngspice/model.lib \
+    nmos_1p8 \
+    --device-class mos \
+    --mos-type nmos
+
+# Diode I-V curve
+python -m verification.plotter \
+    output/translated_diode.lib \
+    my_diode \
+    --device-class diode
+
+# Capacitor AC impedance
+python -m verification.plotter \
+    output/gpdk090_capacitor.lib \
+    gpdk090_mimcap \
+    --device-class capacitor
+```
+
+Plots are saved as PNG files alongside CSV data in the output directory.
+
+### Python API for Verification
+
+```python
+from verification.plotter import SimulationPlotter, plot_device
+from verification.verifier import Verifier, verify_device
+from pathlib import Path
+
+# Option 1: Quick plot generation
+result = plot_device(
+    lib_file='output/cadence90_spectre-ngspice/gpdk090_bipolar.lib',
+    device_name='gpdk090_npn',
+    device_class='bjt'
+)
+print(f"Plot: {result.plot_file}")
+print(f"Data: {result.data_file}")
+
+# Option 2: Full verification workflow
+report = verify_device(
+    device_file='tools/spice-libraries/cadence90/spectre/gpdk090_capacitor.scs',
+    device_name='gpdk090_mimcap',
+    device_class='capacitor',
+    source='spectre',
+    target='ngspice',
+    area=10e-6,
+    perim=20e-6
+)
+print(report)  # Detailed verification report
+
+# Option 3: Custom plotter
+plotter = SimulationPlotter()
+result = plotter.plot_mos_idvgs(
+    lib_file=Path('output/model.lib'),
+    device_name='nmos_1p8',
+    output_dir=Path('output/plots'),
+    mos_type='nmos',
+    vgs_start=0.0,
+    vgs_stop=1.8,
+    vds=1.0
+)
+```
+
+### Interpreting Results
+
+**BJT Gummel Plot:**
+- ✅ Exponential Ic increase with Vbe
+- ✅ Ic ratio ~10× per 60mV (ideal diode equation)
+- ✅ Turn-on at ~0.6-0.7V
+
+**MOS Transfer Curve:**
+- ✅ Clear threshold voltage (Vth)
+- ✅ Linear region → saturation transition
+- ✅ Expected current levels (µA-mA)
+
+**Diode I-V:**
+- ✅ Exponential turn-on at ~0.7V
+- ✅ Reverse leakage in nA-pA range
+
+---
+
+## 📦 Batch Translation
+
+Translate entire PDK folders with automatic format detection:
+
+```bash
+# Translate all files in asap7 folder to ngspice
+./batch_translate.py tools/spice-libraries/private-models/asap7 --target ngspice
+
+# Force source format
+./batch_translate.py input_folder --target spectre --source hspice
+
+# Custom output directory
+./batch_translate.py input_folder --target ngspice --output my_output/
+
+# Quiet mode with JSON output
+./batch_translate.py input_folder --target ngspice --quiet --json results.json
+```
+
+### Output Structure
+
+```
+output/
+├── asap7_hspice-ngspice/           # Auto-named folder
+│   ├── ff.lib                      # Translated files
+│   ├── ss.lib
+│   └── tt.lib
+└── asap7_summary.json              # JSON summary
+```
+
+### JSON Summary Format
+
+```json
+{
+  "timestamp": "2026-02-08T00:30:00",
+  "source_folder": "tools/spice-libraries/private-models/asap7",
+  "target_format": "ngspice",
+  "total_files": 6,
+  "successful": 6,
+  "failed": 0,
+  "skipped": 0,
+  "total_models_in": 48,
+  "total_models_out": 48,
+  "success_rate": 100.0,
+  "total_duration_ms": 234.5,
+  "results": [...],
+  "errors": []
+}
+```
+
+---
+
+## �📖 Documentation
 
 - **[ARCHITECTURE.md](ARCHITECTURE.md)** - System architecture and design
 - **[USAGE_GUIDE.md](USAGE_GUIDE.md)** - Complete usage guide with CLI examples
