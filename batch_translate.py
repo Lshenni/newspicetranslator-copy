@@ -554,14 +554,23 @@ Examples:
     # Translate all files in asap7 folder to ngspice
     %(prog)s tools/spice-libraries/private-models/asap7 --target ngspice
 
+    # With verification (syntax check)
+    %(prog)s input_folder --target ngspice --verify
+
+    # With verification AND plot generation
+    %(prog)s input_folder --target ngspice --plot
+
+    # Limit devices to plot per file
+    %(prog)s input_folder --target ngspice --plot --max-plots 2
+
     # Force source format
     %(prog)s input_folder --target spectre --source hspice
 
-    # With verification
-    %(prog)s input_folder --target ngspice --verify
-
     # Custom output directory
     %(prog)s input_folder --target ngspice --output my_output/
+
+    # Quiet mode with JSON output
+    %(prog)s input_folder --target ngspice --quiet --json results.json
         """
     )
     

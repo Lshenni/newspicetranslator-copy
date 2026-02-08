@@ -85,13 +85,24 @@ pip install -e .
 
 #### 2. Translation with Verification
 ```bash
-./cli.py verify input.scs model_name \
-  --device-class capacitor \
-  --target ngspice \
-  --area 10e-6
+./cli.py translate input.scs --target ngspice --verify
 ```
 
-#### 3. Run Regression Tests
+#### 3. Translation with Verification + Plots
+```bash
+./cli.py translate input.scs --target ngspice --verify --plot
+```
+
+#### 4. Generate Plots for Existing Translations
+```bash
+# Single file
+./cli.py plot output/translated.lib
+
+# Entire directory
+./cli.py plot output/cadence90_spectre-ngspice/
+```
+
+#### 5. Run Regression Tests
 ```bash
 ./cli.py verify-all --target ngspice
 ```
@@ -114,14 +125,11 @@ result = engine.translate(
 ### Batch Translation
 
 ```bash
-# Batch translate all models in a directory
-python -c "
-from pathlib import Path
-from src.main import translate_file_s2s
+# Translate all files with verification and plots
+./batch_translate.py tools/spice-libraries/asap7 --target ngspice --plot
 
-for f in Path('models/').glob('*.scs'):
-    translate_file_s2s(f, 'spectre', 'ngspice')
-"
+# Just translation and verification (no plots)
+./batch_translate.py tools/spice-libraries/asap7 --target ngspice --verify
 ```
 
 ---
@@ -153,91 +161,94 @@ The translator includes a complete verification framework to validate electrical
 ./cli.py verify-all --target ngspice
 ```
 
-### Generate Simulation Plots
+---
 
-After translation, generate I-V curves to visually verify device behavior:
+## 📊 Verification Plots
+
+Generate publication-quality I-V curves and device characteristics using ngspice simulations.
+
+### CLI Commands
 
 ```bash
-# BJT Gummel plot (Ic vs Vbe)
-python -m verification.plotter \
-    output/cadence90_spectre-ngspice/gpdk090_bipolar.lib \
-    gpdk090_npn \
-    --device-class bjt
+# Generate plots for a single library file
+./cli.py plot output/translated.lib
 
-# MOS transfer curve (Id vs Vgs)
-python -m verification.plotter \
-    output/smic180HV_hspice-ngspice/model.lib \
-    nmos_1p8 \
-    --device-class mos \
-    --mos-type nmos
+# Generate plots for all files in a directory
+./cli.py plot output/cadence90_spectre-ngspice/
 
-# Diode I-V curve
-python -m verification.plotter \
-    output/translated_diode.lib \
-    my_diode \
-    --device-class diode
-
-# Capacitor AC impedance
-python -m verification.plotter \
-    output/gpdk090_capacitor.lib \
-    gpdk090_mimcap \
-    --device-class capacitor
+# Limit devices per file (default: 3)
+./cli.py plot output/ --max-devices 2
 ```
 
-Plots are saved as PNG files alongside CSV data in the output directory.
+### Standalone Script
 
-### Python API for Verification
+```bash
+# Full control over plot generation
+python generate_verification_plots.py output/cadence180_spectre-ngspice --max-devices 2
+```
+
+### Plot Types Generated
+
+| Device Type | Plot | Description |
+|-------------|------|-------------|
+| **MOS** | `*_idvgs.png` | Transfer curve (Id vs Vgs) |
+| **MOS** | `*_idvds.png` | Output curves (Id vs Vds at multiple Vgs) |
+| **BJT** | `*_gummel.png` | Gummel plot (Ic, Ib vs Vbe, semilog) |
+| **Diode** | `*_iv.png` | I-V characteristic |
+
+### Output Structure
+
+```
+output/cadence90_spectre-ngspice/
+├── gpdk090_mos.lib                  # Translated library
+├── gpdk090_bipolar.lib
+├── verification_summary.png         # Summary mosaic
+└── plots/
+    ├── nmos_idvgs.png              # NMOS transfer curve
+    ├── nmos_idvds.png              # NMOS output curves
+    ├── pmos_idvgs.png
+    ├── pmos_idvds.png
+    ├── npn_gummel.png              # NPN Gummel plot
+    └── diode_iv.png                # Diode I-V
+```
+
+### Python API for Plotting
 
 ```python
-from verification.plotter import SimulationPlotter, plot_device
-from verification.verifier import Verifier, verify_device
+from generate_verification_plots import process_library_file, generate_summary_figure
 from pathlib import Path
 
-# Option 1: Quick plot generation
-result = plot_device(
-    lib_file='output/cadence90_spectre-ngspice/gpdk090_bipolar.lib',
-    device_name='gpdk090_npn',
-    device_class='bjt'
+# Generate plots for a single file
+results = process_library_file(
+    lib_file=Path('output/translated.lib'),
+    max_devices=3
 )
-print(f"Plot: {result.plot_file}")
-print(f"Data: {result.data_file}")
 
-# Option 2: Full verification workflow
-report = verify_device(
-    device_file='tools/spice-libraries/cadence90/spectre/gpdk090_capacitor.scs',
-    device_name='gpdk090_mimcap',
-    device_class='capacitor',
-    source='spectre',
-    target='ngspice',
-    area=10e-6,
-    perim=20e-6
-)
-print(report)  # Detailed verification report
+# results = {'transfer': [Path], 'output': [Path], 'gummel': [Path], 'diode': [Path]}
 
-# Option 3: Custom plotter
-plotter = SimulationPlotter()
-result = plotter.plot_mos_idvgs(
-    lib_file=Path('output/model.lib'),
-    device_name='nmos_1p8',
-    output_dir=Path('output/plots'),
-    mos_type='nmos',
-    vgs_start=0.0,
-    vgs_stop=1.8,
-    vds=1.0
+# Generate summary figure
+summary = generate_summary_figure(
+    all_results={'lib1': results},
+    output_dir=Path('output/')
 )
 ```
 
 ### Interpreting Results
 
+**MOS Transfer Curve (Id vs Vgs):**
+- ✅ Clear threshold voltage (Vth) visible
+- ✅ Subthreshold region with exponential rise
+- ✅ Linear/saturation region above Vth
+
+**MOS Output Curves (Id vs Vds):**
+- ✅ Multiple Vgs curves showing family
+- ✅ Saturation region (flat) at higher Vds
+- ✅ Current levels in µA-mA range
+
 **BJT Gummel Plot:**
 - ✅ Exponential Ic increase with Vbe
-- ✅ Ic ratio ~10× per 60mV (ideal diode equation)
+- ✅ ~10× current per 60mV (ideal diode)
 - ✅ Turn-on at ~0.6-0.7V
-
-**MOS Transfer Curve:**
-- ✅ Clear threshold voltage (Vth)
-- ✅ Linear region → saturation transition
-- ✅ Expected current levels (µA-mA)
 
 **Diode I-V:**
 - ✅ Exponential turn-on at ~0.7V
@@ -247,11 +258,20 @@ result = plotter.plot_mos_idvgs(
 
 ## 📦 Batch Translation
 
-Translate entire PDK folders with automatic format detection:
+Translate entire PDK folders with automatic format detection, verification, and plot generation:
 
 ```bash
-# Translate all files in asap7 folder to ngspice
+# Basic batch translation
 ./batch_translate.py tools/spice-libraries/private-models/asap7 --target ngspice
+
+# With verification (ngspice syntax check)
+./batch_translate.py tools/spice-libraries/private-models/asap7 --target ngspice --verify
+
+# With verification AND plot generation
+./batch_translate.py tools/spice-libraries/private-models/asap7 --target ngspice --plot
+
+# Limit plots per file
+./batch_translate.py input_folder --target ngspice --plot --max-plots 2
 
 # Force source format
 ./batch_translate.py input_folder --target spectre --source hspice
@@ -263,6 +283,19 @@ Translate entire PDK folders with automatic format detection:
 ./batch_translate.py input_folder --target ngspice --quiet --json results.json
 ```
 
+### Command Options
+
+| Flag | Description |
+|------|-------------|
+| `--target`, `-t` | Target format: ngspice, hspice, spectre (required) |
+| `--source`, `-s` | Force source format (default: auto-detect) |
+| `--output`, `-o` | Custom output directory |
+| `--verify`, `-v` | Run ngspice verification after translation |
+| `--plot`, `-p` | Generate verification plots (implies --verify) |
+| `--max-plots` | Max devices to plot per file (default: 3) |
+| `--quiet`, `-q` | Suppress progress output |
+| `--json`, `-j` | Custom JSON summary path |
+
 ### Output Structure
 
 ```
@@ -270,7 +303,12 @@ output/
 ├── asap7_hspice-ngspice/           # Auto-named folder
 │   ├── ff.lib                      # Translated files
 │   ├── ss.lib
-│   └── tt.lib
+│   ├── tt.lib
+│   ├── verification_summary.png    # Plot summary mosaic
+│   └── plots/                      # Individual plots
+│       ├── nmos_lvt_idvgs.png
+│       ├── nmos_lvt_idvds.png
+│       └── pmos_lvt_idvgs.png
 └── asap7_summary.json              # JSON summary
 ```
 

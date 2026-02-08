@@ -1,8 +1,8 @@
 #!/usr/bin/env python3
 """
-SPICE Translator CLI with Verification
+SPICE Translator CLI with Verification and Plotting
 
-Command-line interface for translation and verification workflows.
+Command-line interface for translation, verification, and plot generation.
 
 Examples:
     # Translate only
@@ -11,11 +11,17 @@ Examples:
     # Translate with verification
     ./cli.py translate gpdk090_mos.scs --target ngspice --verify
     
+    # Translate with verification and plots
+    ./cli.py translate gpdk090_mos.scs --target ngspice --verify --plot
+    
     # Verify translation
     ./cli.py verify gpdk090_capacitor.scs mimcap --source spectre --target ngspice
     
-    # Verify with Monte Carlo
-    ./cli.py verify gpdk090_capacitor.scs mimcap --runs 500 --strict
+    # Generate verification plots for translated library
+    ./cli.py plot output/translated.lib --max-devices 3
+    
+    # Generate plots for entire output directory
+    ./cli.py plot output/cadence90_spectre-ngspice/
 """
 
 import sys
@@ -85,11 +91,32 @@ def cmd_translate(args):
                 print(f"   ✅ Verification PASSED")
                 if verify_result.get('device_name'):
                     print(f"   Device: {verify_result['device_name']} ({verify_result.get('device_type', 'unknown')})")
+                
+                # Generate plots if requested
+                if args.plot:
+                    print("\n📊 Generating verification plots...")
+                    plot_result = generate_plots_for_file(output_file, max_devices=args.max_plots)
+                    if plot_result['success']:
+                        print(f"   ✅ Generated {plot_result['plot_count']} plots")
+                        if plot_result.get('plot_dir'):
+                            print(f"   Location: {plot_result['plot_dir']}")
+                    else:
+                        print(f"   ⚠️ Plot generation: {plot_result.get('error', 'No plots generated')}")
             else:
                 print(f"   ❌ Verification FAILED: {verify_result.get('error', 'Unknown error')}")
                 sys.exit(1)
         elif args.verify and args.target != 'ngspice':
             print(f"   ⚠️  Verification only supported for ngspice target (got {args.target})")
+        elif args.plot and args.target == 'ngspice':
+            # Plot without full verification
+            print("\n📊 Generating verification plots...")
+            plot_result = generate_plots_for_file(output_file, max_devices=args.max_plots)
+            if plot_result['success']:
+                print(f"   ✅ Generated {plot_result['plot_count']} plots")
+                if plot_result.get('plot_dir'):
+                    print(f"   Location: {plot_result['plot_dir']}")
+            else:
+                print(f"   ⚠️ Plot generation: {plot_result.get('error', 'No plots generated')}")
     else:
         print(f"❌ Translation failed: {result.get('error', 'Unknown error')}")
         sys.exit(1)
@@ -209,6 +236,114 @@ quit
         }
 
 
+def generate_plots_for_file(lib_file: Path, max_devices: int = 3) -> dict:
+    """
+    Generate verification plots for a translated library file.
+    
+    Args:
+        lib_file: Path to the ngspice library file
+        max_devices: Maximum number of devices to plot
+    
+    Returns:
+        dict with 'success', 'plot_count', 'plot_dir', 'error'
+    """
+    try:
+        from generate_verification_plots import process_library_file
+        
+        results = process_library_file(lib_file, max_devices)
+        
+        if not results:
+            return {
+                'success': False,
+                'plot_count': 0,
+                'error': 'No devices found to plot'
+            }
+        
+        # Count total plots
+        total_plots = sum(len(plots) for plots in results.values())
+        plot_dir = lib_file.parent / 'plots'
+        
+        return {
+            'success': total_plots > 0,
+            'plot_count': total_plots,
+            'plot_dir': str(plot_dir),
+            'error': None
+        }
+        
+    except ImportError as e:
+        return {
+            'success': False,
+            'plot_count': 0,
+            'error': f'Could not import plot generator: {e}'
+        }
+    except Exception as e:
+        return {
+            'success': False,
+            'plot_count': 0,
+            'error': str(e)[:200]
+        }
+
+
+def cmd_plot(args):
+    """Handle plot command - generate verification plots"""
+    path = Path(args.path).resolve()
+    
+    if not path.exists():
+        print(f"❌ Path not found: {path}")
+        sys.exit(1)
+    
+    try:
+        from generate_verification_plots import (
+            process_library_file, 
+            generate_summary_figure
+        )
+    except ImportError as e:
+        print(f"❌ Could not import plot generator: {e}")
+        print("   Make sure matplotlib is installed: pip install matplotlib")
+        sys.exit(1)
+    
+    all_results = {}
+    
+    if path.is_file():
+        # Single file
+        print(f"📊 Generating plots for: {path.name}")
+        results = process_library_file(path, args.max_devices)
+        if results:
+            all_results[path.stem] = results
+    else:
+        # Directory - find all .lib files
+        lib_files = list(path.rglob("*.lib"))
+        lib_files = [f for f in lib_files if 'plots' not in f.parts]
+        
+        if not lib_files:
+            print(f"⚠️ No .lib files found in {path}")
+            sys.exit(1)
+        
+        print(f"📊 Generating plots for {len(lib_files)} library files in: {path}")
+        
+        for lib_file in sorted(lib_files):
+            results = process_library_file(lib_file, args.max_devices)
+            if results:
+                all_results[lib_file.stem] = results
+    
+    # Generate summary
+    if all_results:
+        output_dir = path if path.is_dir() else path.parent
+        summary_fig = generate_summary_figure(all_results, output_dir)
+        
+        total_plots = sum(
+            len(plots) 
+            for results in all_results.values() 
+            for plots in results.values()
+        )
+        
+        print(f"\n✅ Generated {total_plots} verification plots")
+        if summary_fig:
+            print(f"📊 Summary: {summary_fig}")
+    else:
+        print("⚠️ No plots were generated")
+
+
 def cmd_verify(args):
     """Handle verify command"""
     verifier = Verifier(
@@ -322,18 +457,21 @@ def cmd_verify_all(args):
 
 def main():
     parser = argparse.ArgumentParser(
-        description='SPICE Translator with Verification',
+        description='SPICE Translator with Verification and Plotting',
         formatter_class=argparse.RawDescriptionHelpFormatter,
         epilog="""
 Examples:
   Translate:
     %(prog)s translate input.scs --target ngspice
+    %(prog)s translate input.scs --target ngspice --verify
+    %(prog)s translate input.scs --target ngspice --verify --plot
+    
+  Generate Plots:
+    %(prog)s plot output/translated.lib
+    %(prog)s plot output/cadence90_spectre-ngspice/ --max-devices 2
     
   Verify:
     %(prog)s verify gpdk090_capacitor.scs mimcap --device-class capacitor --area 10e-6
-    
-  Verify with Monte Carlo:
-    %(prog)s verify gpdk090_mos.scs nmos1v --device-class mos --runs 500 --strict
     
   Regression (CI):
     %(prog)s verify-all --target ngspice
@@ -354,6 +492,16 @@ Examples:
                                   help='Target format')
     translate_parser.add_argument('--verify', '-v', action='store_true',
                                   help='Run ngspice syntax verification after translation')
+    translate_parser.add_argument('--plot', '-p', action='store_true',
+                                  help='Generate verification plots (ngspice target only)')
+    translate_parser.add_argument('--max-plots', type=int, default=3,
+                                  help='Max devices to plot per file (default: 3)')
+    
+    # Plot command
+    plot_parser = subparsers.add_parser('plot', help='Generate verification plots for translated files')
+    plot_parser.add_argument('path', help='Library file or directory containing .lib files')
+    plot_parser.add_argument('--max-devices', '-m', type=int, default=3,
+                            help='Max devices to plot per file (default: 3)')
     
     # Verify command
     verify_parser = subparsers.add_parser('verify', help='Verify translation with simulation')
@@ -396,6 +544,8 @@ Examples:
     
     if args.command == 'translate':
         cmd_translate(args)
+    elif args.command == 'plot':
+        cmd_plot(args)
     elif args.command == 'verify':
         cmd_verify(args)
     elif args.command == 'verify-all':
