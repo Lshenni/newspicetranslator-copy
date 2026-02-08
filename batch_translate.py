@@ -577,6 +577,10 @@ Examples:
                         help='Output base directory')
     parser.add_argument('--verify', '-v', action='store_true',
                         help='Run verification after translation')
+    parser.add_argument('--plot', '-p', action='store_true',
+                        help='Generate verification plots (implies --verify)')
+    parser.add_argument('--max-plots', type=int, default=3,
+                        help='Max devices to plot per library file (default: 3)')
     parser.add_argument('--quiet', '-q', action='store_true',
                         help='Suppress progress output')
     parser.add_argument('--json', '-j', type=Path,
@@ -588,15 +592,59 @@ Examples:
         print(f"❌ Source folder not found: {args.source_folder}")
         sys.exit(1)
     
+    # --plot implies --verify
+    verify = args.verify or args.plot
+    
     # Run batch translation
     summary = batch_translate(
         source_folder=args.source_folder,
         target_format=args.target,
         output_base=args.output,
         source_format=args.source,
-        verify=args.verify,
+        verify=verify,
         verbose=not args.quiet
     )
+    
+    # Generate verification plots if requested
+    if args.plot and args.target == 'ngspice':
+        output_base = args.output or (BASE_DIR / 'output')
+        output_folder = f"{args.source_folder.name}_{summary.results[0]['source_format'] if summary.results else 'unknown'}-ngspice"
+        output_dir = output_base / output_folder
+        
+        if output_dir.exists():
+            if not args.quiet:
+                print(f"\n📊 Generating verification plots...")
+            
+            try:
+                from generate_verification_plots import process_library_file, generate_summary_figure
+                
+                all_results = {}
+                lib_files = list(output_dir.glob("*.lib"))
+                
+                for lib_file in lib_files:
+                    if 'plots' not in lib_file.parts:
+                        results = process_library_file(lib_file, args.max_plots)
+                        if results:
+                            all_results[lib_file.stem] = results
+                
+                if all_results:
+                    summary_fig = generate_summary_figure(all_results, output_dir)
+                    total_plots = sum(
+                        len(plots) 
+                        for results in all_results.values() 
+                        for plots in results.values()
+                    )
+                    if not args.quiet:
+                        print(f"   Generated {total_plots} verification plots")
+                        if summary_fig:
+                            print(f"   Summary: {summary_fig}")
+                            
+            except ImportError as e:
+                if not args.quiet:
+                    print(f"   ⚠️ Could not import plot generator: {e}")
+            except Exception as e:
+                if not args.quiet:
+                    print(f"   ⚠️ Plot generation error: {e}")
     
     # Write JSON summary
     if args.json:
