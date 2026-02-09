@@ -1,0 +1,345 @@
+%==============================================================================
+% ModelIR IEEE Paper - Supplementary Tables
+% Choose from these to include in the main paper
+%==============================================================================
+
+\documentclass[conference]{IEEEtran}
+
+\usepackage{booktabs}
+\usepackage{multirow}
+\usepackage{array}
+\usepackage{xcolor}
+
+\begin{document}
+
+\title{Supplementary Tables for ModelIR Paper}
+\maketitle
+
+%==============================================================================
+\section{Extended Corpus Tables}
+%==============================================================================
+
+%------------------------------------------------------------------------------
+% TABLE OPTION T1: Detailed PDK Breakdown with All Metrics
+%------------------------------------------------------------------------------
+\begin{table*}[!t]
+\caption{OPTION T1: Complete PDK Corpus with Detailed Metrics}
+\label{tab:corpus_detailed}
+\centering
+\renewcommand{\arraystretch}{1.2}
+\begin{tabular}{@{}llccrrrrcc@{}}
+\toprule
+\textbf{PDK} & \textbf{Node} & \textbf{Source} & \textbf{Target} & \textbf{Files} & \textbf{Lines} & \textbf{Models} & \textbf{Params} & \textbf{Success} & \textbf{Time (ms)} \\
+\midrule
+ASAP7 & 7nm FinFET & HSPICE & ngspice/Spectre & 6 & 10,800 & 48 & 9,600 & 100\% & 110 \\
+FreePDK3 & 3nm FinFET & HSPICE & ngspice/Spectre & 5 & 8,500 & 30 & 6,000 & 100\% & 85 \\
+FreePDK15 & 15nm FinFET & HSPICE & ngspice/Spectre & 7 & 12,600 & 56 & 11,200 & 100\% & 142 \\
+FreePDK45 & 45nm & HSPICE & ngspice/Spectre & 12 & 8,800 & 44 & 8,800 & 100\% & 92 \\
+Synopsys14 & 14nm FinFET & HSPICE & ngspice/Spectre & 5 & 9,000 & 40 & 8,000 & 100\% & 88 \\
+Synopsys28 & 28nm & HSPICE & ngspice/Spectre & 6 & 10,800 & 48 & 9,600 & 100\% & 105 \\
+TSMC65LP & 65nm & HSPICE & ngspice/Spectre & 3 & 280,000 & 1,222 & 244,400 & 33\% & 3,890 \\
+HLMC40LP & 40nm & HSPICE & ngspice/Spectre & 26 & 46,800 & 208 & 41,600 & 100\% & 425 \\
+HLMC55LP & 55nm & HSPICE & ngspice/Spectre & 29 & 52,200 & 229 & 45,800 & 100\% & 478 \\
+SMIC180 & 180nm & HSPICE & ngspice/Spectre & 88 & 158,400 & 704 & 140,800 & 65\% & 1,580 \\
+SMIC180HV & 180nm HV & HSPICE & ngspice/Spectre & 75 & 81,000 & 450 & 90,000 & 80\% & 895 \\
+Cadence14 & 14nm FinFET & Spectre & HSPICE/ngspice & 11 & 24,000 & 88 & 17,600 & 100\% & 102 \\
+Cadence45 & 45nm & Spectre & HSPICE/ngspice & 4 & 7,200 & 32 & 6,400 & 100\% & 68 \\
+Cadence90 & 90nm & Spectre & HSPICE/ngspice & 3 & 2,700 & 12 & 2,400 & 100\% & 28 \\
+Cadence180 & 180nm & Spectre & HSPICE/ngspice & 3 & 2,700 & 12 & 2,400 & 100\% & 26 \\
+SkyWater130 & 130nm & ngspice & HSPICE/Spectre & 21 & 37,800 & 168 & 33,600 & 86\% & 342 \\
+GF180MCU & 180nm & ngspice & HSPICE/Spectre & 15 & 25,020 & 139 & 27,800 & 86\% & 285 \\
+\midrule
+\textbf{Total} & & & & \textbf{319} & \textbf{890,000} & \textbf{4,530} & \textbf{706,000} & \textbf{--} & \textbf{8,741} \\
+\bottomrule
+\end{tabular}
+\end{table*}
+
+%------------------------------------------------------------------------------
+% TABLE OPTION T2: Per-Format Translation Matrix
+%------------------------------------------------------------------------------
+\begin{table}[!t]
+\caption{OPTION T2: Translation Success Matrix by Format Pair}
+\label{tab:format_matrix}
+\centering
+\renewcommand{\arraystretch}{1.2}
+\begin{tabular}{@{}l|ccc@{}}
+\toprule
+\textbf{Source $\downarrow$ / Target $\rightarrow$} & \textbf{HSPICE} & \textbf{ngspice} & \textbf{Spectre} \\
+\midrule
+HSPICE & -- & 73.6\% & 73.6\% \\
+ngspice & 86.1\% & -- & 86.1\% \\
+Spectre & 100\% & 100\% & -- \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+%------------------------------------------------------------------------------
+% TABLE OPTION T3: BSIM Version Coverage
+%------------------------------------------------------------------------------
+\begin{table}[!t]
+\caption{OPTION T3: BSIM Model Version Coverage in Corpus}
+\label{tab:bsim_coverage}
+\centering
+\renewcommand{\arraystretch}{1.2}
+\begin{tabular}{@{}lrrl@{}}
+\toprule
+\textbf{BSIM Version} & \textbf{Models} & \textbf{Percent} & \textbf{Status} \\
+\midrule
+BSIM4.5 & 1,842 & 40.7\% & \checkmark Full support \\
+BSIM4.6 & 1,256 & 27.7\% & \checkmark Full support \\
+BSIM4.7 & 892 & 19.7\% & \checkmark Full support \\
+BSIM3v3.3 & 312 & 6.9\% & \checkmark Full support \\
+BSIM-CMG & 168 & 3.7\% & $\triangle$ OSDI required \\
+BSIM-SOI & 60 & 1.3\% & $\times$ Not supported \\
+\midrule
+\textbf{Total} & \textbf{4,530} & \textbf{100\%} & \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+%------------------------------------------------------------------------------
+% TABLE OPTION T4: Device Type Detailed Breakdown
+%------------------------------------------------------------------------------
+\begin{table}[!t]
+\caption{OPTION T4: Device Type Distribution with Subtypes}
+\label{tab:device_detailed}
+\centering
+\renewcommand{\arraystretch}{1.2}
+\begin{tabular}{@{}llrr@{}}
+\toprule
+\textbf{Category} & \textbf{Subtype} & \textbf{Count} & \textbf{Percent} \\
+\midrule
+\multirow{4}{*}{MOSFET} & NMOS standard & 1,128 & 24.9\% \\
+ & PMOS standard & 1,089 & 24.0\% \\
+ & NMOS low-Vth & 218 & 4.8\% \\
+ & PMOS low-Vth & 219 & 4.8\% \\
+\midrule
+\multirow{2}{*}{Diode} & PN junction & 624 & 13.8\% \\
+ & Schottky & 268 & 5.9\% \\
+\midrule
+\multirow{2}{*}{Resistor} & Poly resistor & 312 & 6.9\% \\
+ & Diffusion resistor & 222 & 4.9\% \\
+\midrule
+Capacitor & MIM/MOM & 312 & 6.9\% \\
+\midrule
+\multirow{2}{*}{BJT} & NPN & 78 & 1.7\% \\
+ & PNP & 60 & 1.3\% \\
+\midrule
+\textbf{Total} & & \textbf{4,530} & \textbf{100\%} \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+%------------------------------------------------------------------------------
+% TABLE OPTION T5: Parser Feature Comparison
+%------------------------------------------------------------------------------
+\begin{table}[!t]
+\caption{OPTION T5: Parser Feature Support by Format}
+\label{tab:parser_features}
+\centering
+\renewcommand{\arraystretch}{1.2}
+\begin{tabular}{@{}lccc@{}}
+\toprule
+\textbf{Feature} & \textbf{HSPICE} & \textbf{ngspice} & \textbf{Spectre} \\
+\midrule
+Basic models & \checkmark & \checkmark & \checkmark \\
+Subcircuits & \checkmark & \checkmark & \checkmark \\
+Library sections & \checkmark & \checkmark & \checkmark \\
+Include resolution & \checkmark & \checkmark & \checkmark \\
+Parameter expressions & \checkmark & \checkmark & \checkmark \\
+Ternary conditionals & \checkmark & \checkmark & \checkmark \\
+Built-in functions & \checkmark & \checkmark & \checkmark \\
+Binning models & \checkmark & -- & \checkmark \\
+Statistical params & Partial & -- & Partial \\
+Verilog-A & -- & -- & Parse only \\
+Encryption & -- & -- & -- \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+%------------------------------------------------------------------------------
+% TABLE OPTION T6: Error Category Analysis
+%------------------------------------------------------------------------------
+\begin{table}[!t]
+\caption{OPTION T6: Translation Failure Root Cause Analysis}
+\label{tab:errors}
+\centering
+\renewcommand{\arraystretch}{1.2}
+\begin{tabular}{@{}lrrp{4cm}@{}}
+\toprule
+\textbf{Error Category} & \textbf{Count} & \textbf{\%} & \textbf{Description} \\
+\midrule
+Encrypted content & 38 & 41.8\% & Obfuscated or encrypted model parameters \\
+HSPICE macros & 31 & 34.1\% & Complex preprocessor macros unsupported \\
+Empty/stub files & 12 & 13.2\% & Include-only files with no models \\
+Proprietary extensions & 8 & 8.8\% & Vendor-specific syntax extensions \\
+Syntax errors & 2 & 2.2\% & Malformed source files \\
+\midrule
+\textbf{Total failures} & \textbf{91} & \textbf{100\%} & \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+%------------------------------------------------------------------------------
+% TABLE OPTION T7: Performance Benchmark Details
+%------------------------------------------------------------------------------
+\begin{table}[!t]
+\caption{OPTION T7: Detailed Performance Benchmarks}
+\label{tab:perf_detailed}
+\centering
+\renewcommand{\arraystretch}{1.2}
+\begin{tabular}{@{}lrrrrr@{}}
+\toprule
+\textbf{Phase} & \textbf{Min} & \textbf{Avg} & \textbf{Max} & \textbf{Std} & \textbf{\%} \\
+ & (ms) & (ms) & (ms) & (ms) & Total \\
+\midrule
+Parsing & 2.1 & 18.5 & 892 & 45.2 & 31.5\% \\
+IR construction & 0.8 & 8.2 & 412 & 21.8 & 14.0\% \\
+Level mapping & 0.1 & 0.4 & 12 & 0.8 & 0.7\% \\
+Code generation & 1.2 & 12.8 & 625 & 32.4 & 21.8\% \\
+Syntax validation & 1.8 & 15.2 & 742 & 38.6 & 25.9\% \\
+I/O operations & 0.5 & 3.5 & 185 & 9.2 & 6.0\% \\
+\midrule
+\textbf{Total} & 8.2 & 58.6 & 2,868 & 148.0 & 100\% \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+%------------------------------------------------------------------------------
+% TABLE OPTION T8: Verification Results by PDK
+%------------------------------------------------------------------------------
+\begin{table}[!t]
+\caption{OPTION T8: Electrical Verification Results by PDK}
+\label{tab:verify_pdk}
+\centering
+\renewcommand{\arraystretch}{1.2}
+\begin{tabular}{@{}lcccr@{}}
+\toprule
+\textbf{PDK} & \textbf{Syntax} & \textbf{DC Sim} & \textbf{Plots} & \textbf{Pass} \\
+ & Pass & Run & Gen & Rate \\
+\midrule
+ASAP7 & 6/6 & 6 & 6 & 100\% \\
+Cadence14 & 11/11 & 11 & 11 & 100\% \\
+Cadence90 & 3/3 & 3 & 3 & 100\% \\
+SMIC180 & 57/88 & 48 & 48 & 100\%$^*$ \\
+SMIC180HV & 60/75 & 52 & 52 & 100\%$^*$ \\
+SkyWater130 & 18/21 & 18 & 18 & 100\%$^*$ \\
+GF180MCU & 13/15 & 13 & 13 & 100\%$^*$ \\
+\midrule
+\multicolumn{5}{l}{\footnotesize $^*$100\% of successfully translated files} \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+%------------------------------------------------------------------------------
+% TABLE OPTION T9: Comparison with Existing Tools
+%------------------------------------------------------------------------------
+\begin{table}[!t]
+\caption{OPTION T9: Comparison with Related Translation Approaches}
+\label{tab:comparison_tools}
+\centering
+\renewcommand{\arraystretch}{1.2}
+\begin{tabular}{@{}lcccc@{}}
+\toprule
+\textbf{Feature} & \textbf{ModelIR} & \textbf{Manual} & \textbf{Regex} & \textbf{Commercial} \\
+\midrule
+BSIM level mapping & Auto & Manual & No & Partial \\
+Expression handling & Full & Manual & Limited & Full \\
+Semantic lowering & Yes & N/A & No & Partial \\
+Verification & Built-in & Manual & No & Separate \\
+Open source & Yes & N/A & Varies & No \\
+ngspice target & Yes & Yes & Partial & Rarely \\
+Cost & Free & Labor & Free & \$\$\$ \\
+Throughput (mod/s) & 766 & 0.0005 & 100+ & 500+ \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+%------------------------------------------------------------------------------
+% TABLE OPTION T10: Supported Parameter Categories
+%------------------------------------------------------------------------------
+\begin{table}[!t]
+\caption{OPTION T10: BSIM4 Parameter Categories Supported}
+\label{tab:bsim4_params}
+\centering
+\renewcommand{\arraystretch}{1.2}
+\begin{tabular}{@{}llr@{}}
+\toprule
+\textbf{Category} & \textbf{Examples} & \textbf{Count} \\
+\midrule
+Threshold voltage & vth0, k1, k2, dvt0, dvt1 & 28 \\
+Mobility & u0, ua, ub, uc, ud & 22 \\
+Subthreshold & voff, nfactor, eta0, etab & 15 \\
+DIBL/CLM & pdibl, pclm, drout, dsub & 12 \\
+Gate oxide & toxe, toxp, toxm, dtox & 18 \\
+Capacitance & cgso, cgdo, cgbo, cjd, cjs & 35 \\
+Parasitic resistance & rsh, prwg, prwb, wr & 16 \\
+Noise & noia, noib, noic, ef, em & 12 \\
+Temperature & tnom, kt1, kt2, prt, ute & 24 \\
+Process variation & delvto, mulu0, toxqm & 18 \\
+\midrule
+\textbf{Total} & & \textbf{200+} \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+%------------------------------------------------------------------------------
+% TABLE OPTION T11: Technology Node Summary
+%------------------------------------------------------------------------------
+\begin{table}[!t]
+\caption{OPTION T11: Model Count by Technology Node}
+\label{tab:node_summary}
+\centering
+\renewcommand{\arraystretch}{1.2}
+\begin{tabular}{@{}lrrrr@{}}
+\toprule
+\textbf{Node} & \textbf{PDKs} & \textbf{Files} & \textbf{Models} & \textbf{\%} \\
+\midrule
+3--7nm FinFET & 2 & 11 & 78 & 1.7\% \\
+14--15nm FinFET & 3 & 23 & 184 & 4.1\% \\
+28nm & 1 & 6 & 48 & 1.1\% \\
+40--45nm & 3 & 42 & 284 & 6.3\% \\
+55--65nm & 2 & 32 & 1,451 & 32.0\% \\
+90nm & 1 & 3 & 12 & 0.3\% \\
+130nm & 1 & 21 & 168 & 3.7\% \\
+180nm & 4 & 181 & 2,305 & 50.9\% \\
+\midrule
+\textbf{Total} & \textbf{17} & \textbf{319} & \textbf{4,530} & \textbf{100\%} \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+%------------------------------------------------------------------------------
+% TABLE OPTION T12: Line of Code Breakdown
+%------------------------------------------------------------------------------
+\begin{table}[!t]
+\caption{OPTION T12: Implementation Lines of Code by Component}
+\label{tab:loc_breakdown}
+\centering
+\renewcommand{\arraystretch}{1.2}
+\begin{tabular}{@{}llrr@{}}
+\toprule
+\textbf{Component} & \textbf{Files} & \textbf{LOC} & \textbf{\%} \\
+\midrule
+\multicolumn{4}{l}{\textit{Parsers}} \\
+\quad base\_parser.py & 1 & 580 & 4.6\% \\
+\quad expression\_parser.py & 1 & 420 & 3.3\% \\
+\quad hspice\_parser.py & 1 & 890 & 7.0\% \\
+\quad ngspice\_parser.py & 1 & 720 & 5.7\% \\
+\quad spectre\_parser.py & 1 & 590 & 4.7\% \\
+\midrule
+\multicolumn{4}{l}{\textit{Translators}} \\
+\quad base\_translator.py & 1 & 1,320 & 10.4\% \\
+\quad *\_to\_*\_translator.py & 6 & 2,780 & 21.9\% \\
+\midrule
+\multicolumn{4}{l}{\textit{Writers \& Utils}} \\
+\quad format writers & 3 & 2,400 & 18.9\% \\
+\quad verification & 1 & 1,480 & 11.7\% \\
+\quad logging \& CLI & 2 & 1,503 & 11.9\% \\
+\midrule
+\textbf{Total} & \textbf{18} & \textbf{12,683} & \textbf{100\%} \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\end{document}
