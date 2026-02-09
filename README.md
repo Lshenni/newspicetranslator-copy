@@ -219,10 +219,12 @@ new-spice-translator/
 
 | Document | Description |
 |----------|-------------|
-| [GETTING_STARTED.md](GETTING_STARTED.md) | Quick start guide |
-| [USAGE_GUIDE.md](USAGE_GUIDE.md) | Complete CLI reference |
-| [ARCHITECTURE.md](ARCHITECTURE.md) | System design |
+| [docs/GETTING_STARTED.md](docs/GETTING_STARTED.md) | Quick start guide |
+| [docs/USAGE_GUIDE.md](docs/USAGE_GUIDE.md) | Complete CLI reference |
+| [docs/ARCHITECTURE.md](docs/ARCHITECTURE.md) | System design |
 | [docs/BATCHRUN2.md](docs/BATCHRUN2.md) | Latest batch results |
+| [docs/VERIFICATION_FRAMEWORK.md](docs/VERIFICATION_FRAMEWORK.md) | Verification details |
+| [docs/CONTRIBUTING.md](docs/CONTRIBUTING.md) | Contribution guide |
 
 ---
 
