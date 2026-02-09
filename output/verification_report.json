@@ -1,0 +1,573 @@
+{
+  "timestamp": "2026-02-09T19:40:36.104225",
+  "mode": "quick",
+  "pdks": {
+    "asap7": {
+      "files": [
+        {
+          "name": "fs.lib",
+          "tests": 12,
+          "passed": 8,
+          "failed": 4,
+          "pass_rate": 0.6666666666666666,
+          "failures": [
+            {
+              "test": "sanity_nmos_lvt",
+              "message": "NMOS sanity check failed"
+            },
+            {
+              "test": "sanity_nmos_rvt",
+              "message": "NMOS sanity check failed"
+            },
+            {
+              "test": "sanity_nmos_slvt",
+              "message": "NMOS sanity check failed"
+            },
+            {
+              "test": "sanity_nmos_sram",
+              "message": "NMOS sanity check failed"
+            }
+          ]
+        },
+        {
+          "name": "mc.lib",
+          "tests": 12,
+          "passed": 8,
+          "failed": 4,
+          "pass_rate": 0.6666666666666666,
+          "failures": [
+            {
+              "test": "sanity_nmos_lvt",
+              "message": "NMOS sanity check failed"
+            },
+            {
+              "test": "sanity_nmos_rvt",
+              "message": "NMOS sanity check failed"
+            },
+            {
+              "test": "sanity_nmos_slvt",
+              "message": "NMOS sanity check failed"
+            },
+            {
+              "test": "sanity_nmos_sram",
+              "message": "NMOS sanity check failed"
+            }
+          ]
+        }
+      ],
+      "summary": {
+        "total_files": 6,
+        "total_tests": 24,
+        "passed": 16,
+        "failed": 8,
+        "bsim4_errors": 0
+      }
+    },
+    "cadence14": {
+      "files": [
+        {
+          "name": "cds_ff_mpt_resistor.lib",
+          "tests": 7,
+          "passed": 7,
+          "failed": 0,
+          "pass_rate": 1.0,
+          "failures": []
+        },
+        {
+          "name": "cds_ff_mpt_mosfet.lib",
+          "tests": 12,
+          "passed": 12,
+          "failed": 0,
+          "pass_rate": 1.0,
+          "failures": []
+        }
+      ],
+      "summary": {
+        "total_files": 5,
+        "total_tests": 19,
+        "passed": 19,
+        "failed": 0,
+        "bsim4_errors": 0
+      }
+    },
+    "cadence180": {
+      "files": [
+        {
+          "name": "nmos1.lib",
+          "tests": 8,
+          "passed": 7,
+          "failed": 1,
+          "pass_rate": 0.875,
+          "failures": [
+            {
+              "test": "tran_nmos1_int",
+              "message": "Simulation failed: Warning: singular matrix:  check node out"
+            }
+          ]
+        },
+        {
+          "name": "bipolar.lib",
+          "tests": 5,
+          "passed": 5,
+          "failed": 0,
+          "pass_rate": 1.0,
+          "failures": []
+        }
+      ],
+      "summary": {
+        "total_files": 11,
+        "total_tests": 13,
+        "passed": 12,
+        "failed": 1,
+        "bsim4_errors": 0
+      }
+    },
+    "cadence45": {
+      "files": [
+        {
+          "name": "gpdk045_resistor.lib",
+          "tests": 7,
+          "passed": 7,
+          "failed": 0,
+          "pass_rate": 1.0,
+          "failures": []
+        },
+        {
+          "name": "gpdk045_moscap.lib",
+          "tests": 11,
+          "passed": 11,
+          "failed": 0,
+          "pass_rate": 1.0,
+          "failures": []
+        }
+      ],
+      "summary": {
+        "total_files": 7,
+        "total_tests": 18,
+        "passed": 18,
+        "failed": 0,
+        "bsim4_errors": 0
+      }
+    },
+    "cadence90": {
+      "files": [
+        {
+          "name": "gpdk090_diode.lib",
+          "tests": 9,
+          "passed": 9,
+          "failed": 0,
+          "pass_rate": 1.0,
+          "failures": []
+        },
+        {
+          "name": "gpdk090_mos_age.lib",
+          "tests": 8,
+          "passed": 8,
+          "failed": 0,
+          "pass_rate": 1.0,
+          "failures": []
+        }
+      ],
+      "summary": {
+        "total_files": 8,
+        "total_tests": 17,
+        "passed": 17,
+        "failed": 0,
+        "bsim4_errors": 0
+      }
+    },
+    "freepdk3": {
+      "files": [
+        {
+          "name": "fet.lib",
+          "tests": 8,
+          "passed": 7,
+          "failed": 1,
+          "pass_rate": 0.875,
+          "failures": [
+            {
+              "test": "sanity_nfet",
+              "message": "NMOS sanity check failed"
+            }
+          ]
+        }
+      ],
+      "summary": {
+        "total_files": 1,
+        "total_tests": 8,
+        "passed": 7,
+        "failed": 1,
+        "bsim4_errors": 0
+      }
+    },
+    "hlmc40lp": {
+      "files": [
+        {
+          "name": "hlmc40lp_v1d2_p2.lib",
+          "tests": 12,
+          "passed": 1,
+          "failed": 11,
+          "pass_rate": 0.08333333333333333,
+          "failures": [
+            {
+              "test": "dc_n11rvt",
+              "message": "Simulation failed: Fatal error: detected during BSIM4v5.5.0 parameter checking for"
+            },
+            {
+              "test": "dc_p11rvt",
+              "message": "Simulation failed: Fatal error: detected during BSIM4v5.5.0 parameter checking for"
+            },
+            {
+              "test": "dc_n11rvt",
+              "message": "Simulation failed: Fatal error: detected during BSIM4v5.5.0 parameter checking for"
+            },
+            {
+              "test": "ac_n11rvt",
+              "message": "Simulation failed: Fatal error: detected during BSIM4v5.5.0 parameter checking for"
+            },
+            {
+              "test": "ac_p11rvt",
+              "message": "Simulation failed: Fatal error: detected during BSIM4v5.5.0 parameter checking for"
+            },
+            {
+              "test": "tran_n11rvt",
+              "message": "Simulation failed: Fatal error: detected during BSIM4v5.5.0 parameter checking for"
+            },
+            {
+              "test": "sanity_n11rvt",
+              "message": "NMOS sanity check failed"
+            },
+            {
+              "test": "sanity_p11rvt",
+              "message": "Simulation failed: Fatal error: detected during BSIM4v5.5.0 parameter checking for"
+            },
+            {
+              "test": "sanity_n11rvt",
+              "message": "NMOS sanity check failed"
+            },
+            {
+              "test": "sanity_n11hvt",
+              "message": "NMOS sanity check failed"
+            },
+            {
+              "test": "sanity_p11hvt",
+              "message": "Simulation failed: Fatal error: detected during BSIM4v5.5.0 parameter checking for"
+            }
+          ]
+        },
+        {
+          "name": "hlmc40rf_v1d2_p2.lib",
+          "tests": 12,
+          "passed": 6,
+          "failed": 6,
+          "pass_rate": 0.5,
+          "failures": [
+            {
+              "test": "dc_n11rvt",
+              "message": "Simulation failed: Fatal error: detected during BSIM4v5.5.0 parameter checking for"
+            },
+            {
+              "test": "ac_n11rvt",
+              "message": "Simulation failed: Fatal error: detected during BSIM4v5.5.0 parameter checking for"
+            },
+            {
+              "test": "ac_n11rvt",
+              "message": "Simulation failed: Fatal error: detected during BSIM4v5.5.0 parameter checking for"
+            },
+            {
+              "test": "tran_n11rvt",
+              "message": "Simulation failed: Fatal error: detected during BSIM4v5.5.0 parameter checking for"
+            },
+            {
+              "test": "sanity_n11rvt",
+              "message": "NMOS sanity check failed"
+            },
+            {
+              "test": "sanity_n11rvt",
+              "message": "NMOS sanity check failed"
+            }
+          ]
+        }
+      ],
+      "summary": {
+        "total_files": 2,
+        "total_tests": 24,
+        "passed": 7,
+        "failed": 17,
+        "bsim4_errors": 12
+      }
+    },
+    "smic180HV": {
+      "files": [
+        {
+          "name": "bc018_auto_v1p3_rev0_res.lib",
+          "tests": 4,
+          "passed": 4,
+          "failed": 0,
+          "pass_rate": 1.0,
+          "failures": []
+        },
+        {
+          "name": "bc018_auto_v1p3_rev0.lib",
+          "tests": 12,
+          "passed": 5,
+          "failed": 7,
+          "pass_rate": 0.4166666666666667,
+          "failures": [
+            {
+              "test": "dc_p18",
+              "message": "Simulation failed: Fatal error: BSIM4v5: mosfet p18, model m1: Effective channel length <= 0"
+            },
+            {
+              "test": "dc_nnt18",
+              "message": "Simulation failed: Fatal error: BSIM4v5: mosfet nnt18, model m1: Effective channel length for C-V <="
+            },
+            {
+              "test": "ac_p18",
+              "message": "Simulation failed: Fatal error: BSIM4v5: mosfet p18, model m1: Effective channel length <= 0"
+            },
+            {
+              "test": "sanity_p18",
+              "message": "Simulation failed: Fatal error: BSIM4v5: mosfet p18, model m1: Effective channel length <= 0"
+            },
+            {
+              "test": "sanity_nnt18",
+              "message": "NMOS sanity check failed"
+            },
+            {
+              "test": "sanity_n50",
+              "message": "NMOS sanity check failed"
+            },
+            {
+              "test": "sanity_p50",
+              "message": "Simulation failed: Fatal error: BSIM4v5: mosfet p50, model m1: Effective channel length <= 0"
+            }
+          ]
+        }
+      ],
+      "summary": {
+        "total_files": 8,
+        "total_tests": 16,
+        "passed": 9,
+        "failed": 7,
+        "bsim4_errors": 5
+      }
+    },
+    "smic180": {
+      "files": [
+        {
+          "name": "d18_v3e_bcd_v1p0_rev1_ldmos.lib",
+          "tests": 12,
+          "passed": 5,
+          "failed": 7,
+          "pass_rate": 0.4166666666666667,
+          "failures": [
+            {
+              "test": "dc_nld5g5_sa",
+              "message": "Simulation failed: Fatal error: detected during BSIM4v5.5.0 parameter checking for"
+            },
+            {
+              "test": "dc_nld9g5_gs",
+              "message": "Simulation failed: Fatal error: detected during BSIM4v5.5.0 parameter checking for"
+            },
+            {
+              "test": "ac_nld5g5_sa",
+              "message": "Simulation failed: Fatal error: detected during BSIM4v5.5.0 parameter checking for"
+            },
+            {
+              "test": "tran_nld5g5_sa",
+              "message": "Simulation failed: Fatal error: detected during BSIM4v5.5.0 parameter checking for"
+            },
+            {
+              "test": "sanity_nld5g5_sa",
+              "message": "NMOS sanity check failed"
+            },
+            {
+              "test": "sanity_nld9g5_gs",
+              "message": "NMOS sanity check failed"
+            },
+            {
+              "test": "sanity_nde9g5_gs",
+              "message": "NMOS sanity check failed"
+            }
+          ]
+        },
+        {
+          "name": "pnp18a25.lib",
+          "tests": 2,
+          "passed": 2,
+          "failed": 0,
+          "pass_rate": 1.0,
+          "failures": []
+        }
+      ],
+      "summary": {
+        "total_files": 15,
+        "total_tests": 14,
+        "passed": 7,
+        "failed": 7,
+        "bsim4_errors": 4
+      }
+    },
+    "synopsys14": {
+      "files": [
+        {
+          "name": "saed14nm.lib",
+          "tests": 12,
+          "passed": 10,
+          "failed": 2,
+          "pass_rate": 0.8333333333333334,
+          "failures": [
+            {
+              "test": "sanity_n08",
+              "message": "NMOS sanity check failed"
+            },
+            {
+              "test": "sanity_n15",
+              "message": "NMOS sanity check failed"
+            }
+          ]
+        }
+      ],
+      "summary": {
+        "total_files": 1,
+        "total_tests": 12,
+        "passed": 10,
+        "failed": 2,
+        "bsim4_errors": 0
+      }
+    },
+    "synopsys28": {
+      "files": [
+        {
+          "name": "saed32nm.lib",
+          "tests": 12,
+          "passed": 1,
+          "failed": 11,
+          "pass_rate": 0.08333333333333333,
+          "failures": [
+            {
+              "test": "dc_n18",
+              "message": "Simulation failed: Fatal error: detected during BSIM4v5.5.0 parameter checking for"
+            },
+            {
+              "test": "dc_p18",
+              "message": "Simulation failed: Fatal error: detected during BSIM4v5.5.0 parameter checking for"
+            },
+            {
+              "test": "dc_n105_hvt",
+              "message": "Simulation failed: Fatal error: detected during BSIM4v5.5.0 parameter checking for"
+            },
+            {
+              "test": "ac_n18",
+              "message": "Simulation failed: Fatal error: detected during BSIM4v5.5.0 parameter checking for"
+            },
+            {
+              "test": "ac_p18",
+              "message": "Simulation failed: Fatal error: detected during BSIM4v5.5.0 parameter checking for"
+            },
+            {
+              "test": "tran_n18",
+              "message": "Simulation failed: Fatal error: detected during BSIM4v5.5.0 parameter checking for"
+            },
+            {
+              "test": "sanity_n18",
+              "message": "NMOS sanity check failed"
+            },
+            {
+              "test": "sanity_p18",
+              "message": "Simulation failed: Fatal error: detected during BSIM4v5.5.0 parameter checking for"
+            },
+            {
+              "test": "sanity_n105_hvt",
+              "message": "NMOS sanity check failed"
+            },
+            {
+              "test": "sanity_p105_hvt",
+              "message": "Simulation failed: Fatal error: detected during BSIM4v5.5.0 parameter checking for"
+            },
+            {
+              "test": "sanity_n105_lvt",
+              "message": "NMOS sanity check failed"
+            }
+          ]
+        }
+      ],
+      "summary": {
+        "total_files": 1,
+        "total_tests": 12,
+        "passed": 1,
+        "failed": 11,
+        "bsim4_errors": 8
+      }
+    },
+    "tsmc65lp": {
+      "files": [
+        {
+          "name": "crn65lp_2d5_lk_v1d7.lib",
+          "tests": 12,
+          "passed": 2,
+          "failed": 10,
+          "pass_rate": 0.16666666666666666,
+          "failures": [
+            {
+              "test": "dc_nch_rf.1",
+              "message": "Simulation failed: Fatal error: detected during BSIM4v5.5.0 parameter checking for"
+            },
+            {
+              "test": "dc_nch_rf.2",
+              "message": "Simulation failed: Fatal error: detected during BSIM4v5.5.0 parameter checking for"
+            },
+            {
+              "test": "dc_nch_rf.3",
+              "message": "Simulation failed: Fatal error: detected during BSIM4v5.5.0 parameter checking for"
+            },
+            {
+              "test": "ac_nch_rf.1",
+              "message": "Simulation failed: Fatal error: detected during BSIM4v5.5.0 parameter checking for"
+            },
+            {
+              "test": "ac_nch_rf.2",
+              "message": "Simulation failed: Fatal error: detected during BSIM4v5.5.0 parameter checking for"
+            },
+            {
+              "test": "tran_nch_rf.1",
+              "message": "Simulation failed: Fatal error: detected during BSIM4v5.5.0 parameter checking for"
+            },
+            {
+              "test": "sanity_nch_rf.1",
+              "message": "NMOS sanity check failed"
+            },
+            {
+              "test": "sanity_nch_rf.2",
+              "message": "NMOS sanity check failed"
+            },
+            {
+              "test": "sanity_nch_rf.3",
+              "message": "NMOS sanity check failed"
+            },
+            {
+              "test": "sanity_nch_rf.4",
+              "message": "NMOS sanity check failed"
+            }
+          ]
+        }
+      ],
+      "summary": {
+        "total_files": 1,
+        "total_tests": 12,
+        "passed": 2,
+        "failed": 10,
+        "bsim4_errors": 6
+      }
+    }
+  },
+  "summary": {
+    "total_pdks": 15,
+    "total_files": 20,
+    "total_tests": 189,
+    "passed": 125,
+    "failed": 64,
+    "skipped": 0
+  }
+}

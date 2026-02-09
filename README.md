@@ -11,7 +11,7 @@
 
 A **production-grade SPICE device model translator** with a compiler-style semantic intermediate representation (IR). Translates device model libraries between **Spectre**, **HSPICE**, and **ngspice** formats while preserving electrical behavior.
 
-### Key Results (BATCHRUN2 - Feb 2026)
+### Key Results (BATCHRUN3 - Feb 2026)
 
 | Metric | Value |
 |--------|-------|
@@ -19,8 +19,18 @@ A **production-grade SPICE device model translator** with a compiler-style seman
 | Source Files | 319 |
 | Successful Translations | 158 |
 | Models Translated | 4,530 |
-| Verification Plots | 115 |
+| Verification Plots | 119 |
 | Translation Speed | 766 models/sec |
+| Verification Pass Rate | 66.1% (125/189 tests) |
+
+### Verification Results by PDK Type
+
+| PDK Category | Pass Rate | Notes |
+|--------------|-----------|-------|
+| Cadence (Spectre) | **96-100%** | Excellent compatibility |
+| FreePDK | 87.5% | Good results |
+| ASAP7 | 66.7% | FinFET models need BSIM-CMG |
+| TSMC/SMIC/Synopsys | 8-56% | Missing corner parameters |
 
 ### Key Innovation: Semantic IR Pipeline
 
@@ -56,8 +66,54 @@ Unlike syntactic regex-based translators, ModelIR uses a **semantic intermediate
 ### Verification Framework
 - **Syntax Validation**: ngspice parses translated output
 - **DC Simulation**: Automated testbench generation
+- **AC Simulation**: Frequency response verification
+- **Transient Simulation**: Time-domain behavior testing
 - **I-V Curve Generation**: MOS transfer/output, BJT Gummel, Diode I-V
 - **Publication-Quality Plots**: PNG output for documentation
+- **Sanity Checks**: Device metrics validation (Vth, Idsat, gm)
+
+### Enhanced Verification Tool
+
+```bash
+# Run comprehensive verification on translated files
+python3 verification/enhanced_verifier.py output/pdk_ngspice/*.lib --mode full
+
+# Verification modes:
+#   syntax    - Parse validation only
+#   dc        - DC operating point simulation
+#   ac        - AC frequency response
+#   transient - Time-domain simulation  
+#   sanity    - Device metric validation
+#   full      - All tests combined
+
+# Batch verification across all PDKs
+python3 batch_verify.py --quick    # 2 files per PDK
+python3 batch_verify.py            # Full test (5 files per PDK)
+```
+
+---
+
+## 🔧 Technical Details
+
+### BSIM Model Type Translation (Bug Fix - Feb 2026)
+
+A critical bug was fixed where Spectre BSIM3v3/BSIM4 models inside subcircuits were incorrectly translated with model type `R` (resistor) instead of `nmos`/`pmos`.
+
+**Before fix (incorrect):**
+```spice
+.model gpdk090_nmos1v_x R (bsim3v3 type = n ...)  ❌
+```
+
+**After fix (correct):**
+```spice
+.model gpdk090_nmos1v_x nmos (level=8 mvtwl={varvt*1u} ...)  ✅
+```
+
+**Technical changes in `src/writers/ngspice_writer.py`:**
+- Added proper BSIM3v3 → `level=8` and BSIM4 → `level=14` mapping
+- Extract `type=n/p` parameter to determine `nmos`/`pmos`
+- Remove redundant `type=` from parameter list
+- Intelligent fallback for unknown model types based on naming conventions
 
 ---
 
@@ -197,6 +253,10 @@ new-spice-translator/
 │   ├── validation/        # Validators
 │   └── main.py            # Translation engine entry
 ├── verification/          # Verification framework
+│   ├── enhanced_verifier.py  # Comprehensive verification suite
+│   └── ...
+├── batch_verify.py        # Batch verification script
+├── roundtrip_verify.py    # Round-trip translation tester
 ├── cli.py                 # Command-line interface
 ├── batch_translate.py     # Single-target batch
 ├── batch_translate_all.py # Multi-target smart batch
@@ -222,8 +282,8 @@ new-spice-translator/
 | [docs/GETTING_STARTED.md](docs/GETTING_STARTED.md) | Quick start guide |
 | [docs/USAGE_GUIDE.md](docs/USAGE_GUIDE.md) | Complete CLI reference |
 | [docs/ARCHITECTURE.md](docs/ARCHITECTURE.md) | System design |
-| [docs/BATCHRUN2.md](docs/BATCHRUN2.md) | Latest batch results |
-| [docs/VERIFICATION_FRAMEWORK.md](docs/VERIFICATION_FRAMEWORK.md) | Verification details |
+| [docs/BATCHRUN3.md](docs/BATCHRUN3.md) | Latest batch results |
+| [docs/VERIFICATION_GUIDE.md](docs/VERIFICATION_GUIDE.md) | Verification framework usage |
 | [docs/CONTRIBUTING.md](docs/CONTRIBUTING.md) | Contribution guide |
 
 ---
@@ -265,8 +325,16 @@ pytest tests/test_writers/ -v
 ### ✅ Validation Results
 - 17 PDKs tested across 7nm to 180nm nodes
 - 4,530 models successfully translated
-- 115 verification plots generated
+- 119 verification plots generated
 - 100% syntax pass rate on successful translations
+- 66.1% full verification pass rate (DC/AC/Transient/Sanity)
+- Cadence PDKs achieve 96-100% verification pass rate
+
+### ✅ Bug Fixes (Feb 2026)
+- Fixed BSIM3v3/BSIM4 model type translation in subcircuits
+- Proper `level=8` (BSIM3v3) and `level=14` (BSIM4) assignment
+- Removed duplicate `type=n/p` parameters from ngspice output
+- Added intelligent fallback for unknown Spectre model types
 
 ---
 

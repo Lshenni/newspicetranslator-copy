@@ -814,10 +814,66 @@ class NgspiceWriter(BaseWriter):
                                 lines.append(f".model {model_name} C ({formatted})")
                             else:
                                 lines.append(f".model {model_name} C")
+                        elif st in ('bsim3v3', 'bsim4', 'bsim3', 'bsim'):
+                            # BSIM MOSFET models - determine nmos/pmos from type param or name
+                            m = re.search(r"\btype\s*=\s*(n|p)\b", params_clean, flags=re.IGNORECASE)
+                            if m:
+                                mos_type = 'nmos' if m.group(1).lower() == 'n' else 'pmos'
+                            elif 'nmos' in model_name.lower() or 'nch' in model_name.lower():
+                                mos_type = 'nmos'
+                            elif 'pmos' in model_name.lower() or 'pch' in model_name.lower():
+                                mos_type = 'pmos'
+                            else:
+                                # Default to nmos if 'n' appears early in name
+                                mos_type = 'nmos' if 'n' in model_name.lower()[:5] else 'pmos'
+                            
+                            # Remove the 'type=n/p' from params since it's now in the model type
+                            params_clean = re.sub(
+                                r"\btype\s*=\s*(n|p)\b", "", params_clean, flags=re.IGNORECASE
+                            )
+                            params_clean = " ".join(params_clean.split())
+                            
+                            # Set level based on BSIM version (BSIM3v3=8, BSIM4=14)
+                            bsim_level = 8 if '3' in st else 14
+                            
+                            formatted = format_model_params(params_clean)
+                            if formatted:
+                                lines.append(f".model {model_name} {mos_type} (level={bsim_level} {formatted})")
+                            else:
+                                lines.append(f".model {model_name} {mos_type} (level={bsim_level})")
+                        elif st in ('resistor', 'res', 'rdiff', 'phy_res'):
+                            # Resistor models
+                            formatted = format_model_params(params_clean)
+                            if formatted:
+                                lines.append(f".model {model_name} R ({formatted})")
+                            else:
+                                lines.append(f".model {model_name} R")
                         else:
-                            # Best-effort fallback: keep original tokens inside parens.
-                            rest = (spectre_type + " " + params).strip()
-                            lines.append(f".model {model_name} R ({rest})")
+                            # Best-effort fallback: try to determine type from model name
+                            if 'res' in model_name.lower() or 'rdiff' in model_name.lower():
+                                formatted = format_model_params(params_clean)
+                                if formatted:
+                                    lines.append(f".model {model_name} R ({formatted})")
+                                else:
+                                    lines.append(f".model {model_name} R")
+                            elif 'mos' in model_name.lower() or 'nch' in model_name.lower() or 'pch' in model_name.lower():
+                                # MOSFET - determine type from name
+                                if 'nmos' in model_name.lower() or 'nch' in model_name.lower():
+                                    mos_type = 'nmos'
+                                elif 'pmos' in model_name.lower() or 'pch' in model_name.lower():
+                                    mos_type = 'pmos'
+                                else:
+                                    mos_type = 'nmos' if 'n' in model_name.lower()[:5] else 'pmos'
+                                formatted = format_model_params(params_clean)
+                                if formatted:
+                                    lines.append(f".model {model_name} {mos_type} (level=14 {formatted})")
+                                else:
+                                    lines.append(f".model {model_name} {mos_type} (level=14)")
+                            else:
+                                # Unknown type - keep as generic with warning comment
+                                rest = (spectre_type + " " + params).strip()
+                                lines.append(f"* WARNING: Unknown model type '{spectre_type}' - needs manual review")
+                                lines.append(f".model {model_name} nmos ({rest})")
                     continue
                 
                 # Check if this is a device instance line
