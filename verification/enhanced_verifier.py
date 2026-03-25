@@ -22,6 +22,8 @@ import json
 import subprocess
 import tempfile
 import shutil
+import random
+import statistics
 from pathlib import Path
 from dataclasses import dataclass, field
 from typing import Dict, List, Optional, Tuple, Any
@@ -54,6 +56,7 @@ class VerificationMode(Enum):
     ROUNDTRIP = "roundtrip"     # Round-trip translation check
     CORNERS = "corners"         # Corner validation (FF/TT/SS)
     SANITY = "sanity"           # Physical plausibility checks
+    MONTE_CARLO = "monte_carlo" # Statistical Monte Carlo checks
     FULL = "full"               # All checks
 
 
@@ -1060,7 +1063,162 @@ quit
     # FULL VERIFICATION SUITE
     # =========================================================================
     
-    def run_full_verification(self, lib_file: Path) -> Dict[str, Any]:
+    def run_monte_carlo(self, lib_file: Path, runs: int = 20) -> VerificationResult:
+        """
+        Run Monte Carlo-style statistical analysis using randomized bias/dimension sweeps.
+
+        Notes:
+        - Uses ngspice-only randomized testbench runs to assess robustness/variance.
+        - Targets first MOS model in file (if present).
+        - Reports run success ratio, mean/sigma/CV of Idsat.
+        """
+        models = self._extract_models_from_file(lib_file)
+        mos_models = [m for m in models if m[1] in [DeviceType.NMOS, DeviceType.PMOS]]
+
+        if not mos_models:
+            return VerificationResult(
+                test_name="monte_carlo",
+                passed=True,
+                message="Monte Carlo skipped: no MOS models found",
+                details={"skipped": True}
+            )
+
+        model_name, device_type = mos_models[0]
+        id_samples: List[float] = []
+        failed_runs = 0
+        run_errors: List[str] = []
+
+        for run_idx in range(max(1, runs)):
+            # Randomized but bounded operating/setup variations
+            w = max(0.2e-6, random.gauss(1.0e-6, 0.12e-6))
+            l = max(50e-9, random.gauss(100e-9, 10e-9))
+            if device_type == DeviceType.PMOS:
+                vgs_start, vgs_stop = -1.8, 0.0
+            else:
+                vgs_start, vgs_stop = 0.0, 1.8
+            vds = max(0.2, min(2.0, random.gauss(1.2, 0.12)))
+
+            testbench = f"""* Monte Carlo Run {run_idx+1}: {model_name}
+.include \"{lib_file}\"
+
+Vgs gate 0 DC 0
+Vds drain 0 DC {vds:.6g}
+M1 drain gate 0 0 {model_name} W={w:.6g} L={l:.6g}
+
+.control
+dc Vgs {vgs_start:.6g} {vgs_stop:.6g} 0.03
+let id_max = maximum(abs(i(Vds)))
+echo \"MC_ID_MAX=\" id_max
+quit
+.endc
+.end
+"""
+            with tempfile.NamedTemporaryFile(mode='w', suffix='.sp', delete=False) as f:
+                f.write(testbench)
+                tb_file = f.name
+
+            try:
+                result = subprocess.run(
+                    [self.ngspice_path, '-b', tb_file],
+                    capture_output=True, text=True, timeout=45
+                )
+                combined = (result.stdout or "") + "\n" + (result.stderr or "")
+                if result.returncode != 0:
+                    failed_runs += 1
+                    run_errors.append(f"run_{run_idx+1}: ngspice returncode {result.returncode}")
+                    continue
+
+                match = re.search(r'MC_ID_MAX\s*=\s*([+-]?\d*\.?\d+(?:[eE][+-]?\d+)?)', combined)
+                if not match:
+                    # Fallback: try extracting first scientific notation value after marker line
+                    marker_idx = combined.find("MC_ID_MAX")
+                    if marker_idx >= 0:
+                        tail = combined[marker_idx: marker_idx + 200]
+                        fallback = re.search(r'([+-]?\d*\.?\d+(?:[eE][+-]?\d+)?)', tail)
+                        if fallback:
+                            id_samples.append(abs(float(fallback.group(1))))
+                        else:
+                            failed_runs += 1
+                            run_errors.append(f"run_{run_idx+1}: could not parse MC_ID_MAX")
+                    else:
+                        failed_runs += 1
+                        run_errors.append(f"run_{run_idx+1}: marker MC_ID_MAX missing")
+                else:
+                    id_samples.append(abs(float(match.group(1))))
+            except subprocess.TimeoutExpired:
+                failed_runs += 1
+                run_errors.append(f"run_{run_idx+1}: timeout")
+            except Exception as exc:
+                failed_runs += 1
+                run_errors.append(f"run_{run_idx+1}: {str(exc)[:80]}")
+            finally:
+                try:
+                    os.unlink(tb_file)
+                except OSError:
+                    pass
+
+        successful_runs = len(id_samples)
+        if successful_runs == 0:
+            return VerificationResult(
+                test_name="monte_carlo",
+                passed=False,
+                message="Monte Carlo failed: no successful runs",
+                details={
+                    "runs": runs,
+                    "successful_runs": 0,
+                    "failed_runs": failed_runs,
+                    "errors": run_errors[:10],
+                }
+            )
+
+        id_mean = statistics.mean(id_samples)
+        id_sigma = statistics.stdev(id_samples) if successful_runs > 1 else 0.0
+        cv = (id_sigma / id_mean) if id_mean > 0 else float('inf')
+
+        warnings: List[str] = []
+        passed = True
+
+        success_ratio = successful_runs / max(1, runs)
+        if success_ratio < 0.90:
+            passed = False
+            warnings.append(f"Low Monte Carlo simulation success ratio: {success_ratio:.1%}")
+
+        if id_mean <= 0:
+            passed = False
+            warnings.append("Non-positive Id mean from Monte Carlo runs")
+
+        if cv > 1.0:
+            warnings.append(f"High Id coefficient of variation: {cv:.2f}")
+
+        return VerificationResult(
+            test_name="monte_carlo",
+            passed=passed,
+            message=(
+                f"Monte Carlo complete: {successful_runs}/{runs} runs, "
+                f"Id_mean={id_mean:.3e}, Id_sigma={id_sigma:.3e}"
+            ),
+            details={
+                "model": model_name,
+                "device_type": device_type.value,
+                "runs": runs,
+                "successful_runs": successful_runs,
+                "failed_runs": failed_runs,
+                "id_mean": id_mean,
+                "id_sigma": id_sigma,
+                "id_cv": cv,
+                "id_min": min(id_samples),
+                "id_max": max(id_samples),
+            },
+            warnings=warnings + run_errors[:5]
+        )
+
+    def run_full_verification(
+        self,
+        lib_file: Path,
+        include_roundtrip: bool = False,
+        source_format_for_roundtrip: str = 'ngspice',
+        monte_carlo_runs: int = 0
+    ) -> Dict[str, Any]:
         """
         Run complete verification suite on a library file
         """
@@ -1114,6 +1272,18 @@ quit
         print(f"  [5/5] Sanity checks...")
         sanity_results = self.verify_sanity(lib_file)
         results['tests'].extend(sanity_results)
+
+        # 7. Monte Carlo statistical check (optional)
+        if monte_carlo_runs and monte_carlo_runs > 0:
+            print(f"  [MC] Monte Carlo ({monte_carlo_runs} runs)...")
+            mc_result = self.run_monte_carlo(lib_file, runs=monte_carlo_runs)
+            results['tests'].append(mc_result)
+
+        # 8. Round-trip consistency check (optional)
+        if include_roundtrip:
+            print("  [RT] Round-trip consistency check...")
+            rt_result = self.verify_roundtrip(lib_file, source_format_for_roundtrip)
+            results['tests'].append(rt_result)
         
         # Summarize
         for test in results['tests']:
@@ -1172,8 +1342,8 @@ def main():
     parser.add_argument('input', type=Path, nargs='?',
                         help="Library file or directory to verify")
     parser.add_argument('--mode', type=str, default='full',
-                        choices=['syntax', 'dc', 'ac', 'transient', 'roundtrip', 
-                                'corners', 'sanity', 'full'],
+                choices=['syntax', 'dc', 'ac', 'transient', 'roundtrip',
+                    'corners', 'sanity', 'monte_carlo', 'full'],
                         help="Verification mode (default: full)")
     parser.add_argument('--source-format', type=str, default='hspice',
                         choices=['hspice', 'spectre', 'ngspice'],
@@ -1182,6 +1352,10 @@ def main():
                         help="Verbose output")
     parser.add_argument('-o', '--output', type=Path,
                         help="Output directory for reports")
+    parser.add_argument('--mc-runs', type=int, default=0,
+                        help="Monte Carlo runs for statistical verification (default: 0)")
+    parser.add_argument('--roundtrip', action='store_true',
+                        help="Include round-trip consistency check in full mode")
     
     args = parser.parse_args()
     
@@ -1215,7 +1389,12 @@ def main():
         print(f"Verifying: {lib_file.name}")
         
         if args.mode == 'full':
-            results = verifier.run_full_verification(lib_file)
+            results = verifier.run_full_verification(
+                lib_file,
+                include_roundtrip=args.roundtrip,
+                source_format_for_roundtrip='ngspice',
+                monte_carlo_runs=args.mc_runs
+            )
         elif args.mode == 'syntax':
             result = verifier.verify_syntax(lib_file)
             results = {'file': str(lib_file), 'tests': [result], 
@@ -1226,9 +1405,19 @@ def main():
             results = {'file': str(lib_file), 'tests': [result],
                       'summary': {'total': 1, 'passed': 1 if result.passed else 0,
                                  'failed': 0 if result.passed else 1}}
+        elif args.mode == 'monte_carlo':
+            result = verifier.run_monte_carlo(lib_file, runs=max(1, args.mc_runs or 20))
+            results = {'file': str(lib_file), 'tests': [result],
+                      'summary': {'total': 1, 'passed': 1 if result.passed else 0,
+                                 'failed': 0 if result.passed else 1, 'skipped': 0}}
         else:
             print(f"  Mode {args.mode} - running...")
-            results = verifier.run_full_verification(lib_file)
+            results = verifier.run_full_verification(
+                lib_file,
+                include_roundtrip=args.roundtrip,
+                source_format_for_roundtrip='ngspice',
+                monte_carlo_runs=args.mc_runs
+            )
         
         all_results.append(results)
         

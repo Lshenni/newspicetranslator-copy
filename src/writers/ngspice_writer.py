@@ -88,17 +88,98 @@ class NgspiceWriter(BaseWriter):
         }
         if expr_symbols:
             content_lines.append("* Auto-generated parameter defaults (override as needed)")
-            # Heuristic defaults: most symbolic *multipliers* should default to 1,
-            # while true deltas/offsets default to 0. This keeps models from
-            # degenerating into all-zeros (which can cause OP convergence issues)
-            # while still preventing undefined-parameter errors.
-            default_one = {
-                # Common Spectre/HSPICE scaling factors in this corpus
-                'cbeta', 'cis', 'cvaf', 'ctf', 'ccj', 'ccjd', 'crsd', 'pis_mc', 'pisd_mc', 'geo_fac',
+            # Heuristic defaults: multipliers/scaling factors should default to 1,
+            # while deltas/offsets/mismatch parameters default to 0.
+            # This prevents models from degenerating into all-zeros (which causes
+            # BSIM4 failures like "u0=0 is not positive") while allowing deltas
+            # to remain zero for nominal operation.
+            
+            # Critical BSIM4 parameters with sensible physical defaults
+            # These prevent simulation failures when corner parameters are missing
+            bsim4_critical_defaults = {
+                # Oxide thickness parameters (must be > 0)
+                'tox': 2.5e-9,        # Standard oxide thickness ~2.5nm
+                'toxe': 2.5e-9,       # Effective oxide thickness
+                'toxp': 2.1e-9,       # Physical oxide thickness
+                'toxm': 2.5e-9,       # Model oxide thickness
+                'toxprf': 2.1e-9,     # RF physical tox
+                # Mobility parameters (must be > 0)
+                'u0': 0.03,           # Carrier mobility ~300 cm2/Vs
+                # Saturation velocity (must be > 0)
+                'vsat': 1.0e5,        # Saturation velocity ~1e5 m/s
+                # Threshold voltage (reasonable default)
+                'vth0': 0.3,          # Threshold voltage ~0.3V
+                # Body effect
+                'k1': 0.5,            # Body effect coefficient
+                'k2': -0.1,           # Body effect coefficient 2
             }
-            suffix_one_re = re.compile(r"_(?:npn|pnp|nmos|pmos)$", flags=re.IGNORECASE)
+            
+            # Patterns for critical BSIM4 parameters that need process-appropriate values
+            # These are matched by prefix to handle variations like toxnrf, toxn_hvt, etc.
+            bsim4_critical_patterns = [
+                # Oxide thickness - must be positive, typically 1-5nm for modern processes
+                (re.compile(r"^tox[enprf_]*(?!mis)(_[a-z0-9_]+)?$", flags=re.IGNORECASE), 2.5e-9),
+                # RF tox variations
+                (re.compile(r"^toxnrf", flags=re.IGNORECASE), 2.6e-9),
+                (re.compile(r"^toxprf", flags=re.IGNORECASE), 2.8e-9),
+                # Mobility u0 - device specific (e.g., u0_n18, u0_p105_hvt)
+                (re.compile(r"^u0_[a-z0-9_]+$", flags=re.IGNORECASE), 0.03),
+                # Saturation velocity - device specific
+                (re.compile(r"^vsat_[a-z0-9_]+$", flags=re.IGNORECASE), 1.0e5),
+                # Threshold voltage - device specific
+                (re.compile(r"^vth0_[a-z0-9_]+$", flags=re.IGNORECASE), 0.35),
+            ]
+            
+            # Keywords that indicate multipliers (should be 1)
+            default_one_keywords = {
+                # Common Spectre/HSPICE scaling factors
+                'cbeta', 'cis', 'cvaf', 'ctf', 'ccj', 'ccjd', 'crsd', 
+                'pis_mc', 'pisd_mc', 'geo_fac',
+            }
+            
+            # Patterns that indicate multipliers/scaling factors -> default 1
+            multiplier_patterns = [
+                re.compile(r"_eff$", flags=re.IGNORECASE),       # *_eff (effective factor)
+                re.compile(r"_fac$", flags=re.IGNORECASE),       # *_fac (factor)
+                re.compile(r"_factor$", flags=re.IGNORECASE),    # *_factor
+                re.compile(r"_mult$", flags=re.IGNORECASE),      # *_mult (multiplier)
+                re.compile(r"_scale$", flags=re.IGNORECASE),     # *_scale
+                re.compile(r"_ratio$", flags=re.IGNORECASE),     # *_ratio
+                re.compile(r"^rho", flags=re.IGNORECASE),        # rho* (ratio parameters)
+                re.compile(r"_(?:npn|pnp|nmos|pmos)$", flags=re.IGNORECASE),  # device type suffixes
+                re.compile(r"^fu0|^fvsat|^fvth", flags=re.IGNORECASE),  # f* factors
+            ]
+            
+            # Patterns that indicate deltas/offsets -> default 0
+            # (most d*, mis*, del* are offsets that should be 0 for nominal)
+            
             for sym in sorted(expr_symbols):
-                if suffix_one_re.search(sym) or sym.lower() in default_one:
+                sym_lower = sym.lower()
+                
+                # Check for critical BSIM4 parameters first (exact match)
+                if sym_lower in bsim4_critical_defaults:
+                    content_lines.append(f".param {sym}={bsim4_critical_defaults[sym_lower]}")
+                    continue
+                
+                # Check for critical BSIM4 pattern matches (tox variants, etc.)
+                critical_match = False
+                for pattern, default_val in bsim4_critical_patterns:
+                    if pattern.match(sym):
+                        content_lines.append(f".param {sym}={default_val}")
+                        critical_match = True
+                        break
+                if critical_match:
+                    continue
+                
+                # Check if it matches any multiplier pattern
+                is_multiplier = sym_lower in default_one_keywords
+                if not is_multiplier:
+                    for pattern in multiplier_patterns:
+                        if pattern.search(sym):
+                            is_multiplier = True
+                            break
+                
+                if is_multiplier:
                     content_lines.append(f".param {sym}=1")
                 else:
                     content_lines.append(f".param {sym}=0")

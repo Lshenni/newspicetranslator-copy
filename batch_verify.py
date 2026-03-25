@@ -21,7 +21,12 @@ sys.path.insert(0, str(BASE_DIR))
 from verification.enhanced_verifier import EnhancedVerifier
 
 
-def run_batch_verification(output_dir: Path, quick_mode: bool = False) -> Dict[str, Any]:
+def run_batch_verification(
+    output_dir: Path,
+    quick_mode: bool = False,
+    monte_carlo_runs: int = 0,
+    include_roundtrip: bool = False
+) -> Dict[str, Any]:
     """Run verification on all PDK output directories"""
     
     verifier = EnhancedVerifier(verbose=False)
@@ -43,7 +48,11 @@ def run_batch_verification(output_dir: Path, quick_mode: bool = False) -> Dict[s
             'total_tests': 0,
             'passed': 0,
             'failed': 0,
-            'skipped': 0
+            'skipped': 0,
+            'roundtrip_passed': 0,
+            'roundtrip_failed': 0,
+            'monte_carlo_passed': 0,
+            'monte_carlo_failed': 0
         }
     }
     
@@ -75,7 +84,12 @@ def run_batch_verification(output_dir: Path, quick_mode: bool = False) -> Dict[s
             print(f"   📄 {lib_file.name}... ", end='', flush=True)
             
             try:
-                results = verifier.run_full_verification(lib_file)
+                results = verifier.run_full_verification(
+                    lib_file,
+                    include_roundtrip=include_roundtrip,
+                    source_format_for_roundtrip='ngspice',
+                    monte_carlo_runs=monte_carlo_runs
+                )
                 
                 file_result = {
                     'name': lib_file.name,
@@ -88,6 +102,17 @@ def run_batch_verification(output_dir: Path, quick_mode: bool = False) -> Dict[s
                 
                 # Collect failure details
                 for test in results['tests']:
+                    if test.test_name == 'roundtrip':
+                        if test.passed:
+                            all_results['summary']['roundtrip_passed'] += 1
+                        else:
+                            all_results['summary']['roundtrip_failed'] += 1
+                    elif test.test_name == 'monte_carlo':
+                        if test.passed:
+                            all_results['summary']['monte_carlo_passed'] += 1
+                        else:
+                            all_results['summary']['monte_carlo_failed'] += 1
+
                     if not test.passed and not test.details.get('skipped'):
                         failure_info = {
                             'test': test.test_name,
@@ -142,6 +167,12 @@ def print_summary(results: Dict[str, Any]):
     print(f"Total Tests:   {s['total_tests']}")
     print(f"Passed:        {s['passed']} ({pass_rate:.1f}%)")
     print(f"Failed:        {s['failed']}")
+    if (s.get('roundtrip_passed', 0) + s.get('roundtrip_failed', 0)) > 0:
+        rt_total = s['roundtrip_passed'] + s['roundtrip_failed']
+        print(f"Round-trip:    {s['roundtrip_passed']}/{rt_total} passed")
+    if (s.get('monte_carlo_passed', 0) + s.get('monte_carlo_failed', 0)) > 0:
+        mc_total = s['monte_carlo_passed'] + s['monte_carlo_failed']
+        print(f"Monte Carlo:   {s['monte_carlo_passed']}/{mc_total} passed")
     print()
     
     # Per-PDK summary
@@ -200,6 +231,10 @@ def main():
                         help="Output JSON report path")
     parser.add_argument('--quick', '-q', action='store_true',
                         help="Quick mode: test fewer files per PDK")
+    parser.add_argument('--mc-runs', type=int, default=0,
+                        help="Monte Carlo runs per file (0 = disabled)")
+    parser.add_argument('--roundtrip', action='store_true',
+                        help="Include round-trip consistency check per file")
     parser.add_argument('--dir', '-d', type=Path, default=BASE_DIR / 'output',
                         help="Output directory containing PDK translations")
     
@@ -208,7 +243,12 @@ def main():
     print("🔬 SPICE Translator - Batch Verification")
     print("=" * 70)
     
-    results = run_batch_verification(args.dir, quick_mode=args.quick)
+    results = run_batch_verification(
+        args.dir,
+        quick_mode=args.quick,
+        monte_carlo_runs=max(0, args.mc_runs),
+        include_roundtrip=args.roundtrip
+    )
     
     # Print summary
     print_summary(results)
