@@ -30,10 +30,26 @@ def run_batch_verification(
     """Run verification on all PDK output directories"""
     
     verifier = EnhancedVerifier(verbose=False)
+
+    def _is_verifiable_output(path: Path) -> bool:
+        return path.is_file() and path.suffix.lower() == '.lib'
+
+    def _normalize_pdk_name(folder_name: str) -> str:
+        """Normalize output folder names across both translation directions."""
+        for suffix in (
+            '_hspice-ngspice', '_spectre-ngspice',
+            '_ngspice-hspice', '_ngspice-spectre',
+            '-ngspice', '_hspice', '_spectre'
+        ):
+            folder_name = folder_name.replace(suffix, '')
+        return folder_name
     
     # Find all PDK output directories
     pdk_dirs = sorted([d for d in output_dir.iterdir() 
-                       if d.is_dir() and '-ngspice' in d.name])
+                       if d.is_dir() and (
+                           d.name.endswith('_hspice-ngspice') or
+                           d.name.endswith('_spectre-ngspice')
+                       )])
     
     print(f"Found {len(pdk_dirs)} PDK output directories to verify")
     print("=" * 70)
@@ -57,11 +73,11 @@ def run_batch_verification(
     }
     
     for pdk_dir in pdk_dirs:
-        pdk_name = pdk_dir.name.replace('-ngspice', '').replace('_spectre', '').replace('_hspice', '')
+        pdk_name = _normalize_pdk_name(pdk_dir.name)
         print(f"\n📁 {pdk_name}")
         
-        # Find .lib files
-        lib_files = list(pdk_dir.glob('*.lib'))
+        # Find .lib files case-insensitively and recursively
+        lib_files = sorted([f for f in pdk_dir.rglob('*') if _is_verifiable_output(f)])
         if not lib_files:
             print(f"   No .lib files found, skipping")
             continue

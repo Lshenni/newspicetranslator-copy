@@ -1,9 +1,9 @@
 # SPICE Model Translator (ModelIR)
 
-**Version:** 3.1 (Smart Parameter Defaults)  
+**Version:** 3.2 (Credibility Verification Suite)  
 **Python:** 3.10+  
 **Status:** ✅ Production Ready  
-**Last Validated:** February 9, 2026
+**Last Validated:** March 25, 2026
 
 ---
 
@@ -22,6 +22,19 @@ A **production-grade SPICE device model translator** with a compiler-style seman
 | Verification Plots | 133 |
 | Translation Speed | 766 models/sec |
 | **Verification Pass Rate** | **85.7%** (162/189 tests) |
+
+### Credibility Results (BATCHRUN5 - Mar 2026, quick mode)
+
+| Metric | Value |
+|--------|-------|
+| Verification Scope | DC + AC + Transient + Sanity + Monte Carlo + Round-Trip |
+| PDKs Tested | 15 |
+| Files Tested | 20 |
+| Total Tests | 229 |
+| Passed | 200 |
+| **Pass Rate** | **87.3%** |
+| Monte Carlo | 20/20 files passed |
+| Round-Trip | 18/20 files passed |
 
 ### Verification Results by PDK Type
 
@@ -70,6 +83,8 @@ Unlike syntactic regex-based translators, ModelIR uses a **semantic intermediate
 - **DC Simulation**: Automated testbench generation
 - **AC Simulation**: Frequency response verification
 - **Transient Simulation**: Time-domain behavior testing
+- **Monte Carlo Statistics**: Multi-run randomized robustness checks
+- **Round-Trip Consistency**: Parameter self-consistency (A→B→A)
 - **I-V Curve Generation**: MOS transfer/output, BJT Gummel, Diode I-V
 - **Publication-Quality Plots**: PNG output for documentation
 - **Sanity Checks**: Device metrics validation (Vth, Idsat, gm)
@@ -78,7 +93,7 @@ Unlike syntactic regex-based translators, ModelIR uses a **semantic intermediate
 
 ```bash
 # Run comprehensive verification on translated files
-python3 verification/enhanced_verifier.py output/pdk_ngspice/*.lib --mode full
+python3 verification/enhanced_verifier.py output/pdk_ngspice/*.lib --mode full --mc-runs 20 --roundtrip
 
 # Verification modes:
 #   syntax    - Parse validation only
@@ -86,11 +101,14 @@ python3 verification/enhanced_verifier.py output/pdk_ngspice/*.lib --mode full
 #   ac        - AC frequency response
 #   transient - Time-domain simulation  
 #   sanity    - Device metric validation
+#   monte_carlo - Statistical robustness check
+#   roundtrip - Self-consistency check
 #   full      - All tests combined
 
 # Batch verification across all PDKs
 python3 batch_verify.py --quick    # 2 files per PDK
 python3 batch_verify.py            # Full test (5 files per PDK)
+python3 batch_verify.py --quick --mc-runs 6 --roundtrip
 ```
 
 ---
@@ -285,6 +303,8 @@ new-spice-translator/
 | [docs/USAGE_GUIDE.md](docs/USAGE_GUIDE.md) | Complete CLI reference |
 | [docs/ARCHITECTURE.md](docs/ARCHITECTURE.md) | System design |
 | [docs/BATCHRUN3.md](docs/BATCHRUN3.md) | Latest batch results |
+| [docs/BATCHRUN4.md](docs/BATCHRUN4.md) | Smart parameter defaults report |
+| [docs/BATCHRUN5.md](docs/BATCHRUN5.md) | Credibility verification report (DC/AC/Tran/MC/Round-trip) |
 | [docs/VERIFICATION_GUIDE.md](docs/VERIFICATION_GUIDE.md) | Verification framework usage |
 | [docs/CONTRIBUTING.md](docs/CONTRIBUTING.md) | Contribution guide |
 
@@ -314,9 +334,11 @@ pytest tests/test_writers/ -v
 
 ### ✅ Verification Framework
 - Automated ngspice syntax checking
-- DC simulation testbench generation
+- DC/AC/transient simulation testbench generation
 - I-V characteristic plot generation
 - Per-device verification (MOS, BJT, Diode)
+- Monte Carlo statistical verification
+- Round-trip parameter consistency verification
 
 ### ✅ Production Features
 - Include/library section resolution for corner files
@@ -331,6 +353,15 @@ pytest tests/test_writers/ -v
 - 100% syntax pass rate on successful translations
 - **85.7% full verification pass rate** (DC/AC/Transient/Sanity)
 - **6 PDKs at 100% verification**: cadence14, cadence45, cadence90, hlmc40lp, synopsys28
+
+### ✅ BATCHRUN5 Credibility Results (Mar 2026)
+- Quick-mode expanded verification pass rate: **87.3%** (200/229)
+- Monte Carlo statistical verification: **20/20 files passed**
+- Round-trip consistency: **18/20 files passed**
+- Explicit HSPICE→ngspice→HSPICE checks:
+	- synopsys28 `saed32nm.lib`: **98.8%** parameter match
+	- tsmc65lp `crn65lp_2d5_lk_v1d7.l`: **97.5%** parameter match
+	- hlmc40lp `hlmc40lp_v1d2_p2.lib`: **100.0%** parameter match
 
 ### ✅ Bug Fixes and Enhancements (Feb 2026)
 
@@ -360,8 +391,8 @@ pytest tests/test_writers/ -v
 6. **SMIC Corner Files**: Need `--follow-includes` for complex expressions
 
 ### Documentation
-7. **IEEE Paper**: Updated to v3 with BATCHRUN4 statistics
-8. **Batch Run Reports**: See `docs/BATCHRUN4.md` for detailed results
+7. **IEEE Paper**: Updated to v4 with enhanced verification details
+8. **Batch Run Reports**: See `docs/BATCHRUN4.md` and `docs/BATCHRUN5.md`
 
 ---
 
@@ -378,5 +409,5 @@ See [CONTRIBUTING.md](CONTRIBUTING.md) for development guidelines.
 ---
 
 **Status**: ✅ **PRODUCTION READY**  
-**Translation Fidelity**: 85-95% semantic preservation  
+**Translation Fidelity**: 87%+ expanded verification (quick BATCHRUN5)  
 **Backends**: ngspice, HSPICE, Spectre

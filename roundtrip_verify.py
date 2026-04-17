@@ -26,6 +26,14 @@ sys.path.insert(0, str(BASE_DIR))
 from src.main import TranslationEngine
 
 
+def _read_text_robust(filepath: Path) -> str:
+    """Read text file with utf-8 first, then latin-1 fallback."""
+    try:
+        return filepath.read_text(encoding='utf-8')
+    except UnicodeDecodeError:
+        return filepath.read_text(encoding='latin-1')
+
+
 @dataclass
 class ParameterComparison:
     """Result of comparing a single parameter"""
@@ -70,35 +78,46 @@ def extract_parameters_from_file(filepath: Path) -> Dict[str, Dict[str, float]]:
     
     Returns dict of model_name -> {param_name: value}
     """
-    content = filepath.read_text()
+    content = _read_text_robust(filepath)
     models = {}
     
-    # Handle ngspice/HSPICE .model format
-    # Match: .model name type (params...)
+    simple_pattern = r'(\w+)\s*=\s*([+-]?\d+\.?\d*(?:[eE][+-]?\d+)?)'
+
+    # Case 1: Parenthesized .model blocks
     model_pattern = r'\.model\s+(\S+)\s+\S+\s*\(([^)]+)\)'
-    
     for match in re.finditer(model_pattern, content, re.IGNORECASE | re.DOTALL):
-        model_name = match.group(1).lower()  # Normalize to lowercase
-        param_text = match.group(2)
-        
-        # Clean up the parameter text (handle line continuations)
-        param_text = re.sub(r'\+\s*', ' ', param_text)
+        model_name = match.group(1).lower()
+        param_text = re.sub(r'\+\s*', ' ', match.group(2))
         param_text = re.sub(r'\s+', ' ', param_text)
-        
         params = {}
-        
-        # Extract simple numeric parameters: name=value
-        # Match: name = number (with optional exponent)
-        simple_pattern = r'(\w+)\s*=\s*([+-]?\d+\.?\d*(?:[eE][+-]?\d+)?)'
-        
         for pmatch in re.finditer(simple_pattern, param_text):
             pname = pmatch.group(1).lower()
             try:
-                pvalue = float(pmatch.group(2))
-                params[pname] = pvalue
+                params[pname] = float(pmatch.group(2))
             except ValueError:
                 continue
-        
+        if params:
+            models[model_name] = params
+
+    # Case 2: Line-based .model with continuation lines
+    line_pattern = r'(^\.model\s+\S+\s+\S+[^\n]*(?:\n\+[^\n]*)*)'
+    for block in re.finditer(line_pattern, content, re.IGNORECASE | re.MULTILINE):
+        block_text = block.group(1)
+        header = re.match(r'^\.model\s+(\S+)\s+\S+(.*)$', block_text.split('\n')[0], re.IGNORECASE)
+        if not header:
+            continue
+        model_name = header.group(1).lower()
+        if model_name in models and models[model_name]:
+            continue
+
+        merged = block_text.replace('\n+', ' ')
+        params = {}
+        for pmatch in re.finditer(simple_pattern, merged):
+            pname = pmatch.group(1).lower()
+            try:
+                params[pname] = float(pmatch.group(2))
+            except ValueError:
+                continue
         if params:
             models[model_name] = params
     
@@ -107,7 +126,7 @@ def extract_parameters_from_file(filepath: Path) -> Dict[str, Dict[str, float]]:
 
 def extract_parameters_from_spectre(filepath: Path) -> Dict[str, Dict[str, float]]:
     """Extract parameters from Spectre format"""
-    content = filepath.read_text()
+    content = _read_text_robust(filepath)
     models = {}
     
     # Spectre model syntax varies - simplified extraction

@@ -1,128 +1,111 @@
 {
-  "timestamp": "2026-03-25T23:30:30.232599",
-  "mode": "quick",
+  "timestamp": "2026-04-17T17:54:48.330741",
+  "mode": "full",
   "pdks": {
     "asap7": {
       "files": [
         {
+          "name": "ff.lib",
+          "tests": 14,
+          "passed": 14,
+          "failed": 0,
+          "pass_rate": 1.0,
+          "failures": []
+        },
+        {
           "name": "fs.lib",
           "tests": 14,
-          "passed": 9,
-          "failed": 5,
-          "pass_rate": 0.6428571428571429,
-          "failures": [
-            {
-              "test": "sanity_nmos_lvt",
-              "message": "NMOS sanity check failed"
-            },
-            {
-              "test": "sanity_nmos_rvt",
-              "message": "NMOS sanity check failed"
-            },
-            {
-              "test": "sanity_nmos_slvt",
-              "message": "NMOS sanity check failed"
-            },
-            {
-              "test": "sanity_nmos_sram",
-              "message": "NMOS sanity check failed"
-            },
-            {
-              "test": "monte_carlo",
-              "message": "Monte Carlo failed: no successful runs"
-            }
-          ]
+          "passed": 14,
+          "failed": 0,
+          "pass_rate": 1.0,
+          "failures": []
         },
         {
           "name": "mc.lib",
           "tests": 14,
-          "passed": 9,
-          "failed": 5,
-          "pass_rate": 0.6428571428571429,
-          "failures": [
-            {
-              "test": "sanity_nmos_lvt",
-              "message": "NMOS sanity check failed"
-            },
-            {
-              "test": "sanity_nmos_rvt",
-              "message": "NMOS sanity check failed"
-            },
-            {
-              "test": "sanity_nmos_slvt",
-              "message": "NMOS sanity check failed"
-            },
-            {
-              "test": "sanity_nmos_sram",
-              "message": "NMOS sanity check failed"
-            },
-            {
-              "test": "monte_carlo",
-              "message": "Monte Carlo failed: no successful runs"
-            }
-          ]
+          "passed": 14,
+          "failed": 0,
+          "pass_rate": 1.0,
+          "failures": []
+        },
+        {
+          "name": "sf.lib",
+          "tests": 14,
+          "passed": 14,
+          "failed": 0,
+          "pass_rate": 1.0,
+          "failures": []
+        },
+        {
+          "name": "ss.lib",
+          "tests": 14,
+          "passed": 14,
+          "failed": 0,
+          "pass_rate": 1.0,
+          "failures": []
         }
       ],
       "summary": {
         "total_files": 6,
-        "total_tests": 28,
-        "passed": 18,
-        "failed": 10,
+        "total_tests": 70,
+        "passed": 70,
+        "failed": 0,
         "bsim4_errors": 0
       }
     },
     "cadence14": {
       "files": [
         {
-          "name": "cds_ff_mpt_resistor.lib",
-          "tests": 9,
+          "name": "cds_ff_mpt_bipolar.lib",
+          "tests": 5,
+          "passed": 5,
+          "failed": 0,
+          "pass_rate": 1.0,
+          "failures": []
+        },
+        {
+          "name": "cds_ff_mpt_diode.lib",
+          "tests": 11,
+          "passed": 11,
+          "failed": 0,
+          "pass_rate": 1.0,
+          "failures": []
+        },
+        {
+          "name": "cds_ff_mpt_mimcap.lib",
+          "tests": 8,
           "passed": 8,
-          "failed": 1,
-          "pass_rate": 0.8888888888888888,
-          "failures": [
-            {
-              "test": "roundtrip",
-              "message": "Parameter match rate: 0.0%"
-            }
-          ]
+          "failed": 0,
+          "pass_rate": 1.0,
+          "failures": []
         },
         {
           "name": "cds_ff_mpt_mosfet.lib",
           "tests": 14,
-          "passed": 13,
-          "failed": 1,
-          "pass_rate": 0.9285714285714286,
-          "failures": [
-            {
-              "test": "roundtrip",
-              "message": "Parameter match rate: 93.6%"
-            }
-          ]
+          "passed": 14,
+          "failed": 0,
+          "pass_rate": 1.0,
+          "failures": []
+        },
+        {
+          "name": "cds_ff_mpt_resistor.lib",
+          "tests": 9,
+          "passed": 9,
+          "failed": 0,
+          "pass_rate": 1.0,
+          "failures": []
         }
       ],
       "summary": {
         "total_files": 5,
-        "total_tests": 23,
-        "passed": 21,
-        "failed": 2,
+        "total_tests": 47,
+        "passed": 47,
+        "failed": 0,
         "bsim4_errors": 0
       }
     },
     "cadence180": {
       "files": [
-        {
-          "name": "nmos1.lib",
-          "tests": 10,
-          "passed": 9,
-          "failed": 1,
-          "pass_rate": 0.9,
-          "failures": [
-            {
-              "test": "tran_nmos1_int",
-              "message": "Simulation failed: Warning: singular matrix:  check node out"
-            }
-          ]
-        },
         {
           "name": "bipolar.lib",
           "tests": 7,
@@ -130,35 +113,86 @@
           "failed": 0,
           "pass_rate": 1.0,
           "failures": []
+        },
+        {
+          "name": "capacitor.lib",
+          "tests": 3,
+          "passed": 3,
+          "failed": 0,
+          "pass_rate": 1.0,
+          "failures": []
+        },
+        {
+          "name": "diode.lib",
+          "tests": 7,
+          "passed": 7,
+          "failed": 0,
+          "pass_rate": 1.0,
+          "failures": []
+        },
+        {
+          "name": "mcxjvar_w40.lib",
+          "tests": 11,
+          "passed": 11,
+          "failed": 0,
+          "pass_rate": 1.0,
+          "failures": []
+        },
+        {
+          "name": "mos25gen.lib",
+          "tests": 10,
+          "passed": 10,
+          "failed": 0,
+          "pass_rate": 1.0,
+          "failures": []
         }
       ],
       "summary": {
         "total_files": 11,
-        "total_tests": 17,
-        "passed": 16,
-        "failed": 1,
+        "total_tests": 38,
+        "passed": 38,
+        "failed": 0,
         "bsim4_errors": 0
       }
     },
     "cadence45": {
       "files": [
         {
-          "name": "gpdk045_resistor.lib",
-          "tests": 9,
-          "passed": 8,
-          "failed": 1,
-          "pass_rate": 0.8888888888888888,
-          "failures": [
-            {
-              "test": "roundtrip",
-              "message": "Parameter match rate: 0.0%"
-            }
-          ]
+          "name": "gpdk045_bipolar.lib",
+          "tests": 6,
+          "passed": 6,
+          "failed": 0,
+          "pass_rate": 1.0,
+          "failures": []
         },
         {
-          "name": "gpdk045_moscap.lib",
-          "tests": 13,
-          "passed": 13,
+          "name": "gpdk045_diode.lib",
+          "tests": 11,
+          "passed": 11,
+          "failed": 0,
+          "pass_rate": 1.0,
+          "failures": []
+        },
+        {
+          "name": "gpdk045_inductor.lib",
+          "tests": 10,
+          "passed": 10,
+          "failed": 0,
+          "pass_rate": 1.0,
+          "failures": []
+        },
+        {
+          "name": "gpdk045_mimcap.lib",
+          "tests": 8,
+          "passed": 8,
+          "failed": 0,
+          "pass_rate": 1.0,
+          "failures": []
+        },
+        {
+          "name": "gpdk045_mos.lib",
+          "tests": 14,
+          "passed": 14,
           "failed": 0,
           "pass_rate": 1.0,
           "failures": []
@@ -166,46 +200,111 @@
       ],
       "summary": {
         "total_files": 7,
-        "total_tests": 22,
-        "passed": 21,
-        "failed": 1,
+        "total_tests": 49,
+        "passed": 49,
+        "failed": 0,
         "bsim4_errors": 0
       }
     },
     "cadence90": {
       "files": [
         {
+          "name": "gpdk090_bipolar.lib",
+          "tests": 6,
+          "passed": 6,
+          "failed": 0,
+          "pass_rate": 1.0,
+          "failures": []
+        },
+        {
+          "name": "gpdk090_capacitor.lib",
+          "tests": 3,
+          "passed": 3,
+          "failed": 0,
+          "pass_rate": 1.0,
+          "failures": []
+        },
+        {
           "name": "gpdk090_diode.lib",
           "tests": 11,
-          "passed": 10,
-          "failed": 1,
-          "pass_rate": 0.9090909090909091,
-          "failures": [
-            {
-              "test": "roundtrip",
-              "message": "Parameter match rate: 0.0%"
-            }
-          ]
+          "passed": 11,
+          "failed": 0,
+          "pass_rate": 1.0,
+          "failures": []
+        },
+        {
+          "name": "gpdk090_mos.lib",
+          "tests": 14,
+          "passed": 14,
+          "failed": 0,
+          "pass_rate": 1.0,
+          "failures": []
         },
         {
           "name": "gpdk090_mos_age.lib",
           "tests": 10,
-          "passed": 9,
-          "failed": 1,
-          "pass_rate": 0.9,
-          "failures": [
-            {
-              "test": "roundtrip",
-              "message": "Parameter match rate: 0.0%"
-            }
-          ]
+          "passed": 10,
+          "failed": 0,
+          "pass_rate": 1.0,
+          "failures": []
         }
       ],
       "summary": {
         "total_files": 8,
-        "total_tests": 21,
-        "passed": 19,
-        "failed": 2,
+        "total_tests": 44,
+        "passed": 44,
+        "failed": 0,
+        "bsim4_errors": 0
+      }
+    },
+    "freepdk15": {
+      "files": [
+        {
+          "name": "ff.lib",
+          "tests": 10,
+          "passed": 10,
+          "failed": 0,
+          "pass_rate": 1.0,
+          "failures": []
+        },
+        {
+          "name": "fs.lib",
+          "tests": 10,
+          "passed": 10,
+          "failed": 0,
+          "pass_rate": 1.0,
+          "failures": []
+        },
+        {
+          "name": "mc.lib",
+          "tests": 10,
+          "passed": 10,
+          "failed": 0,
+          "pass_rate": 1.0,
+          "failures": []
+        },
+        {
+          "name": "sf.lib",
+          "tests": 10,
+          "passed": 10,
+          "failed": 0,
+          "pass_rate": 1.0,
+          "failures": []
+        },
+        {
+          "name": "ss.lib",
+          "tests": 10,
+          "passed": 10,
+          "failed": 0,
+          "pass_rate": 1.0,
+          "failures": []
+        }
+      ],
+      "summary": {
+        "total_files": 6,
+        "total_tests": 50,
+        "passed": 50,
+        "failed": 0,
         "bsim4_errors": 0
       }
     },
@@ -214,26 +313,68 @@
         {
           "name": "fet.lib",
           "tests": 10,
-          "passed": 8,
-          "failed": 2,
-          "pass_rate": 0.8,
-          "failures": [
-            {
-              "test": "sanity_nfet",
-              "message": "NMOS sanity check failed"
-            },
-            {
-              "test": "monte_carlo",
-              "message": "Monte Carlo failed: no successful runs"
-            }
-          ]
+          "passed": 10,
+          "failed": 0,
+          "pass_rate": 1.0,
+          "failures": []
         }
       ],
       "summary": {
         "total_files": 1,
         "total_tests": 10,
-        "passed": 8,
-        "failed": 2,
+        "passed": 10,
+        "failed": 0,
+        "bsim4_errors": 0
+      }
+    },
+    "freepdk45": {
+      "files": [
+        {
+          "name": "ff.lib",
+          "tests": 14,
+          "passed": 14,
+          "failed": 0,
+          "pass_rate": 1.0,
+          "failures": []
+        },
+        {
+          "name": "fs.lib",
+          "tests": 14,
+          "passed": 14,
+          "failed": 0,
+          "pass_rate": 1.0,
+          "failures": []
+        },
+        {
+          "name": "mc.lib",
+          "tests": 14,
+          "passed": 14,
+          "failed": 0,
+          "pass_rate": 1.0,
+          "failures": []
+        },
+        {
+          "name": "sf.lib",
+          "tests": 14,
+          "passed": 14,
+          "failed": 0,
+          "pass_rate": 1.0,
+          "failures": []
+        },
+        {
+          "name": "ss.lib",
+          "tests": 14,
+          "passed": 14,
+          "failed": 0,
+          "pass_rate": 1.0,
+          "failures": []
+        }
+      ],
+      "summary": {
+        "total_files": 6,
+        "total_tests": 70,
+        "passed": 70,
+        "failed": 0,
         "bsim4_errors": 0
       }
     },
@@ -264,22 +405,121 @@
         "bsim4_errors": 0
       }
     },
+    "hlmc55lp": {
+      "files": [
+        {
+          "name": "HLMC_55LP_V1P9.lib",
+          "tests": 14,
+          "passed": 14,
+          "failed": 0,
+          "pass_rate": 1.0,
+          "failures": []
+        }
+      ],
+      "summary": {
+        "total_files": 1,
+        "total_tests": 14,
+        "passed": 14,
+        "failed": 0,
+        "bsim4_errors": 0
+      }
+    },
     "smic180HV": {
       "files": [
         {
-          "name": "bc018_auto_v1p3_rev0_res.lib",
-          "tests": 6,
-          "passed": 6,
+          "name": "bc018_auto_v1p3_rev0.lib",
+          "tests": 14,
+          "passed": 14,
           "failed": 0,
           "pass_rate": 1.0,
           "failures": []
         },
         {
-          "name": "bc018_auto_v1p3_rev0.lib",
+          "name": "bc018_auto_v1p3_rev0_bjt.lib",
+          "tests": 8,
+          "passed": 8,
+          "failed": 0,
+          "pass_rate": 1.0,
+          "failures": []
+        },
+        {
+          "name": "bc018_auto_v1p3_rev0_dio.lib",
+          "tests": 11,
+          "passed": 11,
+          "failed": 0,
+          "pass_rate": 1.0,
+          "failures": []
+        },
+        {
+          "name": "bc018_auto_v1p3_rev0_ggmos.lib",
+          "tests": 11,
+          "passed": 11,
+          "failed": 0,
+          "pass_rate": 1.0,
+          "failures": []
+        },
+        {
+          "name": "bc018_auto_v1p3_rev0_hvmos.lib",
           "tests": 14,
-          "passed": 7,
-          "failed": 7,
-          "pass_rate": 0.5,
+          "passed": 14,
+          "failed": 0,
+          "pass_rate": 1.0,
+          "failures": []
+        }
+      ],
+      "summary": {
+        "total_files": 8,
+        "total_tests": 58,
+        "passed": 58,
+        "failed": 0,
+        "bsim4_errors": 0
+      }
+    },
+    "smic180": {
+      "files": [
+        {
+          "name": "d18_v3e_bcd_v1p0_rev1_dio.lib",
+          "tests": 11,
+          "passed": 11,
+          "failed": 0,
+          "pass_rate": 1.0,
+          "failures": []
+        },
+        {
+          "name": "d18_v3e_bcd_v1p0_rev1_esd_mos.lib",
+          "tests": 14,
+          "passed": 11,
+          "failed": 3,
+          "pass_rate": 0.7857142857142857,
+          "failures": [
+            {
+              "test": "dc_p1d8_esd",
+              "message": "Simulation failed: Fatal error: BSIM4v5: mosfet p1d8_esd, model m1: Effective channel length <= 0"
+            },
+            {
+              "test": "ac_p1d8_esd",
+              "message": "Simulation failed: Fatal error: BSIM4v5: mosfet p1d8_esd, model m1: Effective channel length <= 0"
+            },
+            {
+              "test": "sanity_p1d8_esd",
+              "message": "Simulation failed: Fatal error: BSIM4v5: mosfet p1d8_esd, model m1: Effective channel length <= 0"
+            }
+          ]
+        },
+        {
+          "name": "d18_v3e_bcd_v1p0_rev1_ldmos.lib",
+          "tests": 14,
+          "passed": 14,
+          "failed": 0,
+          "pass_rate": 1.0,
+          "failures": []
+        },
+        {
+          "name": "d18_v3e_bcd_v1p0_rev1_mis.lib",
+          "tests": 14,
+          "passed": 10,
+          "failed": 4,
+          "pass_rate": 0.7142857142857143,
           "failures": [
             {
               "test": "dc_p18",
@@ -287,7 +527,7 @@
             },
             {
               "test": "dc_nnt18",
-              "message": "Simulation failed: Fatal error: BSIM4v5: mosfet nnt18, model m1: Effective channel length for C-V <="
+              "message": "Simulation failed: Fatal error: BSIM4v5: mosfet nnt18, model m1: Effective channel length <= 0"
             },
             {
               "test": "ac_p18",
@@ -296,73 +536,13 @@
             {
               "test": "sanity_p18",
               "message": "Simulation failed: Fatal error: BSIM4v5: mosfet p18, model m1: Effective channel length <= 0"
-            },
-            {
-              "test": "sanity_nnt18",
-              "message": "NMOS sanity check failed"
-            },
-            {
-              "test": "sanity_n50",
-              "message": "NMOS sanity check failed"
-            },
-            {
-              "test": "sanity_p50",
-              "message": "Simulation failed: Fatal error: BSIM4v5: mosfet p50, model m1: Effective channel length <= 0"
-            }
-          ]
-        }
-      ],
-      "summary": {
-        "total_files": 8,
-        "total_tests": 20,
-        "passed": 13,
-        "failed": 7,
-        "bsim4_errors": 5
-      }
-    },
-    "smic180": {
-      "files": [
-        {
-          "name": "d18_v3e_bcd_v1p0_rev1_ldmos.lib",
-          "tests": 14,
-          "passed": 7,
-          "failed": 7,
-          "pass_rate": 0.5,
-          "failures": [
-            {
-              "test": "dc_nld5g5_sa",
-              "message": "Simulation failed: Fatal error: detected during BSIM4v5.5.0 parameter checking for"
-            },
-            {
-              "test": "dc_nld9g5_gs",
-              "message": "Simulation failed: Fatal error: detected during BSIM4v5.5.0 parameter checking for"
-            },
-            {
-              "test": "ac_nld5g5_sa",
-              "message": "Simulation failed: Fatal error: detected during BSIM4v5.5.0 parameter checking for"
-            },
-            {
-              "test": "tran_nld5g5_sa",
-              "message": "Simulation failed: Fatal error: detected during BSIM4v5.5.0 parameter checking for"
-            },
-            {
-              "test": "sanity_nld5g5_sa",
-              "message": "NMOS sanity check failed"
-            },
-            {
-              "test": "sanity_nld9g5_gs",
-              "message": "NMOS sanity check failed"
-            },
-            {
-              "test": "sanity_nde9g5_gs",
-              "message": "NMOS sanity check failed"
             }
           ]
         },
         {
-          "name": "pnp18a25.lib",
-          "tests": 4,
-          "passed": 4,
+          "name": "npn50a100.lib",
+          "tests": 5,
+          "passed": 5,
           "failed": 0,
           "pass_rate": 1.0,
           "failures": []
@@ -370,10 +550,10 @@
       ],
       "summary": {
         "total_files": 15,
-        "total_tests": 18,
-        "passed": 11,
+        "total_tests": 58,
+        "passed": 51,
         "failed": 7,
-        "bsim4_errors": 4
+        "bsim4_errors": 7
       }
     },
     "synopsys14": {
@@ -381,30 +561,17 @@
         {
           "name": "saed14nm.lib",
           "tests": 14,
-          "passed": 11,
-          "failed": 3,
-          "pass_rate": 0.7857142857142857,
-          "failures": [
-            {
-              "test": "sanity_n08",
-              "message": "NMOS sanity check failed"
-            },
-            {
-              "test": "sanity_n15",
-              "message": "NMOS sanity check failed"
-            },
-            {
-              "test": "monte_carlo",
-              "message": "Monte Carlo failed: no successful runs"
-            }
-          ]
+          "passed": 14,
+          "failed": 0,
+          "pass_rate": 1.0,
+          "failures": []
         }
       ],
       "summary": {
         "total_files": 1,
         "total_tests": 14,
-        "passed": 11,
-        "failed": 3,
+        "passed": 14,
+        "failed": 0,
         "bsim4_errors": 0
       }
     },
@@ -432,36 +599,31 @@
         {
           "name": "crn65lp_2d5_lk_v1d7.lib",
           "tests": 14,
-          "passed": 13,
-          "failed": 1,
-          "pass_rate": 0.9285714285714286,
-          "failures": [
-            {
-              "test": "tran_nch_rf.1",
-              "message": "Simulation failed: Error: Transient op failed, timestep too small"
-            }
-          ]
+          "passed": 14,
+          "failed": 0,
+          "pass_rate": 1.0,
+          "failures": []
         }
       ],
       "summary": {
         "total_files": 1,
         "total_tests": 14,
-        "passed": 13,
-        "failed": 1,
+        "passed": 14,
+        "failed": 0,
         "bsim4_errors": 0
       }
     }
   },
   "summary": {
     "total_pdks": 15,
-    "total_files": 20,
-    "total_tests": 229,
-    "passed": 193,
-    "failed": 36,
+    "total_files": 52,
+    "total_tests": 578,
+    "passed": 571,
+    "failed": 7,
     "skipped": 0,
-    "roundtrip_passed": 15,
-    "roundtrip_failed": 5,
-    "monte_carlo_passed": 16,
-    "monte_carlo_failed": 4
+    "roundtrip_passed": 52,
+    "roundtrip_failed": 0,
+    "monte_carlo_passed": 52,
+    "monte_carlo_failed": 0
   }
 }

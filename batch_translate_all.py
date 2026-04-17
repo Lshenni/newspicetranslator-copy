@@ -73,6 +73,36 @@ OUTPUT_EXTENSIONS = {
 }
 
 
+def file_uses_includes(file_path: Path) -> bool:
+    """Detect whether a source file relies on include/lib indirection.
+
+    FreePDK45 and HLMC55LP-style wrappers often contain only .include/.lib
+    directives and require recursive include resolution to expose the actual
+    model cards.
+    """
+    try:
+        content = file_path.read_text(errors='ignore')
+    except Exception:
+        return False
+
+    for raw_line in content.splitlines():
+        line = raw_line.strip()
+        if not line or line.startswith(('*', '//', ';', '#')):
+            continue
+
+        lower = line.lower()
+        if lower.startswith('.include') or lower.startswith('.inc'):
+            return True
+
+        if lower.startswith('.lib'):
+            # .lib 'file' section_name  /  .lib section_name
+            # Wrapper-style files with quoted paths need include resolution.
+            if "'" in line or '"' in line:
+                return True
+
+    return False
+
+
 def get_pdk_source_format(pdk_name: str) -> str:
     """Get the source format for a PDK based on configuration"""
     # Check exact match first
@@ -97,12 +127,13 @@ def get_target_formats(source_format: str) -> List[str]:
 def find_spice_files(folder: Path, source_format: str) -> List[Path]:
     """Find SPICE files matching the source format in a folder"""
     extensions = FORMAT_EXTENSIONS.get(source_format, ['*.lib'])
+    suffixes = tuple(ext.replace('*', '').lower() for ext in extensions)
+
     files = []
-    
-    for ext in extensions:
-        files.extend(folder.rglob(ext))
-    
-    # Remove duplicates and sort
+    for path in folder.rglob('*'):
+        if path.is_file() and path.name.lower().endswith(suffixes):
+            files.append(path)
+
     return sorted(set(files))
 
 
@@ -118,6 +149,8 @@ def translate_file(
     """Translate a single file"""
     import time
     start_time = time.time()
+
+    effective_follow_includes = follow_includes or file_uses_includes(input_file)
     
     # Create output file path
     ext = OUTPUT_EXTENSIONS.get(target_format, '.lib')
@@ -129,7 +162,7 @@ def translate_file(
             output_file=output_file,
             source_format=source_format,
             target_format=target_format,
-            follow_includes=follow_includes
+            follow_includes=effective_follow_includes
         )
         
         duration_ms = (time.time() - start_time) * 1000

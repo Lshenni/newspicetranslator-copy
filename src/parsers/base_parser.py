@@ -111,6 +111,8 @@ class BaseParser(ABC):
         Returns:
             Resolved absolute Path, or None if not found
         """
+        normalized = include_path.replace('\\', '/')
+
         # Try relative to current file
         base_dir = self.file_path.parent
         resolved = base_dir / include_path
@@ -122,6 +124,23 @@ class BaseParser(ABC):
         abs_path = Path(include_path)
         if abs_path.exists():
             return abs_path.resolve()
+
+        # Try mapping wrapper-style paths back into the private-models tree.
+        # Many vendor libraries reference files as ./models/<pdk>/... even when
+        # the actual repository layout stores them under tools/spice-libraries/
+        # private-models/<pdk>/...
+        for prefix in ('./models/', 'models/'):
+            if normalized.startswith(prefix):
+                suffix = normalized[len(prefix):]
+                for parent in self.file_path.parents:
+                    if parent.name == 'private-models':
+                        mapped = parent / suffix
+                        if mapped.exists():
+                            logger.debug(
+                                f"Resolved vendor include via private-models root: {include_path} -> {mapped}"
+                            )
+                            return mapped.resolve()
+                        break
         
         logger.warning(f"Include file not found: {include_path}")
         return None
