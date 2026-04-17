@@ -150,7 +150,10 @@ def translate_file(
     import time
     start_time = time.time()
 
-    effective_follow_includes = follow_includes or file_uses_includes(input_file)
+    # Auto include-resolution is primarily needed for HSPICE wrapper files.
+    # Enabling it blindly for Spectre include trees can recurse heavily.
+    auto_follow = (source_format == 'hspice') and file_uses_includes(input_file)
+    effective_follow_includes = follow_includes or auto_follow
     
     # Create output file path
     ext = OUTPUT_EXTENSIONS.get(target_format, '.lib')
