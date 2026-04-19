@@ -31,6 +31,12 @@ import numpy as np
 
 BASE_DIR = Path(__file__).resolve().parent
 
+# ngspice-supported MOS levels for this environment.
+SUPPORTED_MOS_LEVELS = {
+    1, 2, 3, 4, 5, 6, 8, 9, 10, 14, 49,
+    54, 55, 56, 57, 58, 60, 68, 73,
+}
+
 
 @dataclass
 class DeviceInfo:
@@ -116,13 +122,78 @@ def run_ngspice_simulation(netlist: str, timeout: int = 60) -> Tuple[bool, str, 
             text=True,
             timeout=timeout
         )
-        return True, result.stdout, result.stderr
+        return result.returncode == 0, result.stdout, result.stderr
     except subprocess.TimeoutExpired:
         return False, '', 'Simulation timed out'
     except Exception as e:
         return False, '', str(e)
     finally:
         Path(netlist_file).unlink(missing_ok=True)
+
+
+def _inject_global_params(netlist: str, param_defaults: Dict[str, float]) -> str:
+    """Inject global .param defaults before the first .include in a netlist."""
+    if not param_defaults:
+        return netlist
+
+    lines = netlist.splitlines()
+    insert_idx = 1  # Keep title/comment line first
+    for i, line in enumerate(lines):
+        if line.strip().lower().startswith('.include'):
+            insert_idx = i
+            break
+
+    param_lines = [f".param {name}={value}" for name, value in sorted(param_defaults.items())]
+    new_lines = lines[:insert_idx] + param_lines + lines[insert_idx:]
+    return "\n".join(new_lines) + "\n"
+
+
+def run_ngspice_with_fallback(netlist: str, timeout: int = 60, max_retries: int = 8) -> Tuple[bool, str, str]:
+    """Run ngspice with retries for undefined-parameter model issues."""
+    param_defaults: Dict[str, float] = {}
+    current_netlist = netlist
+    combined_stdout = ""
+    combined_stderr = ""
+
+    for _ in range(max_retries):
+        ok, stdout, stderr = run_ngspice_simulation(current_netlist, timeout=timeout)
+        combined_stdout = stdout
+        combined_stderr = stderr
+        if ok:
+            return True, stdout, stderr
+
+        diagnostics = f"{stdout}\n{stderr}"
+
+        # Unsupported model level cannot be recovered via parameter defaults.
+        if "Only MOS device levels" in diagnostics:
+            return False, stdout, stderr
+
+        missing_params = re.findall(
+            r"Undefined parameter \[([^\]\n]+)",
+            diagnostics,
+            flags=re.IGNORECASE,
+        )
+        new_params = [p for p in missing_params if p not in param_defaults]
+        if not new_params:
+            return False, stdout, stderr
+
+        for pname in new_params:
+            # Conservative default for unresolved process/options symbols.
+            param_defaults[pname] = 0.0
+        current_netlist = _inject_global_params(netlist, param_defaults)
+
+    return False, combined_stdout, combined_stderr
+
+
+def _is_supported_mos_device(device: DeviceInfo) -> bool:
+    """Return True if a MOS device can be simulated by the local ngspice build."""
+    if device.device_type not in {'nmos', 'pmos'}:
+        return True
+    if not device.is_model:
+        return True
+    if device.level is None:
+        return True
+    return device.level in SUPPORTED_MOS_LEVELS
 
 
 def parse_wrdata_output(data_file: Path) -> Tuple[np.ndarray, np.ndarray]:
@@ -139,12 +210,24 @@ def parse_wrdata_output(data_file: Path) -> Tuple[np.ndarray, np.ndarray]:
             if not line or line.startswith('#') or line.startswith('*'):
                 continue
             parts = line.split()
-            if len(parts) >= 2:
-                try:
-                    x_data.append(float(parts[0]))
-                    y_data.append(float(parts[1]))
-                except ValueError:
-                    continue
+            if len(parts) >= 4:
+                # ngspice wrdata typically emits pairs: scale vec scale vec
+                # For "wrdata file x y", columns are commonly: x x y y.
+                # Use col0 for x and col2 for y to avoid plotting x vs x.
+                x_idx, y_idx = 0, 2
+            elif len(parts) >= 3:
+                # With wr_singlescale, ngspice often emits: sweep x y.
+                x_idx, y_idx = 0, 2
+            elif len(parts) >= 2:
+                x_idx, y_idx = 0, 1
+            else:
+                continue
+
+            try:
+                x_data.append(float(parts[x_idx]))
+                y_data.append(float(parts[y_idx]))
+            except ValueError:
+                continue
     
     return np.array(x_data), np.array(y_data)
 
@@ -178,6 +261,15 @@ def generate_mos_idvgs_plot(
         vgs_start, vgs_stop_actual = 0.0, vgs_stop
         vds_actual = vds
     
+    # Use explicit W/L for model cards so current magnitude is physically meaningful.
+    # These are testbench dimensions only and do not alter translated model parameters.
+    if device.level and device.level >= 70:
+        width = 1e-6
+        length = 20e-9
+    else:
+        width = 1e-6
+        length = 180e-9
+
     # Create netlist for MOS model
     if device.is_model:
         # Direct model instantiation
@@ -187,7 +279,7 @@ def generate_mos_idvgs_plot(
 Vdd drain 0 DC {vds_actual}
 Vgs gate 0 DC 0
 
-M1 drain gate 0 0 {device.name}
+M1 drain gate 0 0 {device.name} W={width} L={length}
 
 .dc Vgs {vgs_start} {vgs_stop_actual} 0.01
 
@@ -228,7 +320,7 @@ quit
 .end
 """
     
-    success, stdout, stderr = run_ngspice_simulation(netlist)
+    success, stdout, stderr = run_ngspice_with_fallback(netlist)
     
     if not success or not data_file.exists():
         print(f"    ⚠️  Simulation failed for {device.name}: {stderr[:100]}")
@@ -287,9 +379,13 @@ def generate_mos_idvds_plot(
     if device.level and device.level >= 70:
         vds_stop = 0.7
         vgs_values = [0.3, 0.4, 0.5, 0.6, 0.7]
+        width = 1e-6
+        length = 20e-9
     else:
         vds_stop = 1.8
         vgs_values = [0.6, 0.9, 1.2, 1.5, 1.8]
+        width = 1e-6
+        length = 180e-9
     
     is_pmos = device.device_type == 'pmos'
     
@@ -312,7 +408,7 @@ def generate_mos_idvds_plot(
 Vdd drain 0 DC 0
 Vgs gate 0 DC {vgs_actual}
 
-M1 drain gate 0 0 {device.name}
+M1 drain gate 0 0 {device.name} W={width} L={length}
 
 .dc Vdd {vds_range}
 
@@ -352,7 +448,7 @@ quit
 .end
 """
         
-        success, stdout, stderr = run_ngspice_simulation(netlist)
+        success, stdout, stderr = run_ngspice_with_fallback(netlist)
         
         if success and data_file.exists():
             vds, id_data = parse_wrdata_output(data_file)
@@ -459,7 +555,7 @@ quit
 .end
 """
     
-    success, stdout, stderr = run_ngspice_simulation(netlist)
+    success, stdout, stderr = run_ngspice_with_fallback(netlist)
     
     if not success:
         print(f"    ⚠️  Simulation failed for {device.name}")
@@ -561,7 +657,7 @@ quit
 .end
 """
     
-    success, stdout, stderr = run_ngspice_simulation(netlist)
+    success, stdout, stderr = run_ngspice_with_fallback(netlist)
     
     if not success or not data_file.exists():
         print(f"    ⚠️  Simulation failed for {device.name}")
@@ -622,7 +718,15 @@ def process_library_file(lib_file: Path, max_devices: int = 3) -> Dict[str, List
     }
     
     # Group by type and limit
-    mos_devices = [d for d in devices if d.device_type in ['nmos', 'pmos']][:max_devices]
+    mos_devices_all = [d for d in devices if d.device_type in ['nmos', 'pmos']]
+    skipped_unsupported_mos = [d for d in mos_devices_all if not _is_supported_mos_device(d)]
+    for skipped in skipped_unsupported_mos:
+        print(
+            f"    ⏭️  Skipping {skipped.name}: unsupported MOS level {skipped.level} "
+            "for this ngspice build"
+        )
+
+    mos_devices = [d for d in mos_devices_all if _is_supported_mos_device(d)][:max_devices]
     bjt_devices = [d for d in devices if d.device_type in ['npn', 'pnp']][:max_devices]
     diode_devices = [d for d in devices if d.device_type == 'diode'][:max_devices]
     
