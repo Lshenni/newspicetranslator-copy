@@ -1,0 +1,599 @@
+{
+  "timestamp": "2026-04-19T23:38:02.859469",
+  "mode": "full",
+  "pdks": {
+    "asap7": {
+      "files": [
+        {
+          "name": "ff.lib",
+          "tests": 14,
+          "passed": 14,
+          "failed": 0,
+          "pass_rate": 1.0,
+          "failures": []
+        },
+        {
+          "name": "fs.lib",
+          "tests": 14,
+          "passed": 14,
+          "failed": 0,
+          "pass_rate": 1.0,
+          "failures": []
+        },
+        {
+          "name": "mc.lib",
+          "tests": 14,
+          "passed": 14,
+          "failed": 0,
+          "pass_rate": 1.0,
+          "failures": []
+        },
+        {
+          "name": "sf.lib",
+          "tests": 14,
+          "passed": 14,
+          "failed": 0,
+          "pass_rate": 1.0,
+          "failures": []
+        },
+        {
+          "name": "ss.lib",
+          "tests": 14,
+          "passed": 14,
+          "failed": 0,
+          "pass_rate": 1.0,
+          "failures": []
+        }
+      ],
+      "summary": {
+        "total_files": 6,
+        "total_tests": 70,
+        "passed": 70,
+        "failed": 0,
+        "bsim4_errors": 0
+      }
+    },
+    "cadence14": {
+      "files": [
+        {
+          "name": "cds_ff_mpt_bipolar.lib",
+          "tests": 5,
+          "passed": 5,
+          "failed": 0,
+          "pass_rate": 1.0,
+          "failures": []
+        },
+        {
+          "name": "cds_ff_mpt_diode.lib",
+          "tests": 11,
+          "passed": 11,
+          "failed": 0,
+          "pass_rate": 1.0,
+          "failures": []
+        },
+        {
+          "name": "cds_ff_mpt_mimcap.lib",
+          "tests": 8,
+          "passed": 8,
+          "failed": 0,
+          "pass_rate": 1.0,
+          "failures": []
+        },
+        {
+          "name": "cds_ff_mpt_mosfet.lib",
+          "tests": 14,
+          "passed": 14,
+          "failed": 0,
+          "pass_rate": 1.0,
+          "failures": []
+        },
+        {
+          "name": "cds_ff_mpt_resistor.lib",
+          "tests": 9,
+          "passed": 9,
+          "failed": 0,
+          "pass_rate": 1.0,
+          "failures": []
+        }
+      ],
+      "summary": {
+        "total_files": 5,
+        "total_tests": 47,
+        "passed": 47,
+        "failed": 0,
+        "bsim4_errors": 0
+      }
+    },
+    "cadence180": {
+      "files": [
+        {
+          "name": "bipolar.lib",
+          "tests": 7,
+          "passed": 7,
+          "failed": 0,
+          "pass_rate": 1.0,
+          "failures": []
+        },
+        {
+          "name": "capacitor.lib",
+          "tests": 3,
+          "passed": 3,
+          "failed": 0,
+          "pass_rate": 1.0,
+          "failures": []
+        },
+        {
+          "name": "diode.lib",
+          "tests": 7,
+          "passed": 7,
+          "failed": 0,
+          "pass_rate": 1.0,
+          "failures": []
+        },
+        {
+          "name": "mcxjvar_w40.lib",
+          "tests": 11,
+          "passed": 11,
+          "failed": 0,
+          "pass_rate": 1.0,
+          "failures": []
+        },
+        {
+          "name": "mos25gen.lib",
+          "tests": 10,
+          "passed": 10,
+          "failed": 0,
+          "pass_rate": 1.0,
+          "failures": []
+        }
+      ],
+      "summary": {
+        "total_files": 11,
+        "total_tests": 38,
+        "passed": 38,
+        "failed": 0,
+        "bsim4_errors": 0
+      }
+    },
+    "cadence45": {
+      "files": [
+        {
+          "name": "gpdk045_bipolar.lib",
+          "tests": 6,
+          "passed": 6,
+          "failed": 0,
+          "pass_rate": 1.0,
+          "failures": []
+        },
+        {
+          "name": "gpdk045_diode.lib",
+          "tests": 11,
+          "passed": 11,
+          "failed": 0,
+          "pass_rate": 1.0,
+          "failures": []
+        },
+        {
+          "name": "gpdk045_inductor.lib",
+          "tests": 10,
+          "passed": 10,
+          "failed": 0,
+          "pass_rate": 1.0,
+          "failures": []
+        },
+        {
+          "name": "gpdk045_mimcap.lib",
+          "tests": 8,
+          "passed": 8,
+          "failed": 0,
+          "pass_rate": 1.0,
+          "failures": []
+        },
+        {
+          "name": "gpdk045_mos.lib",
+          "tests": 14,
+          "passed": 14,
+          "failed": 0,
+          "pass_rate": 1.0,
+          "failures": []
+        }
+      ],
+      "summary": {
+        "total_files": 7,
+        "total_tests": 49,
+        "passed": 49,
+        "failed": 0,
+        "bsim4_errors": 0
+      }
+    },
+    "cadence90": {
+      "files": [
+        {
+          "name": "gpdk090_bipolar.lib",
+          "tests": 6,
+          "passed": 6,
+          "failed": 0,
+          "pass_rate": 1.0,
+          "failures": []
+        },
+        {
+          "name": "gpdk090_capacitor.lib",
+          "tests": 3,
+          "passed": 3,
+          "failed": 0,
+          "pass_rate": 1.0,
+          "failures": []
+        },
+        {
+          "name": "gpdk090_diode.lib",
+          "tests": 11,
+          "passed": 11,
+          "failed": 0,
+          "pass_rate": 1.0,
+          "failures": []
+        },
+        {
+          "name": "gpdk090_mos.lib",
+          "tests": 14,
+          "passed": 14,
+          "failed": 0,
+          "pass_rate": 1.0,
+          "failures": []
+        },
+        {
+          "name": "gpdk090_mos_age.lib",
+          "tests": 10,
+          "passed": 10,
+          "failed": 0,
+          "pass_rate": 1.0,
+          "failures": []
+        }
+      ],
+      "summary": {
+        "total_files": 8,
+        "total_tests": 44,
+        "passed": 44,
+        "failed": 0,
+        "bsim4_errors": 0
+      }
+    },
+    "freepdk15": {
+      "files": [
+        {
+          "name": "ff.lib",
+          "tests": 10,
+          "passed": 10,
+          "failed": 0,
+          "pass_rate": 1.0,
+          "failures": []
+        },
+        {
+          "name": "fs.lib",
+          "tests": 10,
+          "passed": 10,
+          "failed": 0,
+          "pass_rate": 1.0,
+          "failures": []
+        },
+        {
+          "name": "mc.lib",
+          "tests": 10,
+          "passed": 10,
+          "failed": 0,
+          "pass_rate": 1.0,
+          "failures": []
+        },
+        {
+          "name": "sf.lib",
+          "tests": 10,
+          "passed": 10,
+          "failed": 0,
+          "pass_rate": 1.0,
+          "failures": []
+        },
+        {
+          "name": "ss.lib",
+          "tests": 10,
+          "passed": 10,
+          "failed": 0,
+          "pass_rate": 1.0,
+          "failures": []
+        }
+      ],
+      "summary": {
+        "total_files": 6,
+        "total_tests": 50,
+        "passed": 50,
+        "failed": 0,
+        "bsim4_errors": 0
+      }
+    },
+    "freepdk3": {
+      "files": [
+        {
+          "name": "fet.lib",
+          "tests": 10,
+          "passed": 10,
+          "failed": 0,
+          "pass_rate": 1.0,
+          "failures": []
+        }
+      ],
+      "summary": {
+        "total_files": 1,
+        "total_tests": 10,
+        "passed": 10,
+        "failed": 0,
+        "bsim4_errors": 0
+      }
+    },
+    "freepdk45": {
+      "files": [
+        {
+          "name": "ff.lib",
+          "tests": 14,
+          "passed": 14,
+          "failed": 0,
+          "pass_rate": 1.0,
+          "failures": []
+        },
+        {
+          "name": "fs.lib",
+          "tests": 14,
+          "passed": 14,
+          "failed": 0,
+          "pass_rate": 1.0,
+          "failures": []
+        },
+        {
+          "name": "mc.lib",
+          "tests": 14,
+          "passed": 14,
+          "failed": 0,
+          "pass_rate": 1.0,
+          "failures": []
+        },
+        {
+          "name": "sf.lib",
+          "tests": 14,
+          "passed": 14,
+          "failed": 0,
+          "pass_rate": 1.0,
+          "failures": []
+        },
+        {
+          "name": "ss.lib",
+          "tests": 14,
+          "passed": 14,
+          "failed": 0,
+          "pass_rate": 1.0,
+          "failures": []
+        }
+      ],
+      "summary": {
+        "total_files": 6,
+        "total_tests": 70,
+        "passed": 70,
+        "failed": 0,
+        "bsim4_errors": 0
+      }
+    },
+    "hlmc40lp": {
+      "files": [
+        {
+          "name": "hlmc40lp_v1d2_p2.lib",
+          "tests": 14,
+          "passed": 14,
+          "failed": 0,
+          "pass_rate": 1.0,
+          "failures": []
+        },
+        {
+          "name": "hlmc40rf_v1d2_p2.lib",
+          "tests": 14,
+          "passed": 14,
+          "failed": 0,
+          "pass_rate": 1.0,
+          "failures": []
+        }
+      ],
+      "summary": {
+        "total_files": 2,
+        "total_tests": 28,
+        "passed": 28,
+        "failed": 0,
+        "bsim4_errors": 0
+      }
+    },
+    "hlmc55lp": {
+      "files": [
+        {
+          "name": "HLMC_55LP_V1P9.lib",
+          "tests": 14,
+          "passed": 14,
+          "failed": 0,
+          "pass_rate": 1.0,
+          "failures": []
+        }
+      ],
+      "summary": {
+        "total_files": 1,
+        "total_tests": 14,
+        "passed": 14,
+        "failed": 0,
+        "bsim4_errors": 0
+      }
+    },
+    "smic180HV": {
+      "files": [
+        {
+          "name": "bc018_auto_v1p3_rev0.lib",
+          "tests": 14,
+          "passed": 14,
+          "failed": 0,
+          "pass_rate": 1.0,
+          "failures": []
+        },
+        {
+          "name": "bc018_auto_v1p3_rev0_bjt.lib",
+          "tests": 8,
+          "passed": 8,
+          "failed": 0,
+          "pass_rate": 1.0,
+          "failures": []
+        },
+        {
+          "name": "bc018_auto_v1p3_rev0_dio.lib",
+          "tests": 11,
+          "passed": 11,
+          "failed": 0,
+          "pass_rate": 1.0,
+          "failures": []
+        },
+        {
+          "name": "bc018_auto_v1p3_rev0_ggmos.lib",
+          "tests": 11,
+          "passed": 11,
+          "failed": 0,
+          "pass_rate": 1.0,
+          "failures": []
+        },
+        {
+          "name": "bc018_auto_v1p3_rev0_hvmos.lib",
+          "tests": 14,
+          "passed": 14,
+          "failed": 0,
+          "pass_rate": 1.0,
+          "failures": []
+        }
+      ],
+      "summary": {
+        "total_files": 14,
+        "total_tests": 58,
+        "passed": 58,
+        "failed": 0,
+        "bsim4_errors": 0
+      }
+    },
+    "smic180": {
+      "files": [
+        {
+          "name": "d18_v3e_bcd_v1p0_rev1.lib",
+          "tests": 14,
+          "passed": 14,
+          "failed": 0,
+          "pass_rate": 1.0,
+          "failures": []
+        },
+        {
+          "name": "d18_v3e_bcd_v1p0_rev1_dio.lib",
+          "tests": 11,
+          "passed": 11,
+          "failed": 0,
+          "pass_rate": 1.0,
+          "failures": []
+        },
+        {
+          "name": "d18_v3e_bcd_v1p0_rev1_esd_mos.lib",
+          "tests": 14,
+          "passed": 14,
+          "failed": 0,
+          "pass_rate": 1.0,
+          "failures": []
+        },
+        {
+          "name": "d18_v3e_bcd_v1p0_rev1_ldmos.lib",
+          "tests": 14,
+          "passed": 14,
+          "failed": 0,
+          "pass_rate": 1.0,
+          "failures": []
+        },
+        {
+          "name": "d18_v3e_bcd_v1p0_rev1_mis.lib",
+          "tests": 14,
+          "passed": 14,
+          "failed": 0,
+          "pass_rate": 1.0,
+          "failures": []
+        }
+      ],
+      "summary": {
+        "total_files": 22,
+        "total_tests": 67,
+        "passed": 67,
+        "failed": 0,
+        "bsim4_errors": 0
+      }
+    },
+    "synopsys14": {
+      "files": [
+        {
+          "name": "saed14nm.lib",
+          "tests": 14,
+          "passed": 14,
+          "failed": 0,
+          "pass_rate": 1.0,
+          "failures": []
+        }
+      ],
+      "summary": {
+        "total_files": 1,
+        "total_tests": 14,
+        "passed": 14,
+        "failed": 0,
+        "bsim4_errors": 0
+      }
+    },
+    "synopsys28": {
+      "files": [
+        {
+          "name": "saed32nm.lib",
+          "tests": 14,
+          "passed": 14,
+          "failed": 0,
+          "pass_rate": 1.0,
+          "failures": []
+        }
+      ],
+      "summary": {
+        "total_files": 1,
+        "total_tests": 14,
+        "passed": 14,
+        "failed": 0,
+        "bsim4_errors": 0
+      }
+    },
+    "tsmc65lp": {
+      "files": [
+        {
+          "name": "crn65lp_2d5_lk_v1d7.lib",
+          "tests": 14,
+          "passed": 14,
+          "failed": 0,
+          "pass_rate": 1.0,
+          "failures": []
+        }
+      ],
+      "summary": {
+        "total_files": 1,
+        "total_tests": 14,
+        "passed": 14,
+        "failed": 0,
+        "bsim4_errors": 0
+      }
+    }
+  },
+  "summary": {
+    "total_pdks": 15,
+    "total_files": 52,
+    "total_tests": 587,
+    "passed": 587,
+    "failed": 0,
+    "skipped": 0,
+    "roundtrip_passed": 52,
+    "roundtrip_failed": 0,
+    "monte_carlo_passed": 52,
+    "monte_carlo_failed": 0
+  }
+}

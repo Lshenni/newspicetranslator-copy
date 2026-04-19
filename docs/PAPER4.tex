@@ -123,22 +123,34 @@ The result is stronger than the earlier quick-mode credibility runs, which were 
 
 \subsection{Performance and Throughput}
 
-The practical significance of the result is not only that the translator is fast, but that it is reliable under the current project validation policy. The pipeline remains linear in corpus size because parsing, IR construction, writing, and verification are all file-local operations. In practice, this means that larger PDK collections scale predictably without requiring a redesign of the translation engine.
+The practical significance of the result is not only that the translator is fast, but that it is reliable under the current project validation policy. The pipeline remains linear in corpus size because parsing, IR construction, writing, and verification are all file-local operations. In practice, this means that larger PDK collections scale predictably without requiring a redesign of the translation engine. Table~\ref{tab:pdk-results} lists the full per-PDK results for the 15 verified PDK families.
 
 \begin{table}[!t]
-\caption{Translation Performance Benchmarks}
+\caption{Per-PDK Translation Results}
+\label{tab:pdk-results}
 \centering
 \renewcommand{\arraystretch}{1.1}
-\begin{tabular}{@{}lrrl@{}}
+\begin{tabular}{@{}lrrrr@{}}
 \toprule
-\textbf{PDK} & \textbf{Models} & \textbf{Time (ms)} & \textbf{Notes} \\
+\textbf{PDK} & \textbf{Files} & \textbf{Tests} & \textbf{Passed} & \textbf{Failed} \\
 \midrule
-ASAP7 & 48 & 110 & Constraint-aware verification \\
-Cadence14 & 24 & 89 & Full verification passed \\
-HLMC40LP & 208 & 425 & Full verification passed \\
-TSMC65LP & 1,222 & 7,611 & Full verification passed \\
+ASAP7 & 6 & 70 & 70 & 0 \\
+Cadence14 & 5 & 47 & 47 & 0 \\
+Cadence180 & 11 & 38 & 38 & 0 \\
+Cadence45 & 7 & 49 & 49 & 0 \\
+Cadence90 & 8 & 44 & 44 & 0 \\
+FreePDK15 & 6 & 50 & 50 & 0 \\
+FreePDK3 & 1 & 10 & 10 & 0 \\
+FreePDK45 & 6 & 70 & 70 & 0 \\
+HLMC40LP & 2 & 28 & 28 & 0 \\
+HLMC55LP & 1 & 14 & 14 & 0 \\
+SMIC180 & 22 & 67 & 67 & 0 \\
+SMIC180HV & 14 & 58 & 58 & 0 \\
+Synopsys14 & 1 & 14 & 14 & 0 \\
+Synopsys28 & 1 & 14 & 14 & 0 \\
+TSMC65LP & 1 & 14 & 14 & 0 \\
 \midrule
-\textbf{Full Corpus} & 6,638 & 17,857 & 587/587 passed \\
+\textbf{Full Corpus} & 52 & 587 & 587 & 0 \\
 \bottomrule
 \end{tabular}
 \end{table}
@@ -189,7 +201,7 @@ Future work includes extended format support for specialized simulators, technol
 
 The current system is strongest for BSIM3, BSIM4, and closely related compact models, but it still depends on the quality of the source deck and the availability of semantic hints in the original PDK. Models that rely heavily on proprietary macros, encrypted contents, or unsupported simulator-side constructs may require manual intervention before translation or verification. The current full-mode verification policy also reflects the project-specific handling of known BSIM4 envelope constraints, which is appropriate for the present corpus but may need adjustment when new device families are introduced.
 
-Future work will focus on three practical extensions. First, broader support for advanced-node and non-BSIM formats will improve coverage of emerging technology libraries. Second, technology-specific default libraries can be refined from measured process data so that inferred parameters are less generic and more node-aware. Third, the verification framework can be extended with stronger cross-simulator comparisons and additional waveform-level checks to improve confidence for larger industrial PDK releases.
+Future work will focus on three practical extensions. First, broader support for advanced-node and non-BSIM formats will improve coverage of emerging technology libraries. Second, technology-specific default libraries can be refined from measured process data so that inferred parameters are less generic and more node-aware. Third, the verification framework can be extended with stronger cross-simulator comparisons and additional waveform-level checks to improve confidence for larger industrial PDK releases. In addition, translation throughput reporting can be expanded in future versions using a cleaner partition between fully verified and partially translatable corpora so timing and success metrics are easier to interpret.
 
 \bibliographystyle{plain}
 \begin{thebibliography}{40}
@@ -275,5 +287,4 @@ Future work will focus on three practical extensions. First, broader support for
 \bibitem{40} GlobalFoundries, ``GF180MCU open source PDK,'' 2023. [Online]. Available: https://github.com/google/gf180mcu-pdk
 
 \end{thebibliography}
-
 \end{document}

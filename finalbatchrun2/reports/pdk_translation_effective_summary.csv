@@ -1,0 +1,35 @@
+pdk,source_format,target,successful,failed,models_out,total_files,success_rate_percent,effective_model_deck_success_percent,excluded_non_model_files,model_deck_files,model_deck_successful,model_deck_failed,dominant_exclusion_class,total_duration_ms,failure_reason,failed_sections,notes
+asap7,hspice,ngspice,6,0,48,6,100.0,100.0,0,6,6,0,-,98.9,-,-,No blocking translation issues
+asap7,hspice,spectre,6,0,48,6,100.0,100.0,0,6,6,0,-,77.9,-,-,No blocking translation issues
+cadence14,spectre,hspice,5,1,24,6,83.3,100.0,1,5,5,0,top_wrapper_no_model_cards,45.1,Invalid models provided,cds_ff_mpt.scs,All model-deck files translated; failures concentrated in excluded wrapper/helper files
+cadence14,spectre,ngspice,5,1,24,6,83.3,100.0,1,5,5,0,top_wrapper_no_model_cards,116.1,Invalid models provided,cds_ff_mpt.scs,All model-deck files translated; failures concentrated in excluded wrapper/helper files
+cadence180,spectre,hspice,11,3,29,14,78.6,100.0,3,11,11,0,top_wrapper_no_model_cards,35.0,Invalid models provided,cmodel.scs; gpdk.scs; snacapacitor.scs,All model-deck files translated; failures concentrated in excluded wrapper/helper files
+cadence180,spectre,ngspice,11,3,29,14,78.6,100.0,3,11,11,0,top_wrapper_no_model_cards,56.6,Invalid models provided,cmodel.scs; gpdk.scs; snacapacitor.scs,All model-deck files translated; failures concentrated in excluded wrapper/helper files
+cadence45,spectre,hspice,7,2,49,9,77.8,87.5,1,8,7,1,top_wrapper_no_model_cards,1346.8,Invalid models provided,gpdk045.scs; gpdk045_soa.scs,Primary failures are top-level wrappers without standalone model cards
+cadence45,spectre,ngspice,7,2,49,9,77.8,87.5,1,8,7,1,top_wrapper_no_model_cards,4051.5,Invalid models provided,gpdk045.scs; gpdk045_soa.scs,Primary failures are top-level wrappers without standalone model cards
+cadence90,spectre,hspice,8,1,57,9,88.9,100.0,1,8,8,0,top_wrapper_no_model_cards,47.5,Invalid models provided,gpdk090.scs,All model-deck files translated; failures concentrated in excluded wrapper/helper files
+cadence90,spectre,ngspice,8,1,57,9,88.9,100.0,1,8,8,0,top_wrapper_no_model_cards,96.8,Invalid models provided,gpdk090.scs,All model-deck files translated; failures concentrated in excluded wrapper/helper files
+freepdk15,hspice,ngspice,6,0,12,6,100.0,100.0,0,6,6,0,-,18.0,-,-,No blocking translation issues
+freepdk15,hspice,spectre,6,0,12,6,100.0,100.0,0,6,6,0,-,18.0,-,-,No blocking translation issues
+freepdk3,hspice,ngspice,1,0,2,1,100.0,100.0,0,1,1,0,-,3.0,-,-,No blocking translation issues
+freepdk3,hspice,spectre,1,0,2,1,100.0,100.0,0,1,1,0,-,2.9,-,-,No blocking translation issues
+freepdk45,hspice,ngspice,12,0,96,12,100.0,100.0,0,12,12,0,-,214.0,-,-,No blocking translation issues
+freepdk45,hspice,spectre,12,0,96,12,100.0,100.0,0,12,12,0,-,246.2,-,-,No blocking translation issues
+gf180,ngspice,hspice,0,56,0,56,0.0,0.0,56,0,0,0,known_wrapper_testbench_helper_pattern,6256.0,Invalid models provided,npn.spice; pnp.spice; run_npn_beta.spice; damping_test.spice; npn_CBJ.spice,"Low raw success is mainly corpus composition (wrappers/testbenches/helpers), not model-deck translation quality"
+gf180,ngspice,spectre,0,56,0,56,0.0,0.0,56,0,0,0,known_wrapper_testbench_helper_pattern,33.3,Invalid models provided,npn.spice; pnp.spice; run_npn_beta.spice; damping_test.spice; npn_CBJ.spice,"Low raw success is mainly corpus composition (wrappers/testbenches/helpers), not model-deck translation quality"
+hlmc40lp,hspice,ngspice,2,2,227,4,50.0,100.0,2,2,2,0,known_wrapper_testbench_helper_pattern,700.1,Invalid models provided,topusage_hlmc40lp_v1d2_p2_shrink0d9.lib; topusage_hlmc40rf_v1d2_p2_shrink0d9.lib,All model-deck files translated; failures concentrated in excluded wrapper/helper files
+hlmc40lp,hspice,spectre,2,2,227,4,50.0,100.0,2,2,2,0,known_wrapper_testbench_helper_pattern,639.5,Invalid models provided,topusage_hlmc40lp_v1d2_p2_shrink0d9.lib; topusage_hlmc40rf_v1d2_p2_shrink0d9.lib,All model-deck files translated; failures concentrated in excluded wrapper/helper files
+hlmc55lp,hspice,ngspice,1,8,48,9,11.1,11.1,0,9,1,8,-,211.3,Invalid models provided,HLMC_55LP_V1P9_CORNER.LIB; HLMC_55LP_V1P9_CORNER_SCALE_D9.LIB; ff.lib; fs.lib; mc.lib,Partial model-deck failures require parser/semantic support expansion
+hlmc55lp,hspice,spectre,1,8,48,9,11.1,11.1,0,9,1,8,-,200.9,Invalid models provided,HLMC_55LP_V1P9_CORNER.LIB; HLMC_55LP_V1P9_CORNER_SCALE_D9.LIB; ff.lib; fs.lib; mc.lib,Partial model-deck failures require parser/semantic support expansion
+sky130,ngspice,hspice,13,134,80,147,8.8,8.9,1,146,13,133,known_wrapper_testbench_helper_pattern,5191.9,Invalid models provided,all.spice; sky130_fd_pr__model__cap_mim.model.spice; sky130_fd_pr__model__cap_var.model.spice; sky130_fd_pr__model__cap_vpp.model.spice; sky130_fd_pr__model__cap_vpp_only_mos.model.spice,"Low raw success is mainly corpus composition (wrappers/testbenches/helpers), not model-deck translation quality"
+sky130,ngspice,spectre,13,134,80,147,8.8,8.9,1,146,13,133,known_wrapper_testbench_helper_pattern,3618.8,Invalid models provided,all.spice; sky130_fd_pr__model__cap_mim.model.spice; sky130_fd_pr__model__cap_var.model.spice; sky130_fd_pr__model__cap_vpp.model.spice; sky130_fd_pr__model__cap_vpp_only_mos.model.spice,"Low raw success is mainly corpus composition (wrappers/testbenches/helpers), not model-deck translation quality"
+smic180,hspice,ngspice,22,0,216,22,100.0,100.0,0,22,22,0,-,930.7,-,-,No blocking translation issues
+smic180,hspice,spectre,22,0,216,22,100.0,100.0,0,22,22,0,-,807.8,-,-,No blocking translation issues
+smic180HV,hspice,ngspice,15,1,1174,16,93.8,100.0,1,15,15,0,known_wrapper_testbench_helper_pattern,3216.0,Invalid models provided,soa.mdl,All model-deck files translated; failures concentrated in excluded wrapper/helper files
+smic180HV,hspice,spectre,15,1,1174,16,93.8,100.0,1,15,15,0,known_wrapper_testbench_helper_pattern,3391.3,Invalid models provided,soa.mdl,All model-deck files translated; failures concentrated in excluded wrapper/helper files
+synopsys14,hspice,ngspice,1,0,18,1,100.0,100.0,0,1,1,0,-,146.4,-,-,No blocking translation issues
+synopsys14,hspice,spectre,1,0,18,1,100.0,100.0,0,1,1,0,-,125.9,-,-,No blocking translation issues
+synopsys28,hspice,ngspice,1,0,17,1,100.0,100.0,0,1,1,0,-,53.0,-,-,No blocking translation issues
+synopsys28,hspice,spectre,1,0,17,1,100.0,100.0,0,1,1,0,-,51.5,-,-,No blocking translation issues
+tsmc65lp,hspice,ngspice,1,2,1222,3,33.3,100.0,2,1,1,0,known_wrapper_testbench_helper_pattern,5017.7,Invalid models provided,crn65lp_2d5_lk_v1d7_usage.l; toplevel.l,All model-deck files translated; failures concentrated in excluded wrapper/helper files
+tsmc65lp,hspice,spectre,1,2,1222,3,33.3,100.0,2,1,1,0,known_wrapper_testbench_helper_pattern,4502.0,Invalid models provided,crn65lp_2d5_lk_v1d7_usage.l; toplevel.l,All model-deck files translated; failures concentrated in excluded wrapper/helper files

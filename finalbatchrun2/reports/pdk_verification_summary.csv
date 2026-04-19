@@ -1,0 +1,16 @@
+pdk,total_files,total_tests,passed,failed,pass_rate_percent,bsim4_errors
+asap7,6,70,70,0,100.0,0
+cadence14,5,47,47,0,100.0,0
+cadence180,11,38,38,0,100.0,0
+cadence45,7,49,49,0,100.0,0
+cadence90,8,44,44,0,100.0,0
+freepdk15,6,50,50,0,100.0,0
+freepdk3,1,10,10,0,100.0,0
+freepdk45,6,70,70,0,100.0,0
+hlmc40lp,2,28,28,0,100.0,0
+hlmc55lp,1,14,14,0,100.0,0
+smic180,22,67,67,0,100.0,0
+smic180HV,14,58,58,0,100.0,0
+synopsys14,1,14,14,0,100.0,0
+synopsys28,1,14,14,0,100.0,0
+tsmc65lp,1,14,14,0,100.0,0

@@ -1,0 +1,30 @@
+% Auto-generated from finalbatchrun2/reports/pdk_confidence_tiers.csv
+\begin{table*}[!t]
+\caption{PDK Confidence Tier Ranking (Raw vs Effective Translation Metrics)}
+\label{tab:pdk-confidence-tier}
+\centering
+\renewcommand{\arraystretch}{1.05}
+\begin{tabular}{@{}l l r r r r l@{}}
+\toprule
+\textbf{PDK} & \textbf{Tier} & \textbf{Raw (\%)} & \textbf{Effective (\%)} & \textbf{Excluded/Total} & \textbf{Verified Tests} & \textbf{Rationale} \\
+\midrule
+asap7 & Production-ready & 100.0 & 100.0 & 0/12 & 70 & Model-deck translation stable; no model-deck failures; verification clean where available \\
+cadence14 & Production-ready & 83.3 & 100.0 & 2/12 & 47 & Model-deck translation stable; no model-deck failures; verification clean where available \\
+cadence180 & Production-ready & 78.6 & 100.0 & 6/28 & 38 & Model-deck translation stable; no model-deck failures; verification clean where available \\
+cadence90 & Production-ready & 88.9 & 100.0 & 2/18 & 44 & Model-deck translation stable; no model-deck failures; verification clean where available \\
+freepdk15 & Production-ready & 100.0 & 100.0 & 0/12 & 50 & Model-deck translation stable; no model-deck failures; verification clean where available \\
+freepdk3 & Production-ready & 100.0 & 100.0 & 0/2 & 10 & Model-deck translation stable; no model-deck failures; verification clean where available \\
+freepdk45 & Production-ready & 100.0 & 100.0 & 0/24 & 70 & Model-deck translation stable; no model-deck failures; verification clean where available \\
+hlmc40lp & Production-ready & 50.0 & 100.0 & 4/8 & 28 & Model-deck translation stable; no model-deck failures; verification clean where available \\
+smic180 & Production-ready & 100.0 & 100.0 & 0/44 & 67 & Model-deck translation stable; no model-deck failures; verification clean where available \\
+smic180HV & Production-ready & 93.8 & 100.0 & 2/32 & 58 & Model-deck translation stable; no model-deck failures; verification clean where available \\
+synopsys14 & Production-ready & 100.0 & 100.0 & 0/2 & 14 & Model-deck translation stable; no model-deck failures; verification clean where available \\
+synopsys28 & Production-ready & 100.0 & 100.0 & 0/2 & 14 & Model-deck translation stable; no model-deck failures; verification clean where available \\
+tsmc65lp & Production-ready & 33.3 & 100.0 & 4/6 & 14 & Model-deck translation stable; no model-deck failures; verification clean where available \\
+gf180 & Wrapper-biased & 0.0 & 0.0 & 112/112 & - & Input corpus is mostly regression/testbench/support files rather than model decks \\
+cadence45 & Needs parser extension & 77.8 & 87.5 & 2/18 & 49 & Non-wrapper model-deck failures remain; parser/semantic coverage expansion required \\
+hlmc55lp & Needs parser extension & 11.1 & 11.1 & 0/18 & 14 & Non-wrapper model-deck failures remain; parser/semantic coverage expansion required \\
+sky130 & Needs parser extension & 8.8 & 8.9 & 2/294 & - & Non-wrapper model-deck failures remain; parser/semantic coverage expansion required \\
+\bottomrule
+\end{tabular}
+\end{table*}
