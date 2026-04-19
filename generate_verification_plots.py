@@ -31,6 +31,17 @@ import numpy as np
 
 BASE_DIR = Path(__file__).resolve().parent
 
+# ngspice executable path configuration
+# Priority: environment variable > custom path > system PATH
+NGSPICE_PATH = os.environ.get(
+    'NGSPICE_BIN',
+    os.path.expanduser('~/.local/bin/ngspice')  # Default: upgraded ngspice from build
+)
+
+# Fall back to 'ngspice' in PATH if custom path doesn't exist
+if not Path(NGSPICE_PATH).exists():
+    NGSPICE_PATH = 'ngspice'
+
 # ngspice-supported MOS levels for this environment.
 SUPPORTED_MOS_LEVELS = {
     1, 2, 3, 4, 5, 6, 8, 9, 10, 14, 49,
@@ -117,7 +128,7 @@ def run_ngspice_simulation(netlist: str, timeout: int = 60) -> Tuple[bool, str, 
     
     try:
         result = subprocess.run(
-            ['ngspice', '-b', netlist_file],
+            [NGSPICE_PATH, '-b', netlist_file],
             capture_output=True,
             text=True,
             timeout=timeout
@@ -186,7 +197,12 @@ def run_ngspice_with_fallback(netlist: str, timeout: int = 60, max_retries: int 
 
 
 def _is_supported_mos_device(device: DeviceInfo) -> bool:
-    """Return True if a MOS device can be simulated by the local ngspice build."""
+    """Return True if a MOS device can be simulated by the local ngspice build.
+    
+    Unsupported levels:
+    - Level 72 (BSIM6): Requires ngspice 44+ built with BSIM6 support.
+      See docs/NGSPICE_UPGRADE_GUIDE.md for upgrade instructions.
+    """
     if device.device_type not in {'nmos', 'pmos'}:
         return True
     if not device.is_model:
@@ -721,9 +737,12 @@ def process_library_file(lib_file: Path, max_devices: int = 3) -> Dict[str, List
     mos_devices_all = [d for d in devices if d.device_type in ['nmos', 'pmos']]
     skipped_unsupported_mos = [d for d in mos_devices_all if not _is_supported_mos_device(d)]
     for skipped in skipped_unsupported_mos:
+        level_info = ""
+        if skipped.level == 72:
+            level_info = " [See docs/NGSPICE_UPGRADE_GUIDE.md for upgrade path]"
         print(
             f"    ⏭️  Skipping {skipped.name}: unsupported MOS level {skipped.level} "
-            "for this ngspice build"
+            f"for this ngspice build{level_info}"
         )
 
     mos_devices = [d for d in mos_devices_all if _is_supported_mos_device(d)][:max_devices]
@@ -819,6 +838,15 @@ def generate_summary_figure(all_results: Dict[str, Dict], output_dir: Path) -> P
 
 
 def main():
+    # Report which ngspice binary is being used
+    print(f"\n🔧 Using ngspice: {NGSPICE_PATH}")
+    try:
+        result = subprocess.run([NGSPICE_PATH, '-v'], capture_output=True, text=True, timeout=5)
+        version_line = result.stdout.split('\n')[0] if result.stdout else "unknown version"
+        print(f"   {version_line}\n")
+    except Exception as e:
+        print(f"   (could not determine version: {e})\n")
+    
     parser = argparse.ArgumentParser(
         description='Generate ngspice verification plots for translated SPICE models',
         formatter_class=argparse.RawDescriptionHelpFormatter,
