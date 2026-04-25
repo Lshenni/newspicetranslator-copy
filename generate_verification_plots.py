@@ -29,6 +29,33 @@ matplotlib.use('Agg')
 import matplotlib.pyplot as plt
 import numpy as np
 
+IEEE_FONT_FAMILY = [
+    'Times New Roman',
+    'Times',
+    'Nimbus Roman No9 L',
+    'DejaVu Serif',
+]
+IEEE_LABEL_FONT_SIZE = 11
+IEEE_TICK_FONT_SIZE = 10
+IEEE_TITLE_FONT_SIZE = 12
+IEEE_ANNOTATION_FONT_SIZE = 10
+PLOT_LINE_WIDTH = 2.8
+AXIS_LINE_WIDTH = 1.2
+GRID_LINE_WIDTH = 0.8
+
+plt.rcParams.update({
+    'font.family': 'serif',
+    'font.serif': IEEE_FONT_FAMILY,
+    'font.size': IEEE_LABEL_FONT_SIZE,
+    'axes.labelsize': IEEE_LABEL_FONT_SIZE,
+    'axes.titlesize': IEEE_TITLE_FONT_SIZE,
+    'xtick.labelsize': IEEE_TICK_FONT_SIZE,
+    'ytick.labelsize': IEEE_TICK_FONT_SIZE,
+    'legend.fontsize': IEEE_LABEL_FONT_SIZE,
+    'axes.linewidth': AXIS_LINE_WIDTH,
+    'lines.linewidth': PLOT_LINE_WIDTH,
+})
+
 BASE_DIR = Path(__file__).resolve().parent
 
 # ngspice executable path configuration
@@ -56,6 +83,44 @@ class DeviceInfo:
     device_type: str  # 'nmos', 'pmos', 'npn', 'pnp', 'diode', 'resistor', 'capacitor'
     is_model: bool    # True if .model, False if .subckt
     level: Optional[int] = None
+
+
+def _apply_ieee_axis_style(ax) -> None:
+    """Apply IEEE-friendly visual styling for readability in papers."""
+    ax.tick_params(axis='both', which='major', width=AXIS_LINE_WIDTH, length=4)
+    for label in ax.get_xticklabels() + ax.get_yticklabels():
+        label.set_fontweight('bold')
+        label.set_fontfamily('serif')
+        label.set_fontsize(IEEE_TICK_FONT_SIZE)
+    for spine in ax.spines.values():
+        spine.set_linewidth(AXIS_LINE_WIDTH)
+    ax.grid(True, alpha=0.35, linewidth=GRID_LINE_WIDTH)
+
+
+def _style_legend(legend) -> None:
+    """Apply bold IEEE-friendly legend styling."""
+    if legend is None:
+        return
+    for text in legend.get_texts():
+        text.set_fontweight('bold')
+        text.set_fontfamily('serif')
+        text.set_fontsize(IEEE_LABEL_FONT_SIZE)
+
+
+def _add_verification_stamp(ax) -> None:
+    """Add standard verification annotation with consistent typography."""
+    ax.text(
+        0.98,
+        0.02,
+        'Verified with ngspice',
+        transform=ax.transAxes,
+        fontsize=IEEE_ANNOTATION_FONT_SIZE,
+        fontweight='bold',
+        color='green',
+        ha='right',
+        va='bottom',
+        bbox=dict(boxstyle='round', facecolor='lightgreen', alpha=0.5),
+    )
 
 
 def extract_devices(lib_file: Path) -> List[DeviceInfo]:
@@ -357,20 +422,23 @@ quit
     # Create plot
     fig, ax = plt.subplots(figsize=(8, 6), dpi=150)
     
-    ax.plot(vgs_plot, id_ma, 'b-', linewidth=2, label=f'{device.name}')
-    
-    ax.set_xlabel('$|V_{GS}|$ (V)', fontsize=12)
-    ax.set_ylabel('$|I_D|$ (mA)', fontsize=12)
-    ax.set_title(f'Transfer Characteristics: {device.name}\n({"PMOS" if is_pmos else "NMOS"}, $V_{{DS}}$ = {abs(vds_actual)}V)', fontsize=14)
-    ax.grid(True, alpha=0.3)
-    ax.legend(loc='upper left')
+    ax.plot(vgs_plot, id_ma, 'b-', linewidth=PLOT_LINE_WIDTH, label=f'{device.name}')
+
+    ax.set_xlabel('Gate-to-Source Voltage Magnitude (V)', fontsize=IEEE_LABEL_FONT_SIZE, fontweight='bold')
+    ax.set_ylabel('Drain Current Magnitude (mA)', fontsize=IEEE_LABEL_FONT_SIZE, fontweight='bold')
+    ax.set_title(
+        f'Transfer Characteristics: {device.name}\n'
+        f'({"PMOS" if is_pmos else "NMOS"}, Drain-to-Source Voltage = {abs(vds_actual)} V)',
+        fontsize=IEEE_TITLE_FONT_SIZE,
+        fontweight='bold'
+    )
+    _apply_ieee_axis_style(ax)
+    legend = ax.legend(loc='upper left')
+    _style_legend(legend)
     ax.set_xlim(0, abs(vgs_stop_actual))
     ax.set_ylim(bottom=0)
     
-    # Add ngspice verification stamp
-    ax.text(0.98, 0.02, 'Verified with ngspice', transform=ax.transAxes,
-            fontsize=8, color='green', ha='right', va='bottom',
-            bbox=dict(boxstyle='round', facecolor='lightgreen', alpha=0.5))
+    _add_verification_stamp(ax)
     
     plt.tight_layout()
     plt.savefig(plot_file, dpi=150, bbox_inches='tight', facecolor='white')
@@ -482,20 +550,29 @@ quit
     colors = plt.cm.viridis(np.linspace(0.2, 0.8, len(all_curves)))
     
     for (vgs, vds, id_ma), color in zip(all_curves, colors):
-        ax.plot(vds, id_ma, '-', linewidth=2, color=color, 
-                label=f'$V_{{GS}}$ = {vgs:.1f}V')
-    
-    ax.set_xlabel('$|V_{DS}|$ (V)', fontsize=12)
-    ax.set_ylabel('$|I_D|$ (mA)', fontsize=12)
-    ax.set_title(f'Output Characteristics: {device.name}\n({"PMOS" if is_pmos else "NMOS"})', fontsize=14)
-    ax.grid(True, alpha=0.3)
-    ax.legend(loc='upper left', fontsize=10)
+        ax.plot(
+            vds,
+            id_ma,
+            '-',
+            linewidth=PLOT_LINE_WIDTH,
+            color=color,
+            label=f'Gate-to-Source Voltage = {vgs:.1f} V'
+        )
+
+    ax.set_xlabel('Drain-to-Source Voltage Magnitude (V)', fontsize=IEEE_LABEL_FONT_SIZE, fontweight='bold')
+    ax.set_ylabel('Drain Current Magnitude (mA)', fontsize=IEEE_LABEL_FONT_SIZE, fontweight='bold')
+    ax.set_title(
+        f'Output Characteristics: {device.name}\n({"PMOS" if is_pmos else "NMOS"} Device)',
+        fontsize=IEEE_TITLE_FONT_SIZE,
+        fontweight='bold'
+    )
+    _apply_ieee_axis_style(ax)
+    legend = ax.legend(loc='upper left')
+    _style_legend(legend)
     ax.set_xlim(0, vds_stop)
     ax.set_ylim(bottom=0)
     
-    ax.text(0.98, 0.02, 'Verified with ngspice', transform=ax.transAxes,
-            fontsize=8, color='green', ha='right', va='bottom',
-            bbox=dict(boxstyle='round', facecolor='lightgreen', alpha=0.5))
+    _add_verification_stamp(ax)
     
     plt.tight_layout()
     plt.savefig(plot_file, dpi=150, bbox_inches='tight', facecolor='white')
@@ -593,19 +670,23 @@ quit
     ic_plot = np.abs(ic)
     ib_plot = np.abs(ib) if len(ib) > 0 else None
     
-    ax.semilogy(vbe_plot, ic_plot, 'b-', linewidth=2, label='$I_C$')
+    ax.semilogy(vbe_plot, ic_plot, 'b-', linewidth=PLOT_LINE_WIDTH, label='Collector Current')
     if ib_plot is not None and len(ib_plot) == len(vbe_plot):
-        ax.semilogy(vbe_plot, ib_plot, 'r--', linewidth=2, label='$I_B$')
-    
-    ax.set_xlabel('$|V_{BE}|$ (V)', fontsize=12)
-    ax.set_ylabel('Current (A)', fontsize=12)
-    ax.set_title(f'Gummel Plot: {device.name}\n({"PNP" if is_pnp else "NPN"} BJT)', fontsize=14)
-    ax.grid(True, which='both', alpha=0.3)
-    ax.legend(loc='lower right', fontsize=11)
-    
-    ax.text(0.98, 0.02, 'Verified with ngspice', transform=ax.transAxes,
-            fontsize=8, color='green', ha='right', va='bottom',
-            bbox=dict(boxstyle='round', facecolor='lightgreen', alpha=0.5))
+        ax.semilogy(vbe_plot, ib_plot, 'r--', linewidth=PLOT_LINE_WIDTH, label='Base Current')
+
+    ax.set_xlabel('Base-to-Emitter Voltage Magnitude (V)', fontsize=IEEE_LABEL_FONT_SIZE, fontweight='bold')
+    ax.set_ylabel('Current (A)', fontsize=IEEE_LABEL_FONT_SIZE, fontweight='bold')
+    ax.set_title(
+        f'Gummel Plot: {device.name}\n({"PNP" if is_pnp else "NPN"} Bipolar Transistor)',
+        fontsize=IEEE_TITLE_FONT_SIZE,
+        fontweight='bold'
+    )
+    _apply_ieee_axis_style(ax)
+    ax.grid(True, which='both', alpha=0.35, linewidth=GRID_LINE_WIDTH)
+    legend = ax.legend(loc='lower right')
+    _style_legend(legend)
+
+    _add_verification_stamp(ax)
     
     plt.tight_layout()
     plt.savefig(plot_file, dpi=150, bbox_inches='tight', facecolor='white')
@@ -688,18 +769,20 @@ quit
     # Create plot
     fig, ax = plt.subplots(figsize=(8, 6), dpi=150)
     
-    ax.plot(vd, id_data * 1000, 'b-', linewidth=2)
-    
-    ax.set_xlabel('$V_D$ (V)', fontsize=12)
-    ax.set_ylabel('$I_D$ (mA)', fontsize=12)
-    ax.set_title(f'Diode I-V Characteristic: {device.name}', fontsize=14)
-    ax.grid(True, alpha=0.3)
-    ax.axhline(y=0, color='k', linewidth=0.5)
-    ax.axvline(x=0, color='k', linewidth=0.5)
-    
-    ax.text(0.98, 0.02, 'Verified with ngspice', transform=ax.transAxes,
-            fontsize=8, color='green', ha='right', va='bottom',
-            bbox=dict(boxstyle='round', facecolor='lightgreen', alpha=0.5))
+    ax.plot(vd, id_data * 1000, 'b-', linewidth=PLOT_LINE_WIDTH)
+
+    ax.set_xlabel('Diode Voltage (V)', fontsize=IEEE_LABEL_FONT_SIZE, fontweight='bold')
+    ax.set_ylabel('Diode Current (mA)', fontsize=IEEE_LABEL_FONT_SIZE, fontweight='bold')
+    ax.set_title(
+        f'Diode Current-Voltage Characteristic: {device.name}',
+        fontsize=IEEE_TITLE_FONT_SIZE,
+        fontweight='bold'
+    )
+    _apply_ieee_axis_style(ax)
+    ax.axhline(y=0, color='k', linewidth=AXIS_LINE_WIDTH)
+    ax.axvline(x=0, color='k', linewidth=AXIS_LINE_WIDTH)
+
+    _add_verification_stamp(ax)
     
     plt.tight_layout()
     plt.savefig(plot_file, dpi=150, bbox_inches='tight', facecolor='white')
@@ -805,7 +888,7 @@ def generate_summary_figure(all_results: Dict[str, Dict], output_dir: Path) -> P
     cols = min(3, n_plots)
     rows = (n_plots + cols - 1) // cols
     
-    fig, axes = plt.subplots(rows, cols, figsize=(5*cols, 4*rows), dpi=100)
+    fig, axes = plt.subplots(rows, cols, figsize=(5*cols, 4*rows), dpi=150)
     if n_plots == 1:
         axes = np.array([[axes]])
     elif rows == 1:
@@ -818,7 +901,11 @@ def generate_summary_figure(all_results: Dict[str, Dict], output_dir: Path) -> P
         try:
             img = plt.imread(str(plot_path))
             ax.imshow(img)
-            ax.set_title(f"{lib_name}\n({plot_type})", fontsize=9)
+            ax.set_title(
+                f"{lib_name}\n({plot_type})",
+                fontsize=IEEE_LABEL_FONT_SIZE,
+                fontweight='bold'
+            )
         except Exception as e:
             ax.text(0.5, 0.5, f"Error loading\n{plot_path.name}", 
                    ha='center', va='center', transform=ax.transAxes)
@@ -829,7 +916,7 @@ def generate_summary_figure(all_results: Dict[str, Dict], output_dir: Path) -> P
         row, col = divmod(idx, cols)
         axes[row, col].axis('off')
     
-    plt.suptitle('ngspice Verification Summary', fontsize=14, fontweight='bold')
+    plt.suptitle('ngspice Verification Summary', fontsize=IEEE_TITLE_FONT_SIZE + 1, fontweight='bold')
     plt.tight_layout()
     plt.savefig(summary_file, dpi=150, bbox_inches='tight', facecolor='white')
     plt.close()

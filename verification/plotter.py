@@ -250,7 +250,7 @@ set color4=green
 set color5=orange
 set color6=purple
 
-hardcopy "{plot_file}" id vs vds title "Output Curves: {device_name}" xlabel "Vds (V)" ylabel "Id (A)"
+hardcopy "{plot_file}" id vs vds title "Output Characteristics: {device_name}" xlabel "Drain-to-Source Voltage (V)" ylabel "Drain Current (A)"
 
 echo "Plot saved to {plot_file}"
 quit
