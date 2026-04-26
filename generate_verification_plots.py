@@ -85,6 +85,130 @@ class DeviceInfo:
     level: Optional[int] = None
 
 
+@dataclass
+class CurveQuality:
+    """Quality assessment result for a generated curve."""
+    valid: bool
+    reason: str = ""
+
+
+def _deduplicate_devices(devices: List[DeviceInfo]) -> List[DeviceInfo]:
+    """Deduplicate devices by (name, type), preferring model definitions over subcircuits."""
+    best: Dict[Tuple[str, str], Tuple[Tuple[int, int], DeviceInfo]] = {}
+
+    for device in devices:
+        key = (device.name.lower(), device.device_type)
+        score = (
+            1 if device.is_model else 0,
+            1 if device.level is not None else 0,
+        )
+        if key not in best or score > best[key][0]:
+            best[key] = (score, device)
+
+    return [best[k][1] for k in sorted(best.keys())]
+
+
+def _normalize_curve(x: np.ndarray, y: np.ndarray) -> Tuple[np.ndarray, np.ndarray]:
+    """Sort by x, remove non-finite entries, and collapse duplicate x-values."""
+    if len(x) == 0 or len(y) == 0:
+        return np.array([]), np.array([])
+
+    finite_mask = np.isfinite(x) & np.isfinite(y)
+    x = x[finite_mask]
+    y = y[finite_mask]
+    if len(x) == 0:
+        return np.array([]), np.array([])
+
+    order = np.argsort(x)
+    x = x[order]
+    y = y[order]
+
+    unique_x, inverse = np.unique(x, return_inverse=True)
+    if len(unique_x) == len(x):
+        return x, y
+
+    y_sum = np.zeros(len(unique_x), dtype=float)
+    counts = np.zeros(len(unique_x), dtype=float)
+    for idx, group_idx in enumerate(inverse):
+        y_sum[group_idx] += y[idx]
+        counts[group_idx] += 1.0
+
+    y_avg = y_sum / np.maximum(counts, 1.0)
+    return unique_x, y_avg
+
+
+def _assess_curve_quality(x: np.ndarray, y: np.ndarray, min_points: int = 12) -> CurveQuality:
+    """Reject low-information curves (flat/near-constant/insufficient)."""
+    if len(x) < min_points or len(y) < min_points:
+        return CurveQuality(False, f"insufficient points ({len(x)})")
+
+    x_span = float(np.ptp(x))
+    y_span = float(np.ptp(y))
+    y_scale = float(max(np.max(np.abs(y)), 1e-12))
+
+    if x_span <= 1e-9:
+        return CurveQuality(False, "x-axis span too small")
+
+    # Reject flat curves and near-flat curves with negligible variation.
+    if y_span <= max(1e-6, 0.01 * y_scale):
+        return CurveQuality(False, "y-axis variation too small")
+
+    y_std = float(np.std(y))
+    if y_std <= max(1e-7, 0.005 * y_scale):
+        return CurveQuality(False, "curve is near-constant")
+
+    return CurveQuality(True, "ok")
+
+
+def _is_duplicate_curve(x: np.ndarray, y: np.ndarray, accepted_curves: List[Tuple[np.ndarray, np.ndarray]]) -> bool:
+    """Return True if curve is effectively a duplicate of an existing curve."""
+    for ref_x, ref_y in accepted_curves:
+        low = max(float(np.min(x)), float(np.min(ref_x)))
+        high = min(float(np.max(x)), float(np.max(ref_x)))
+        if high <= low:
+            continue
+
+        grid = np.linspace(low, high, 180)
+        y_interp = np.interp(grid, x, y)
+        ref_interp = np.interp(grid, ref_x, ref_y)
+        scale = max(float(np.max(np.abs(y_interp))), float(np.max(np.abs(ref_interp))), 1e-12)
+        nrmse = float(np.sqrt(np.mean((y_interp - ref_interp) ** 2)) / scale)
+        if nrmse < 0.01:
+            return True
+    return False
+
+
+def _parse_numeric_row(line: str) -> Optional[List[float]]:
+    """Parse a wrdata line into numeric values if possible."""
+    if not line or line.startswith('#') or line.startswith('*'):
+        return None
+
+    numeric: List[float] = []
+    for token in line.split():
+        try:
+            numeric.append(float(token))
+        except ValueError:
+            continue
+    return numeric if len(numeric) >= 2 else None
+
+
+def _select_y_column(matrix: np.ndarray) -> int:
+    """Choose the most informative y-column and avoid x-duplicate columns."""
+    x_col = matrix[:, 0]
+    candidates: List[int] = []
+
+    for idx in range(1, matrix.shape[1]):
+        col = matrix[:, idx]
+        if not np.allclose(col, x_col, rtol=1e-8, atol=1e-12):
+            candidates.append(idx)
+
+    if not candidates:
+        candidates = list(range(1, matrix.shape[1]))
+
+    std_values = [float(np.std(matrix[:, idx])) for idx in candidates]
+    return candidates[int(np.argmax(std_values))]
+
+
 def _apply_ieee_axis_style(ax) -> None:
     """Apply IEEE-friendly visual styling for readability in papers."""
     ax.tick_params(axis='both', which='major', width=AXIS_LINE_WIDTH, length=4)
@@ -121,6 +245,12 @@ def _add_verification_stamp(ax) -> None:
         va='bottom',
         bbox=dict(boxstyle='round', facecolor='lightgreen', alpha=0.5),
     )
+
+
+def _prepare_output_files(*paths: Path) -> None:
+    """Remove old artifacts so failed/rejected runs cannot reuse stale data."""
+    for path in paths:
+        path.unlink(missing_ok=True)
 
 
 def extract_devices(lib_file: Path) -> List[DeviceInfo]:
@@ -279,38 +409,30 @@ def _is_supported_mos_device(device: DeviceInfo) -> bool:
 
 def parse_wrdata_output(data_file: Path) -> Tuple[np.ndarray, np.ndarray]:
     """Parse ngspice wrdata output file."""
-    x_data = []
-    y_data = []
-    
     if not data_file.exists():
         return np.array([]), np.array([])
-    
+
+    rows: List[List[float]] = []
     with open(data_file) as f:
         for line in f:
             line = line.strip()
-            if not line or line.startswith('#') or line.startswith('*'):
-                continue
-            parts = line.split()
-            if len(parts) >= 4:
-                # ngspice wrdata typically emits pairs: scale vec scale vec
-                # For "wrdata file x y", columns are commonly: x x y y.
-                # Use col0 for x and col2 for y to avoid plotting x vs x.
-                x_idx, y_idx = 0, 2
-            elif len(parts) >= 3:
-                # With wr_singlescale, ngspice often emits: sweep x y.
-                x_idx, y_idx = 0, 2
-            elif len(parts) >= 2:
-                x_idx, y_idx = 0, 1
-            else:
-                continue
+            parsed = _parse_numeric_row(line)
+            if parsed is not None:
+                rows.append(parsed)
 
-            try:
-                x_data.append(float(parts[x_idx]))
-                y_data.append(float(parts[y_idx]))
-            except ValueError:
-                continue
-    
-    return np.array(x_data), np.array(y_data)
+    if not rows:
+        return np.array([]), np.array([])
+
+    min_cols = min(len(row) for row in rows)
+    if min_cols < 2:
+        return np.array([]), np.array([])
+
+    matrix = np.array([row[:min_cols] for row in rows], dtype=float)
+    y_idx = _select_y_column(matrix)
+
+    x_data = matrix[:, 0]
+    y_data = matrix[:, y_idx]
+    return _normalize_curve(x_data, y_data)
 
 
 def generate_mos_idvgs_plot(
@@ -322,6 +444,7 @@ def generate_mos_idvgs_plot(
     
     data_file = output_dir / f"{device.name}_idvgs.dat"
     plot_file = output_dir / f"{device.name}_idvgs.png"
+    _prepare_output_files(data_file, plot_file)
     
     # Determine voltage ranges based on level
     if device.level and device.level >= 70:
@@ -418,6 +541,12 @@ quit
     # Convert to mA
     id_ma = np.abs(id_data) * 1000
     vgs_plot = np.abs(vgs) if is_pmos else vgs
+
+    quality = _assess_curve_quality(vgs_plot, id_ma)
+    if not quality.valid:
+        print(f"    ⚠️  Rejected low-quality transfer curve for {device.name}: {quality.reason}")
+        data_file.unlink(missing_ok=True)
+        return None
     
     # Create plot
     fig, ax = plt.subplots(figsize=(8, 6), dpi=150)
@@ -458,6 +587,7 @@ def generate_mos_idvds_plot(
     """Generate MOS Id vs Vds output characteristic plot with multiple Vgs curves."""
     
     plot_file = output_dir / f"{device.name}_idvds.png"
+    _prepare_output_files(plot_file)
     
     # Determine voltage ranges
     if device.level and device.level >= 70:
@@ -474,9 +604,11 @@ def generate_mos_idvds_plot(
     is_pmos = device.device_type == 'pmos'
     
     all_curves = []
+    accepted_curves: List[Tuple[np.ndarray, np.ndarray]] = []
     
     for vgs in vgs_values:
         data_file = output_dir / f"{device.name}_idvds_vgs{vgs:.1f}.dat"
+        _prepare_output_files(data_file)
         
         if is_pmos:
             vds_range = f"-{vds_stop} 0 0.02"
@@ -537,11 +669,24 @@ quit
         if success and data_file.exists():
             vds, id_data = parse_wrdata_output(data_file)
             if len(vds) >= 5:
-                all_curves.append((vgs, np.abs(vds), np.abs(id_data) * 1000))
+                x_curve = np.abs(vds)
+                y_curve = np.abs(id_data) * 1000
+                quality = _assess_curve_quality(x_curve, y_curve)
+                if not quality.valid:
+                    print(f"    ⚠️  Skipping Vgs={vgs:.1f}V curve for {device.name}: {quality.reason}")
+                elif _is_duplicate_curve(x_curve, y_curve, accepted_curves):
+                    print(f"    ⚠️  Skipping duplicate Vgs={vgs:.1f}V curve for {device.name}")
+                else:
+                    accepted_curves.append((x_curve, y_curve))
+                    all_curves.append((vgs, x_curve, y_curve))
             data_file.unlink(missing_ok=True)
     
     if not all_curves:
         print(f"    ⚠️  No curves generated for {device.name}")
+        return None
+
+    if len(all_curves) < 2:
+        print(f"    ⚠️  Insufficient distinct output curves for {device.name}")
         return None
     
     # Create plot
@@ -591,6 +736,7 @@ def generate_bjt_gummel_plot(
     data_file_ic = output_dir / f"{device.name}_gummel_ic.dat"
     data_file_ib = output_dir / f"{device.name}_gummel_ib.dat"
     plot_file = output_dir / f"{device.name}_gummel.png"
+    _prepare_output_files(data_file_ic, data_file_ib, plot_file)
     
     is_pnp = device.device_type == 'pnp'
     vcc = -3.3 if is_pnp else 3.3
@@ -669,10 +815,32 @@ quit
     vbe_plot = np.abs(vbe_ic)
     ic_plot = np.abs(ic)
     ib_plot = np.abs(ib) if len(ib) > 0 else None
+
+    q_ic = _assess_curve_quality(vbe_plot, ic_plot)
+    if not q_ic.valid:
+        print(f"    ⚠️  Rejected low-quality Gummel curve for {device.name}: {q_ic.reason}")
+        data_file_ic.unlink(missing_ok=True)
+        data_file_ib.unlink(missing_ok=True)
+        return None
+
+    ic_mask = ic_plot > 0
+    vbe_plot = vbe_plot[ic_mask]
+    ic_plot = ic_plot[ic_mask]
+    if len(vbe_plot) < 10:
+        print(f"    ⚠️  Insufficient positive-current data for {device.name}")
+        data_file_ic.unlink(missing_ok=True)
+        data_file_ib.unlink(missing_ok=True)
+        return None
     
     ax.semilogy(vbe_plot, ic_plot, 'b-', linewidth=PLOT_LINE_WIDTH, label='Collector Current')
-    if ib_plot is not None and len(ib_plot) == len(vbe_plot):
-        ax.semilogy(vbe_plot, ib_plot, 'r--', linewidth=PLOT_LINE_WIDTH, label='Base Current')
+    if ib_plot is not None and len(ib_plot) > 0:
+        ib_x = np.abs(vbe_ib)
+        ib_y = np.abs(ib)
+        q_ib = _assess_curve_quality(ib_x, ib_y)
+        if q_ib.valid:
+            ib_mask = ib_y > 0
+            if np.count_nonzero(ib_mask) >= 10:
+                ax.semilogy(ib_x[ib_mask], ib_y[ib_mask], 'r--', linewidth=PLOT_LINE_WIDTH, label='Base Current')
 
     ax.set_xlabel('Base-to-Emitter Voltage Magnitude (V)', fontsize=IEEE_LABEL_FONT_SIZE, fontweight='bold')
     ax.set_ylabel('Current (A)', fontsize=IEEE_LABEL_FONT_SIZE, fontweight='bold')
@@ -708,6 +876,7 @@ def generate_diode_iv_plot(
     
     data_file = output_dir / f"{device.name}_iv.dat"
     plot_file = output_dir / f"{device.name}_iv.png"
+    _prepare_output_files(data_file, plot_file)
     
     if device.is_model:
         netlist = f"""* Diode I-V - {device.name}
@@ -765,11 +934,18 @@ quit
     if len(vd) < 5:
         data_file.unlink(missing_ok=True)
         return None
+
+    id_ma = id_data * 1000
+    quality = _assess_curve_quality(vd, id_ma)
+    if not quality.valid:
+        print(f"    ⚠️  Rejected low-quality diode curve for {device.name}: {quality.reason}")
+        data_file.unlink(missing_ok=True)
+        return None
     
     # Create plot
     fig, ax = plt.subplots(figsize=(8, 6), dpi=150)
     
-    ax.plot(vd, id_data * 1000, 'b-', linewidth=PLOT_LINE_WIDTH)
+    ax.plot(vd, id_ma, 'b-', linewidth=PLOT_LINE_WIDTH)
 
     ax.set_xlabel('Diode Voltage (V)', fontsize=IEEE_LABEL_FONT_SIZE, fontweight='bold')
     ax.set_ylabel('Diode Current (mA)', fontsize=IEEE_LABEL_FONT_SIZE, fontweight='bold')
@@ -801,7 +977,7 @@ def process_library_file(lib_file: Path, max_devices: int = 3) -> Dict[str, List
     output_dir = lib_file.parent / "plots"
     output_dir.mkdir(parents=True, exist_ok=True)
     
-    devices = extract_devices(lib_file)
+    devices = _deduplicate_devices(extract_devices(lib_file))
     
     if not devices:
         print("    No devices found")
