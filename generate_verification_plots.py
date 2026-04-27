@@ -30,25 +30,38 @@ import matplotlib.pyplot as plt
 import numpy as np
 
 IEEE_FONT_FAMILY = [
-    'Times New Roman',
-    'Times',
-    'Nimbus Roman No9 L',
-    'DejaVu Serif',
+    'Arial',
+    'Liberation Sans',
+    'DejaVu Sans',
 ]
-IEEE_LABEL_FONT_SIZE = 11
+FIGSIZE = (11, 5)
+IEEE_LABEL_FONT_SIZE = 13
 IEEE_TICK_FONT_SIZE = 10
-IEEE_TITLE_FONT_SIZE = 12
+IEEE_TITLE_FONT_SIZE = 17
 IEEE_ANNOTATION_FONT_SIZE = 10
-PLOT_LINE_WIDTH = 2.8
-AXIS_LINE_WIDTH = 1.2
-GRID_LINE_WIDTH = 0.8
+PLOT_LINE_WIDTH = 4.0
+SECONDARY_LINE_WIDTH = 3.0
+AXIS_LINE_WIDTH = 2.0
+GRID_LINE_WIDTH = 1.1
+GRID_ALPHA = 0.35
+
+LINE_COLORS = {
+    'main': '#0033cc',
+    'secondary': '#cc0000',
+    'tertiary': '#7f3fbf',
+    'quaternary': '#e67300',
+    'fifth': '#006400',
+}
 
 plt.rcParams.update({
-    'font.family': 'serif',
-    'font.serif': IEEE_FONT_FAMILY,
+    'font.family': 'sans-serif',
+    'font.sans-serif': IEEE_FONT_FAMILY,
     'font.size': IEEE_LABEL_FONT_SIZE,
+    'font.weight': 'bold',
     'axes.labelsize': IEEE_LABEL_FONT_SIZE,
+    'axes.labelweight': 'bold',
     'axes.titlesize': IEEE_TITLE_FONT_SIZE,
+    'axes.titleweight': 'bold',
     'xtick.labelsize': IEEE_TICK_FONT_SIZE,
     'ytick.labelsize': IEEE_TICK_FONT_SIZE,
     'legend.fontsize': IEEE_LABEL_FONT_SIZE,
@@ -211,14 +224,16 @@ def _select_y_column(matrix: np.ndarray) -> int:
 
 def _apply_ieee_axis_style(ax) -> None:
     """Apply IEEE-friendly visual styling for readability in papers."""
-    ax.tick_params(axis='both', which='major', width=AXIS_LINE_WIDTH, length=4)
+    ax.grid(alpha=GRID_ALPHA, linewidth=GRID_LINE_WIDTH)
+    ax.tick_params(axis='both', which='major', width=AXIS_LINE_WIDTH, length=4, labelsize=IEEE_TICK_FONT_SIZE)
     for label in ax.get_xticklabels() + ax.get_yticklabels():
         label.set_fontweight('bold')
-        label.set_fontfamily('serif')
+        label.set_fontfamily('sans-serif')
         label.set_fontsize(IEEE_TICK_FONT_SIZE)
     for spine in ax.spines.values():
         spine.set_linewidth(AXIS_LINE_WIDTH)
-    ax.grid(True, alpha=0.35, linewidth=GRID_LINE_WIDTH)
+    ax.spines['top'].set_visible(True)
+    ax.spines['right'].set_visible(True)
 
 
 def _style_legend(legend) -> None:
@@ -549,9 +564,20 @@ quit
         return None
     
     # Create plot
-    fig, ax = plt.subplots(figsize=(8, 6), dpi=150)
+    fig, ax = plt.subplots(figsize=FIGSIZE, dpi=150)
     
-    ax.plot(vgs_plot, id_ma, 'b-', linewidth=PLOT_LINE_WIDTH, label=f'{device.name}')
+    ax.plot(
+        vgs_plot,
+        id_ma,
+        color=LINE_COLORS['main'],
+        linewidth=PLOT_LINE_WIDTH,
+        marker='^',
+        markersize=4,
+        markerfacecolor=LINE_COLORS['main'],
+        markeredgecolor=LINE_COLORS['main'],
+        markeredgewidth=0.8,
+        label=f'{device.name}'
+    )
 
     ax.set_xlabel('Gate-to-Source Voltage Magnitude (V)', fontsize=IEEE_LABEL_FONT_SIZE, fontweight='bold')
     ax.set_ylabel('Drain Current Magnitude (mA)', fontsize=IEEE_LABEL_FONT_SIZE, fontweight='bold')
@@ -690,17 +716,26 @@ quit
         return None
     
     # Create plot
-    fig, ax = plt.subplots(figsize=(8, 6), dpi=150)
+    fig, ax = plt.subplots(figsize=FIGSIZE, dpi=150)
     
-    colors = plt.cm.viridis(np.linspace(0.2, 0.8, len(all_curves)))
+    colors = [
+        LINE_COLORS['main'],
+        LINE_COLORS['secondary'],
+        LINE_COLORS['tertiary'],
+        LINE_COLORS['quaternary'],
+        LINE_COLORS['fifth'],
+    ]
     
     for (vgs, vds, id_ma), color in zip(all_curves, colors):
         ax.plot(
             vds,
             id_ma,
-            '-',
-            linewidth=PLOT_LINE_WIDTH,
+            linewidth=SECONDARY_LINE_WIDTH,
             color=color,
+            marker='o',
+            markersize=3,
+            markerfacecolor=color,
+            markeredgecolor=color,
             label=f'Gate-to-Source Voltage = {vgs:.1f} V'
         )
 
@@ -810,7 +845,7 @@ quit
         return None
     
     # Create semilog plot
-    fig, ax = plt.subplots(figsize=(8, 6), dpi=150)
+    fig, ax = plt.subplots(figsize=FIGSIZE, dpi=150)
     
     vbe_plot = np.abs(vbe_ic)
     ic_plot = np.abs(ic)
@@ -832,7 +867,17 @@ quit
         data_file_ib.unlink(missing_ok=True)
         return None
     
-    ax.semilogy(vbe_plot, ic_plot, 'b-', linewidth=PLOT_LINE_WIDTH, label='Collector Current')
+    ax.semilogy(
+        vbe_plot,
+        ic_plot,
+        color=LINE_COLORS['main'],
+        linewidth=PLOT_LINE_WIDTH,
+        marker='^',
+        markersize=3,
+        markerfacecolor=LINE_COLORS['main'],
+        markeredgecolor=LINE_COLORS['main'],
+        label='Collector Current',
+    )
     if ib_plot is not None and len(ib_plot) > 0:
         ib_x = np.abs(vbe_ib)
         ib_y = np.abs(ib)
@@ -840,7 +885,17 @@ quit
         if q_ib.valid:
             ib_mask = ib_y > 0
             if np.count_nonzero(ib_mask) >= 10:
-                ax.semilogy(ib_x[ib_mask], ib_y[ib_mask], 'r--', linewidth=PLOT_LINE_WIDTH, label='Base Current')
+                ax.semilogy(
+                    ib_x[ib_mask],
+                    ib_y[ib_mask],
+                    color=LINE_COLORS['secondary'],
+                    linewidth=SECONDARY_LINE_WIDTH,
+                    marker='o',
+                    markersize=3,
+                    markerfacecolor=LINE_COLORS['secondary'],
+                    markeredgecolor=LINE_COLORS['secondary'],
+                    label='Base Current',
+                )
 
     ax.set_xlabel('Base-to-Emitter Voltage Magnitude (V)', fontsize=IEEE_LABEL_FONT_SIZE, fontweight='bold')
     ax.set_ylabel('Current (A)', fontsize=IEEE_LABEL_FONT_SIZE, fontweight='bold')
@@ -943,9 +998,18 @@ quit
         return None
     
     # Create plot
-    fig, ax = plt.subplots(figsize=(8, 6), dpi=150)
+    fig, ax = plt.subplots(figsize=FIGSIZE, dpi=150)
     
-    ax.plot(vd, id_ma, 'b-', linewidth=PLOT_LINE_WIDTH)
+    ax.plot(
+        vd,
+        id_ma,
+        color=LINE_COLORS['main'],
+        linewidth=PLOT_LINE_WIDTH,
+        marker='^',
+        markersize=3,
+        markerfacecolor=LINE_COLORS['main'],
+        markeredgecolor=LINE_COLORS['main'],
+    )
 
     ax.set_xlabel('Diode Voltage (V)', fontsize=IEEE_LABEL_FONT_SIZE, fontweight='bold')
     ax.set_ylabel('Diode Current (mA)', fontsize=IEEE_LABEL_FONT_SIZE, fontweight='bold')
