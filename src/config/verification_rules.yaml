@@ -1,0 +1,259 @@
+---
+# Compact, auditable verification rule base used by the closed-loop verifier
+# Each entry: id, name, pattern (informal regex), label, action, severity, note
+rules:
+  - id: 1
+    name: GEOMETRY_MIN_VIOLATION
+    pattern: "(geometry|channel).*(min|below|minimum|too small|L <|W <)"
+    label: simulator-guardrail
+    action: suggest_increase_geometry
+    severity: high
+    note: "Simulator rejects device for violating minimum geometry envelopes"
+
+  - id: 2
+    name: GEOMETRY_MAX_VIOLATION
+    pattern: "(geometry|channel).*(max|above|maximum|too large|L >|W >)"
+    label: simulator-guardrail
+    action: suggest_reduce_geometry
+    severity: medium
+    note: "Simulator rejects device for exceeding geometry limits"
+
+  - id: 3
+    name: UNDEFINED_SYMBOL
+    pattern: "undefined|unresolved|not defined|unknown parameter|symbol" 
+    label: translator-defect
+    action: attempt_parameter_inference
+    severity: high
+    note: "Missing corner or .param definition"
+
+  - id: 4
+    name: UNDEFINED_SUBCKT_SYMBOL
+    pattern: "undefined subckt|unknown subcircuit|subckt not found|missing subckt"
+    label: translator-defect
+    action: attempt_include_path_reconstruction
+    severity: high
+    note: "Referenced subcircuit or include missing"
+
+  - id: 5
+    name: EXPR_PARSE_ERROR
+    pattern: "parse error|syntax error|expression.*error|bad expression"
+    label: translator-defect
+    action: canonicalize_expression
+    severity: high
+    note: "Dialect-specific expression rejected by backend"
+
+  - id: 6
+    name: EXPR_UNSUPPORTED_FUNC
+    pattern: "unsupported function|unknown function|function not supported"
+    label: translator-defect
+    action: rewrite_function
+    severity: medium
+    note: "Function needs lowering or replacement"
+
+  - id: 7
+    name: NONCONVERGENCE_NUMERIC
+    pattern: "non[- ]converge|failed to converge|convergence error|iteration limit"
+    label: suppressed/benign
+    action: retry_with_relaxed_solver
+    severity: medium
+    note: "Numeric solver issue, not necessarily a translation bug"
+
+  - id: 8
+    name: STARTUP_CONVERGENCE_ISSUE
+    pattern: "startup convergence|ic failure|initial condition error"
+    label: suppressed/benign
+    action: adjust_initial_conditions
+    severity: low
+    note: "May be mitigated by setting ic or relaxing timestep"
+
+  - id: 9
+    name: PARAM_UNIT_MISMATCH
+    pattern: "unit mismatch|invalid unit|unit error|expected .*unit"
+    label: translator-defect
+    action: apply_unit_conversion
+    severity: medium
+    note: "Unit conversion needed between dialects"
+
+  - id: 10
+    name: BSIM_LEVEL_UNSUPPORTED
+    pattern: "level .* not supported|unknown bsim level|bsim.*not recognized"
+    label: translator-defect
+    action: remap_bsim_level
+    severity: high
+    note: "BSIM level mapping required"
+
+  - id: 11
+    name: PARAM_VALUE_OUT_OF_RANGE
+    pattern: "out of range|value out of range|parameter exceeds bounds"
+    label: simulator-guardrail
+    action: report_constraint_and_suggest_fix
+    severity: medium
+    note: "Parameter violates backend-allowed bounds"
+
+  - id: 12
+    name: INCLUDE_PATH_ERROR
+    pattern: "include file not found|cannot open file|no such file or directory"
+    label: translator-defect
+    action: attempt_path_resolution
+    severity: high
+    note: "Broken include or relative path"
+
+  - id: 13
+    name: MACRO_EXPANSION_ERROR
+    pattern: "macro expansion|macro error|preprocessor error"
+    label: translator-defect
+    action: expand_or_simplify_macro
+    severity: medium
+    note: "Preprocessor/macros need normalization"
+
+  - id: 14
+    name: MEMORY_EXHAUSTION
+    pattern: "out of memory|memory error|allocation failed"
+    label: suppressed/benign
+    action: retry_with_limits_or_split_test
+    severity: high
+    note: "Resource issue; may require smaller testbench"
+
+  - id: 15
+    name: TIMESTEP_TOO_SMALL
+    pattern: "time step too small|timestep error|minimum timestep"
+    label: suppressed/benign
+    action: adjust_timestep
+    severity: low
+    note: "Solver timestep settings cause failure"
+
+  - id: 16
+    name: DEVICE_MODEL_MISMATCH
+    pattern: "unknown device type|device not supported|model type mismatch"
+    label: translator-defect
+    action: map_device_type
+    severity: high
+    note: "Device family or keyword mapping required"
+
+  - id: 17
+    name: DIVISION_BY_ZERO
+    pattern: "division by zero|divide by zero|zero denominator"
+    label: translator-defect
+    action: apply_parameter_defaults
+    severity: high
+    note: "Missing parameter led to numeric singularity"
+
+  - id: 18
+    name: PARAM_MISSING_BRACKETS
+    pattern: "missing brace|missing bracket|unterminated parameter"
+    label: translator-defect
+    action: fix_parameter_syntax
+    severity: medium
+    note: "Syntax artifact from dialect differences"
+
+  - id: 19
+    name: BAD_PIN_ORDER
+    pattern: "pin order mismatch|expected .* pins|pin mismatch"
+    label: translator-defect
+    action: reorder_pins_or_map
+    severity: medium
+    note: "Subcircuit pin ordering differs across dialects"
+
+  - id: 20
+    name: NUMERIC_OVERFLOW
+    pattern: "overflow|floating point overflow|value too large"
+    label: suppressed/benign
+    action: clamp_or_rescale
+    severity: medium
+    note: "Adjust scaling rather than change model semantics"
+
+  - id: 21
+    name: UNSUPPORTED_PROPERTY
+    pattern: "unsupported property|unknown attribute|property not recognized"
+    label: translator-defect
+    action: drop_or_map_property
+    severity: low
+    note: "Map or omit nonportable metadata"
+
+  - id: 22
+    name: ILLEGAL_IDENTIFIER
+    pattern: "illegal identifier|invalid name|identifier contains"
+    label: translator-defect
+    action: sanitize_identifiers
+    severity: low
+    note: "Rename to target-safe identifiers"
+
+  - id: 23
+    name: DUPLICATE_LABEL
+    pattern: "duplicate label|label already used|identifier collision"
+    label: translator-defect
+    action: uniquify_labels
+    severity: low
+    note: "Avoid naming collisions in output netlist"
+
+  - id: 24
+    name: MISSING_CONTROL_STATEMENT
+    pattern: "missing control|.options not found|.tran missing"
+    label: suppressed/benign
+    action: add_default_control_statements
+    severity: low
+    note: "Provide minimal testbench controls for reliable runs"
+
+  - id: 25
+    name: BJT_GUMMEL_FAILURE
+    pattern: "gummel plot|bjt.*convergence|bjt.*error"
+    label: simulator-guardrail
+    action: record_bjt_constraint
+    severity: medium
+    note: "BJT-specific envelope or biasing issue"
+
+  - id: 26
+    name: DIODE_BIAS_ERROR
+    pattern: "diode.*forward.*reverse|reverse bias error|diode bias"
+    label: simulator-guardrail
+    action: suggest_bias_adjustment
+    severity: low
+    note: "Biasing outside intended diode test range"
+
+  - id: 27
+    name: MONTE_CARLO_SAMPLE_ERROR
+    pattern: "monte carlo|sample size|seed error"
+    label: suppressed/benign
+    action: adjust_montecarlo_settings
+    severity: low
+    note: "Testbench statistical settings need tuning"
+
+  - id: 28
+    name: ROUNDTRIP_MISMATCH
+    pattern: "round[- ]trip mismatch|checksum mismatch|equivalence failure"
+    label: translator-defect
+    action: attempt_roundtrip_repair
+    severity: high
+    note: "Generated model differs semantically from source"
+
+  - id: 29
+    name: PARAM_TOO_MANY_ARGS
+    pattern: "too many arguments|parameter arity mismatch|unexpected token"
+    label: translator-defect
+    action: simplify_parameter_list
+    severity: medium
+    note: "Dialect allows different parameter argument counts"
+
+  - id: 30
+    name: BOOLEAN_PARSE_ISSUE
+    pattern: "true|false|boolean parse|logical operator error"
+    label: translator-defect
+    action: canonicalize_booleans
+    severity: low
+    note: "Normalize boolean literals across dialects"
+
+  - id: 31
+    name: LEGACY_KEYWORD_CONFLICT
+    pattern: "deprecated|legacy keyword|keyword conflict"
+    label: translator-defect
+    action: map_legacy_keyword
+    severity: low
+    note: "Map or rename legacy keywords to modern equivalents"
+
+  - id: 32
+    name: UNKNOWN_BACKEND_ERROR
+    pattern: ".*error.*|fatal error|backend exception"
+    label: suppressed/benign
+    action: capture_and_escalate
+    severity: high
+    note: "Catch-all: collect logs and escalate for manual review"

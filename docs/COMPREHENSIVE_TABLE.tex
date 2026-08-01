@@ -1,0 +1,82 @@
+% Comprehensive Syntactic/Semantic Differences Table for Paper
+% This is the expanded version that spans two columns
+% Copy this into your mypaper.tex to replace the existing top-10 differences table
+
+\begin{table*}[!t]
+\caption{Critical Syntactic and Semantic Differences Across HSPICE, Spectre, and ngspice — and How SpiceModelIR Resolves Them}
+\label{tab:critical_diffs}
+\centering
+\renewcommand{\arraystretch}{1.3}
+\begin{tabular}{@{}p{2.2cm}p{2.8cm}p{2.8cm}p{2.8cm}p{3.8cm}@{}}
+\toprule
+\textbf{Difference Class} & \textbf{HSPICE} & \textbf{Spectre} & \textbf{ngspice} & \textbf{SpiceModelIR Solution} \\
+\midrule
+
+\multicolumn{5}{c}{\textit{\textbf{Section A: Model Declaration and Syntax}}} \\
+\midrule
+
+Model Declaration & \texttt{.model nch NMOS level=54} & \texttt{model nch nmos type=n} & \texttt{.model nch NMOS level=14} & Canonical BSIM level mapping: level 54 (HSPICE BSIM4) $\rightarrow$ level 14 (ngspice BSIM4), preserving device physics intent \\
+
+Model Naming Case & Case-\emph{insensitive}; \newline \texttt{.MODEL} or \texttt{.model} & Case-\emph{insensitive}; \newline \texttt{model} or \texttt{MODEL} & Case-\emph{insensitive} & Normalize all model names to lowercase in canonical IR, then emit target-specific case on output \\
+
+Parameter Assignment & \texttt{name=value} standard & \texttt{name=value} standard & \texttt{name=value} standard & Uniform handling: all three use name=value; IR preserves, generator emits consistently \\
+
+Parameter Format & Bare tokens: \newline \texttt{vth0=0.4}, \newline \texttt{u0=0.05} & Bare tokens: \newline \texttt{vth0=0.4}, \newline \texttt{u0=0.05} & Bare tokens: \newline \texttt{vth0=0.4}, \newline \texttt{u0=0.05} & Consistent canonical IR representation; whitespace normalization \\
+
+\midrule
+\multicolumn{5}{c}{\textit{\textbf{Section B: Line Continuation and Expression Parsing}}} \\
+\midrule
+
+Line Continuation & \texttt{+} at column 6 \newline (strict columnar rule) & Implicit line break; \newline no continuation marker & \texttt{+} anywhere in line & Parser absorbs dialect-specific continuation rules into AST; IR represents as single logical line; generator emits target-native continuation \\
+
+Expression Syntax & Basic arithmetic: \newline \texttt{a+b, a-b, a*b} & Full algebraic: ternary \texttt{?:}, function calls \texttt{exp(), log()}, nested parens & Basic arithmetic & Semantic analysis canonicalizes algebraic expressions into normalized form; constraint checking ensures target simulator can parse result \\
+
+Multi-line Parameters & Requires \texttt{+} continuation; easy to break & Implicit continuation; more robust & Requires \texttt{+} continuation & Parser detects and unifies; IR stores as single normalized expression \\
+
+\midrule
+\multicolumn{5}{c}{\textit{\textbf{Section C: Parameter Values and Undefined References}}} \\
+\midrule
+
+Symbolic Parameters & \texttt{.param tox=2.5e-9}, \newline referenced as \texttt{\{tox\}} in models & \texttt{.param tox=2.5e-9}, \newline referenced as \texttt{tox} or \texttt{\{tox\}} & \texttt{.param tox=2.5e-9}, \newline referenced as \texttt{\{tox\}} & Parameter inference engine: recognize undefined tokens via regex (e.g., \texttt{tox*} $\rightarrow$ oxide baseline 2.5~nm); corpus lookup for context; physics-grounded defaults \\
+
+Corner-Dependent Params & External \texttt{.include} files; may omit \texttt{tox\_default}, \texttt{u0\_n}, etc. & External \texttt{.include} files; may omit corner params & External \texttt{.include} files; often missing & Detect undefined symbols; classify by naming pattern (scaling, delta, physics); apply corpus-informed or physics baselines; mark as inferred in output \\
+
+Process Variation & Delta params: \texttt{delvto, dvsat, delna} (zeroed for typical corner) & Delta params: \texttt{delvto, dvsat, delna} & Delta params: \texttt{delvto, dvsat, delna} & Regex classifier: tokens with \texttt{*delta*} or \texttt{del*} default to 0.0; multiplicative factors (\texttt{*\_eff}) default to 1.0 \\
+
+Default Scaling Factors & Mobility scaling: \texttt{u0\_eff} (undefined $\Rightarrow$ zero $\Rightarrow$ no current!) & Mobility scaling: \texttt{u0\_eff} & Mobility scaling: \texttt{u0\_eff} & Identify multiplicative tokens (\texttt{*\_eff, rho\_*, vsat\_*}); enforce default of 1.0 to preserve nominal behavior \\
+
+Unit Representation & \texttt{1u, 1n, 1p, 1m} (case-sensitive); \texttt{1e-6} also valid & \texttt{1u, 1n, 1p, 1m}; often uses \texttt{1e-6} & \texttt{1u, 1n, 1p, 1m}; \texttt{1e-6} & Canonicalize numeric representation; unify \texttt{1e-6} and \texttt{1u} forms in IR; emit target-native on generation \\
+
+\midrule
+\multicolumn{5}{c}{\textit{\textbf{Section D: BSIM Levels and Device Modeling}}} \\
+\midrule
+
+BSIM Levels & Level 54 (BSIM4), Level 49 (BSIM3v3) & Level 7 or descriptive (e.g., \texttt{type=n}) & Level 14 (BSIM4), Level 8 (BSIM3) & Map all levels to canonical IR BSIM version; verify target simulator supports target level; fail early if incompatible \\
+
+Model Variants & BSIM4 has many versions (4.5, 4.6, 4.7, 4.8) & Similar version tracking & Limited version support & Semantic IR tracks BSIM version metadata; warn or adapt if version mismatch detected \\
+
+Device Parameters & \texttt{tox, nch, u0, vth0, kp, etc.} & \texttt{tox, nch, u0, vth0, kp, etc.} & \texttt{tox, nch, u0, vth0, kp, etc.} & Consistent BSIM4-based parameter naming in canonical IR \\
+
+\midrule
+\multicolumn{5}{c}{\textit{\textbf{Section E: Include Files and Hierarchical References}}} \\
+\midrule
+
+Include Statements & \texttt{.include "path/to/file.sp"}, \texttt{.lib} sections & \texttt{section "includes" \{ ... \}}, implicit paths & \texttt{.include "path/to/file.sp"} & Resolver: flatten include chains; expand relative paths; warn on missing files; substitute inferred params for unresolved corner refs \\
+
+Library Sections & \texttt{.lib/.endl} (section delimiters) & \texttt{section/.endsection} & Flat structure, no sections & Semantic analysis normalizes hierarchies; IR tracks which params come from includes; generator flattens output \\
+
+Path Resolution & Relative paths often break during migration & Implicit path handling & Relative paths must be explicit & Resolve relative paths against source PDK root; rewrite absolute or use placeholder comments in output \\
+
+\midrule
+\multicolumn{5}{c}{\textit{\textbf{Section F: Simulator-Specific Features}}} \\
+\midrule
+
+BSIM Geometry Envelopes & Enforced at sim time; can reject valid syntax & Enforced at sim time & Enforced; more strict than HSPICE & Constraint-aware verifier: test against known BSIM4 limits (e.g., $L_{min} > 0.5 \times W_{min}$); classify rejections as simulator guardrails vs. true errors \\
+
+Comments & \texttt{*} or \texttt{;} (end-of-line or line-based) & \texttt{//} (C-style) & \texttt{*} or \texttt{;} & Parser preserves comments in AST; IR drops comments (focuses on semantics); optionally re-insert in generated output \\
+
+Subcircuit Syntax & \texttt{.subckt/.ends} & \texttt{subckt/endsubckt} & \texttt{.subckt/.ends} & Parser handles dialect variants; IR normalizes to canonical form \\
+
+\bottomrule
+\end{tabular}
+\end{table*}

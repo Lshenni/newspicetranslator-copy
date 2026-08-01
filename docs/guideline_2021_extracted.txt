@@ -1,0 +1,1662 @@
+GUIDELINES FOR THE PREPARATION OF
+RESEARCH REPORT, DISSERTATION AND
+THESIS 2021
+
+TABLE OF CONTENTS
+Preface ..……………………………………………………………………..…………
+
+1
+
+CHAPTER 1: FORMAT OF WRITING ……..……….……………...…………….
+
+2
+
+1.1
+
+Conventional Format ...……….…………………………………………...…….
+
+2
+
+1.2
+
+Article Style Format …………………………………….………………....…….
+
+3
+
+1.3
+
+Format of Published Papers ...…………………………………..………...….….
+
+5
+
+CHAPTER 2: SEQUENCE OF CONTENTS ……………………….…….………..
+
+9
+
+Preliminary …………………………………………………………..………….
+
+9
+
+2.1.1 Title Page ...………………………………………………………...……
+
+9
+
+2.1.2 Original Literary Work Declaration Form ……………………………...
+
+11
+
+2.1.3 Abstract ………………………………………………………………….
+
+12
+
+2.1.4 Acknowledgements …………..…………………………………………
+
+14
+
+2.1.5 Table of Contents ……………………………………………………….
+
+14
+
+2.1.6 List of Figures …………………………………………………………...
+
+14
+
+2.1.7 List of Tables ……………………………………………………………
+
+14
+
+2.1.8 List of Symbols and Abbreviations ……………………………………..
+
+14
+
+2.1.9 List of Appendices ………………………………………………………
+
+15
+
+2.1
+
+2.2
+
+Main Body ……………………………………………………………………….
+2.2.1
+
+Introduction ……………………………………………………………..
+
+15
+
+2.2.2
+
+Literature Review ……………………………………………………….
+
+15
+
+2.2.3
+
+Methodology ………………………………………………..………….
+
+15
+
+2.2.4
+
+Results …………………………………………………………………..
+
+16
+
+2.2.5
+
+Discussion ……………………………………………………………….
+
+16
+
+2.2.6
+
+Conclusion ………………………………………………………………
+
+16
+
+2.2.7
+
+References ……………………………………………………………....
+
+16
+16
+
+2.3
+
+Supplementary ……………………………………………………………..........
+
+18
+
+2.3.1
+
+List of Publications and Papers Presented ………………………………
+
+18
+
+2.3.2
+
+Appendices .……………………………………………………………..
+
+18
+
+2.3.3
+
+Co-authors Consent …………………………………………………......
+
+18
+
+CHAPTER 3: FORMAT SPECIFICATIONS ……………………………………...
+
+19
+
+3.1
+
+Paper Quality, Printing and Duplicating…………………………………………
+
+19
+
+3.2
+
+Typing and Printing Quality……………………………………………………..
+
+19
+
+3.3
+
+Line Spacing……………………………………………………………………..
+
+19
+
+3.4
+
+Margins …………………………………………………………………….……
+
+19
+
+3.5
+
+Page Numbering ………………………………………………………………...
+
+20
+
+3.6
+
+Numbering of Chapters and Sub-chapters ………………………………………
+
+20
+
+3.7
+
+Footnotes ………………………………………………………………………..
+
+21
+
+3.8
+
+Tables ……………………………………………………………………………
+
+22
+
+3.9
+
+Figures …………………………………………………………………………..
+
+22
+
+3.10 Binding ………………………………………………………………………….
+
+23
+
+3.11 Word Limit……………………………………………………………………….
+
+27
+
+3.12 Other Information ……………………………………………………………….
+
+28
+
+CHAPTER 4: SUBMISSION ………………………………………………………..
+
+29
+
+4.1
+
+Prior to Submission ……………………………………………………………..
+
+29
+
+4.2
+
+Required Documents for Submission …………………………………………...
+
+29
+
+CHAPTER 5: PLAGIARISM ……………………………………………………….
+
+31
+
+PREFACE
+In the process of completing a postgraduate programme and being awarded the
+degree by the Universiti Malaya, a candidate may be required to submit a research report or
+dissertation or thesis, depending on the requirements of the specific programme.
+The terms “research report”, “dissertation” and “thesis” are defined as follows:
+ Research Report refers to the documentation of research prepared and submitted by the
+candidate for the award of a Master’s degree by Coursework or Master’s Degree by
+Clinical which may include research paper, research project, project paper, project report
+and research outcome concerned known by whatsoever name;
+ Dissertation refers to the documentation of the original research prepared and submitted
+by the candidate for the award of a Master’s degree by Research, and Master’s Degree
+by Mixed Mode as well as Doctoral degree by Coursework and Doctoral degree by Clinical;
+ Thesis refers to the documentation of the original research prepared and submitted by the
+candidate for the award of a Doctoral degree by Research and Doctoral degree by Mixed
+Mode.
+This guideline will assist the candidates to meet the minimum format requirements set
+by the University to complete the final form of a research report, dissertation or thesis.
+However, the format may differ in each individual Academy/Faculty/Institute/Centre with its
+own additional requirements. In this guideline, the term ‘faculty’ will be used to refer to
+Academy/Faculty/Institute/Centre.
+
+1
+
+CHAPTER 1: FORMAT OF WRITING
+A research report, dissertation or thesis can be written in one of the following formats:
+ Conventional format;
+ Article style format;
+ Format of published papers (this option is only available for Doctoral programme by
+research candidates)
+These formats serve as a generic guideline for the postgraduate candidates in writing a
+research report, dissertation or thesis. Minor variation of the format as recommended by the
+faculty is allowed. Candidates are advised to discuss with their supervisors to determine which
+format is best suited for the nature of their research work.
+
+1.1
+
+Conventional Format
+The conventional format follows the traditional monograph structure (Table 1.1). This is the
+most common form of research report/dissertation/thesis used by the candidates.
+Table 1.1: The general structure that follows the conventional format
+Preliminary
+
+Title Page
+
+Original Literary Work Declaration
+
+Abstract
+
+Abstrak
+
+Acknowledgements
+
+Table of Contents
+
+List of Figures
+
+List of Tables
+
+List of Symbols and Abbreviations
+
+List of Appendices
+Main Body
+
+
+
+
+
+
+
+
+
+
+
+Chapter 1: Introduction
+Chapter 2: Literature Review
+Chapter 3: Methodology
+Chapter 4: Results
+Chapter 5: Discussion
+Chapter 6: Conclusion
+References (A consolidated list of references for all chapters)
+Supplementary
+List of Publications and Papers Presented
+Appendix
+
+2
+
+1.2
+
+Article Style Format
+
+Apart from the conventional style of writing, a research report/dissertation/thesis can also be
+presented in the chapters that are in the format of journal article (Table 1.2). The number of
+chapters to be included is at the discretion of the author, depending on the suitability of the
+chapters in answering the research questions.
+This format is also applicable to candidates of Doctoral Degree by Research using Concurrent
+or Prospective Publication. The candidate submits a thesis/conspectus1 which incorporates
+publications that may have multiple authors since registration. The candidate may also
+present a portfolio of interconnected, published research papers or articles encapsulated in a
+coherent thesis/conspectus, demonstrating overall an original contribution to knowledge.
+Such publications may include papers, chapters, monographs, books, scholarly editions of a
+text, technical reports, creative work in relevant areas, or other artefacts. The thesis (with the
+publications or equivalent works) must meet the criteria and outcomes established for a
+doctoral award and assessed through a viva voce.
+The article style format should not be confused with the format for thesis by retrospective or
+prior publication. Similar to the conventional format, a research report/dissertation/thesis in
+the article style format should be written extensively to elucidate the different aspects of the
+research work in great details.
+The main body of a research report/dissertation/thesis in the article style format should contain
+the following chapters:
+
+(a) General Introduction
+The General Introduction gives an overview of the research by outlining the objectives,
+novelty as well as the research questions addressed. This chapter should also explain the
+correlation among the articles/chapters.
+
+(b) Literature Review
+The Literature Review provides extensive background information on past studies and
+current knowledge pertaining to the research topic.
+
+(c) Article 1, Article 2, Article 3 or more
+Each article should address a specific research objective or a related topic of the study.
+Each article forms a separate chapter and must be written in a cohesive manner with a
+logical and coordinated progression from one article/chapter to the other. The
+article/chapter should consist of its own sections on Introduction, brief Literature Review,
+Methodology, Results, Discussion and Conclusion.
+
+(d) Conclusion and Recommendation
+The Conclusion chapter summarizes the findings in all articles and suggests the future
+direction for research.
+The format specifications of the research report/dissertation/thesis must conform to the
+general research report /dissertation/thesis requirements as outlined in Chapter 2.
+1
+
+A critical review which locates the artefact/s within a coherent theoretical framework and field/s of study.
+
+3
+
+Table 1.2: The general structure that follows the article style format
+Preliminary
+
+Title Page
+
+Original Literary Work Declaration
+
+Abstract
+
+Abstrak
+
+Acknowledgements
+
+Table of Contents
+
+List of Figures
+
+List of Tables
+
+List of Symbols and Abbreviations
+
+List of Appendices
+
+
+
+
+
+Main Body
+Chapter 1: General Introduction
+Chapter 2: Literature Review
+Chapter 3: Article 1*
+3.1 Introduction
+3.2 Literature Review
+3.3 Methodology
+3.4 Results
+3.5 Discussion
+3.6 Conclusion
+
+
+
+Chapter 4: Article 2*
+4.1 Introduction
+4.2 Literature Review
+4.3 Methodology
+4.4 Results
+4.5 Discussion
+4.6 Conclusion
+
+
+
+Chapter 5: Article 3*
+5.1 Introduction
+5.2 Literature Review
+5.3 Methodology
+5.4 Results
+5.5 Discussion
+5.6 Conclusion
+
+
+
+Chapter 6: Conclusion
+
+
+
+References (A consolidated list of references for all chapters)
+
+4
+
+Note:
+*Article is written with a specific title which normally refers to the research
+done
+
+
+
+
+
+Supplementary
+List of Publications and Papers Presented
+Appendices
+Co-authors Consent
+
+1.3
+
+Format of Published Papers
+The University also permits the presentation of thesis for the programme of Doctoral Degree
+by Research i.e. Doctor of Philosophy (PhD) in the format of published and/or submitted
+papers, where such papers have been published or accepted by high impact journals (e.g.
+journals indexed by Web of Science), monographs, books, research-based chapters in books,
+electronic publications, creative works, artefacts in the field before or during the period of
+candidature (Table 1.3).
+Papers submitted as a PhD thesis must be based on a particular theme or focus and form a
+cohesive research write up. The quality of a thesis by published papers should be in accordance
+with PhD-level research and must meet the criteria and outcomes established for a doctoral
+award. The following aspects should be taken into consideration before opting for this format
+of writing:
+(a) Type of Publications
+The thesis may comprise published papers and/or manuscripts accepted for publication
+by high impact journals (e.g. journals indexed by Web of Science), monographs, books,
+research-based chapters in books, electronic publications, creative works, artefacts in the
+field which have not been used to obtain other awards or deemed a part of those awards.
+(b) Number of Publications
+For candidates under the programme of Doctoral Degree by Retrospective or Prior
+Publication, the minimum number of publications or productions is at least five (5) and
+these works must be those published retrospectively within a period not exceeding 10
+years from the date of application. However, in some disciplines a larger number of papers
+is required to meet the expectations of scope and quality in accordance with PhD-level
+research.
+(c) Authorship
+Where the papers have more than one author, the candidate must be the first author or
+creator of five (5) of the published works or productions submitted with the contributions
+of others clearly defined.
+(d) Co-authors Consent
+Candidates must obtain the consent from other co-authors for all papers and/or
+manuscripts and/or publications or production used as part of their PhD thesis. The
+consent can be in the form of a verification from the journal publisher or letter or email
+communication with the co-authors.
+5
+
+(e) Structure of Thesis
+The thesis in the format of published papers shall consist of the following:
+(i)
+
+An abstract, which summarises the most important findings presented in each
+published paper or accepted manuscript or production. It should indicate how the
+included works are thematically linked or tied to a particular research framework and
+how, when considered together, they contribute significantly to knowledge in the
+discipline.
+
+(ii)
+
+The Introduction chapter should include the following:
+ description of research problem investigated;
+ objectives of the study;
+ list of publications and/or accepted manuscripts or production;
+ the account of research progress linking the publications.
+The account of research progress must link together the various papers or
+production submitted as part of the thesis so that the reader can understand the
+logic behind the progression of the research programme.
+
+(ii)
+
+The Literature Review chapter must contain, in accordance with the relevant
+discipline’s norms, a critical review of relevant literature, identify the knowledge gaps
+and the relationship of the literature to the area of research.
+
+(iv)
+
+The Methodology chapter (where applicable).
+
+(v)
+
+The core chapter of the thesis consist of the published papers or accepted
+manuscripts or production in their original publication format and should NOT be
+retyped or reformatted. They must be presented coherently in the thesis according
+to the requirement of the University of Malaya Doctoral Degree Regulations (latest
+version), including any accompanying declarations. The following must be indicated
+for any jointly written paper:
+
+
+
+
+Acknowledgment of co-authors and verification of originality.
+A clear statement of the contribution made by each author in any joint published
+work or production. For example, a statement of contribution from a 3-author
+academic research publication is as follows:
+Tang, J.M.Y., Adli, D.S.H., & Belabut, D. (2011). Histological development
+of selected neural structures of Dark-sided Chorus Frog,
+
+6
+
+Microhyla heymonsi (Amphibia: Anura). Malaysian Journal of Science,
+29(1), 11-18.
+Tang, J.M.Y. participated in all experiments, coordinated the data analysis
+and contributed to the writing of the manuscript. Adli, D.S.H. supervised
+the development of work and edited the manuscript. Belabut, D. gave
+technical support and conceptual advice, and helped in data interpretation.
+(vi)
+
+The Discussion chapter explains the cumulative effect of the papers, the
+significance of the findings and the knowledge claimed in the thesis.
+
+(vii)
+
+The Conclusion summarizes the findings in all published works or production
+and suggests the future direction for research.
+
+(vii)
+
+The References chapter lists all works and sources that are cited in the
+Introduction, Literature Review and Conclusion chapters.
+
+In general, the examination process for theses in the format of published papers is similar to
+that of conventional theses. However the aspects of thesis being evaluated by the examiners
+may slightly differ.
+Candidates under the programme of Doctoral Degree by Retrospective or Prior
+Publication are required to refer to the Guidelines for Admission To The Universiti Malaya
+Doctoral Degree By Research Programme Via Retrospective or Prior Publication (latest
+version) for further details.
+
+7
+
+Table 1.3: The general structure that follows the format of published papers
+Preliminary
+
+Title Page
+
+Original Literary Work Declaration
+
+Abstract
+
+Abstrak
+
+Acknowledgements
+
+Table of Contents
+
+List of Figures
+
+List of Tables
+
+List of Symbols and Abbreviations
+
+List of Appendices
+Main Body
+
+
+
+
+
+
+
+
+
+
+
+
+
+Chapter 1: Introduction
+Chapter 2: Literature Review
+Chapter 3: Methodology (where applicable)
+Chapter 4: *Published Paper 1
+*Published Paper 2
+*Published Paper 3 and so on
+*Note: Authors' contributions must be indicated for each published paper
+Chapter 5: Discussion
+Chapter 6: Conclusion
+References (List of references for chapters of Introduction, Literature Review
+and Conclusion)
+Supplementary
+List of Publications and Papers Presented
+Appendices
+Co-authors Consent
+
+8
+
+CHAPTER 2: SEQUENCE OF CONTENTS
+The structure of the research report, dissertation or thesis is based on a standard format which
+contains the three main sections; Preliminary, Main Body and Supplementary.
+
+2.1
+
+Preliminary
+This section consists in order of the following:
+
+
+
+
+
+
+
+
+
+
+
+Title Page
+Original Literary Work Declaration Form
+Abstract
+Abstrak
+Acknowledgements
+Table of Contents
+List of Figures
+List of Tables
+List of Symbols and Abbreviations
+List of Appendices
+
+2.1.1 Title Page
+The title page is the first page after the front cover and should include:
+(a) The final research title which has been approved by the faculty;
+(b) Name of candidate according to the registration records;
+(c) A statement according to the mode of programme (Table 2.1); and
+(d) The year of submission.
+Table 2.1: Statement on Title Page according to mode of programme
+Master’s
+Degree
+Research report
+Dissertation (by
+Dissertation
+(by Coursework
+Mixed mode)
+(by Research)
+or by Clinical)
+RESEARCH REPORT
+DISSERTATION
+DISSERTATION
+SUBMITTED TO THE
+SUBMITTED IN PARTIAL
+SUBMITTED IN
+(name of the Faculty)
+FULFILMENT OF THE
+FULFILMENT OF THE
+UNIVERSITI MALAYA, IN
+REQUIREMENTS FOR
+REQUIREMENTS FOR
+PARTIAL FULFILMENT OF
+THE
+THE
+THE REQUIREMENTS FOR
+DEGREE OF (Name
+DEGREE OF (Name
+THE DEGREE OF (Name
+of Programme)
+of Programme)
+of Programme)
+
+Dissertation (by Coursework
+or by Clinical)
+
+Doctoral
+Degree
+Thesis
+(by Mixed mode)
+
+DISSERTATION SUBMITTED
+IN PARTIAL FULFILMENT OF
+THE REQUIREMENTS FOR
+THE DEGREE OF (Name
+of Programme)
+
+THESIS SUBMITTED IN
+PARTIAL FULFILMENT OF
+THE REQUIREMENTS FOR
+THE DEGREE OF (Name of
+Programme)
+
+9
+
+Thesis (by
+Research)
+THESIS SUBMITTED IN
+FULFILMENT OF THE
+REQUIREMENTS FOR
+THE
+DEGREE OF
+(Name of
+Programme)
+
+This page is the first page of Roman numeral page number but it is not numbered. The
+text should be typed using font type Times New Roman, font size 14 with 1.15 pt. line
+spacing.
+
+(a)
+
+(b)
+TITLE OF DISSERTATION
+TITLE OF RESEARCH REPORT
+NAME OF CANDIDATE
+NAME OF CANDIDATE
+DISSERTATION SUBMITTED IN
+PARTIAL FULFILMENT OF THE
+REQUIREMENTS FOR THE DEGREE
+OF MASTER OF LINGUISTICS
+
+SUBMITTED TO THE GRADUATE
+SCHOOL OF BUSINESS AND
+ACCOUNTANCY UNIVERSITI
+MALAYA, IN PARTIAL FULFLMENT
+OF THE REQUIREMENTS FOR THE
+DEGREE OF MASTER OF BUSINESS
+ADMINISTRATION
+
+NAME OF FACULTY / ACADEMY /
+INSTITUTE / CENTRE
+UNIVERSITI MALAYA
+KUALA LUMPUR
+
+202X
+
+202X
+
+(c)
+
+(d)
+TITLE OF DISSERTATION
+
+TITLE OF DISSERTATION
+
+NAME OF CANDIDATE
+
+NAME OF CANDIDATE
+
+DISSERTATION SUBMITTED IN
+FULFILMENT OF THE
+REQUIREMENTS FOR THE DEGREE
+OF MASTER OF PHILOSOPHY
+
+DISSERTATION SUBMITTED IN
+PARTIAL FULFILMENT OF THE
+REQUIREMENTS FOR THE DEGREE
+OF DOCTOR OF MANAGEMENT
+
+NAME OF FACULTY / ACADEMY /
+INSTITUTE / CENTRE
+UNIVERSITI MALAYA
+KUALA LUMPUR
+
+NAME OF FACULTY / ACADEMY /
+INSTITUTE / CENTRE
+UNIVERSITI MALAYA
+KUALA LUMPUR
+
+202X
+
+202X
+
+10
+
+Figure 2.1, continued
+
+(e)
+
+(f)
+TITLE OF THESIS
+
+TITLE OF THESIS
+
+NAME OF CANDIDATE
+
+NAME OF CANDIDATE
+
+THESIS SUBMITTED IN PARTIAL
+FULFILMENT OF THE
+REQUIREMENTS FOR THE DEGREE
+OF DOCTOR OF PUBLIC HEALTH
+
+THESIS SUBMITTED IN
+FULFILMENT OF THE
+REQUIREMENTS FOR THE DEGREE
+OF DOCTOR OF PHILOSOPHY /
+MEDICINE
+
+NAME OF FACULTY / ACADEMY /
+INSTITUTE / CENTRE
+UNIVERSITI MALAYA
+KUALA LUMPUR
+
+NAME OF FACULTY / ACADEMY /
+INSTITUTE / CENTRE
+UNIVERSITI MALAYA
+KUALA LUMPUR
+
+202X
+
+202X
+
+Figure 2.1: Examples of title page
+(a) Master’s research report by coursework and by clinical, (b) Master’s dissertation by Mixed
+mode, (c) Master’s dissertation by research, (d) Doctoral dissertation by coursework and by
+clinical, (e) Doctoral thesis by mixed mode, and (f) Doctoral thesis by research.
+
+11
+
+(e)
+
+(f)
+TITLE OF THESIS
+
+TITLE OF THESIS
+
+NAME OF CANDIDATE
+
+NAME OF CANDIDATE
+
+THESIS SUBMITTED IN PARTIAL
+FULFILMENT OF THE
+REQUIREMENTS FOR THE DEGREE
+OF DOCTOR OF PUBLIC HEALTH
+
+THESIS SUBMITTED IN
+FULFILMENT OF THE
+REQUIREMENTS FOR THE DEGREE
+OF DOCTOR OF PHILOSOPHY /
+MEDICINE
+
+NAME OF FACULTY / ACADEMY /
+INSTITUTE / CENTRE
+UNIVERSITI MALAYA
+KUALA LUMPUR
+
+NAME OF FACULTY / ACADEMY /
+INSTITUTE / CENTRE
+UNIVERSITI MALAYA
+KUALA LUMPUR
+
+202X
+
+202X
+
+Figure 2.1: Examples of title page
+(a) Master’s research report by coursework and by clinical, (b) Master’s dissertation by Mixed
+mode, (c) Master’s dissertation by research, (d) Doctoral dissertation by coursework and by
+clinical, (e) Doctoral thesis by mixed mode, and (f) Doctoral thesis by research.
+
+2.1.2 Original Literary Work Declaration
+This form must be completed by the candidate and signed by a witness (Supervisors
+or Head of Department/Deputy Dean of Postgraduate). The original signed form must
+be included in all copies of the research report/dissertation/thesis. The form can be
+downloaded from the MAYA website in two (2) languages (English and Bahasa
+Malaysia). If the research report/dissertation/thesis is written in English, hence the
+English version of the form is used and vice versa.
+
+12
+
+(a)
+
+(b)
+No. Pendaftaran
+Registration No:
+Tajuk Kertas Projek/Laporan Penyelidikan/Disertasi/Tesis (“Hasil Kerja ini”):
+Title of Research Report/Dissertation/Thesis (“this Work”)
+
+I do solemnly and sincerely declare that:
+
+(1)
+(2)
+(3)
+
+(4)
+(5)
+
+(6)
+
+I am the sole author/writer of this Work;
+This Work is original;
+Any use of any work in which copyright exists was done by way of fair dealing and
+for permitted purposes and any excerpt or extract from, or reference to or
+reproduction of any copyright work has been disclosed expressly and sufficiently
+and the title of the Work and its authorship have been acknowledged in this Work;
+I do not have any actual knowledge nor do I ought reasonably to know that the
+making of this work constitutes an infringement of any copyright work;
+I hereby assign all and every rights in the copyright to this Work to the Universiti of
+Malaya (“UM”), who henceforth shall be owner of the copyright in this Work and that
+any reproduction or use in any form or by any means whatsoever is prohibited
+without the written consent of UM having been first had and obtained;
+I am fully aware that if in the course of making this Work I have infringed any
+copyright whether intentionally or otherwise, I may be subject to legal action or any
+other action as may be determined by UM.
+
+Figure 2.2: Original Literary Work Declaration
+(a) English, (b) Bahasa Malaysia
+
+13
+
+2.1.3 Abstract
+An abstract is a short summary of the research report/dissertation/thesis. An abstract
+should briefly describe the objectives of the research (problem statement), the
+significance of the research, research methodology, as well as the findings and
+conclusion of the research.
+The Abstract page begins with the title of research report/dissertation/thesis (in
+uppercase) that is approved by the faculty. Candidates are not allowed to change the
+title without the approval of the faculty.
+An abstract must not exceed 500 words, typed in a single paragraph with doublespacing, and written in Bahasa Malaysia and English language. A maximum of five (5)
+keywords should also be listed below the abstract (Figure 2.3).
+Where the language of the thesis is other than Bahasa Malaysia [Malaysia] or English
+[United Kingdom], an abstract in that language must also be included. The sequence
+of abstracts is as follows:
+ For research report /dissertation/thesis written in Bahasa Malaysia, the abstract in
+Bahasa Malaysia is followed by the English version.
+ For research report /dissertation/thesis written in English, the abstract in English is
+followed by the Bahasa Malaysia version.
+ For research report /dissertation/thesis written in Arabic, the abstract in Arabic is
+followed by its version in Bahasa Malaysia and English.
+The Abstract page is assigned Roman numeral "iii" and the following pages should be
+numbered consecutively.
+
+14
+
+[TITLE OF RESEARCH REPORT/DISSERTATION/THESIS]
+ABSTRACT
+The purpose of this aesthetic evaluation is two-fold. First, I examine J.R.R. Tolkien’s literary illustration of
+space, place, and atmosphere in a series of locations across Middle-earth. I focus on the aesthetic facets of
+the physical environments, the possible aesthetic experiences generated from the visual layers of landscapes
+and atmospheres, and finally, the philosophical implications obtained through the moments of reflection in
+those locations. Second, I investigate the possibility of considering Tolkien’s depiction of space, place, and
+atmosphere as literary artifacts and the construction of the whole Middle-earth as an act of artistic creation.
+The theoretical framework of this doctoral research is formulated based on the combination of seven critical
+criteria consisting of formalism, framing, historical/biographical information, imagination, the dialectical,
+engagement, and aesthetic creation theory taken from environmental aesthetics and art philosophy. These
+critical terms are tools at hand in aesthetically determined forms of evaluation and appreciation, which allows
+assessing the qualitative—literary—landscapes from multidisciplinary views to interpret their aesthetic and
+philosophical significance. Results demonstrate that Middle-earth could be observed as an aesthetico-cultural
+tapestry on which Tolkien materialized his artistic, creative, moral, social, and environmental concerns
+regarding the grave era in which he lived. He accomplished this task through the depiction of perceptual
+aesthetic dimensions of the literary environments. Therefore, Middle-earth could stand as more than a mere
+background of The Lord of the Rings; thus, the shaping of this imagined realm can be identified as an act of
+art creation. Further, the aesthetic decoration and juxtaposition of the physical environments and artifactual
+objects in Middle-earth make them eligible to be viewed as literary artifacts. The findings of this research
+can crucially contribute to our understanding of J.R.R. Tolkien as a literary world-builder who externally
+depicted the landscapes of Middle-earth with aesthetic features and internally elevated them with
+philosophical dimensions to convey his moral, philosophical, artistic, and environmental messages. The
+results could also assist scholars in arts and humanities in illuminating how the representation of imagined
+geography could be utilized as a powerful aesthetic tool to demonstrate thought-provoking aestheticphilosophical spaces of contemplation.
+Keywords: J.R.R. Tolkien, Middle-earth, literary Landscapes, Aesthetic Creation, Environmental
+Aesthetics.
+(iii)
+
+Figure 2.3: Example of abstract
+
+15
+
+iii
+
+2.1.4 Acknowledgements
+Most research reports, dissertations or theses include a message to convey
+appreciation to those who have been involved and provided their assistance directly or
+indirectly in the preparation of the study.
+This is optional and should not exceed a single page, which is numbered in Roman
+numeral accordingly.
+
+2.1.5 Table of Contents
+The Table of Contents lists the chapters, topics and sub-topics together with their page
+numbers. Sub-topics and topics should be labelled according to the chapter, for
+example:
+
+CHAPTER 1: TITLE
+1.1 Topic 1
+1.1.1 Sub-topic 1
+CHAPTER 2: TITLE
+2.1 Topic 1
+2.1.1 Sub-topic 1
+This numbering system provides a clear picture of the relationship between chapters
+and topics and shows how they are connected.
+
+2.1.6 List of Figures
+This list contains the titles of figures, together with their page numbers, which are found
+throughout the text. For example, figures in Chapter 1 are numbered sequentially:
+Figure 1.1, Figure 1.2 and so on.
+
+2.1.7 List of Tables
+This list contains the titles of tables, together with their page numbers, which are listed
+in the text. The numbering system is according to chapter, for e.g.: tables in Chapter 1
+are numbered sequentially: Table 1.1, Table 1.2 and so on.
+
+2.1.8 List of Symbols and Abbreviations
+The symbols, abbreviations, nomenclature and terminology that are used in the text
+must be listed down accordingly.
+For further information on spelling and abbreviations, candidates are advised to refer to
+the latest edition of the Oxford Advanced Learner’s Dictionary published by Oxford
+University Press.
+
+16
+
+2.1.9 List of Appendices
+This list is optional and contains the titles of appendices placed in the supplementary
+section
+
+2.2
+
+Main Body
+
+Candidates and supervisors should ensure that the text follows the agreed conventions of the
+individual faculty. The main body in the research report/dissertation/thesis must be organized
+following the guidelines as mentioned below:
+ Text must be organized in titled chapters.
+ The chapter titles must reflect the content of the chapter.
+ Every chapter must begin on a new page.
+ Chapters can be divided into sub-chapters with corresponding sub-titles.
+ Titles and sub-titles must be numbered.
+There is no restriction on the total number of chapters in a research report/dissertation/thesis.
+The number of chapters differs according to the field of study conducted by the candidate
+whether it is science-based or social science-based. However the content of the chapters may
+differ according to the candidate's research or conventions of individual faculty.
+Generally, a research report/dissertation/thesis will have the following basic structure:
+ INTRODUCTION
+ LITERATURE REVIEW
+ METHODOLOGY
+ RESULTS
+ DISCUSSION
+ CONCLUSION
+ REFERENCES
+Items in the structure are divided into separate chapters and the descriptions of these chapters
+are as follows:
+2.2.1
+
+Introduction
+This chapter contains the introduction to the issues in which the research is concerned
+with, the aims and objectives of the study, and the scope or outline of the research
+approach as well as the structure of the research report/dissertation/thesis.
+
+2.2.2
+
+Literature Review
+A literature review is a description of the literature relevant to a particular field or topic
+of study. It consists of a critically written and comprehensive account of the published
+works on a topic by accredited scholars and researchers. A critical literature review is a
+critical assessment of the relevant literature. It is directly related to the research,
+providing information on theories, models, materials and techniques used in the
+research. The literature review should be comprehensive and include recent
+publications which are relevant to the research.
+
+17
+
+2.2.3
+
+Methodology
+This chapter describes and explains the materials as well as the research methodology
+used in the study. The sub-topics for this chapter include the key research questions,
+the research design, and the research procedures adopted. It may also, where
+appropriate, indicate sampling methods, research instruments and statistical methods
+employed. The purpose of this is to inform the reader on the methods used to collect
+the data and generate the findings reported.
+
+2.2.4
+
+Results
+This chapter explains the results which are commonly presented in the form of text,
+figures and tables, complete with data analysis.
+
+2.2.5
+
+Discussion
+This chapter contains the interpretation of the results. The findings of the research
+should be compared and contrasted with those of previous studies presented in the
+literature review. The purpose of this chapter is to discuss the findings and the outcomes
+of the research in relation to the results that have been obtained.
+
+2.2.6
+
+Conclusion
+In this chapter, the findings are summarized and their implications discussed. This
+section may include suggestions for future work.
+
+2.2.7
+
+References
+All works or studies referred to in the research report/dissertation/thesis in the form of
+quotations or citations must be included in the references.
+The references should be written consistently in the American Psychological
+Association (APA) format or in another format approved by the faculty. Each reference
+should be written in single spacing format and a double space should be left between
+references. The list of references must be arranged in alphabetical order and the
+entries should not be numbered. The list must also have a hanging indentation of 0.5
+inch. For example:
+
+Walmsley, Ben. (2019), Audience Engagement in the Performing Arts: A Critical
+Analysis. Springer Nature.
+Wreen, Michael. (2014) “Beardsley’s Aesthetics.” The Stanford Encyclopedia of
+Philosophy, edited by Edward N. Zalta, Winter 2014, Metaphysics Research Lab,
+Stanford University.
+
+Tillson, Victoria G. (2010) "A Nearly Invisible City: Rome in Alberto Moravia's
+1950s fiction." Annali d'Italianistica, 28: 237-256.
+
+18
+
+Reference citations in text require the following information:
+
+last name of the author or as specified in the UM Library APA Formatting and Style
+Guide (latest edition),
+
+the year of publication,
+
+the page number for the reference (direct quotes only).
+
+For summaries or paraphrases, the last name of the author and the year of publication
+must be included for the in-text reference. For examples:
+
+Kingston and Parker (2012) found the biggest challenges in classroom to be ….
+The biggest challenges in classroom were …. (Kingston & Parker, 2012).
+
+For direct quotations (which refers to when the exact words of another author are
+copied), the last name of the author, the year of publication as well as the page number
+for the reference must be included for the in-text reference. The quotation has to be
+enclosed in quotation marks. For examples:
+
+In Unfinished Tales of Numenor and Middle-earth (1980), Christopher writes
+that his father illustrated mallorn trees based on familiar Primary World species.
+Gollum enter the damned land of Sauron. Tolkien describes the scenery from
+the eyes of the hobbits and writes, “slowly and painfully they clambered down,
+groping, stumbling, scrambling among rock and briar and dead wood in the
+blind shadows” (The Lord of the Rings, 917).
+
+19
+
+If the quoted citation contains more than 40 words, it should be placed within a
+paragraph of its own with a 0.5 inch indentation. For example:
+
+Thacker could answer that question too when he contends that “since the early
+1990s questions of space and geography have become recognized as legitimate
+and important topics in many areas of literary and cultural studies, and setting out
+the sphere of literature, if not life, by some form of map a more familiar
+hermeneutic strategy” (The Idea of a Critical Literary Geography, 57-8).91 It is,
+therefore, fruitful to carry out an analysis of Tolkien’s watercoloresque
+melancholic visualization of space, place, and atmosphere and observe them as
+Tolkien’s critique of the destructive nature of modernity that parallels with
+contemporary environmental concerns.
+Please refer to the Universiti Malaya Library APA Formatting and Style Guide. The
+guide can be downloaded at UM Library website (https://umlibguides.um.edu.my)
+2.3
+
+Supplementary
+
+Specific items which were not included in the main body of the text, should be put in this
+Supplementary section. Typically, this section includes the following:
+2.3.1
+
+List of Publications and Papers Presented
+Published works as well as papers presented at conferences, seminars, symposiums
+etc. pertaining to the research topic of the research report/dissertation/thesis are
+suggested be included in this section. The first page of the article may also be
+appended as reference.
+
+2.3.2
+
+Appendices
+Appendices consist of research instruments, additional illustration of data sources, raw
+data and quoted citations which are too long to be placed in the text. The appendix
+section supports the written text of the research report/dissertation/thesis by including
+materials that can provide additional information. These materials include research
+data, tables, examples of questionnaires, maps, photos and other materials that are
+too long to be included in the text or are not directly required to comprehend the text
+can be included as appendices.
+Tables and graphics that are more than two pages long are suggested to be included
+in the Appendix section.
+Appendices are labelled as APPENDIX A, APPENDIX B, etc. and they should
+correspond to the List of Appendices of Preliminary section.
+20
+
+2.3.3
+
+Co-authors Consent
+Please refer to 1.3 (d).
+
+CHAPTER 3: FORMAT SPECIFICATIONS
+
+3.1
+
+Paper Quality, Printing and Duplicating
+The research report/dissertation/thesis should be printed, single-sided, on high quality white
+A4 paper (201 × 297 mm; 80 grams). Computer pin-feed printout paper is not permitted.
+The research report/dissertation/thesis, in soft cover copies, must be typed and duplicated by
+offset printing or good quality photocopying. All copies must be clean and neat in order to
+ensure easy reading.
+
+3.2
+
+Typing and Printing Quality
+Texts in research report/dissertation/thesis should be typed on one side of the paper only.
+They must be typed using font type Times New Roman, font size 12 (except for tables and
+figures) and justified, using Microsoft Word version (latest edition) or later, or similar wordprocessing software. Those written in Arabic should use font type Traditional Arabic in font
+size 16. Words in a language that is different from the language of the research report
+/dissertation/thesis must be typed in italics. For mathematical texts, the use of Equation Editor
+or LaTeX is advisable. Script fonts are not permitted.
+Chapter titles should be typed with capital letters and centered between the left and right
+margins. Each chapter must begin on a new page. Chapters and subchapters should be also
+titled. Titles should be typed in bold without underline.
+A high-quality laser or ink-jet printer should be used for the printing.
+
+3.3
+
+Line Spacing
+The body of the text should be typed with double spacing. Single-spacing is only permitted in
+tables, long quotations, footnotes, citation and in the references.
+The first sentence of a new paragraph should not start at the bottom of a page if the space
+available can only fit one line.
+
+3.4
+
+Margins
+The text should have the following margins:
+ Top
+: 2.0 cm or 0.79 inch
+ Right
+: 2.0 cm or 0.79 inch
+ Left
+: 4.0 cm or 1.57 inch
+ Bottom
+: 2.0 cm or 0.79 inch
+Additional guidelines regarding margin are as follows:
+
+Do not type more than one sentence after the bottom margin. If it is necessary to do so, it
+should only be for a footnote or the completion of the last sentence of the chapter, topic or
+sub-topic or information in a figure.
+
+21
+
+
+
+
+All tables and figures must be placed within the specified margins.
+The last paragraph of the page should contain at least two sentences. If it does not, the
+paragraph should begin on the next page.
+
+3.5
+
+Page Numbering
+All page numbers should be printed 1.0 cm from the bottom edge of the page and placed at
+the right-hand side without any punctuation (Figure 3.1).
+The page numbering system must conform to the following rules:
+ The page numbers should be placed at the right-hand side without any punctuation.
+ Font type Times New Roman and font size 10 recommended for numbers.
+ Roman numerals (i, ii, iii, …) should be used in the Preliminary section. The first page of
+the thesis, the title page, is an unnumbered page ‘i’. Numbering begins on the second page
+with ‘ii’ for the Original Literary Work Declaration Form.
+ Arabic numerals (1, 2, 3, …) are used on the pages of the text (starting with the Introduction
+page) and Supplementary section.
+
+In line with text
+
+2 cm
+
+Approximately 1 cm
+
+Figure 3.1: Placement of page number
+3.6
+
+Numbering of Chapters and Sub-chapters
+Chapters and sub-chapters must be numbered using Arabic numerals (1, 2, 3 etc).
+Chapters are numbered CHAPTER 1, CHAPTER 2, CHAPTER 3, and so on. Subchapters are nested, but its numbering is not indented, up to a maximum of 4 levels as
+in the example shown below:
+
+CHAPTER 2: FIRST LEVEL (CHAPTER TITLE)
+2.1 Level 2 (sub-title);
+2.1.1 Level 3 (sub-sub-title);
+2.1.1.1 Level 4 (sub-sub-sub-title)
+
+22
+
+The use of letters in parenthesis in the main body for e.g., (a), (b), (c) is appropriate as
+a means of differentiating sub-topics of the same topic. However, it is not required to
+be listed in the Table of Contents.
+If a chapter title or chapter sub-title at any level exceeds a single line, the spacing
+between the lines must be the same as that of the text (double-spacing). Subsequent
+sub-chapters beyond the fourth nesting level must be numbered using alphabets; (a),
+(b), (c), and so on.
+
+3.7
+
+Footnotes
+There are differences in the use of footnotes in various disciplines. For example,
+footnotes are commonly used in Social Sciences research but rarely in Sciences
+research. However, candidates are advised to limit the use of footnotes unless they are
+proved necessary to the document. Footnotes are used to elaborate or provide
+additional information regarding matters discussed in that page.
+Footnotes are recorded using Arabic numeric and numbered consecutively. Raised
+superscript numerals in the text refer to explanatory notes and documented sources
+appearing either at the bottom of the page as footnotes or at the end of the thesis as
+endnotes in a notes section. The advantage of using notes is that explanatory type of
+information can be presented along with source citations on the same page or place.
+Footnotes should use a smaller font than the text (font size 8).
+When using footnote, a number formatted in superscript is inserted following the
+punctuation mark in the text. Footnotes should be placed at the bottom of the page on
+which they appear (Figure 3.2). Please refer to the faculty for the recommended
+convention for writing of footnotes.
+
+Western ideas of art, civilization, and philosophy was first discussed by Plato
+in The Republic (381 BC).93
+
+93
+
+Gardner, Sebastian. Routledge Philosophy Guidebook to Kant and the Critique of Pure Reason. Psychology
+Press, 1999.
+
+Figure 3.2: Example of footnote
+
+23
+
+3.8
+
+Tables
+Tables are printed within the body of the text at the center of the frame and labelled according
+to the chapter in which they appear. Thus, for example, tables in Chapter 3 are numbered
+sequentially: Table 3.1, Table 3.2 and so on.
+The caption should be placed above the table itself (Table 3.1). If the table contains a citation,
+the source of the reference should be included in the table caption.
+Table 3.1: Example of table
+
+Heading
+Text
+
+Heading
+Text
+
+If the table occupies more than one page, the continued table on the following page should
+indicate that it is a continuation, for example: ‘Table 3.7, continued’. The header row should
+also be repeated.
+
+3.9
+
+Figures
+Figures, like tables are printed within the body of the text at the center of the frame and labelled
+according to the chapter in which they appear. Thus, for example, figures in Chapter 3 are
+numbered sequentially: Figure 3.1, Figure 3.2.
+Figures, unlike text or tables, contain graphs, illustrations or photographs and their labels are
+placed at the bottom of the figure rather than at the top (using the same format used for tables)
+(Figure 3.3).
+
+40
+Example
+20
+Test
+0
+Sample
+
+Figure 3.3: Example of figure
+If the figure occupies more than one page, the continued figure on the following page should
+indicate that it is a continuation: for example: ‘Figure 3.7, continued’.
+If the figure contains a citation, the source of the reference should be placed after the label.
+
+24
+
+3.10
+
+Binding
+Each copy of the research report/dissertation/thesis submitted shall be bound in one (1)
+volume. The thesis cover must be of A4 size (210mm x 297mm).
+For the purpose of examination, research report/dissertation/thesis submitted should be soft
+cover or comb bound with the following colour (Figure 3.4):
+ Research report: Navy blue
+ Dissertation: Dark red or maroon
+ Thesis: Dark red or maroon
+For final submission prior to graduation, research report/dissertation/thesis submitted should
+be hard cover bound in rexine with the following colour (Figure 3.5):
+ Research project: Navy blue
+ Dissertation: Dark red or maroon
+ Thesis: Dark red or maroon
+Front Cover Colour of Dissertation/Thesis (Dark red or maroon)
+Front Cover Colour of Research Report (Navy blue)
+
+Figure 3.4: Sample of softbound / comb bound copy for first submission for examination
+
+25
+
+(a)
+
+(a)
+
+Figure 3.5: Samples of hardbound copy for final submission
+(a) Example of hardbound thesis or dissertation (in dark red or maroon);
+(b) Example of hardbound research report (in navy blue)
+
+26
+
+The title of research report/dissertation/thesis, name of author, name of the University
+and year of submission must be printed on the front cover. The letters for the Front
+Cover should be printed in gold letterings of font size 16, font type Arial Narrow,
+bold and in uppercase letters (Figure 3.6 and 3.7).
+
+FACULTY OF …
+UNIVERSITI MALAYA
+KUALA LUMPUR
+202X
+
+Figure 3.6: Formatting of the front cover of research report/dissertation/thesis
+
+27
+
+TITLE OF RESEARCH
+THAT IS APPROVED
+BY THE FACULTY
+
+NAME OF
+CANDIDATE AS
+REGISTERED WITH
+THE UNIVERSITY
+
+GOLD LETTERING,
+FONT ARIAL
+NARROW, SIZE 16
+BOLD, 1.15 PT. LINE
+SPACING
+
+FACULTY/ACADEMY/
+INSTITUTE/CENTRE
+WHERE CANDIDATE
+IS REGISTERED
+
+YEAR OF
+SUBMISSION
+
+Figure 3.7: Example of the front cover of research report/
+dissertation/thesis
+
+28
+
+The spine of the manuscripts should show the title of research report/dissertation/thesis, name
+of author, year of submission and name of degree. The year of submission must be in
+accordance with the year when the research report/dissertation/thesis is submitted (Figure 3.8
+and 3.9). If the title of the research report/dissertation/thesis exceeds the space of the spine,
+a smaller font size can be used (i.e. font size 16 to 14) or alternatively the title can be truncated
+with ellipses (…) (Figure 3.10).
+
+PRIVATIZATION IN ALGERIA: POLICY AND
+PERFORMANCE
+
+AMIR GHORBANI
+
+PhD
+2017
+
+Figure 3.8: Spine format
+
+Figure 3.9: Example of spine format
+
+THE EFFECT OF GEOGRAPHICAL REGION ON
+THE TRANSITION TIME OF CMMI-BASED …
+
+KWONG SIU YEE
+
+PhD
+2017
+
+Figure 3.10: Spine format for long title
+
+3.11
+
+Word Limit
+The maximum word limit for a submission for examination is shown in Table 3.2.
+Table 3.2: Maximum word limit
+Master’s Programme
+Research Report
+(by Coursework
+or by Clinical)
+30,000 words
+
+Dissertation (by
+Mixed mode)
+40,000 words
+Doctoral Programme
+
+Dissertation (by
+Coursework or
+by Clinical)
+
+Thesis
+(by Mixed
+mode)
+
+60,000 words
+
+80,000 words
+29
+
+Dissertation
+(by
+Research)
+60,000 words
+Thesis (by
+Research)
+100,000 words
+
+The minimum word limit is determined by the faculty or based on the programme standards
+according to their respective discipline (if any). The maximum length of words excludes
+footnotes, references, appendices, tables, figures and prefaces.
+Candidates who are unable to meet the word limit set by the University must seek approval
+from the faculty at least one month before the submission of research report
+/dissertation/thesis for examination.
+
+3.12
+
+Other Information
+
+A candidate may not resubmit previous research work which he has submitted to this or any
+other university for the award of a degree. The candidate may, however, incorporate any part
+of such work, provided that there is a clear indication in the research report/dissertation/thesis
+of its sources.
+The candidate may also include any other printed or published work by an individual or a
+working group to validate his findings. Where the contribution is from a working group, the
+candidate is required to provide a statement indicating which part of the work was carried out
+by the candidate. The statement should be signed by the rest of the group indicating their
+consent (this may be included in the Appendix).
+Approved research report/dissertations/theses or parts of their content are allowed for
+publication if they are accompanied by a statement that the work was conducted towards the
+fulfilment of a particular degree.
+Candidates of Doctoral degree (all modes) and Master’s by research are required to publish
+papers in Web of Science (WoS) or Scopus or 2Category A or B refereed journals or book or
+3
+book chapters publish by publishers listed in the WoS, Universiti Malaya Press, or Dewan
+Bahasa dan Pustaka or any publishers recognized by the Faculty. Publications must be based
+on the work during the course of study, and due reference must be made to the University in
+all such papers.
+
+2 Publications in Category A or B refereed journals or book or book chapters are only applicable to candidates pursuing
+
+programmes in the field of Social Sciences.
+3 Two (2) book chapters of different books are equivalent to one (1) publication.
+
+30
+
+CHAPTER 4: SUBMISSION
+
+4.1
+
+Prior to Submission
+Postgraduate candidates are required to obtain approval from the supervisor(s) and faculty via
+MAYA before online submission. This is to allow timely nomination of examiners for research
+report/dissertation/thesis.
+Submission of research report/dissertation/thesis for examination has to be done within the
+candidature period after title approval by the faculty.
+Candidates are strongly advised against copying the formatting done by other candidates as
+previously submitted research report/dissertation/thesis may not conform to the current
+formatting requirements. Failure to meet the formatting requirements may result in a
+thesis/dissertation being rejected at the point of submission.
+Postgraduate candidates shall submit their research report/dissertations/theses to the
+Postgraduate Officer of the respective faculty.
+
+4.2
+
+Required Documents for Submission
+Documents required for submission for the purpose of examination are as follows:
+ at least two (2) printed softbound/comb bound copies (or such numbers as may be
+determined by the faculty) of the research report/dissertation/thesis;
+ one (1) electronic copy (PDF format); and
+ Submission of Thesis / Dissertation for Examination/Re-examination form.
+Documents required for final submission prior to graduation after completing the corrections
+(if any), are as follows:
+ at least one (1) printed hardbound copy (or such numbers as may be determined by the
+faculty) of the final research report/dissertation/thesis;
+ one (1) electronic copy (PDF format);
+ Final Submission of Thesis/Dissertation form;
+ Repository Policy For Universiti Malaya Postgraduate Theses/Dissertation/Research
+Reports form; and
+ Correction Report form (if applicable).
+All the required forms can be downloaded
+https://umsitsguide.um.edu.my/index.html .
+
+31
+
+from
+
+the
+
+MAYA
+
+portal
+
+in
+
+the
+
+The submitted electronic copy of the research report/dissertation/thesis (in PDF format) in a USB
+flash drive or any valid source of electronic copy must be labeled with the following details:
+
+
+
+
+
+
+Name
+Registration no.
+Title of research report/dissertation/thesis
+Faculty/Academy/Institute/Centre
+Year of submission (current year)
+
+32
+
+CHAPTER 5: PLAGIARISM
+Postgraduate candidate of the Universiti Malaya are expected to produce original academic
+work. Plagiarism is defined as an academic fraud arising from the attitude of lying, insincerity,
+untrustworthiness, dishonesty and disrespect to fellow colleagues. Plagiarism happens when
+someone else’s idea is taken without mentioning the source, and thus giving the impression
+that the idea is his own. This situation may occur when:
+(1) one’s idea, taken word for word from an article or book that has been published.
+(2) The idea of a person from an article or book is taken using his own words.
+(3) A person’s idea is taken from discussions whether in conferences, seminars, forums, talks
+or informal discussions between two parties.
+(4) Data, diagrams, tables, photographs or any other illustrative material derived from others is
+taken as if it were his own.
+Postgraduate candidates are strongly advised to read the “How to Avoid Plagiarism: A
+Handbook for Postgraduate Students”, which outlines the rules and regulations pertaining to
+acts of plagiarism.
+The University also requires the usage of Turnitin, an online web-based plagiarism detection
+application to avoid plagiarism and academic dishonesty. In most cases, the similarity index
+percentage should be between 10% to 30%. Please refer to your respective faculty regarding
+the acceptable similarity index percentage.
+
+33
+
+

@@ -1,0 +1,42 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1000" height="480" viewBox="0 0 1000 480">
+  <style> .box{fill:#fffaf0;stroke:#9c4221;stroke-width:2;} .title{font:16px sans-serif;fill:#37110e;} .label{font:13px sans-serif;fill:#37110e;} .arrow{stroke:#9c4221;stroke-width:2;fill:none;marker-end:url(#arrow);} </style>
+  <defs>
+    <marker id="arrow" markerWidth="10" markerHeight="7" refX="10" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#9c4221"/>
+    </marker>
+  </defs>
+
+  <rect x="40" y="40" width="220" height="80" rx="6" class="box"/>
+  <text x="150" y="70" text-anchor="middle" class="title">family_mappings.yaml</text>
+  <text x="150" y="90" text-anchor="middle" class="label">(BSIM → canonical)</text>
+
+  <rect x="320" y="40" width="220" height="80" rx="6" class="box"/>
+  <text x="430" y="70" text-anchor="middle" class="title">corpus/</text>
+  <text x="430" y="90" text-anchor="middle" class="label">(model examples for lookup)</text>
+
+  <rect x="600" y="40" width="260" height="80" rx="6" class="box"/>
+  <text x="730" y="70" text-anchor="middle" class="title">verification_rules.yaml</text>
+  <text x="730" y="90" text-anchor="middle" class="label">(token → label → action)</text>
+
+  <!-- arrows to central asset hub -->
+  <rect x="200" y="170" width="600" height="120" rx="8" class="box"/>
+  <text x="500" y="200" text-anchor="middle" class="title">Inference & Rule Engine</text>
+  <text x="500" y="220" text-anchor="middle" class="label">(corpus lookup, physics fallback, rule matching)</text>
+
+  <path d="M260 120 L260 170" class="arrow" />
+  <path d="M430 120 L430 170" class="arrow" />
+  <path d="M730 120 L730 170" class="arrow" />
+
+  <rect x="120" y="310" width="220" height="80" rx="6" class="box"/>
+  <text x="230" y="340" text-anchor="middle" class="title">artifacts/translated</text>
+  <text x="230" y="360" text-anchor="middle" class="label">(emitted netlists, logs)</text>
+
+  <rect x="660" y="310" width="220" height="80" rx="6" class="box"/>
+  <text x="770" y="340" text-anchor="middle" class="title">artifacts/verification</text>
+  <text x="770" y="360" text-anchor="middle" class="label">(labels, suggestions)</text>
+
+  <path d="M500 290 L330 310" class="arrow" />
+  <path d="M500 290 L770 310" class="arrow" />
+
+  <text x="500" y="430" text-anchor="middle" class="label">Data assets are versioned and curated; provenance flows recorded with each artifact.</text>
+</svg>

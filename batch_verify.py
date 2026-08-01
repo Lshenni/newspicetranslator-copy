@@ -31,6 +31,25 @@ def run_batch_verification(
     
     verifier = EnhancedVerifier(verbose=False)
 
+    def _classify_test(test) -> str:
+        """Classify a test result into a reviewer-facing outcome bucket."""
+        details = getattr(test, 'details', {}) or {}
+        message = (getattr(test, 'message', '') or '').lower()
+
+        if details.get('skipped'):
+            if details.get('simulator_constraint') == 'bsim4_parameter_check' or (
+                'bsim4' in message and 'constraint' in message
+            ):
+                return 'simulator_guardrail'
+            if details.get('reason') == 'singular_matrix' or 'singular matrix' in message or 'numerical constraint' in message:
+                return 'non_critical'
+            return 'other_skipped'
+
+        if not getattr(test, 'passed', False):
+            return 'translator_defect'
+
+        return 'clean_pass'
+
     def _is_verifiable_output(path: Path) -> bool:
         return path.is_file() and path.suffix.lower() == '.lib'
 
@@ -68,7 +87,14 @@ def run_batch_verification(
             'roundtrip_passed': 0,
             'roundtrip_failed': 0,
             'monte_carlo_passed': 0,
-            'monte_carlo_failed': 0
+            'monte_carlo_failed': 0,
+            'label_counts': {
+                'translator_defect': 0,
+                'simulator_guardrail': 0,
+                'non_critical': 0,
+                'other_skipped': 0,
+                'clean_pass': 0
+            }
         }
     }
     
@@ -89,7 +115,14 @@ def run_batch_verification(
                 'total_tests': 0,
                 'passed': 0,
                 'failed': 0,
-                'bsim4_errors': 0
+                'bsim4_errors': 0,
+                'label_counts': {
+                    'translator_defect': 0,
+                    'simulator_guardrail': 0,
+                    'non_critical': 0,
+                    'other_skipped': 0,
+                    'clean_pass': 0
+                }
             }
         }
         
@@ -113,11 +146,16 @@ def run_batch_verification(
                     'passed': results['summary']['passed'],
                     'failed': results['summary']['failed'],
                     'pass_rate': results['summary']['passed'] / max(results['summary']['total'], 1),
-                    'failures': []
+                    'failures': [],
+                    'test_results': []
                 }
                 
                 # Collect failure details
                 for test in results['tests']:
+                    label = _classify_test(test)
+                    all_results['summary']['label_counts'][label] = all_results['summary']['label_counts'].get(label, 0) + 1
+                    pdk_results['summary']['label_counts'][label] = pdk_results['summary']['label_counts'].get(label, 0) + 1
+
                     if test.test_name == 'roundtrip':
                         if test.passed:
                             all_results['summary']['roundtrip_passed'] += 1
@@ -139,6 +177,15 @@ def run_batch_verification(
                         # Check for BSIM4 errors specifically
                         if 'BSIM4' in test.message or 'bsim4' in str(test.details).lower():
                             pdk_results['summary']['bsim4_errors'] += 1
+
+                    file_result['test_results'].append({
+                        'test_name': test.test_name,
+                        'passed': test.passed,
+                        'label': label,
+                        'message': test.message,
+                        'details': test.details,
+                        'warnings': test.warnings,
+                    })
                 
                 pdk_results['files'].append(file_result)
                 pdk_results['summary']['total_tests'] += file_result['tests']

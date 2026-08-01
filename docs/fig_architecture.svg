@@ -1,0 +1,39 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1100" height="340" viewBox="0 0 1100 340">
+  <style> .box{fill:#f7fbff;stroke:#2b6cb0;stroke-width:2;} .title{font:18px sans-serif;fill:#1a202c;} .label{font:14px sans-serif;fill:#1a202c;} .arrow{stroke:#2b6cb0;stroke-width:2;fill:none;marker-end:url(#arrowhead);} </style>
+  <defs>
+    <marker id="arrowhead" markerWidth="10" markerHeight="7" refX="10" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#2b6cb0"/>
+    </marker>
+  </defs>
+  <rect x="30" y="40" width="180" height="70" rx="8" class="box"/>
+  <text x="120" y="80" text-anchor="middle" class="title">Parsing</text>
+
+  <rect x="260" y="40" width="220" height="70" rx="8" class="box"/>
+  <text x="370" y="70" text-anchor="middle" class="title">Semantic IR</text>
+  <text x="370" y="90" text-anchor="middle" class="label">(device family, params, exprs)</text>
+
+  <rect x="520" y="40" width="200" height="70" rx="8" class="box"/>
+  <text x="620" y="80" text-anchor="middle" class="title">Inference</text>
+  <text x="620" y="100" text-anchor="middle" class="label">(corpus / physics)</text>
+
+  <rect x="760" y="40" width="200" height="70" rx="8" class="box"/>
+  <text x="860" y="80" text-anchor="middle" class="title">Generation</text>
+  <text x="860" y="100" text-anchor="middle" class="label">(target lowering)</text>
+
+  <rect x="260" y="160" width="700" height="92" rx="8" class="box"/>
+  <text x="620" y="190" text-anchor="middle" class="title">Closed-loop Verification</text>
+  <text x="620" y="210" text-anchor="middle" class="label">(DC/AC/Transient/Monte Carlo, rule-based classifier)</text>
+
+  <!-- arrows -->
+  <path d="M210 75 L260 75" class="arrow" />
+  <path d="M480 75 L520 75" class="arrow" />
+  <path d="M720 75 L760 75" class="arrow" />
+
+  <!-- feedback arrow from verification back to inference/generation -->
+  <path d="M620 252 L620 230 L860 230" class="arrow" />
+  <text x="740" y="248" text-anchor="middle" class="label">repair / suggestions</text>
+
+  <!-- inputs/outputs -->
+  <text x="120" y="30" text-anchor="middle" class="label">Source netlists</text>
+  <text x="980" y="30" text-anchor="middle" class="label">Translated models & logs</text>
+</svg>
